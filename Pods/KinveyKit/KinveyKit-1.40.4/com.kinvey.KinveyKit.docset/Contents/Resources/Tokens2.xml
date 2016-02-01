@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSAppdataStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSAppdataStore</TokenIdentifier>
+			<Abstract type="html">Basic Store for loading Application Data from a Collection in the Kinvey backend.</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSCachedStore</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSAppdataStore/storeWithCollection:options:</TokenIdentifier>
+			<Abstract type="html">Initialize an empty store with the given collections, options and the default authentication</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/storeWithOptions:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>+ (instancetype)storeWithCollection:(KCSCollection *)collection options:(NSDictionary *)options</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">the Kinvey backend Collection providing data to this store.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">A dictionary of options to configure the store. (Can be nil if there are no options)</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An autoreleased empty store with configured options and default authentication.</Abstract></ReturnValue>
+			<Anchor>//api/name/storeWithCollection:options:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSAppdataStore/storeWithCollection:authHandler:withOptions:KCS_DEPRECATED:</TokenIdentifier>
+			<Abstract type="html">Initialize an empty store with the given options and the given authentication (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use use storeWithCollection:options: instead&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)storeWithCollection:(KCSCollection *)collection authHandler:(KCSAuthHandler *)authHandler withOptions:(NSDictionary *)options KCS_DEPRECATED</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">the Kinvey backend Collection providing data to this store.</Abstract>
+				</Parameter><Parameter>
+					<Name>authHandler</Name>
+					<Abstract type="html">The Kinvey Authentication Handler used to authenticate backend requests.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">A dictionary of options to configure the store. (Can be nil if there are no options)</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An autoreleased empty store with configured options and given authentication.
+@depcratedIn 1.22.0</Abstract></ReturnValue>
+			<Anchor>//api/name/storeWithCollection:authHandler:withOptions:KCS_DEPRECATED:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/loadObjectWithID:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Load objects from the store with the given IDs.</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)loadObjectWithID:(id)objectID withCompletionBlock:(KCSCompletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectID</Name>
+					<Abstract type="html">this is an individual ID or an array of IDs to load</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when all objects are loaded</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/loadObjectWithID:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/group:reduce:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Aggregate objects in the store and apply a function to all members in that group.</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/group:reduce:condition:completionBlock:progressBlock:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSGroup</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSReduceFunction</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (KCSRequest *)group:(id)fieldOrFields reduce:(KCSReduceFunction *)function completionBlock:(KCSGroupCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fieldOrFields</Name>
+					<Abstract type="html">The array of fields to group by (or a single NSString field name). If multiple field names are supplied the groups will be made from objects that form the intersection of the field values. For instance, if you have two fields &quot;a&quot; and &quot;b&quot;, and objects &quot;{a:1,b:1},{a:1,b:1},{a:1,b:2},{a:2,b:2}&quot; and apply the COUNT function, the returned KCSGroup object will have an array of 3 objects: &quot;{a:1,b:1,count:2},{a:1,b:2,count:1},{a:2,b:2,count:1}&quot;. For objects that don&apos;t have a value for a given field, the value used will be NSNull.</Abstract>
+				</Parameter><Parameter>
+					<Name>function</Name>
+					<Abstract type="html">This is the function that is applied to the items in the group. If you do not want to apply a function, just use queryWithQuery:withCompletionBlock:withProgressBlock: instead and query for items that match specific field values.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that is invoked when the grouping is complete, or an error occurs.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/group:reduce:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/group:reduce:condition:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Aggregate objects in the store and apply a function to all members in that group that satisfy the condition.</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/group:reduce:completionBlock:progressBlock:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSGroup</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSReduceFunction</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (KCSRequest *)group:(id)fieldOrFields reduce:(KCSReduceFunction *)function condition:(KCSQuery *)condition completionBlock:(KCSGroupCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fieldOrFields</Name>
+					<Abstract type="html">The array of fields to group by (or a single NSString field name). If multiple field names are supplied the groups will be made from objects that form the intersection of the field values. For instance, if you have two fields &quot;a&quot; and &quot;b&quot;, and objects &quot;{a:1,b:1},{a:1,b:1},{a:1,b:2},{a:2,b:2}&quot; and apply the COUNT function, the returned KCSGroup object will have an array of 3 objects: &quot;{a:1,b:1,count:2},{a:1,b:2,count:1},{a:2,b:2,count:1}&quot;. For objects that don&apos;t have a value for a given field, the value used will be NSNull.</Abstract>
+				</Parameter><Parameter>
+					<Name>function</Name>
+					<Abstract type="html">This is the function that is applied to the items in the group. If you do not want to apply a function, just use queryWithQuery:withCompletionBlock:withProgressBlock: instead and query for items that match specific field values.</Abstract>
+				</Parameter><Parameter>
+					<Name>condition</Name>
+					<Abstract type="html">This is a KCSQuery object that is used to filter the objects before grouping. Only groupings with at least one object that matches the condition will appear in the resultant KCSGroup object. The group function does not support sorting, limit, or skip modifiers.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that is invoked when the grouping is complete, or an error occurs.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/group:reduce:condition:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/countWithBlock:</TokenIdentifier>
+			<Abstract type="html">Count all the elements the collection
+  </Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/countWithQuery:completion:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (KCSRequest *)countWithBlock:(KCSCountBlock)countBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>countBlock</Name>
+					<Abstract type="html">the block that receives the response</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/countWithBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSAppdataStore/countWithQuery:completion:</TokenIdentifier>
+			<Abstract type="html">Count all the elements the collection that match a given query.</Abstract>
+			<DeclaredIn>KCSAppdataStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)countWithQuery:(KCSQuery *)query completion:(KCSCountBlock)countBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">the query to filter the elements</Abstract>
+				</Parameter><Parameter>
+					<Name>countBlock</Name>
+					<Abstract type="html">the block that receives the response</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/countWithQuery:completion:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

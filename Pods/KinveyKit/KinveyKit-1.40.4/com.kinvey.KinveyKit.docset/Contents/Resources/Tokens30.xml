@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSDictionary+KCSEntityDict.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSDictionary(KCSEntityDict)</TokenIdentifier>
+			<Abstract type="html">Category to support using NS(Mutable)Dictionary objects as first-class Kinvey Entities.</Abstract>
+			<DeclaredIn>KCSEntityDict.h</DeclaredIn>
+			
+			<NodeRef refid="30"/>
+		</Token>
+		
+		
+	</File>
+</Tokens>

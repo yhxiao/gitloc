@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSCollectionDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSCollectionDelegate</TokenIdentifier>
+			<Abstract type="html">  Describes required methods for requesting entities from the Kinvey Service.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>
+			
+			<NodeRef refid="34"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSCollectionDelegate/collection:didFailWithError:</TokenIdentifier>
+			<Abstract type="html">Called when a request fails for some reason (including network failure, internal server failure, request issues...)</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>- (void)collection:(KCSCollection *)collection didFailWithError:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">The collection attempting to perform the operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">An object that encodes our error message</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/collection:didFailWithError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSCollectionDelegate/collection:didCompleteWithResult:</TokenIdentifier>
+			<Abstract type="html">Called when a request completes successfully.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>- (void)collection:(KCSCollection *)collection didCompleteWithResult:(NSArray *)result</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">The collection attempting to perform the operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>result</Name>
+					<Abstract type="html">An NSArray of Class objectTemplate objects.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/collection:didCompleteWithResult:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

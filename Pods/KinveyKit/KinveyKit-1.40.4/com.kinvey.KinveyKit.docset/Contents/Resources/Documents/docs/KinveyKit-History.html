@@ -1,0 +1,1631 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>KinveyKit-History Document</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />	
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">KinveyKit </a></h1>
+				<a id="developerHome" href="../index.html">Kinvey</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode" id="pageTitleHeader">KinveyKit-History Document</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar"></ul>
+		</header>
+		<article>
+			<a title="KinveyKit-History Document" name="top"></a>
+			<div id="overview_contents" role="main">
+				<div id="container">	
+					<h1>KinveyKit Release History</h1>
+
+<h2>1.33</h2>
+
+<h3>1.33.1</h3>
+
+<p><strong>Release Date:</strong> June 30, 2015</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix crash that could occur when registering/unregistering a device token if the device token was <code>nil</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.29</h2>
+
+<h3>1.29.0</h3>
+
+<p><strong>Release Date:</strong> March 25, 2015</p>
+
+<ul>
+<li>Enhancement: Added support for setting client app version.</li>
+<li>Enhancement: Added support for setting custom request properties.</li>
+</ul>
+
+
+<p>For example:</p>
+
+<pre><code>//global
+KCSRequestConfiguration* requestConfiguration = [KCSRequestConfiguration requestConfigurationWithClientAppVersion:@"2.0"
+                                                                                       andCustomRequestProperties:@{@"lang" : @"fr",
+                                                                                                                    @"globalProperty" : @"abc"}];
+KCSClientConfiguration* clientConfiguration = [KCSClientConfiguration configurationWithAppKey:@"&lt;#Your App Key#&gt;"
+                                                                                       secret:@"&lt;#Your App Secret#&gt;"
+                                                                                      options:&lt;#Your Options#&gt;
+                                                                         requestConfiguration:requestConfiguration];
+
+[[KCSClient sharedClient] initializeWithConfiguration:clientConfiguration];
+
+//per request
+KCSRequestConfiguration* requestConfig = [KCSRequestConfiguration requestConfigurationWithClientAppVersion:@"1.0"
+                                                                                andCustomRequestProperties:@{@"lang" : @"pt",
+                                                                                                             @"requestProperty" : @"123"}];
+   [store saveObject:obj
+requestConfiguration:requestConfig
+ withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+     //do something awesome here!
+ } withProgressBlock:nil];
+</code></pre>
+
+<h2>1.28</h2>
+
+<h3>1.28.0</h3>
+
+<p><strong>Release Date:</strong> November 26, 2014</p>
+
+<ul>
+<li>Added support for iOS 8 push notifications</li>
+<li>Removed support for iOS versions &lt; 7.1</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix an issue with PingResults</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.27</h2>
+
+<h3>1.27.1</h3>
+
+<p><strong>Release Date:</strong> July 31, 2014</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix issue where only one result returned from local cache.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.27.0</h3>
+
+<p><strong>Release Date:</strong> June 19, 2014</p>
+
+<ul>
+<li>Added new identity provider <code>KCSSocialIDKinvey</code> to use new Kinvey OAuth2 tokens for log-in. See the updated REST documentation for instructions on how to obtain an access token.</li>
+</ul>
+
+
+<p>For example:</p>
+
+<pre><code>[KCSUser loginWithSocialIdentity:KCSSocialIDKinvey accessDictionary:@{@"access_token":@"&lt;#Access Token#&gt;"} withCompletionBlock:^(KCSUser *user, NSError *errorOrNil, KCSUserActionResult result) {
+    if (!errorOrNil) {
+        //Do Stuff
+    } else {
+        //handle error
+    }
+}];
+</code></pre>
+
+<ul>
+<li>Add configuration option <code>KCS_ALWAYS_USE_NSURLREQUEST</code>, set to <code>@YES</code> for better performance when sending many simultaneous requests.</li>
+<li>Internal Improvements</li>
+<li>Code cleanup:
+
+<ul>
+<li>Removed deprecated <code>KCSResourceService</code> and associated classes.</li>
+<li>Removed the remaining delegated-based <code>KCSUser</code> methods.</li>
+<li>Removed the project template since it was pretty outdated.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix crash when network error occurs using <code>checkUsername:completion:</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.26</h2>
+
+<h3>1.26.9</h3>
+
+<p><strong>Release Date:</strong> May 5, 2014</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Improved algorithm for <code>KCSCachePolicyNetworkFirst</code> loading.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.8</h3>
+
+<p><strong>Release Date:</strong> April 28, 2014</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix bug where active user not properly cached between sessions.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.7</h3>
+
+<p><strong>Release Date:</strong> April 22, 2014</p>
+
+<ul>
+<li>Code Cleanup:
+
+<ul>
+<li>Removed deprecated <code>public</code> property of <code>KCSFile</code>.</li>
+<li>Removed spurious logged error with queries.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.6</h3>
+
+<p><strong>Release Date:</strong> April 1, 2014</p>
+
+<ul>
+<li>Exposes <code>- [KCSPush unreigsterDeviceToken:]</code> to remove a device token from a user.</li>
+<li>Code Cleanup:
+
+<ul>
+<li>Remove deprecated <code>KCSPush</code> methods.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix issue with file store upload blocks on iOS6.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.5</h3>
+
+<p><strong>Release Date:</strong> March 19, 2014</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix issue on <code>KCSOfflineUpdateDelegate</code> where dates were returned as strings.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.4</h3>
+
+<p><strong>Release Date:</strong> March 5, 2014</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix crash when using certain query formats.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.3</h3>
+
+<p><strong>Release Date:</strong> February 14, 2014</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li> Fix memory leak when using progress block.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.2</h3>
+
+<p><strong>Release Date:</strong> February 10, 2014</p>
+
+<ul>
+<li>Bug fixes:
+
+<ul>
+<li> Add prefix to Cocoalumberjack classes missed in the last release.</li>
+<li> Fix file upload completion block not being called.</li>
+</ul>
+</li>
+<li>Code cleanup:
+
+<ul>
+<li> Deprecated <code>[KCSClient userAgent]</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.1</h3>
+
+<p><strong>Release Date:</strong> February 7, 2014</p>
+
+<ul>
+<li>Stability and performance improvements.</li>
+<li>Added <code>[KCSUser getAccessDictionaryFromTwitterFromTwitterAccounts:accountChooseBock:]</code> to allow clients to present a list of twitter account for the user to choose which one to access.</li>
+<li>Prefixed Cocoalumberjack classes to avoid conflicts.</li>
+<li>Bug fixes:
+
+<ul>
+<li> <code>[KCSUser sessionAuth]</code> is still deprecated, but now returns the auth token.</li>
+<li> Fixed deadlock when downloading a list of named files.</li>
+<li> Fixed bug when PUTing objects from offline save had empty bodies.</li>
+</ul>
+</li>
+<li>Code cleanup:
+
+<ul>
+<li> Deprecated collection-style methods from <code>KCSPersistable</code> protocol, including <code>KCSPersistableDelegate</code>, <code>deleteFromCollection:withDelegate:</code>, and <code>saveToCollection:withDelegate:delegate</code>.</li>
+<li> Removed deprecated <code>NSObject</code> category method <code>setValue:forProperty:</code>, deprecated in 1.2.0.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.26.0</h3>
+
+<p><strong>Release Date:</strong> January 28, 2014</p>
+
+<ul>
+<li>Drop support for iOS 5.</li>
+<li>Added <a href="http://devcenter.kinvey.com/ios/guides/iossdk#activityindicator">network activity notifications</a>: <code>KCSNetworkConnectionDidStart</code> and <code>KCSNetworkConnectionDidEnd</code>.</li>
+<li>Added <code>@"Kinvey.ExecutedHooks"</code>key to completionBlock error object <code>userInfo</code> dictionaries. This will show which collection hooks were executed as part of the request. This will help troubleshoot when getting unexpected results from an API call.</li>
+<li>Internal performance improvements. In particular, data store completion block callbacks should now always be called on main thread, and progress blocks on arbitrary background thread.</li>
+<li>Dependency change:
+
+<ul>
+<li> <code>KinveyKit</code> now links against <code>Social.framework</code> instead of <code>Twitter.framework</code>.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li> Fix issue where <a href="../Classes/KCSUserDiscovery.html"><code>KCSUserDiscovery</code></a> callback called twice.</li>
+<li> Stability fixes for active user refresh.</li>
+<li> Fix several issues with files and user queries.</li>
+<li> Multiple simultaneous custom endpoint requests is now handled properly.</li>
+</ul>
+</li>
+<li>Code cleanup:
+
+<ul>
+<li> Deprecated <code>KCSAllObjects</code>; use <code>[KCSQuery query]</code> instead.</li>
+<li> Deprecated <a href="../Protocols/KCSCollectionDelegate.html"><code>KCSCollectionDelegate</code></a> and networking-methods of the <a href="../Classes/KCSCollection.html"><code>KCSCollection</code></a> class. These don&rsquo;t get the benefit of caching, error handling etc.</li>
+<li> Removed <code>KCSEntityDelegate</code> protocol and <code>[NSObject(KinveyEntity) loadObjectWithID:]</code>, originally deprecated in 1.19.0.</li>
+<li> Removed store and collection factory methods from <a href="../Classes/KCSClient.html"><code>KCSClient</code></a>, originally deprecated in 1.14.0.</li>
+<li> Removed reachability helpers from <code>KCSPing</code>, originally deprecated in 1.16.0 and 1.20.1.</li>
+<li> Updated fmdb library.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.25</h2>
+
+<h3>1.25.0</h3>
+
+<p><strong>Release Date:</strong> January 8, 2014</p>
+
+<ul>
+<li>Updates to User API
+
+<ul>
+<li>Added <a href="../Classes/KCSUser.html#//api/name/createAutogeneratedUser:completion:"><code>[KCSUser createAutogeneratedUser:completion:]</code></a> and <a href="../Classes/KCSUser.html#//api/name/userWithUsername:password:fieldsAndValues:withCompletionBlock:"><code>[KCSUser userWithUsername:password:fieldsAndValues:withCompletionBlock:]</code></a>. Deprecated <code>[KCSUser createAutogeneratedUser:]</code> and <code>[KCSUser userWithUsername:password:withCompletionBlock:]</code>; supply <code>nil</code> for fieldsAndValues for the old behavior.
+
+<ul>
+<li> This allows for setting additional attributes, such as email and name at user creation time, in one network request.</li>
+</ul>
+</li>
+<li>Simplified user credential storage in the keychain. The user password is no longer stored.</li>
+<li>User setup/creation blocks return <code>KCSUserNoInformation</code> for the user status instead of a more detailed status code. Check the <code>errorOrNil</code> object to see the operation failed.</li>
+<li>If the credentials change outside of the app, such as password update from another device, or the auth token expires,  the activer user will be logged out. This is because the only way to get the new credentials is to log in, again.
+
+<ul>
+<li> When this happens, a <code>KCSActiveUserChangedNotification</code> is posted. Your app can listen for this and show the log-in screen again.</li>
+<li> You can choose instead to keep the user active with the <code>KCS_KEEP_USER_LOGGED_IN_ON_BAD_CREDENTIALS</code> client option. Set to <code>YES</code> in the client configuration.</li>
+</ul>
+</li>
+<li>The user is no longer refreshed in the background when loaded from the keychain. The application is now responsible for updating the cached information when appropriate, such as after the application loads or returns to foreground after a long delay.</li>
+<li>Removed deprecated <code>[KCSUser loadWithDelegate:]</code>, <code>[KCSUser removeWithDelegate:]</code>, and <code>[KCSUser saveWithDelegate:]</code> methods.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix networking error when using <a href="../Classes/KCSPing.html"><code>KCSPing</code></a>.</li>
+</ul>
+</li>
+<li>Code Cleanup:
+
+<ul>
+<li>Removed deprecated <a href="../Classes/KCSMetadata.html"><code>KCSMetadata</code></a> methods.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.24</h2>
+
+<h3>1.24.0</h3>
+
+<p><strong>Release Date:</strong> December 11, 2013</p>
+
+<ul>
+<li>Support for <a href="http://devcenter.kinvey.com/ios/guides/encryption">Data Protection</a>
+
+<ul>
+<li>If you enable data protection entitlements for your app, you can configure <code>KCSClient</code> to respect various levels of data protection.
+
+<ul>
+<li>The data protection applies to the cache, the stored keychain credentials, and files donwloaded through <a href="../Classes/KCSFileStore.html"><code>KCSFileStore</code></a>.</li>
+<li>The data protection application delegate methods must be forwarded on to <a href="../Classes/KCSClient.html">KCSClient</a>. See the <a href="http://devcenter.kinvey.com/ios/guides/encryption">guide</a> for set-up and configuration options.</li>
+</ul>
+</li>
+<li>Stored credentials for the active user are now single-device only. They are not shared between other other iOS devices connected to the same iTunes library or backed up locally or through iCloud.</li>
+</ul>
+</li>
+<li>Added <a href="http://devcenter.kinvey.com/ios/guides/caching-offline#SeedingTheCacheImportExport">JSON import functionality to the data cache</a>.
+
+<ul>
+<li>Import JSON objects with <code>[KCSCachedStore import:]</code>.</li>
+<li>Export the cache entities of a store with <a href="../Classes/KCSCachedStore.html#//api/name/exportCache"><code>[KCSCachedStore exportCache]</code></a>.</li>
+<li>Limitations: imported objects must match the format used by the Kinvey backend, and only query all (e.g. <code>[KCSQuery query]</code>) supported for reading.</li>
+</ul>
+</li>
+<li><code>[KCSAppdataStore removeObject:withCompletionBlock:withProgressBlock:]</code> now uses a completion block that returns a count of items deleted, rather than a meaningless array.</li>
+<li>Added <code>[KCSCachedStore clearCaches]</code> to clear out the data cache.</li>
+<li>Added <a href="../Classes/KCSFileStore.html#//api/name/clearCachedFiles"><code>[KCSFileStore clearCachedFiles]</code></a> to remove all downloaded files managed by KinveyKit.</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Caching now supports skip and limit modifiers.</li>
+<li>Fix deadlock in caching queue.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.23</h2>
+
+<h3>1.23.0</h3>
+
+<p><strong>Release Date:</strong> December 3, 2013</p>
+
+<ul>
+<li><a href="http://devcenter.kinvey.com/ios/guides/caching-offline">Major Caching Update &amp; Bug Fix</a>:
+
+<ul>
+<li>Offline Save is now Offline Update - supports both saving and deleting.</li>
+<li><p>To enable offline updates, <a href="../Classes/KCSClient.html"><code>KCSClient</code></a> needs a global implementation of <a href="../Protocols/KCSOfflineUpdateDelegate.html"><code>KCSOfflineUpdateDelegate</code></a> as well as each participating <a href="../Classes/KCSCachedStore.html"><code>KCSCachedStore</code></a> needs to enable the <code>KCSStoreKeyOfflineUpdateEnabled</code> option. <br/> E.g.:</p>
+
+<pre><code>  id&lt;KCSOfflineUpdateDelegate&gt; myDelegate = [[ImplementingClass alloc] init];
+  [[KCSClient sharedClient] setOfflineDelegate:myDelegate];
+
+
+  KCSCachedStore* store = [KCSCachedStore storeWithOptions:@{
+                               KCSStoreKeyCollectionName : @"Events",
+                               KCSStoreKeyCollectionTemplateClass : [Event class],
+                               KCSStoreKeyCachePolicy : @(KCSCachePolicyNone),
+                               KCSStoreKeyOfflineUpdateEnabled : @YES}];    
+</code></pre></li>
+<li><p>Removed <code>KCSOfflineSaveStore</code> protocol from <a href="../Classes/KCSCachedStore.html"><code>KCSCachedStore</code></a>. Now just enable with the above option.</p></li>
+<li>When using a cache policy that reads locally, the cache is updated if an object is saved or deleted locally, even if the app is offline.</li>
+<li>Removed caching of GROUP results.</li>
+</ul>
+</li>
+<li>Remove support for <code>NSRegularExpression</code> with queries, as well as disable regular expression options. Also any query that does <em>not</em> start with a &ldquo;<code>^</code>&rdquo; will throw an exception.
+
+<ul>
+<li>Removed <code>+ [KCSQuery queryOnField:withRegex:options:]</code>.</li>
+<li>Removed <code>KCSRegexpQueryOptions</code>.</li>
+</ul>
+</li>
+<li>Minor Changes:
+
+<ul>
+<li>Saving an empty array now returns an empty array for <code>objectsOrNil</code> instead of of <code>nil</code>.</li>
+</ul>
+</li>
+<li>Code Cleanup:
+
+<ul>
+<li>Removed deprecated methods/classes:
+
+<ul>
+<li> <code>[KCSUser userCollection]</code>; use <a href="../Classes/KCSCollection.html#//api/name/userCollection"><code>[KCSCollection userCollection]</code></a> instead.</li>
+<li> <code>[KCSQuery queryForNilValueInField:]</code>; use exact match on <code>NSNull</code>, <code>queryForEmptyValueInField</code>, or <code>queryForEmptyOrNullValueInField</code> instead.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Built with latest XCode to support arm64 architecture</li>
+</ul>
+
+
+<h2>1.22</h2>
+
+<h3>1.22.0</h3>
+
+<p><strong>Release Date:</strong> October 28, 2013</p>
+
+<ul>
+<li>Internal Updates</li>
+<li>Code cleanup:
+
+<ul>
+<li>Removed deprecated methods/classes:
+
+<ul>
+<li> <code>[KCSUser loginWithFacebookAccessToken:withCompletionBlock:]</code></li>
+<li> Class <code>KCSEntityDict</code>. Clients should be using a <code>NSMutableDictionary</code> instead.</li>
+</ul>
+</li>
+<li>Deprecated data store constructors that use <code>authHandler</code>.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>File references will no longer be auto-resolved on load if not mapped in the <code>kinveyPropertyToCollectionMapping</code> method.</li>
+<li>Library now treats <code>@""</code> object id&rsquo;s the same as if they are <code>nil</code>, that is the object _id has not yet been set and it should be set by the server.</li>
+<li>File store can now save files with spaces in the filename.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.21</h2>
+
+<h3>1.21.1</h3>
+
+<p><strong>Release Date:</strong> September 24, 2013</p>
+
+<ul>
+<li>Update missed <code>fmdb</code> function prefix.</li>
+</ul>
+
+
+<h3>1.21.0</h3>
+
+<p><strong>Release Date:</strong> September 23, 2013</p>
+
+<ul>
+<li>Added <code>NSCoding</code> to <a href="../Classes/KCSFile.html"><code>KCSFile</code></a>.</li>
+<li>With <code>KCSLinkedAppdataStore</code>, you can use have a reference property to either an <code>UIImage</code> or a <code>KCSFile</code> file metadata object. If the property is declared as a <code>KCSFile</code>, the binary data will not be loaded. You can later download the file using the <code>KCSFile</code> object&rsquo;s <code>remoteURL</code> with <code>KCSFileStore downloadDataWithResolvedURL:completionBlock:progressBlock:</code>.</li>
+<li>Removed <code>kKCSWhere</code> query option.</li>
+<li>Built with XCode 5.</li>
+<li>Code cleanup:
+
+<ul>
+<li>Internal <code>KCSPing</code> changes: remove <code>KCS_USE_OLD_PING_STYLE_KEY</code> key, and deprecated <code>checkKinveyServiceStatusWithAction:</code>.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Renamed <code>fmdb</code> classes to avoid collisions with other libraries.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.20</h2>
+
+<h3>1.20.1</h3>
+
+<p><strong>Release Date:</strong> September 3, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix issue with Facebook login falsely returning error.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.20.0</h3>
+
+<p><strong> Release Date:</strong> August 30, 2013</p>
+
+<ul>
+<li>Added <a href="../Classes/KCSClientConfiguration.html"><code>KCSClientConfiguration</code></a> to make managing multiple <a href="../Classes/KCSClient.html"><code>KCSClient</code></a> configurations easier. See the <a href="http://devcenter.kinvey.com/ios/tutorials/using-environments">using environments tutorial</a> for more details.</li>
+<li>Deprecated <code>KCSFile</code>&rsquo;s <code>public</code> property. This is replaced with the new <code>publicFile</code> property. This was done for compatability with C++ libraries. The usage semantics are the same. If you have build errors due to the <code>public</code> property, just comment out the header line.</li>
+<li>Replaced SecureUDID with <code>identifierForVendor</code> on iOS 6+.</li>
+<li>Made <code>KCSMetadata</code> <code>NSCoding</code>-compliant.</li>
+<li>Code Cleanup:
+
+<ul>
+<li>Removed old KCS_PUSH_XXX client setup constants since they no longer do anything.</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix issue saving <code>KCSUser</code> object with push tokens.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.19</h2>
+
+<h3>1.19.3</h3>
+
+<p><strong> Release Date:</strong> Auguest 26, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Try again fixing the build errors for XCode 4.6.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.19.2</h3>
+
+<p><strong> Release Date:</strong> August 22, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed build error when using library.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.19.1</h3>
+
+<p><strong> Release Date:</strong> August 20, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed crash when using file download query by <code>_id</code>.</li>
+<li>Fixed sporadic crash when file download query returns 0 results.</li>
+<li>Multiple simultaneous downloads of the same file are not allowed. The completion block for subsequent downloads will contain an error.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.19.0</h3>
+
+<p><strong> Release Date:</strong> August 13, 2013</p>
+
+<ul>
+<li>The library no longer creates implicit users. All users must be explicitly set. However auto-generated users are still possible.
+
+<ul>
+<li>Removed <code>KCSClient</code> key <code>KCS_USER_CAN_CREATE_IMPLICT</code>.</li>
+<li><a href="../Classes/KCSUser.html#//api/name/hasSavedCredentials"><code>[KCSUser hasSavedCredentials]</code></a> will check if the keychain has stored credentials and active user can be restored.</li>
+<li><code>[KCSUser activeUser]</code> will instantiate the user from the keychain if credentials are saved.</li>
+<li>If no active user is found, the client <em>must</em> create a new user or login an existing user.</li>
+<li>Added <code>[KCSUser refreshFromServer:]</code> to update the <code>activeUser</code> with data from the server. This only works on the active user.</li>
+<li>Added <code>[KCSUser createAutogeneratedUser:]</code> to explicitly create a generated user and set it as active. For example:</li>
+</ul>
+</li>
+</ul>
+
+
+<p><code>objc        
+    if ([KCSUser activeUser] == nil) {
+        [KCSUser createAutogeneratedUser:^(KCSUser *user, NSError *errorOrNil, KCSUserActionResult result) {
+            //do something
+        }];
+    } else {
+        //otherwise user is set and do something
+    }
+</code></p>
+
+<ul>
+<li>Added <code>[KCSUser sendForgotUsername:]</code> to help</li>
+<li>Updated push feature.
+
+<ul>
+<li>Deprecated <code>[KCSPush application:didRegisterForRemoteNotificationsWithDeviceToken:]</code> for <code>application:didRegisterForRemoteNotificationsWithDeviceToken:completionBlock:</code>.</li>
+<li>Deprecated <code>+[</code>KCSPush<code> initializePushWithPushKey:pushSecret:mode:enabled:</code> for <code>registerForPush</code>.</li>
+</ul>
+</li>
+<li>Removed Urban Airship library dependency. (Note that Push notifications still uses Urban Airship on the backend).
+
+<ul>
+<li>libUAriship-1.4.0 is no longer needed, can be removed from the project</li>
+<li>The frameworks now used by the library are:
+
+<ul>
+<li> Foundation.framework</li>
+<li> Accounts.framework</li>
+<li> CoreGraphics.framework</li>
+<li> CoreLocation.framework</li>
+<li> libsqlite3.dylib</li>
+<li> MobileCoreServices.framework</li>
+<li> Security.framework</li>
+<li> SystemConfiguration.framework</li>
+<li> Twitter.framework</li>
+<li> UIKit.framework</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Code Cleanup:
+
+<ul>
+<li>Removed old and deprecated <code>findEntity</code> methods on <code>KCSEntity</code> category on <code>NSObject</code> (KinveyEntity.h)</li>
+<li>Deprecated <code>KCSEntityDelegate</code> API for directly loading objects.</li>
+<li>Removed deprecated <code>[KCSPush onLoadHelper:]</code> method.</li>
+<li>Deprecated old delegate-style <a href="../Classes/KCSUser.html"><code>KCSUser</code></a> methods.</li>
+<li>Deprecated <code>[KCSClient currentUser]</code>; use <code>[KCSUser activeUser]</code> instead.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.18</h2>
+
+<h3>1.18.0</h3>
+
+<p><strong> Release Date:</strong> August 06, 2013</p>
+
+<ul>
+<li>Improved Resource/File Handling
+
+<ul>
+<li>Deprecated and deleted <code>KCSResourceStore</code> and <code>KCSResourceService</code> APIs. These methods will now throw exceptions when used. They are marked as deprecated to make them easy to find, check the deprecation warning message for suggested replacement API.
+
+<ul>
+<li>See our migration guide for examples.</li>
+</ul>
+</li>
+<li>Added <code>KCSFileStore</code> with class methods for working with files:
+
+<ul>
+<li><strong>Uploading</strong>
+
+<ul>
+<li><code>+ (void) uploadFile:(NSURL*)fileURL options:(NSDictionary*)uploadOptions completionBlock:(KCSFileUploadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) uploadData:(NSData*)data options:(NSDictionary*)uploadOptions completionBlock:(KCSFileUploadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+</ul>
+</li>
+<li><strong>Downloading</strong>
+
+<ul>
+<li><code>+ (void) downloadFile:(id)idOrIds options:(NSDictionary*)options completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadFileByName:(id)nameOrNames completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadFileByQuery:(KCSQuery*)query completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadFileWithResolvedURL:(NSURL*)url options:(NSDictionary*)options completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadData:(id)idOrIds completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadDataByName:(id)nameOrNames completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadDataByQuery:(KCSQuery*)query completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) downloadDataWithResolvedURL:(NSURL*)url completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) resumeDownload:(NSURL*)partialLocalFile from:(NSURL*)resolvedURL completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock;</code></li>
+<li><code>+ (void) getStreamingURL:(NSString*)fileId completionBlock:(KCSFileStreamingURLCompletionBlock)completionBlock;</code></li>
+<li><code>+ (void) getStreamingURLByName:(NSString*)fileName completionBlock:(KCSFileStreamingURLCompletionBlock)completionBlock;</code></li>
+</ul>
+</li>
+<li><strong>Deleting</strong>
+
+<ul>
+<li><code>+ (void) deleteFile:(NSString*)fileId completionBlock:(KCSCountBlock)completionBlock;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Added <code>KCSFile</code> completionBlock object to represent a file object with both local and backend metadata.</li>
+<li>Added support for &ldquo;public&rdquo; files (i.e. files that accessible without authorization).</li>
+<li>Improved support for resuming incomplete uploads/downloads.</li>
+<li>Improved behavior and accuracy with file upload/download progress.</li>
+</ul>
+</li>
+<li>Added support for <code>NSURL</code> data types.</li>
+<li>Warning log will no longer complain about incomplete <a href="../Classes/KCSUser.html"><code>KCSUser</code></a> and other KinveyKit objects on most queries.</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Better handling of broken references.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.17</h2>
+
+<h3>1.17.3</h3>
+
+<p><strong> Release Date:</strong> Aug 1, 2013</p>
+
+<ul>
+<li>Updated <code>KCSPersistable</code> protocol with method <code>+kinveyDesignatedInitializer:</code>. This builder method is supplied the unedited json document from the server. This means the <code>KCSEntityKeyId</code> can be extracted and used to load objects from a persistent store instead of having to create a new one each time. <br><br> For example, when using Core Data, the following code will try to find an existing object with a matching property <code>kinveyID</code> before inserting a new one.</li>
+</ul>
+
+
+<pre>
+    &plus; (id)kinveyDesignatedInitializer:(NSDictionary *)jsonDocument
+    {
+        NSString* existingID = jsonDocument[KCSEntityKeyId];
+        id obj = nil;
+    
+        NSManagedObjectContext* context = [(AppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSEntityDescription* entity = [NSEntityDescription entityForName:@"<#ENTITY#>" inManagedObjectContext:context];
+    
+        if (existingID) {
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entity];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"kinveyID = %@", existingID];
+            [request setPredicate:predicate];
+            NSArray* results = [context executeFetchRequest:request error:NULL];
+            if (results != nil && results.count > 0) {
+                obj = results[0];
+            }
+        }
+    
+        if (obj == nil) {
+            //fall back to creating a new if one if there is an error, or if it is new
+            obj = [[self alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+        }
+    
+        return obj;
+    }
+</pre>
+
+
+<h3>1.17.2</h3>
+
+<p><strong> Release Date:</strong> July 16, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed bug when calling custom endpoints.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.17.1</h3>
+
+<p><strong> Release Date:</strong> June 25, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed bug where implicit users were created on logout.</li>
+<li>Fixed zombie issue when obtaining LinkedIn credentials.</li>
+<li>Fixed unrecognized selector error when using offline save.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.17.0</h3>
+
+<p><strong> Release Date:</strong> June 07, 2013</p>
+
+<ul>
+<li>Added support for custom business logic endpoints <a href="../Classes/KCSCustomEndpoints.html"><code>KCSCustomEndpoints</code></a>.</li>
+<li>Improved Push API
+
+<ul>
+<li>Deprecated <code>- [KCSPush onLoadHelper:error:]</code> in favor of <code>+ [KCSPush initializePushWithPushKey:pushSecret:mode:enabled:]</code>
+
+<ul>
+<li>Set-up is now more explicit. See <a href="http://devcenter.kinvey.com/ios/guides/push#AppSetUp">http://devcenter.kinvey.com/ios/guides/push#AppSetUp</a> for instructions on use.</li>
+<li>Set-up errors will now raise an <code>NSException</code>.</li>
+</ul>
+</li>
+<li>Added <code>- [</code>[KCSPush application:didFailToRegisterForRemoteNotificationsWithError:]<code>](../Classes/KCSPush.html#//api/name/application:didFailToRegisterForRemoteNotificationsWithError:)</code> to forward app delegate registration failure error to the push management.</li>
+<li>Added <code>- [KCSPush registerForRemoteNotifications]</code> to call from <code>applicationDidBecomeActive:</code> in the app delegate. This retrieves the latest device token, if it has changed.</li>
+<li>Updated <a href="http://devcenter.kinvey.com/ios/samples/geotag">GeoTag</a> sample application to support push, business logic, and custom endpoints.</li>
+<li>Added <a href="http://devcenter.kinvey.com/ios/tutorials/tracking-user-location-for-targeted-push">a tutorial</a> to show off location-based push.</li>
+</ul>
+</li>
+<li>Added <code>- [KCSUser removeValueForAttribute:</code> to remove previously set custom user attributes.</li>
+<li>KinveyKit distribution zip-file now includes the <a href="http://devcenter.kinvey.com/ios/samples/testdrive">TestDrive</a> sample app.</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed bug where a <code>CLLocation</code> could be added to a <code>KCUser</code> through <code>setValue:forAttribute:</code>;</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.16</h2>
+
+<h3>1.16.0</h3>
+
+<p><strong> Release Date:</strong> May 24, 2013</p>
+
+<ul>
+<li>Added <code>+ [KCSUser checkUsername:withCompletionBlock:]</code> to check if an username is already taken, or is available for a new user.</li>
+<li>Added <code>- [</code>[KCSClient clearCache]<code>](../Classes/KCSClient.html#//api/name/clearCache)</code> to clean up all the caches maintained by the library.</li>
+<li><code>KCSClient</code> property <code>dateStorageFormatString</code> is now undeprecated and writable. This can be overridden to convert other date formats. For example if not using the recommended UTC time stamp, the format string  <code>@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSSZ"</code> can translate most RFC 822 time zone ISO 6801 formats. <strong>NOTE:</strong> this is very platform dependent and not recommended as it may cause unexpected behavior on the server or with other clients.</li>
+<li>Deprecated <code>[KCSPing kinveyServiceIsReachable]</code> and  <code>[KCSPing networkIsReachable]</code>, use <code>- [</code>[KCSClient networkReachability]<code>](../Classes/KCSClient.html#//api/name/networkReachability)</code> and <a href="../Classes/KCSClient.html#//api/name/kinveyReachability"><code>[KCSClient kinveyReachability]</code></a> instead.</li>
+<li>Infrastructure Updates:
+
+<ul>
+<li>Replace <code>id</code> with <code>instancetype</code> return value in many classes. (See <a href="http://nshipster.com/instancetype/">http://nshipster.com/instancetype/</a> for a discussion)</li>
+</ul>
+</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Allow for collections created before <code></code>KCSClient<code> init…</code> to work properly.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.15</h2>
+
+<h3>1.15.2</h3>
+
+<p><strong> Release Date:</strong> May 16, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix to console logging</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.15.1</h3>
+
+<p><strong> Release Date:</strong> May 10, 2013</p>
+
+<ul>
+<li>Updated Urban Airship library from <code>libUAirshipPush-1.3.3.a</code> to <code>libUAirship-1.4.0.a</code>. <strong>Update your projects accordingly.</strong></li>
+<li><a href="../Classes/KCSUser.html#//api/name/logout"><code>[KCSUser logout]</code></a> will now attempt to remove the current device&rsquo;s push token from the user in the backend.</li>
+<li>Added <code>[KCSUser getAccessDictionaryFromLinkedIn:permissions:usingWebView:]</code> to allow you specify access permissions beyond <code>r_basicprofile</code>, such as <code>r_network</code>.</li>
+<li>Added warning if the result set is equal to 10,000 objects - this is the Kinvey limit for a query, and there may actually be more results. If this is the case use the limit &amp; skip modifiers on <a href="../Classes/KCSQuery.html"><code>KCSQuery</code></a> to page through the results.</li>
+</ul>
+
+
+<h3>1.15.0</h3>
+
+<p><strong> Release Date:</strong> April 26, 2013</p>
+
+<ul>
+<li><code>[KCSUser sendPasswordResetForUser:withCompletionBlock:]</code> now accepts an input username or email address. However the user entity in the backend still has to have an valid value in the <code>email</code> field.</li>
+<li>Added <code>KCSActiveUserChangedNotification</code> as a <code>NSNotification</code>. Observe this to have code informed when the active user is set or logged out.</li>
+<li>Added <code>- [KCSAppdataStore countWithQuery:completion:]</code> to allow for calculating the number of matching elements without transferring the data.</li>
+<li>If an object&rsquo;s <code>hostToKinveyPropertyMapping</code> specifies an invalid property, the save will now fail with an error with code <code>KCSInvalidKCSPersistableError</code> rather than crash.</li>
+<li>Deprecated <code>KCSClient</code> property <code>dateStorageFormatString</code>.</li>
+<li>Bug fix(es):
+
+<ul>
+<li>NSError in completion block now returns full error message info when a business logic error occurs.</li>
+<li>Linked resources now once again show up as <code>NSDictionary</code> values when loaded with <a href="../Classes/KCSAppdataStore.html"><code>KCSAppdataStore</code></a> or <a href="../Classes/KCSCachedStore.html"><code>KCSCachedStore</code></a>.</li>
+<li>Fixed progress block crash when there is a server error.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.14</h2>
+
+<h3>1.14.2</h3>
+
+<p><strong> Release Date:</strong> April 1, 2013</p>
+
+<ul>
+<li>Kinvey now supplies a creation time in addition to last modified time. Added <code>creationTime</code> to <a href="../Classes/KCSMetadata.html"><code>KCSMetadata</code></a> object. And <code>KCSMetadataFieldCreationTime</code> constant for defining queries on creation time.</li>
+<li><code>+ [KCSUser loginWithSocialIdentity:accessDictionary:withCompletionBlock:] and + [KCSUser registerUserWithSocialIdentity:accessDictionary:withCompletionBlock:]</code> for <strong>Facebook</strong> now requires an additional key in the accessDictionary: <code>KCS_FACEBOOK_APP_KEY</code> where the value is the Facebook App Id. This can be found on the main page of app info in the Facebook developer site.
+
+<ul>
+<li>This key can be supplied as part of the <code>accessDictionary</code>, as an option when initializing <a href="../Classes/KCSClient.html"><code>KCSClient</code></a> or in the info.plist with the key: <code>FacebookAppID</code>. The Info.plist key is also used with the Facebook iOS SDK.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.14.1</h3>
+
+<p><strong> Release Date:</strong> March 24, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix bug where library can crash parsing certain server errors.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.14.0</h3>
+
+<p><strong> Release Date:</strong> March 21, 2013</p>
+
+<ul>
+<li>Added <code>+ [KCSReduceFunction AGGREGATE]</code> grouping function which returns whole objects for the store type, grouped by the specified field. This is useful for building sectioned tables.</li>
+<li>Added <code>+ [</code>[KCSQuery queryWithQuery:]<code>](../Classes/KCSQuery.html#//api/name/queryWithQuery:)</code> copy factory method.</li>
+<li>Replaced (deprecated) <code>KCSMetadata</code> <code>usersWithReadAccess</code> and <code>setUsersWithReadAccess:</code> with <code>readers</code> mutable array; and replaced <code>usersWithWriteAccess</code> and <code>setUsersWithWriteAccess:</code> with <code>writers</code> mutable array. User <code>_id</code>&rsquo;s can now be added directly to these arrays instead of using accessor methods.</li>
+<li><p>Added <a href="../Classes/KCSClient.html"><code>KCSClient</code></a> set-up option <code>KCS_USER_CAN_CREATE_IMPLICT</code> to disable creating &ldquo;implicit users&rdquo; when set to <code>NO</code>. If a request is sent before a login with a username or social identity, it will complete with an authentication error.</p>
+
+<pre><code>  (void)[[KCSClient sharedClient] initializeKinveyServiceForAppKey:@"&lt;#APP KEY#&gt;"
+                                                     withAppSecret:@"&lt;#APP SECRET#&gt;"
+                                                      usingOptions:@{KCS_USER_CAN_CREATE_IMPLICT : @NO}];
+</code></pre></li>
+<li><p>Added <code>KCSClient</code> set-up option <code>KCS_LOG_SINK</code> to allow you to send KinveyKit logs to a custom logger, such as Testflight. This requires that you create an object that implements the new <code>KCSLogSink</code> protocol and configure logging. For example:</p>
+
+<pre><code>  @interface TestFlightLogger : NSObject KCSLogSink
+  @end
+  @implementation TestFlightLogger
+
+  - (void)log:(NSString *)message
+  {
+      TFLog(@"%@", message);
+  }
+  @end
+</code></pre>
+
+<p>  and, in the app delegate:</p>
+
+<pre><code>  (void)[[KCSClient sharedClient] initializeKinveyServiceForAppKey:@"&lt;#APP KEY#&gt;"
+                                                     withAppSecret:@"&lt;#APP SECRET#&gt;"
+                                                      usingOptions:@{KCS_LOG_SINK : [[TestFlightLogger alloc] init]}];
+
+  [KCSClient configureLoggingWithNetworkEnabled:NO debugEnabled:NO traceEnabled:NO warningEnabled:YES errorEnabled:YES];
+</code></pre></li>
+<li><p>Added support for log-in with <strong>Salesforce</strong></p>
+
+<ul>
+<li>Added <code>KCSSocialIDSalesforce</code> value to <a href="../Constants/KCSUserSocialIdentifyProvider.html"><code>KCSUserSocialIdentifyProvider</code></a> enum for use with <code>+ [</code>[KCSUser loginWithSocialIdentity:accessDictionary:withCompletionBlock:]<code>](../Classes/KCSUser.html#//api/name/loginWithSocialIdentity:accessDictionary:withCompletionBlock:)</code> and <code>+ [KCSUser registerUserWithSocialIdentity:accessDictionary:withCompletionBlock:]</code>.</li>
+<li><p>To use with <a href="https://github.com/forcedotcom/SalesforceMobileSDK-iOS">Salesforce&rsquo;s iOS SDK</a></p>
+
+<pre><code>   - (void)oauthCoordinatorDidAuthenticate:(SFOAuthCoordinator *)coordinator authInfo:(SFOAuthInfo *)info
+   {
+      NSString* accessToken = coordinator.credentials.accessToken;
+      NSString* instanceURL = [coordinator.credentials.identityUrl absoluteString];
+      NSString* refreshToken = coordinator.credentials.refreshToken;
+      NSString* clientId = coordinator.credentials.clientId;
+
+      NSDictionary* acccessDictionary = @{KCSUserAccessTokenKey : accessToken, KCS_SALESFORCE_IDENTITY_URL : instanceURL, KCS_SALESFORCE_REFRESH_TOKEN : refreshToken, KCS_SALESFORCE_CLIENT_ID : clientId};
+
+      [KCSUser loginWithSocialIdentity:KCSSocialIDSalesforce accessDictionary:acccessDictionary withCompletionBlock:^(KCSUser *user, NSError *errorOrNil, KCSUserActionResult result) {
+          NSLog(@"Logged in user: %@ - error: %@", user, errorOrNil);
+      }];
+   }     
+</code></pre></li>
+</ul>
+</li>
+<li><p>Removed <code>KCSUniqueNumber</code> class.</p></li>
+<li>Removed deprecated (as of version 1.2) filter API from old Collections interface.</li>
+<li>Deprecated undocumented <a href="../Protocols/KCSStore.html"><code>KCSStore</code></a> factory methods on <a href="../Classes/KCSClient.html"><code>KCSClient</code></a>.</li>
+<li>Infrastructure update: entire library now built with ARC.</li>
+<li>Bug fix(es):
+
+<ul>
+<li><a href="../Classes/KCSUserDiscovery.html">KCSUserDiscovery</a> returns complete <code>KCSUser</code> objects now instead of <code>NSDictionary</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.13</h2>
+
+<h3>1.13.2</h3>
+
+<p><strong> Release Date:</strong> January 17, 2013</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed issue where airship lib was added twice, causing linker failures.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.13.1</h3>
+
+<p><strong> Release Date:</strong> January 7, 2013</p>
+
+<ul>
+<li><a href="../Classes/KCSAppdataStore.html"><code>KCSAppdataStore</code></a> and subclasses will now return objects when partial data is loaded from the server in progress blocks with <code>loadObjectWithID:withCompletionBlock:withProgressBlock:</code> and <code>queryWithQuery:withCompletionBlock:withProgressBlock:</code></li>
+<li>Bug fix(es):
+
+<ul>
+<li>Email verification status property on <a href="../Classes/KCSUser.html"><code>KCSUser</code></a> is now being properly set once the user has clicked the link in the email and the user is reloaded from the server.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.13.0</h3>
+
+<p><strong> Release Date:</strong> December 18, 2012</p>
+
+<ul>
+<li>Added support for log-in with <strong>LinkedIn</strong>
+
+<ul>
+<li>Added <code>KCSSocialIDLinkedIn</code> value to <a href="../Constants/KCSUserSocialIdentifyProvider.html"><code>KCSUserSocialIdentifyProvider</code></a> enum for use with <code>+ [</code>[KCSUser loginWithSocialIdentity:accessDictionary:withCompletionBlock:]<code>](../Classes/KCSUser.html#//api/name/loginWithSocialIdentity:accessDictionary:withCompletionBlock:)</code> and <code>+ [KCSUser registerUserWithSocialIdentity:accessDictionary:withCompletionBlock:]</code>.</li>
+<li>Added <code>+ [KCSUser getAccessDictionaryFromLinkedIn:usingWebView]</code> to obtain an accessDictionary for use with the register &amp; log-in methods.</li>
+</ul>
+</li>
+<li>Added <code>- [KCSUser updatePassword:completionBlock:]</code> to change the active user&rsquo;s password.</li>
+<li><code>KCSQuery</code> geo-queries (<code>kKCSNearSphere</code>, <code>kKCSWithinBox</code>, <code>kKCSWithinCenterSphere</code>, <code>kKCSWithinPolygon</code>) on a field other than <code>KCSEntityKeyGeolocation</code> will now throw an exception instead of silently fail.</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix bug when using Data Integration query and an error is returned in an unexpected format causes a crash.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.12</h2>
+
+<h3>1.12.1</h3>
+
+<p><strong> Release Date:</strong> December 12, 2012</p>
+
+<ul>
+<li>Bug Fix(es):
+
+<ul>
+<li>Fix crash when using <code>[KCSQuery fetchWithQuery:withCompletionBlock:withProgressBlock:]</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.12.0 <a href="Documents/releasenotes/General/KinveyKit1120APIDiffs/KinveyKit1120APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date:</strong> November 29, 2012</p>
+
+<ul>
+<li>Added <code>KCSRequestId</code> key to most <code>NSError</code> <code>userInfo</code> dictionaries. If available, this unique key corresponds to the request to the Kinvey backend. This value is useful for tech support purposes, and should be provided when contacting support@kinvey.com for faster issue resolution.</li>
+<li>Added <code>KCSBackendLogicError</code> constant for <code>[NSError code]</code> value for cases when there is an error running Backend Logic on the Kinvey server (HTTP error code 550).</li>
+<li><code>[KCSQuery queryOnField:withRegex:]</code> and <code>[KCSQuery queryOnField:withRegex:options]</code> now take either <code>NSString</code> or <code>NSRegularExpression</code> objects as the regular expression parameter. The <code>[KCSQuery queryOnField:withRegex:]</code> form will use the applicable options from the NSRegularExpression object.</li>
+<li><code>CLLocation</code> objects can now be used as values for a <code>KCSEntityKeyGeolocation</code> property. These objects are saved in the form [latitude, longitude]; all other CLLocation properties are discarded.</li>
+<li><code>[KCSPing pingKinveyWithBlock:]</code> no longer requires user authentication, and thus will not create or initialize a <code>KCSUser</code>.</li>
+<li>Bug Fix(es):
+
+<ul>
+<li>Fix bug when using sort modifiers on queries with old collection API where the sort is not applied correctly</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.11</h2>
+
+<h3>1.11.0 <a href="Documents/releasenotes/General/KinveyKit1110APIDiffs/KinveyKit1110APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date:</strong> November 16, 2012</p>
+
+<ul>
+<li>Replaced <code>libUAirship-1.3.3</code> with the smaller <code>libUAirshipPush-1.3.3</code> library.</li>
+<li><code>- [KCSStore loadObjectWithID:withCompletionBlock:withProgressBlock:]</code> now accepts <code>NSSet</code>s of id&rsquo;s as well as arrays and a single id.</li>
+<li>Updated <code>KCSQuery</code> to throw an exception when trying to negate an exact match query. This is invalid syntax and fails server-side. Use a conditional query with <code>kKCSNotEqual</code> to test not equals.</li>
+<li>Deprecated <code>[KCSQuery queryForNilValueInField:]</code> because it is ambiguous and did not work. It has been modified to work the same as <code>queryForEmptyValueInField:</code> and is superceeded by the following behaviors:
+
+<ul>
+<li>To find values that have been set to <code>null</code> : <code>+[KCSQuery queryOnField:field withExactMatchForValue:[NSNull null]]</code></li>
+<li>To find values that empty or unset: <a href="../Classes/KCSQuery.html#//api/name/queryForEmptyValueInField:"><code>[KCSQuery queryForEmptyValueInField:]</code></a></li>
+<li>To find either <code>null</code> or empty or unset: <code>[KCSQuery queryForEmptyOrNullValueInField:]</code></li>
+</ul>
+</li>
+<li>Usability Enhancements:
+
+<ul>
+<li><p>Created options keys for <code>KCSAppdataStore</code> so that a <code>KCSCollection</code> object does not have to be explicitly created and managed by the client code.</p>
+
+<ul>
+<li><code>KCSStoreKeyCollectionName</code> the collection Name</li>
+<li><code>KCSStoreKeyCollectionTemplateClass</code> the template class</li>
+<li><p>For example, instead of:</p>
+
+<pre><code>  KCSCollection* collection = [KCSCollection collectionFromString:@"Events" ofClass:[Event class]];
+  _store = [KCSAppdataStore storeWithCollection:collection options:nil];
+</code></pre>
+
+<p>You can use the following:</p>
+
+<pre><code>  _store = [KCSAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"Events",
+                                       KCSStoreKeyCollectionTemplateClass : [Event class]}];
+</code></pre></li>
+</ul>
+</li>
+<li><p>Renamed <code>KCS_PUSH_MODE</code> values to match the language used eslewhere</p>
+
+<ul>
+<li><code>KCS_PUSH_DEBUG</code> is now <code>KCS_PUSH_DEVELOPMENT</code></li>
+<li><code>KCS_PUSH_RELEASE</code> is now <code>KCS_PUSH_PRODUCTION</code></li>
+</ul>
+</li>
+<li>Exposed <code>userId</code> property of <code>KCSUser</code> to obtain the <code>_id</code> for references.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.10</h2>
+
+<h3>1.10.8</h3>
+
+<p><strong> Release Date:</strong> November 13, 2012</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Sporadic assertion when initializing user outside of normal flow.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.7</h3>
+
+<p><strong> Release Date:</strong> November 12, 2012</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed bug where new user could not be created when using push.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.6</h3>
+
+<p><strong> Release Date:</strong> November 3, 2012</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed bug where sign-in with Twitter sporadically crashed or did not complete.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.5</h3>
+
+<p><strong> Release Date:</strong> October 30, 2012</p>
+
+<ul>
+<li>Added <code>KCSUserAttributeFacebookId</code> to allow for discovering users through <a href="../Classes/KCSUserDiscovery.html"><code>KCSUserDiscovery</code></a> given a Facebook id (from the FB SDK).</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Joined <a href="../Classes/KCSQuery.html"><code>KCSQuery</code></a>s using <code>kKCSAnd</code> now work correctly.</li>
+<li>Fixed error where streaming resource URLs were not fetched properly.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.4</h3>
+
+<p><strong> Release Date:</strong> October 23, 2012</p>
+
+<ul>
+<li>Minor update(s)
+
+<ul>
+<li>Additional User information, such as surname and givenname are now persisted in the keychain.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.3</h3>
+
+<p><strong> Release Date:</strong> October 18, 2012</p>
+
+<ul>
+<li><strong>Change in behavior when saving objects with relationships</strong>.
+
+<ul>
+<li>Objects specified as relationships (through <code>kinveyPropertyToCollectionMapping</code>) will, by default, <strong>no longer be saved</strong> to its collection when the owning object is saved. Like before, there will be a reference dictionary saved to the backend in place of the object.</li>
+<li>If a reference object has not had its <code>_id</code> set, either programmatically or by saving that object to the backend, then saving the owning object will fail. The save will not be sent, and the <code>completionBlock</code> callback with have an error with an error code: <code>KCSReferenceNoIdSetError</code>.</li>
+<li>To save the reference objects (either to simplify the save or have the backend generate the <code>_id</code>&rsquo;s), have the <code>KCSPersistable</code> object implement the <code>- referenceKinveyPropertiesOfObjectsToSave</code> method. This will return an array of backend property names for the objects to save.
+
+<ul>
+<li>For example, if you have an <code>Invitation</code> object with a reference property <code>Invitee</code>, in addition to mentioning the <code>Invitee</code> property in <code>- hostToKinveyPropertyMapping</code> and <code>- kinveyPropertyToCollectionMapping</code>, if you supply <code>@"Invitee"</code> in <code>- referenceKinveyPropertiesOfObjectsToSave</code>, then any objects in the <code>Invitee</code> property will be saved to the backend before saving the <code>Invitation</code> object, populating any <code>_id</code>&rsquo;s as necessary.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.2</h3>
+
+<p><strong> Release Date:</strong> October 12, 2012</p>
+
+<ul>
+<li>Improved support for querying relationships through <code>KCSLinkedAppdataStore</code> and for using objects in queries
+
+<ul>
+<li>Added constants: <code>KCSMetadataFieldCreator</code> and <code>KCSMetadataFieldLastModifiedTime</code> to <code></code>KCSMetadata<code>.h</code> to allow for querying for entities based on the user that created the object and the last time the entity was updated on the server.</li>
+<li>Added the ability to use <code>NSDate</code> objects in queries, supporting exact matches, greater than (or equal) and less than (or equal) comparisons.</li>
+</ul>
+</li>
+<li>Added support for establishing references to users:
+
+<ul>
+<li>Added constant <code>KCSUserCollectionName</code> to allow for adding relationships to user objects from any object&rsquo;s <code>+kinveyPropertyToCollectionMapping</code>.</li>
+<li>Deprecated <code>- [KCSUser userCollection]</code> in favor of <a href="../Classes/KCSCollection.html#//api/name/userCollection"><code>[KCSCollection userCollection]</code></a> to create a collection object to the user collection.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.10.1</h3>
+
+<p><strong> Release Date:</strong> October 10, 2012</p>
+
+<ul>
+<li>Added <code>+ [</code>[KCSUser sendEmailConfirmationForUser:withCompletionBlock:]<code>](../Classes/KCSUser.html#//api/name/sendEmailConfirmationForUser:withCompletionBlock:)</code> in order to send an email confirmation to the user.</li>
+</ul>
+
+
+<h3>1.10.0 <a href="Documents/releasenotes/General/KinveyKit1100APIDiffs/KinveyKit1100APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date: </strong> October 8, 2012</p>
+
+<ul>
+<li>Added <code>+ [KCSUser sendPasswordResetForUser:withCompletionBlock:]</code> in order to send a password reset email to the user.</li>
+<li>Bug fix(es):
+
+<ul>
+<li>Fixed false error when deleting entities using old <code>KCSCollection</code> interface.</li>
+<li>Fixed error when loading dates that did not specify millisecond information.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.9</h2>
+
+<h3>1.9.1</h3>
+
+<p><strong> Release Date: </strong> October 2, 2012</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li><a href="../Classes/KCSLinkedAppdataStore.html"><code>KCSLinkedAppdataStore</code></a> now supports relationships when specifying an optional <code>cachePolicy</code> when querying.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.9.0 <a href="Documents/releasenotes/General/KinveyKit190APIDiffs/KinveyKit190APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date: </strong> October 1, 2012</p>
+
+<ul>
+<li>Added support for log-in with twitter
+
+<ul>
+<li>Deprecate Facebook-specific methods and replace with generic social identity. See <a href="../Classes/KCSUser.html"><code>KCSUser</code></a>.</li>
+<li>Requires linking Twitter.framework and Accounts.framework.</li>
+</ul>
+</li>
+<li>Added support for <code>id</code>KCSPersistable<code></code> objects to be used as match values in <a href="../Classes/KCSQuery.html"><code>KCSQuery</code></a> when using relationships through <a href="../Classes/KCSLinkedAppdataStore.html"><code>KCSLinkedAppdataStore</code></a>.</li>
+<li>Deprecated <code>KCSEntityDict</code>. You can now just save/load <code>NSMutableDictionary</code> objects directly with the backend. Use them like any other <code>KCSPersistable</code>.
+
+<ul>
+<li>Note: using a non-mutable <code>NSDictionary</code> will not have its fields updated when saving the object.</li>
+</ul>
+</li>
+<li>Upgraded Urban Airship library to 1.3.3.</li>
+<li>Improved usability for Push Notifications
+
+<ul>
+<li>Deprecated <code>- [KCSPush onLoadHelper:]</code>; use <code>- [KCSPush onLoadHelper:error:]</code> instead to capture set-up errors.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.8</h2>
+
+<h3>1.8.3</h3>
+
+<p><strong> Release Date: </strong> September 25, 2012</p>
+
+<ul>
+<li>Bug fix(es):
+
+<ul>
+<li>Fix issue with production push.</li>
+<li>Fix issue with analytics on libraries built with Xcode 4.5.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.8.2</h3>
+
+<p><strong> Release Date: </strong> September 14, 2012</p>
+
+<ul>
+<li>Bug fix(es): Fix sporadic crash on restore from background.</li>
+</ul>
+
+
+<h3>1.8.1</h3>
+
+<p><strong> Release Date: </strong> September 13, 2012</p>
+
+<ul>
+<li>Added <code>KCSUniqueNumber</code> entities to provide monotonically increasing numerical sequences across a collection.</li>
+</ul>
+
+
+<h3>1.8.0 <a href="Documents/releasenotes/General/KinveyKit180APIDiffs/KinveyKit180APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release date: </strong> September 11, 2012</p>
+
+<ul>
+<li><code>KCSLinkedAppdataStore</code> now supports object relations through saving/loading entities with named fields of other entities.</li>
+<li>Added <code>kKCSRegex</code> regular expression querying to <a href="../Classes/KCSQuery.html"><code>KCSQuery</code></a>.</li>
+<li>Added <code>KCSEntityKeyGeolocation</code> constant to KinveyPersistable.h as a convience from using the <code>_geoloc</code> geo-location field.</li>
+<li>Added <code>CLLocation</code> category methods <code>- [CLLocation kinveyValue]</code> and <code>+ [CLLocation locationFromKinveyValue:]</code> to aid in the use of geo data.</li>
+<li>Support for <code>NSSet</code>, <code>NSOrderedSet</code>, and <code>NSAttributedString</code> property types. These are saved as arrays on the backend.  See <a href="Documents/guides/datatype-guide/Datatypes%20In%20KinveyKit.html">Datatypes in KinveyKit</a> for more information.</li>
+<li>Support for Kinvey backend API version 2.</li>
+<li>Documentation Updates.
+
+<ul>
+<li>Added <a href="Documents/guides/datatype-guide/Datatypes%20In%20KinveyKit.html">Datatypes in KinveyKit</a> Guide.</li>
+<li>Added links to the api differences to this document.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.7</h2>
+
+<h3>1.7.0 <a href="Documents/releasenotes/General/KinveyKit170APIDiffs/KinveyKit170APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release date: </strong> Aug 17, 2012</p>
+
+<ul>
+<li><code>KCSCachedStore</code> now provides the ability to persist saves when the application is offline, and then to save them when the application regains connectivity. See also <code>KCSOfflineSaveStore</code>.</li>
+<li>Added login with Facebook to <a href="../Classes/KCSUser.html"><code>KCSUser</code></a>, allowing you to use a Facebook access token to login in to Kinvey.</li>
+<li>Documentation Updates.
+
+<ul>
+<li>Added <a href="Documents/guides/gcd-guide/Using%20KinveyKit%20with%20GCD.html">Threading Guide</a>.</li>
+<li>Added <a href="Documents/guides/using-coredata-guide/KinveyKit%20CoreData%20Guide.html">Core Data Migration Guide</a></li>
+</ul>
+</li>
+<li>Bug Fix(es).
+
+<ul>
+<li>Updated our reachability aliases to make the KinveyKit more compatible with other frameworks.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.6</h2>
+
+<h3>1.6.1</h3>
+
+<p><strong> Release Date: </strong> July 31st, 2012</p>
+
+<ul>
+<li>Bug Fix(es).
+
+<ul>
+<li>Fix issue with hang on no results using <a href="../Classes/KCSAppdataStore.html"><code>KCSAppdataStore</code></a>.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>1.6.0 <a href="Documents/releasenotes/General/KinveyKit160APIDiffs/KinveyKit160APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date: </strong> July 30th, 2012</p>
+
+<ul>
+<li>Added <code>KCSUserDiscovery</code> to provide a method to lookup other users based upon criteria like name and email address.</li>
+<li>Upgraded Urban Airship library to 1.2.2.</li>
+<li>Documentation Updates.
+
+<ul>
+<li>Added API difference lists for KinveyKit versions 1.4.0, 1.5.0, and 1.6.0</li>
+<li>Added tutorial for using 3rd Party APIs with OAuth 2.0</li>
+</ul>
+</li>
+<li>Bug Fix(es).
+
+<ul>
+<li>Changed <a href="../Constants/KCSSortDirection.html"><code>KCSSortDirection</code></a> constants <code>kKCSAscending</code> and <code>kKCSDescending</code> to sort in the proscribed orders. If you were using the constants as intended, no change is needed. If you swaped them or modified their values to work around the bug, plus update to use the new constants.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>1.5</h2>
+
+<h3>1.5.0 <a href="Documents/releasenotes/General/KinveyKit150APIDiffs/KinveyKit150APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date: </strong> July 10th, 2012</p>
+
+<ul>
+<li>Added <code>KCSMetadata</code> for entities to map by <code>KCSEntityKeyMetadata</code> in <code>hostToKinveyPropertyMapping</code>. This provides metadata about the entity and allows for fine-grained read/write permissions.</li>
+<li>Added <a href="../Classes/KCSLinkedAppdataStore.html"><code>KCSLinkedAppdataStore</code></a> to allow for the saving/loading of <code>UIImage</code> properties automatically from our resource service.</li>
+</ul>
+
+
+<h2>1.4</h2>
+
+<h3>1.4.0 <a href="Documents/releasenotes/General/KinveyKit140APIDiffs/KinveyKit140APIDiffs.html"><sub>api diff</sub></a></h3>
+
+<p><strong> Release Date: </strong> June 7th, 2012</p>
+
+<ul>
+<li>Added<code>KCSCachedStore</code> for caching queries to collections.</li>
+<li>Added aggregation support (<code>groupBy:</code>) to <a href="../Protocols/KCSStore.html"><code>KCSStore</code></a> for app data collections.</li>
+</ul>
+
+
+<h2>1.3</h2>
+
+<h3>1.3.1</h3>
+
+<p><strong> Release Date: </strong> May 7th, 2012</p>
+
+<ul>
+<li>Fixed defect in Resource Service that prevented downloading resources on older iOS versions (&lt; 5.0)</li>
+</ul>
+
+
+<h3>1.3.0</h3>
+
+<p><strong> Release Date: </strong> April 1st, 2012</p>
+
+<ul>
+<li>Migrate to using SecureUDID</li>
+<li>General memory handling improvements</li>
+<li>Library now checks reachability prior to making a request and calls failure delegate if Kinvey is not reachable.</li>
+<li>Fixed several known bugs</li>
+</ul>
+
+
+<h2>1.2</h2>
+
+<h3>1.2.1</h3>
+
+<p><strong> Release Date: </strong> Februrary 22, 2012</p>
+
+<ul>
+<li>Update user-agent string to show correct revision</li>
+</ul>
+
+
+<h3>1.2.0</h3>
+
+<p><strong> Release Date: </strong> Februrary 14, 2012</p>
+
+<ul>
+<li>Updated query interface (See <a href="../Classes/KCSQuery.html">KCSQuery</a>)</li>
+<li>Support for GeoQueries</li>
+<li>Added features to check-reachability</li>
+<li>Stability improvements</li>
+<li>Documentation improvements</li>
+</ul>
+
+
+<h2>1.1</h2>
+
+<h3>1.1.1</h3>
+
+<p><strong> Release Date: </strong> January 24th, 2012</p>
+
+<ul>
+<li>Fix namespace collision issues.</li>
+<li>Added support for Core Data (using a designated initializer to build objects)</li>
+</ul>
+
+
+<h3>1.1.0</h3>
+
+<p><strong> Release Date: </strong> January 24th, 2012</p>
+
+<ul>
+<li>Added support for NSDates</li>
+<li>Added full support for Kinvey Users (See <a href="../Classes/KCSUser.html">KCSUser</a>)</li>
+<li>Stability improvements</li>
+</ul>
+
+
+<h2>1.0</h2>
+
+<h3>1.0.0</h3>
+
+<p><strong> Release Date: </strong> January 20th, 2012</p>
+
+<ul>
+<li>Initial release of Kinvey Kit</li>
+<li>Basic support for users, appdata and resources</li>
+<li>Limited release</li>
+</ul>
+
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2016 Kinvey. All rights reserved. (Last updated: 2016-02-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					
+					</div>
+				</div>
+			</div>
+		</article>
+	</body>
+</html>

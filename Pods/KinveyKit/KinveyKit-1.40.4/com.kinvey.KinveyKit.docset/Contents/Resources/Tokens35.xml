@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSInformationDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSInformationDelegate</TokenIdentifier>
+			<Abstract type="html">Used to document methods required for handling simple integer opertions completing.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>
+			
+			<NodeRef refid="35"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSInformationDelegate/collection:informationOperationFailedWithError:</TokenIdentifier>
+			<Abstract type="html">Called when the operation encounters an error (either through completion with failure or lack of completion).</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>- (void)collection:(KCSCollection *)collection informationOperationFailedWithError:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">The collection attempting to perform the operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">The error that the system encountered.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/collection:informationOperationFailedWithError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSInformationDelegate/collection:informationOperationDidCompleteWithResult:</TokenIdentifier>
+			<Abstract type="html">Called when the operation complets with no failures</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>- (void)collection:(KCSCollection *)collection informationOperationDidCompleteWithResult:(int)result</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">The collection attempting to perform the operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>result</Name>
+					<Abstract type="html">The integer result.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/collection:informationOperationDidCompleteWithResult:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

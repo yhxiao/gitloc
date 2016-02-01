@@ -1,0 +1,2515 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>KCSFileStore Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">KinveyKit </a></h1>
+				<a id="developerHome" href="../index.html">Kinvey</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">KCSFileStore Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/clearCachedFiles">&nbsp;&nbsp;&nbsp;&nbsp;+ clearCachedFiles</option>
+	
+	<option value="//api/name/deleteFile:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteFile:completionBlock:</option>
+	
+	<option value="//api/name/downloadData:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadData:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadData:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadData:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadDataByName:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadDataByName:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadDataByName:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadDataByName:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadDataByQuery:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadDataByQuery:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadDataWithResolvedURL:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadDataWithResolvedURL:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFile:options:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFile:options:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFile:options:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFile:options:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFileByName:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFileByName:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFileByName:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFileByName:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFileByQuery:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFileByQuery:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFileWithResolvedURL:options:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFileWithResolvedURL:options:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/getStreamingURL:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ getStreamingURL:completionBlock:</option>
+	
+	<option value="//api/name/getStreamingURLByName:completionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ getStreamingURLByName:completionBlock:</option>
+	
+	<option value="//api/name/resumeDownload:from:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ resumeDownload:from:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/uploadData:options:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ uploadData:options:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/uploadData:options:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ uploadData:options:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/uploadFile:options:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ uploadFile:options:completionBlock:progressBlock:</option>
+	
+	<option value="//api/name/uploadFile:options:requestConfiguration:completionBlock:progressBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ uploadFile:options:requestConfiguration:completionBlock:progressBlock:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Creating &amp; Updating Files">Creating &amp; Updating Files</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Downloading Files">Downloading Files</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Deleting Files">Deleting Files</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCachedFiles">clearCachedFiles</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteFile:completionBlock:">deleteFile:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadData:completionBlock:progressBlock:">downloadData:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadData:requestConfiguration:completionBlock:progressBlock:">downloadData:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadDataByName:completionBlock:progressBlock:">downloadDataByName:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadDataByName:requestConfiguration:completionBlock:progressBlock:">downloadDataByName:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadDataByQuery:completionBlock:progressBlock:">downloadDataByQuery:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:">downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadDataWithResolvedURL:completionBlock:progressBlock:">downloadDataWithResolvedURL:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:">downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFile:options:completionBlock:progressBlock:">downloadFile:options:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFile:options:requestConfiguration:completionBlock:progressBlock:">downloadFile:options:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFileByName:completionBlock:progressBlock:">downloadFileByName:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFileByName:requestConfiguration:completionBlock:progressBlock:">downloadFileByName:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFileByQuery:completionBlock:progressBlock:">downloadFileByQuery:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:">downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFileWithResolvedURL:options:completionBlock:progressBlock:">downloadFileWithResolvedURL:options:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:">downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getStreamingURL:completionBlock:">getStreamingURL:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getStreamingURLByName:completionBlock:">getStreamingURLByName:completionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resumeDownload:from:completionBlock:progressBlock:">resumeDownload:from:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadData:options:completionBlock:progressBlock:">uploadData:options:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadData:options:requestConfiguration:completionBlock:progressBlock:">uploadData:options:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadFile:options:completionBlock:progressBlock:">uploadFile:options:completionBlock:progressBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadFile:options:requestConfiguration:completionBlock:progressBlock:">uploadFile:options:requestConfiguration:completionBlock:progressBlock:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="KCSFileStore Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">KCSFileStore Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">KCSFileStore.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Methods for finding, downloading, uploading, and removing files from Kinvey&rsquo;s file storage.</p>
+
+<p>This class superceedes <code>KCSResourceService</code> and <code>KCSResourceStore</code>. Those classes' methods will no longer work.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Creating &amp; Updating Files" name="task_Creating &amp; Updating Files"></a>
+						<h3 class="subsubtitle task-title">Creating &amp; Updating Files</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadFile:options:completionBlock:progressBlock:">+&nbsp;uploadFile:options:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Uploads a local file to Kinvey&rsquo;s file store</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadFile:options:requestConfiguration:completionBlock:progressBlock:">+&nbsp;uploadFile:options:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Uploads a local file to Kinvey&rsquo;s file store</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadData:options:completionBlock:progressBlock:">+&nbsp;uploadData:options:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Uploads binary data to Kinvey&rsquo;s file store</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadData:options:requestConfiguration:completionBlock:progressBlock:">+&nbsp;uploadData:options:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Uploads binary data to Kinvey&rsquo;s file store</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Downloading Files" name="task_Downloading Files"></a>
+						<h3 class="subsubtitle task-title">Downloading Files</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFile:options:completionBlock:progressBlock:">+&nbsp;downloadFile:options:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFile:options:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadFile:options:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFileByName:completionBlock:progressBlock:">+&nbsp;downloadFileByName:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFileByName:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadFileByName:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFileByQuery:completionBlock:progressBlock:">+&nbsp;downloadFileByQuery:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the matching file or files.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the matching file or files.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFileWithResolvedURL:options:completionBlock:progressBlock:">+&nbsp;downloadFileWithResolvedURL:options:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadData:completionBlock:progressBlock:">+&nbsp;downloadData:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadData:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadData:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadDataByName:completionBlock:progressBlock:">+&nbsp;downloadDataByName:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadDataByName:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadDataByName:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified file or files to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadDataByQuery:completionBlock:progressBlock:">+&nbsp;downloadDataByQuery:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the matching file or files to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the matching file or files to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadDataWithResolvedURL:completionBlock:progressBlock:">+&nbsp;downloadDataWithResolvedURL:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified URL to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:">+&nbsp;downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Downloads the specified URL to memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getStreamingURL:completionBlock:">+&nbsp;getStreamingURL:completionBlock:</a></code>
+		<span class="tooltip"><p>Obtains a URL to stream the file.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getStreamingURLByName:completionBlock:">+&nbsp;getStreamingURLByName:completionBlock:</a></code>
+		<span class="tooltip"><p>Obtains a URL to stream the file.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resumeDownload:from:completionBlock:progressBlock:">+&nbsp;resumeDownload:from:completionBlock:progressBlock:</a></code>
+		<span class="tooltip"><p>Resumes a partially downloaded file. This method is useful if the a previous getFileXXX method failed mid-transfer, such as from loss of network connectivity or app backgrounding.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Deleting Files" name="task_Deleting Files"></a>
+						<h3 class="subsubtitle task-title">Deleting Files</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deleteFile:completionBlock:">+&nbsp;deleteFile:completionBlock:</a></code>
+		<span class="tooltip"><p>Removes a file from the file storage.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearCachedFiles">+&nbsp;clearCachedFiles</a></code>
+		<span class="tooltip"><p>Removes all downloaded files managed by KinveyKit.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/clearCachedFiles" title="clearCachedFiles"></a>
+	<h3 class="subsubtitle method-title">clearCachedFiles</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Removes all downloaded files managed by KinveyKit.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)clearCachedFiles</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.24.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Removes all downloaded files managed by KinveyKit.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deleteFile:completionBlock:" title="deleteFile:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">deleteFile:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Removes a file from the file storage.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)deleteFile:(NSString *)<em>fileId</em> completionBlock:(KCSCountBlock)<em>completionBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileId</em></dt>
+			<dd><p>the file id. This can only be a single string</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the operation completes or fails. The count will be 0 or 1 or an error will be provided.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Removes a file from the file storage.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadData:completionBlock:progressBlock:" title="downloadData:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadData:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadData:(id)<em>idOrIds</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>idOrIds</em></dt>
+			<dd><p>a single string file id or an array of file ids</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files to memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadData:requestConfiguration:completionBlock:progressBlock:" title="downloadData:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadData:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadData:(id)<em>idOrIds</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>idOrIds</em></dt>
+			<dd><p>a single string file id or an array of file ids</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files to memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadDataByName:completionBlock:progressBlock:" title="downloadDataByName:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadDataByName:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadDataByName:(id)<em>nameOrNames</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>nameOrNames</em></dt>
+			<dd><p>a single string file name or an array of file names</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.  The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files to memory.</p>
+
+<p>  <strong>NOTE:</strong> If there is no matching file by the specified name, the result will be an empty <code>downloadedResources</code> array, and NOT a 404 error. This is a change of behavior from previous versions.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadDataByName:requestConfiguration:completionBlock:progressBlock:" title="downloadDataByName:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadDataByName:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadDataByName:(id)<em>nameOrNames</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>nameOrNames</em></dt>
+			<dd><p>a single string file name or an array of file names</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.  The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files to memory.</p>
+
+<p><strong>NOTE:</strong> If there is no matching file by the specified name, the result will be an empty <code>downloadedResources</code> array, and NOT a 404 error. This is a change of behavior from previous versions.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadDataByQuery:completionBlock:progressBlock:" title="downloadDataByQuery:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadDataByQuery:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the matching file or files to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadDataByQuery:(KCSQuery *)<em>query</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>query</em></dt>
+			<dd><p>a standard Kinvey Query object</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.  The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the matching file or files to memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:" title="downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the matching file or files to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadDataByQuery:(KCSQuery *)<em>query</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>query</em></dt>
+			<dd><p>a standard Kinvey Query object</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.  The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the matching file or files to memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadDataWithResolvedURL:completionBlock:progressBlock:" title="downloadDataWithResolvedURL:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadDataWithResolvedURL:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified URL to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadDataWithResolvedURL:(NSURL *)<em>url</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>a resolved GCS file URL. This request must be sucessfully sent before the <code>expirationTime</code> or the request will fail.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will have <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> object with its <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified URL to memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:" title="downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified URL to memory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadDataWithResolvedURL:(NSURL *)<em>url</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>a resolved GCS file URL. This request must be sucessfully sent before the <code>expirationTime</code> or the request will fail.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will have <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> object with its <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified URL to memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFile:options:completionBlock:progressBlock:" title="downloadFile:options:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFile:options:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFile:(id)<em>idOrIds</em> options:(NSDictionary *)<em>options</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>idOrIds</em></dt>
+			<dd><p>a single string file id or an array of file ids</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>an optional (can be <code>nil</code>) options dictionary (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code> and will be named by their <code>filename</code> properties. To override this behavior, supply a <code>KCSFileFileName</code> option to choose the file name. To keep the file in another directory, such as <code>NSDocumentsDirectory</code> (e.g. to have the file backed up) move the file after the download completes.</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileOnlyIfNewer - set to <code>@(YES)</code> to only download if the metadata has been updated after the file was last downloaded (if file exists).</li>
+<li>KCSFileFileName - the destination filename. If multiple files are specified, this must be an array with the same number of elements as requested.</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFile:options:requestConfiguration:completionBlock:progressBlock:" title="downloadFile:options:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFile:options:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFile:(id)<em>idOrIds</em> options:(NSDictionary *)<em>options</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>idOrIds</em></dt>
+			<dd><p>a single string file id or an array of file ids</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>an optional (can be <code>nil</code>) options dictionary (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code> and will be named by their <code>filename</code> properties. To override this behavior, supply a <code>KCSFileFileName</code> option to choose the file name. To keep the file in another directory, such as <code>NSDocumentsDirectory</code> (e.g. to have the file backed up) move the file after the download completes.</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileOnlyIfNewer - set to <code>@(YES)</code> to only download if the metadata has been updated after the file was last downloaded (if file exists).</li>
+<li>KCSFileFileName - the destination filename. If multiple files are specified, this must be an array with the same number of elements as requested.</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFileByName:completionBlock:progressBlock:" title="downloadFileByName:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFileByName:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFileByName:(id)<em>nameOrNames</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>nameOrNames</em></dt>
+			<dd><p>a single string file name or an array of file names</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. These objects may not be in the same order</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files.</p>
+
+<p><strong>NOTE:</strong> If there is no matching file by the specified name, the result will be an empty <code>downloadedResources</code> array, and NOT a 404 error. This is a change of behavior from previous versions.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code>and will be named by their <code>filename</code> properties.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFileByName:requestConfiguration:completionBlock:progressBlock:" title="downloadFileByName:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFileByName:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified file or files.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFileByName:(id)<em>nameOrNames</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>nameOrNames</em></dt>
+			<dd><p>a single string file name or an array of file names</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. These objects may not be in the same order</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified file or files.</p>
+
+<p><strong>NOTE:</strong> If there is no matching file by the specified name, the result will be an empty <code>downloadedResources</code> array, and NOT a 404 error. This is a change of behavior from previous versions.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code>and will be named by their <code>filename</code> properties.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFileByQuery:completionBlock:progressBlock:" title="downloadFileByQuery:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFileByQuery:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the matching file or files.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFileByQuery:(KCSQuery *)<em>query</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>query</em></dt>
+			<dd><p>a standard Kinvey Query object</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the matching file or files.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code>and will be named by their <code>filename</code> properties.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:" title="downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the matching file or files.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFileByQuery:(KCSQuery *)<em>query</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>query</em></dt>
+			<dd><p>a standard Kinvey Query object</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the matching file or files.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code>and will be named by their <code>filename</code> properties.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFileWithResolvedURL:options:completionBlock:progressBlock:" title="downloadFileWithResolvedURL:options:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFileWithResolvedURL:options:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified URL.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFileWithResolvedURL:(NSURL *)<em>url</em> options:(NSDictionary *)<em>options</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>a resolved GCS file URL. This request must be sucessfully sent before the <code>expirationTime</code> or the request will fail.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>an optional (can be <code>nil</code>) options dictionary (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will have <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> object with its <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified URL.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code>and will be named by their <code>filename</code> properties. To override this behavior, supply a <code>KCSFileFileName</code> option to choose the file name. To keep the file in another directory, such as <code>NSDocumentsDirectory</code> (e.g. to have the file backed up) move the file after the download completes.</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileOnlyIfNewer - set to <code>@(YES)</code> to only download if the metadata has been updated after the file was last downloaded (if file exists).</li>
+<li>KCSFileFileName - the destination filename. If no filename is provided, its name will be dervied from the filename of on the server.</li>
+<li>KCSFileResume - set to <code>@(YES)</code> to only download the remaining bytes in the file. This assumes that the server file has not changed since the previous partial download.</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:" title="downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Downloads the specified URL.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)downloadFileWithResolvedURL:(NSURL *)<em>url</em> options:(NSDictionary *)<em>options</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>a resolved GCS file URL. This request must be sucessfully sent before the <code>expirationTime</code> or the request will fail.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>an optional (can be <code>nil</code>) options dictionary (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will have <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> object with its <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Downloads the specified URL.</p>
+
+<p>The file(s) will be saved to the <code>NSCachesDirectory</code>and will be named by their <code>filename</code> properties. To override this behavior, supply a <code>KCSFileFileName</code> option to choose the file name. To keep the file in another directory, such as <code>NSDocumentsDirectory</code> (e.g. to have the file backed up) move the file after the download completes.</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileOnlyIfNewer - set to <code>@(YES)</code> to only download if the metadata has been updated after the file was last downloaded (if file exists).</li>
+<li>KCSFileFileName - the destination filename. If no filename is provided, its name will be dervied from the filename of on the server.</li>
+<li>KCSFileResume - set to <code>@(YES)</code> to only download the remaining bytes in the file. This assumes that the server file has not changed since the previous partial download.</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getStreamingURL:completionBlock:" title="getStreamingURL:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">getStreamingURL:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Obtains a URL to stream the file.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)getStreamingURL:(NSString *)<em>fileId</em> completionBlock:(KCSFileStreamingURLCompletionBlock)<em>completionBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileId</em></dt>
+			<dd><p>the string file id</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>the block to be called once the url is ready, or error if it fails. The returned <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> object will have its <code>remoteURL</code> property be the streaming URL. This must be used before the <code>expirationDate</code> property has passed, or the url will be invalid and need to be re-retreived.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Obtains a URL to stream the file.</p>
+
+<p>This is useful for supplying to a <code>MPMoviePlayerController</code> or <code>MPMoviePlayerViewController</code>.</p>
+
+<pre><code> [KCSFileStore getStreamingURL:@"ABCDEF-123456-8ACDEF" completionBlock:^(KCSFile* streamingResource, NSError* error) {
+     if (error) //handle error &amp; exit
+     MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:streamingResource.remoteURL];
+     //player setup &amp; add to view hierarchy
+     [player play];
+  }];
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getStreamingURLByName:completionBlock:" title="getStreamingURLByName:completionBlock:"></a>
+	<h3 class="subsubtitle method-title">getStreamingURLByName:completionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Obtains a URL to stream the file.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)getStreamingURLByName:(NSString *)<em>fileName</em> completionBlock:(KCSFileStreamingURLCompletionBlock)<em>completionBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileName</em></dt>
+			<dd><p>the string file name. If multiple files match, the first one will be used.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>the block to be called once the url is ready, or error if it fails. The returned <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> object will have its <code>remoteURL</code> property be the streaming URL. This must be used before the <code>expirationDate</code> property has passed, or the url will be invalid and need to be re-retreived.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Obtains a URL to stream the file.</p>
+
+<p>This is useful for supplying to a <code>MPMoviePlayerController</code> or <code>MPMoviePlayerViewController</code>.</p>
+
+<pre><code> [KCSFileStore getStreamingURLByName:@"mymovie.mp4" completionBlock:^(KCSFile* streamingResource, NSError* error) {
+     if (error) //handle error &amp; exit
+     MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:streamingResource.remoteURL];
+     //player setup &amp; add to view hierarchy
+     [player play];
+  }];
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resumeDownload:from:completionBlock:progressBlock:" title="resumeDownload:from:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">resumeDownload:from:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resumes a partially downloaded file. This method is useful if the a previous getFileXXX method failed mid-transfer, such as from loss of network connectivity or app backgrounding.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)resumeDownload:(NSURL *)<em>partialLocalFile</em> from:(NSURL *)<em>resolvedURL</em> completionBlock:(KCSFileDownloadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialLocalFile</em></dt>
+			<dd><p>a file url to the already written data. This assumes the partial download&rsquo;s bytes are complete and contiguous up to its length.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resolvedURL</em></dt>
+			<dd><p>the GCS file URL to the original file (can be obtained with <code>getStreamingURL</code> methods or by querying the <code>fileMetadataCollection</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the download(s) are complete or an error occurs. The downloadedResources array will be <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> objects with their <code>localURL</code>, <code>filename</code>, <code>fileId</code>, <code>length</code>, and <code>mimeType</code> properties filled. The <code>data</code> property will contain the corresponing NSData values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is downloaded. This will count the total bytes to download, and thus will start with percentage previously downloaded.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Resumes a partially downloaded file. This method is useful if the a previous getFileXXX method failed mid-transfer, such as from loss of network connectivity or app backgrounding.</p>
+
+<p>See the devcenter guide for an example on how to use this function.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadData:options:completionBlock:progressBlock:" title="uploadData:options:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">uploadData:options:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uploads binary data to Kinvey&rsquo;s file store</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)uploadData:(NSData *)<em>data</em> options:(NSDictionary *)<em>uploadOptions</em> completionBlock:(KCSFileUploadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>the bytes to upload</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>uploadOptions</em></dt>
+			<dd><p>upload options (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the upload is complete or error occurs. The <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> return object will have its <code>filename</code> and <code>fileId</code> properties set to their new values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uploads binary data to Kinvey&rsquo;s file store</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileFileName - the destination filename, if absent, one will be generated.</li>
+<li>KCSFileId - the destination&rsquo;s unique resource id, if absent, one will be generated.</li>
+<li>KCSFilePublic - set to <code>@(YES)</code> if the file it to be publicly available on the Internet.</li>
+<li>KCSFileACL - provide a <a href="../Classes/KCSMetadata.html"><code>KCSMetadata</code></a> object to set the read and write permissions. By default the file will only be available to the creating user.</li>
+<li>KCSFileMimeType - the file&rsquo;s mime type. If absent, it will be <code>application/octet-stream</code>.</li>
+<li>any other <code>options</code> fields will be set as properties on the metadata object</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadData:options:requestConfiguration:completionBlock:progressBlock:" title="uploadData:options:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">uploadData:options:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uploads binary data to Kinvey&rsquo;s file store</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)uploadData:(NSData *)<em>data</em> options:(NSDictionary *)<em>uploadOptions</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileUploadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>the bytes to upload</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>uploadOptions</em></dt>
+			<dd><p>upload options (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the upload is complete or error occurs. The <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> return object will have its <code>filename</code> and <code>fileId</code> properties set to their new values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uploads binary data to Kinvey&rsquo;s file store</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileFileName - the destination filename, if absent, one will be generated.</li>
+<li>KCSFileId - the destination&rsquo;s unique resource id, if absent, one will be generated.</li>
+<li>KCSFilePublic - set to <code>@(YES)</code> if the file it to be publicly available on the Internet.</li>
+<li>KCSFileACL - provide a <a href="../Classes/KCSMetadata.html"><code>KCSMetadata</code></a> object to set the read and write permissions. By default the file will only be available to the creating user.</li>
+<li>KCSFileMimeType - the file&rsquo;s mime type. If absent, it will be <code>application/octet-stream</code>.</li>
+<li>any other <code>options</code> fields will be set as properties on the metadata object</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadFile:options:completionBlock:progressBlock:" title="uploadFile:options:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">uploadFile:options:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uploads a local file to Kinvey&rsquo;s file store</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)uploadFile:(NSURL *)<em>fileURL</em> options:(NSDictionary *)<em>uploadOptions</em> completionBlock:(KCSFileUploadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileURL</em></dt>
+			<dd><p>a url to a local file</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>uploadOptions</em></dt>
+			<dd><p>upload options (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the upload is complete or error occurs. The <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> return object will have its <code>filename</code> and <code>fileId</code> properties set to their new values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uploads a local file to Kinvey&rsquo;s file store</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileFileName - the destination filename, if absent the source file&rsquo;s name will be used.</li>
+<li>KCSFileId - the destination&rsquo;s unique resource id, if absent, one will be generated.</li>
+<li>KCSFilePublic - set to <code>@(YES)</code> if the file it to be publicly available on the Internet.</li>
+<li>KCSFileACL - provide a <a href="../Classes/KCSMetadata.html"><code>KCSMetadata</code></a> object to set the read and write permissions. By default the file will only be available to the creating user.</li>
+<li>KCSFileMimeType - the file&rsquo;s mime type. If absent, it will be inferred from the file extension.</li>
+<li>any other <code>options</code> fields will be set as properties on the metadata object</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadFile:options:requestConfiguration:completionBlock:progressBlock:" title="uploadFile:options:requestConfiguration:completionBlock:progressBlock:"></a>
+	<h3 class="subsubtitle method-title">uploadFile:options:requestConfiguration:completionBlock:progressBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uploads a local file to Kinvey&rsquo;s file store</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSRequest *)uploadFile:(NSURL *)<em>fileURL</em> options:(NSDictionary *)<em>uploadOptions</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em> completionBlock:(KCSFileUploadCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileURL</em></dt>
+			<dd><p>a url to a local file</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>uploadOptions</em></dt>
+			<dd><p>upload options (see above)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>called when the upload is complete or error occurs. The <a href="../Classes/KCSFile.html"><code>KCSFile</code></a> return object will have its <code>filename</code> and <code>fileId</code> properties set to their new values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.18.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uploads a local file to Kinvey&rsquo;s file store</p>
+
+<p>Available options:</p>
+
+<ul>
+<li>KCSFileFileName - the destination filename, if absent the source file&rsquo;s name will be used.</li>
+<li>KCSFileId - the destination&rsquo;s unique resource id, if absent, one will be generated.</li>
+<li>KCSFilePublic - set to <code>@(YES)</code> if the file it to be publicly available on the Internet.</li>
+<li>KCSFileACL - provide a <a href="../Classes/KCSMetadata.html"><code>KCSMetadata</code></a> object to set the read and write permissions. By default the file will only be available to the creating user.</li>
+<li>KCSFileMimeType - the file&rsquo;s mime type. If absent, it will be inferred from the file extension.</li>
+<li>any other <code>options</code> fields will be set as properties on the metadata object</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSFileStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2016 Kinvey. All rights reserved. (Last updated: 2016-02-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

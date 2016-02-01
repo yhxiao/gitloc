@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSLinkedAppdataStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSLinkedAppdataStore</TokenIdentifier>
+			<Abstract type="html">This store will save linked resources to the backend when an entity is saved, and load such saved resources when an entity is fetched. (This API is still in beta, please send us feedback).</Abstract>
+			<DeclaredIn>KCSLinkedAppdataStore.h</DeclaredIn>
+			
+			<NodeRef refid="13"/>
+		</Token>
+		
+		
+	</File>
+</Tokens>

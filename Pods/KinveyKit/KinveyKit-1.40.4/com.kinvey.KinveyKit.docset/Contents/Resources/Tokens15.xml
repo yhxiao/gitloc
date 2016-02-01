@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSPing.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSPing</TokenIdentifier>
+			<Abstract type="html">Ping Services</Abstract>
+			<DeclaredIn>KinveyPing.h</DeclaredIn>
+			
+			<NodeRef refid="15"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSPing/pingKinveyWithBlock:</TokenIdentifier>
+			<Abstract type="html">Ping Kinvey and perform a callback when complete.</Abstract>
+			<DeclaredIn>KinveyPing.h</DeclaredIn>			
+			
+			<Declaration>+ (void)pingKinveyWithBlock:(KCSPingBlock)completionAction</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionAction</Name>
+					<Abstract type="html">The callback to perform on completion.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/pingKinveyWithBlock:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

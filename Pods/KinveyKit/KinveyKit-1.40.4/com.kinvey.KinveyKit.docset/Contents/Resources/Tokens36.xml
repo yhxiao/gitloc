@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSLogSink.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSLogSink</TokenIdentifier>
+			<Abstract type="html">This protocol is to install a custom logger into KinveyKit&apos;s debugging logging system. Use this with KCSClient option KCSLOGSINK to install the implementing class.</Abstract>
+			<DeclaredIn>KCSLogSink.h</DeclaredIn>
+			
+			<NodeRef refid="36"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSLogSink/log:</TokenIdentifier>
+			<Abstract type="html">Take the incoming message and send it somewhere; e.g. STDOUT, NSLog, or a custom logger.</Abstract>
+			<DeclaredIn>KCSLogSink.h</DeclaredIn>			
+			
+			<Declaration>- (void)log:(NSString *)message</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>message</Name>
+					<Abstract type="html">the KinveyKit log message</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/log:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSURLProtocol.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSURLProtocol</TokenIdentifier>
+			<Abstract type="html">NSURLProtocol wrapper for Kinvey requests.</Abstract>
+			<DeclaredIn>KCSURLProtocol.h</DeclaredIn>
+			
+			<NodeRef refid="25"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSURLProtocol/registerClass:</TokenIdentifier>
+			<Abstract type="html">Register the protocol class in the NSURLProtocol and add the protocol class for Kinvey requests.</Abstract>
+			<DeclaredIn>KCSURLProtocol.h</DeclaredIn>			
+			
+			<Declaration>+ (BOOL)registerClass:(Class)protocolClass</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>protocolClass</Name>
+					<Abstract type="html">the protocol class to be registered.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if the protocol was registered successfully.</Abstract></ReturnValue>
+			<Anchor>//api/name/registerClass:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSURLProtocol/unregisterClass:</TokenIdentifier>
+			<Abstract type="html">Unregister the protocol class in the NSURLProtocol and remove the protocol class for Kinvey requests.</Abstract>
+			<DeclaredIn>KCSURLProtocol.h</DeclaredIn>			
+			
+			<Declaration>+ (void)unregisterClass:(Class)protocolClass</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>protocolClass</Name>
+					<Abstract type="html">the protocol class to be registered.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/unregisterClass:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSURLProtocol/protocolClasses</TokenIdentifier>
+			<Abstract type="html">Returns all registered protocol classes for Kinvey requests.</Abstract>
+			<DeclaredIn>KCSURLProtocol.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)protocolClasses</Declaration>
+			
+			<ReturnValue><Abstract type="html">all registered protocol classes for Kinvey requests</Abstract></ReturnValue>
+			<Anchor>//api/name/protocolClasses</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

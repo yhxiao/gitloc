@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSGroup.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSGroup</TokenIdentifier>
+			<Abstract type="html">A KCSGroup is the object that wraps the response of a KCSStore&apos;s groupBy: call.</Abstract>
+			<DeclaredIn>KCSGroup.h</DeclaredIn>
+			
+			<NodeRef refid="12"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSGroup/fieldsAndValues</TokenIdentifier>
+			<Abstract type="html">Returns the raw array. Each group will be represented by a dictionary in that array, where the keys are the fields that they are grouped by, plus one field for the return value.</Abstract>
+			<DeclaredIn>KCSGroup.h</DeclaredIn>			
+			
+			<Declaration>- (NSArray *)fieldsAndValues</Declaration>
+			
+			<ReturnValue><Abstract type="html">the array of grouped values.</Abstract></ReturnValue>
+			<Anchor>//api/name/fieldsAndValues</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSGroup/returnValueKey</TokenIdentifier>
+			<Abstract type="html">This is what the KCSReduceFunction named the output field. This value changes depending on the function type and input field names.</Abstract>
+			<DeclaredIn>KCSGroup.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)returnValueKey</Declaration>
+			
+			<ReturnValue><Abstract type="html">the name of the key for the reduce function return value</Abstract></ReturnValue>
+			<Anchor>//api/name/returnValueKey</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSGroup/enumerateWithBlock:</TokenIdentifier>
+			<Abstract type="html">A handy way to enumerate over the whole returned array. The fieldValues will be just the queried field values, in the same order that the fields were specified to the store&apos;s groupBy: function.</Abstract>
+			<DeclaredIn>KCSGroup.h</DeclaredIn>			
+			
+			<Declaration>- (void)enumerateWithBlock:(void ( ^ ) ( NSArray *fieldValues , id value , NSUInteger idx , BOOL *stop ))block</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>block</Name>
+					<Abstract type="html">The enumeration block. fieldValues are the values of the grouped fields, value is the value object for the reduce function for that group, idx is an integer index into the array of returned values, and setting stop to true will end the enumeration.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/enumerateWithBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSGroup/reducedValueForFields:</TokenIdentifier>
+			<Abstract type="html">Grabs just the value object that satisifies the specified fields.</Abstract>
+			<DeclaredIn>KCSGroup.h</DeclaredIn>			
+			
+			<Declaration>- (id)reducedValueForFields:(NSDictionary *)fields</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fields</Name>
+					<Abstract type="html">This dictionary should have the field name as a key and the grouped value as the value object.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">the value object that matches the specified field-values. Returns a NSNumber with intValue of NSNotFound if no value found.</Abstract></ReturnValue>
+			<Anchor>//api/name/reducedValueForFields:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

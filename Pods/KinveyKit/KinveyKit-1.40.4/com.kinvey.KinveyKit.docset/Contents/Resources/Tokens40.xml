@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSStore</TokenIdentifier>
+			<Abstract type="html">Kinvey Store Protocol</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>
+			
+			<NodeRef refid="40"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/store</TokenIdentifier>
+			<Abstract type="html">Initialize an empty Kinvey Store with the default options</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)store</Declaration>
+			
+			<ReturnValue><Abstract type="html">An autoreleased empty store with default options and default authentication.</Abstract></ReturnValue>
+			<Anchor>//api/name/store</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/storeWithOptions:</TokenIdentifier>
+			<Abstract type="html">Initialize an empty store with the given options and the default authentication</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)storeWithOptions:(NSDictionary *)options</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>options</Name>
+					<Abstract type="html">A dictionary of options to configure the store.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An autoreleased empty store with configured options and default authentication.</Abstract></ReturnValue>
+			<Anchor>//api/name/storeWithOptions:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/storeWithAuthHandler:withOptions:KCS_DEPRECATED:</TokenIdentifier>
+			<Abstract type="html">Initialize an empty store with the given options and the given authentication (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use storeWithOptions: instead&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)storeWithAuthHandler:(KCSAuthHandler *)authHandler withOptions:(NSDictionary *)options KCS_DEPRECATED</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>authHandler</Name>
+					<Abstract type="html">The Kinvey Authentication Handler used to authenticate backend requests. Reserved for future use.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">A dictionary of options to configure the store.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An autoreleased empty store with configured options and given authentication.
+@deprecatedIn 1.22.0</Abstract></ReturnValue>
+			<Anchor>//api/name/storeWithAuthHandler:withOptions:KCS_DEPRECATED:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/saveObject:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Add or update an object (or objects) in the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)saveObject:(id)object withCompletionBlock:(KCSCompletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An object to add/update in the store (if the object is a NSArray, all objects will be added/updated)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the addition/update is &quot;complete&quot; (as defined by the store</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/saveObject:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/saveObject:requestConfiguration:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Add or update an object (or objects) in the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)saveObject:(id)object requestConfiguration:(KCSRequestConfiguration *)requestConfiguration withCompletionBlock:(KCSCompletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An object to add/update in the store (if the object is a NSArray, all objects will be added/updated)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the addition/update is &quot;complete&quot; (as defined by the store</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/saveObject:requestConfiguration:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/queryWithQuery:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Query or fetch an object (or objects) in the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)queryWithQuery:(id)query withCompletionBlock:(KCSCompletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">A query to act on a store.  The store defines the type of queries it accepts, an object of type [KCSQuery query] causes all objects to be returned.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the query/fetch is &quot;complete&quot; (as defined by the store</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/queryWithQuery:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/queryWithQuery:requestConfiguration:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Query or fetch an object (or objects) in the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)queryWithQuery:(id)query requestConfiguration:(KCSRequestConfiguration *)requestConfiguration withCompletionBlock:(KCSCompletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">A query to act on a store.  The store defines the type of queries it accepts, an object of type [KCSQuery query] causes all objects to be returned.</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the query/fetch is &quot;complete&quot; (as defined by the store</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/queryWithQuery:requestConfiguration:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/removeObject:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Remove an object (or objects) from the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)removeObject:(id)object withCompletionBlock:(KCSCountBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An object (or query) to remove from the store (if the object is a NSArray or query, matching objects will be removed)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the remove is &quot;complete&quot; (as defined by the store. Count is the number of items deleted, if any.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.
+@updated 1.24.0 completion block is now a count block instead of an object block</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObject:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/removeObject:requestConfiguration:withCompletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Remove an object (or objects) from the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)removeObject:(id)object requestConfiguration:(KCSRequestConfiguration *)requestConfiguration withCompletionBlock:(KCSCountBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An object (or query) to remove from the store (if the object is a NSArray or query, matching objects will be removed)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the remove is &quot;complete&quot; (as defined by the store. Count is the number of items deleted, if any.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.
+@updated 1.24.0 completion block is now a count block instead of an object block</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObject:requestConfiguration:withCompletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/removeObject:withDeletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Remove an object (or objects) from the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)removeObject:(id)object withDeletionBlock:(KCSDeletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An object (or query) to remove from the store (if the object is a NSArray or query, matching objects will be removed)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the remove is &quot;complete&quot; (as defined by the store.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.
+@updated 1.24.0 completion block is now a count block instead of an object block</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObject:withDeletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/removeObject:requestConfiguration:withDeletionBlock:withProgressBlock:</TokenIdentifier>
+			<Abstract type="html">Remove an object (or objects) from the store.</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)removeObject:(id)object requestConfiguration:(KCSRequestConfiguration *)requestConfiguration withDeletionBlock:(KCSDeletionBlock)completionBlock withProgressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An object (or query) to remove from the store (if the object is a NSArray or query, matching objects will be removed)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that gets invoked when the remove is &quot;complete&quot; (as defined by the store.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">A block that is invoked whenever the store can offer an update on the progress of the operation.
+@updated 1.24.0 completion block is now a count block instead of an object block</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObject:requestConfiguration:withDeletionBlock:withProgressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/configureWithOptions:</TokenIdentifier>
+			<Abstract type="html">This is the general configuration routine for a Kinvey Store</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)configureWithOptions:(NSDictionary *)options</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>options</Name>
+					<Abstract type="html">A dictionary containing store specific options, see store documentation for details</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">A BOOL value indicating whether the options were accepted by the store.</Abstract></ReturnValue>
+			<Anchor>//api/name/configureWithOptions:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/setAuthHandler:</TokenIdentifier>
+			<Abstract type="html">Set the Kinvey Auth Handler for this store</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (void)setAuthHandler:(KCSAuthHandler *)handler</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>handler</Name>
+					<Abstract type="html">The Kinvey Auth Handler to be used during requests.
+@deprecatedIn 1.22.0</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setAuthHandler:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSStore/authHandler</TokenIdentifier>
+			<Abstract type="html">Get the currently set Kinvey Auth Handler for this Store</Abstract>
+			<DeclaredIn>KCSStore.h</DeclaredIn>			
+			
+			<Declaration>- (KCSAuthHandler *)authHandler</Declaration>
+			
+			<ReturnValue><Abstract type="html">The currently set Kinvey Auth Handler.
+@deprecatedIn 1.22.0</Abstract></ReturnValue>
+			<Anchor>//api/name/authHandler</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

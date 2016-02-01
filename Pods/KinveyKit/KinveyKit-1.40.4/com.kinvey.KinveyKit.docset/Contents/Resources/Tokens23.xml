@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSRequest.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSRequest</TokenIdentifier>
+			<Abstract type="html">Represents a pending request made against a store. Holding an instance of this class allows you, for example, to cancel a pending request.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>
+			
+			<NodeRef refid="23"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSRequest/setCancelled:</TokenIdentifier>
+			<Abstract type="html">Flag indicating if the request was cancelled or not.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>@property (readonly, getter=isCancelled) BOOL cancelled</Declaration>
+			
+			
+			<Anchor>//api/name/cancelled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSRequest/isCancelled</TokenIdentifier>
+			<Abstract type="html">Flag indicating if the request was cancelled or not.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>@property (readonly, getter=isCancelled) BOOL cancelled</Declaration>
+			
+			
+			<Anchor>//api/name/cancelled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSRequest/cancelled</TokenIdentifier>
+			<Abstract type="html">Flag indicating if the request was cancelled or not.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>@property (readonly, getter=isCancelled) BOOL cancelled</Declaration>
+			
+			
+			<Anchor>//api/name/cancelled</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSRequest/setCancellationBlock:</TokenIdentifier>
+			<Abstract type="html">Block called in response to request cancellation.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>@property (copy) KCSRequestCancelationBlock cancellationBlock</Declaration>
+			
+			
+			<Anchor>//api/name/cancellationBlock</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSRequest/cancellationBlock</TokenIdentifier>
+			<Abstract type="html">Block called in response to request cancellation.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>@property (copy) KCSRequestCancelationBlock cancellationBlock</Declaration>
+			
+			
+			<Anchor>//api/name/cancellationBlock</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSRequest/cancellationBlock</TokenIdentifier>
+			<Abstract type="html">Block called in response to request cancellation.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>@property (copy) KCSRequestCancelationBlock cancellationBlock</Declaration>
+			
+			
+			<Anchor>//api/name/cancellationBlock</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSRequest/cancel</TokenIdentifier>
+			<Abstract type="html">Cancel the pending request.</Abstract>
+			<DeclaredIn>KCSRequest.h</DeclaredIn>			
+			
+			<Declaration>- (void)cancel</Declaration>
+			
+			
+			<Anchor>//api/name/cancel</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

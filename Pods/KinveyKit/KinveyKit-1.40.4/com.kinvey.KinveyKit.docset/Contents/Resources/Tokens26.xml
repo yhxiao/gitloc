@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSUser.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSUser</TokenIdentifier>
+			<Abstract type="html">User in the Kinvey System</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSMetadata</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/cl/KCSUser</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<NodeRef refid="26"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setUsername:</TokenIdentifier>
+			<Abstract type="html">Username of this Kinvey User. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *username</Declaration>
+			
+			
+			<Anchor>//api/name/username</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/username</TokenIdentifier>
+			<Abstract type="html">Username of this Kinvey User. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *username</Declaration>
+			
+			
+			<Anchor>//api/name/username</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/username</TokenIdentifier>
+			<Abstract type="html">Username of this Kinvey User. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *username</Declaration>
+			
+			
+			<Anchor>//api/name/username</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setNo:</TokenIdentifier>
+			<Abstract type="html">Password of this Kinvey User
+@deprecatedIn 1.25.0 (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; password is no longer stored&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *KCS_DEPRECATED ( Password no</Declaration>
+			
+			
+			<Anchor>//api/name/no</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/no</TokenIdentifier>
+			<Abstract type="html">Password of this Kinvey User
+@deprecatedIn 1.25.0 (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; password is no longer stored&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *KCS_DEPRECATED ( Password no</Declaration>
+			
+			
+			<Anchor>//api/name/no</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/no</TokenIdentifier>
+			<Abstract type="html">Password of this Kinvey User
+@deprecatedIn 1.25.0 (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; password is no longer stored&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *KCS_DEPRECATED ( Password no</Declaration>
+			
+			
+			<Anchor>//api/name/no</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setUserId:</TokenIdentifier>
+			<Abstract type="html">The Kinvey user collection id for the user</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *userId</Declaration>
+			
+			
+			<Anchor>//api/name/userId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/userId</TokenIdentifier>
+			<Abstract type="html">The Kinvey user collection id for the user</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *userId</Declaration>
+			
+			
+			<Anchor>//api/name/userId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/userId</TokenIdentifier>
+			<Abstract type="html">The Kinvey user collection id for the user</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *userId</Declaration>
+			
+			
+			<Anchor>//api/name/userId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setDeviceTokens:</TokenIdentifier>
+			<Abstract type="html">Device Tokens of this User</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, strong) NSMutableSet *deviceTokens</Declaration>
+			
+			
+			<Anchor>//api/name/deviceTokens</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/deviceTokens</TokenIdentifier>
+			<Abstract type="html">Device Tokens of this User</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, strong) NSMutableSet *deviceTokens</Declaration>
+			
+			
+			<Anchor>//api/name/deviceTokens</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/deviceTokens</TokenIdentifier>
+			<Abstract type="html">Device Tokens of this User</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, strong) NSMutableSet *deviceTokens</Declaration>
+			
+			
+			<Anchor>//api/name/deviceTokens</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setMetadata:</TokenIdentifier>
+			<Abstract type="html">Access Control Metadata of this User</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/metadata</TokenIdentifier>
+			<Abstract type="html">Access Control Metadata of this User</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/metadata</TokenIdentifier>
+			<Abstract type="html">Access Control Metadata of this User</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setSurname:</TokenIdentifier>
+			<Abstract type="html">Optional surname for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *surname</Declaration>
+			
+			
+			<Anchor>//api/name/surname</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/surname</TokenIdentifier>
+			<Abstract type="html">Optional surname for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *surname</Declaration>
+			
+			
+			<Anchor>//api/name/surname</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/surname</TokenIdentifier>
+			<Abstract type="html">Optional surname for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *surname</Declaration>
+			
+			
+			<Anchor>//api/name/surname</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setGivenName:</TokenIdentifier>
+			<Abstract type="html">Optional given (first) name for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *givenName</Declaration>
+			
+			
+			<Anchor>//api/name/givenName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/givenName</TokenIdentifier>
+			<Abstract type="html">Optional given (first) name for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *givenName</Declaration>
+			
+			
+			<Anchor>//api/name/givenName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/givenName</TokenIdentifier>
+			<Abstract type="html">Optional given (first) name for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *givenName</Declaration>
+			
+			
+			<Anchor>//api/name/givenName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setEmail:</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/email</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/email</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setSocialIdentity:</TokenIdentifier>
+			<Abstract type="html">Optional social identity for the user. If the user logged in with a social identity (Facebook, Twitter, Google+, or LinkedIn), this object will contain a representation for the social identity.*</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSDictionary *socialIdentity</Declaration>
+			
+			
+			<Anchor>//api/name/socialIdentity</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/socialIdentity</TokenIdentifier>
+			<Abstract type="html">Optional social identity for the user. If the user logged in with a social identity (Facebook, Twitter, Google+, or LinkedIn), this object will contain a representation for the social identity.*</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSDictionary *socialIdentity</Declaration>
+			
+			
+			<Anchor>//api/name/socialIdentity</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/socialIdentity</TokenIdentifier>
+			<Abstract type="html">Optional social identity for the user. If the user logged in with a social identity (Facebook, Twitter, Google+, or LinkedIn), this object will contain a representation for the social identity.*</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSDictionary *socialIdentity</Declaration>
+			
+			
+			<Anchor>//api/name/socialIdentity</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setEmailVerified:</TokenIdentifier>
+			<Abstract type="html">Checks if the user has verified email (by clicking the link in the email sent via sendEmailConfirmationForUser:withCompletionBlock:.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/clm/KCSUser/sendEmailConfirmationForUser:withCompletionBlock:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic) BOOL emailVerified</Declaration>
+			
+			
+			<Anchor>//api/name/emailVerified</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/emailVerified</TokenIdentifier>
+			<Abstract type="html">Checks if the user has verified email (by clicking the link in the email sent via sendEmailConfirmationForUser:withCompletionBlock:.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/clm/KCSUser/sendEmailConfirmationForUser:withCompletionBlock:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic) BOOL emailVerified</Declaration>
+			
+			
+			<Anchor>//api/name/emailVerified</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser/emailVerified</TokenIdentifier>
+			<Abstract type="html">Checks if the user has verified email (by clicking the link in the email sent via sendEmailConfirmationForUser:withCompletionBlock:.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/clm/KCSUser/sendEmailConfirmationForUser:withCompletionBlock:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic) BOOL emailVerified</Declaration>
+			
+			
+			<Anchor>//api/name/emailVerified</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/hasSavedCredentials</TokenIdentifier>
+			<Abstract type="html">Checks if credentials have been stored in the keychain.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (BOOL)hasSavedCredentials</Declaration>
+			
+			
+			<Anchor>//api/name/hasSavedCredentials</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/clearSavedCredentials</TokenIdentifier>
+			<Abstract type="html">Clears and saved credentials from the keychain.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (void)clearSavedCredentials</Declaration>
+			
+			
+			<Anchor>//api/name/clearSavedCredentials</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/activeUser</TokenIdentifier>
+			<Abstract type="html">The currently active user of the application.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSUser *)activeUser</Declaration>
+			
+			<ReturnValue><Abstract type="html">the user object for the current user. nil if the user has not been set yet or has been cleared.</Abstract></ReturnValue>
+			<Anchor>//api/name/activeUser</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/initializeCurrentUser</TokenIdentifier>
+			<Abstract type="html">Initialize the &quot;Current User&quot; for Kinvey</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (void)initializeCurrentUser</Declaration>
+			
+			
+			<Anchor>//api/name/initializeCurrentUser</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/userWithUsername:password:withCompletionBlock:KCS_DEPRECATED:</TokenIdentifier>
+			<Abstract type="html">Create a new Kinvey user and register them with the backend.
+* @param username The username to create, if it already exists on the back-end an error will be returned.
+* @param password The user&apos;s password
+* @param completionBlock The callback to perform when the creation completes (or errors).
+* @return KCSRequest object that represents the pending request made against the store. Since version 1.36.0 (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use +[KCSUser userWithUsername:password:fieldsAndValues:withCompletionBlock:] instead with nil.
+@deprecatedIn 1.25.0&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)userWithUsername:(NSString *)username password:(NSString *)password withCompletionBlock:(KCSUserCompletionBlock)completionBlock KCS_DEPRECATED</Declaration>
+			
+			
+			<Anchor>//api/name/userWithUsername:password:withCompletionBlock:KCS_DEPRECATED:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/userWithUsername:password:fieldsAndValues:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Create a new Kinvey user and register them with the backend.
+* @param username The username to create, if it already exists on the back-end an error will be returned.
+* @param password The user&apos;s password
+* @param completionBlock The callback to perform when the creation completes (or errors).</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)userWithUsername:(NSString *)username password:(NSString *)password fieldsAndValues:(NSDictionary *)fieldsAndValues withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fieldsAndValues</Name>
+					<Abstract type="html">additional data to populate the user object, such as KCSUserAttributeSurname, KCSUserAttributeGivenname and KCSUserAttributeEmail. Can be nil.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/userWithUsername:password:fieldsAndValues:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/createAutogeneratedUser:KCS_DEPRECATED:</TokenIdentifier>
+			<Abstract type="html">Creates a unique user with a default username and password. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use +[KCSUser createAutogeneratedUser:completion:] instead with nil.
+@deprecatedIn 1.25.0&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)createAutogeneratedUser:(KCSUserCompletionBlock)completionBlock KCS_DEPRECATED</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The callback to perform when the creation completes (or errors).</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/createAutogeneratedUser:KCS_DEPRECATED:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/createAutogeneratedUser:completion:</TokenIdentifier>
+			<Abstract type="html">Creates a unique user with a default username and password.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)createAutogeneratedUser:(NSDictionary *)fieldsAndValues completion:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fieldsAndValues</Name>
+					<Abstract type="html">additional data to populate the user object, such as KCSUserAttributeSurname, KCSUserAttributeGivenname and KCSUserAttributeEmail. Can be nil.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The callback to perform when the creation completes (or errors).</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/createAutogeneratedUser:completion:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/initAndActivateWithSavedCredentials</TokenIdentifier>
+			<Abstract type="html">Loads the user data from the keychain and sets as the activeUser.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSUser *)initAndActivateWithSavedCredentials</Declaration>
+			
+			
+			<Anchor>//api/name/initAndActivateWithSavedCredentials</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/loginWithUsername:password:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Login an existing user, generates an error if the user doesn&apos;t exist</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)loginWithUsername:(NSString *)username password:(NSString *)password withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>username</Name>
+					<Abstract type="html">The username of the user</Abstract>
+				</Parameter><Parameter>
+					<Name>password</Name>
+					<Abstract type="html">The user&apos;s password</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The block that is called when the action is complete</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/loginWithUsername:password:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/loginWithSocialIdentity:accessDictionary:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Login a user with social network access information.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)loginWithSocialIdentity:(KCSUserSocialIdentifyProvider)provider accessDictionary:(NSDictionary *)accessDictionary withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>provider</Name>
+					<Abstract type="html">the enumerated social network identity provider</Abstract>
+				</Parameter><Parameter>
+					<Name>accessDictionary</Name>
+					<Abstract type="html">the credentials needed to authenticate the user for log-in</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called when the operation completes or fails</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/loginWithSocialIdentity:accessDictionary:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/loginWithAuthorizationCodeLoginPage:</TokenIdentifier>
+			<Abstract type="html">Opens the default web browser to login a user using MIC.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (void)loginWithAuthorizationCodeLoginPage:(NSString *)redirectURI</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/loginWithAuthorizationCodeLoginPage:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/loginWithAuthorizationCodeAPI:options:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Login a user using MIC code API workflow.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)loginWithAuthorizationCodeAPI:(NSString *)redirectURI options:(NSDictionary *)options withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">Dictionary with options to be used during the authentication process, such as username (KCSUsername) and password (KCSPassword) for KCSMICAuthorizationGrantTypeAuthCodeAPI.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The block to be called when the operation completes or fails</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/loginWithAuthorizationCodeAPI:options:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/isValidMICRedirectURI:forURL:</TokenIdentifier>
+			<Abstract type="html">Check if the URL matches with the redirectURI and contains the authorization code for MIC.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (BOOL)isValidMICRedirectURI:(NSString *)redirectURI forURL:(NSURL *)url</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter><Parameter>
+					<Name>url</Name>
+					<Abstract type="html">URL to be tested if matches if the redirectURI</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if the URL matches with the redirectURI</Abstract></ReturnValue>
+			<Anchor>//api/name/isValidMICRedirectURI:forURL:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/parseMICRedirectURI:forURL:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Parse the URL that contains the authorization code for MIC.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (void)parseMICRedirectURI:(NSString *)redirectURI forURL:(NSURL *)url withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter><Parameter>
+					<Name>url</Name>
+					<Abstract type="html">URL to be tested if matches if the redirectURI</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The block to be called when the operation completes or fails</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/parseMICRedirectURI:forURL:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/URLforLoginWithMICRedirectURI:</TokenIdentifier>
+			<Abstract type="html">Returns the URL to be opened by the WebView or Safari Mobile for KCSMICAuthorizationGrantTypeAuthCodeLoginPage.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (NSURL *)URLforLoginWithMICRedirectURI:(NSString *)redirectURI</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">the URL to be opened by the WebView or Safari Mobile for KCSMICAuthorizationGrantTypeAuthCodeLoginPage.</Abstract></ReturnValue>
+			<Anchor>//api/name/URLforLoginWithMICRedirectURI:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/presentMICLoginViewControllerWithRedirectURI:timeout:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Presents a modal view controller with a web view and loads the URL returned by the method URLforLoginWithMICRedirectURI:</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (void)presentMICLoginViewControllerWithRedirectURI:(NSString *)redirectURI timeout:(NSTimeInterval)timeout withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter><Parameter>
+					<Name>timeout</Name>
+					<Abstract type="html">Time to wait for some user interaction, otherwise the view controller will be automatically dismissed.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The block to be called when the operation completes or fails.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/presentMICLoginViewControllerWithRedirectURI:timeout:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/presentMICLoginViewControllerWithRedirectURI:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Presents a modal view controller with a web view and loads the URL returned by the method URLforLoginWithMICRedirectURI:</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (void)presentMICLoginViewControllerWithRedirectURI:(NSString *)redirectURI withCompletionBlock:(KCSUserCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>redirectURI</Name>
+					<Abstract type="html">The URI that the grant will redirect to on authentication, as set in the console. Note: this must exactly match one of the redirect URIs configured in the console.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The block to be called when the operation completes or fails</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/presentMICLoginViewControllerWithRedirectURI:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/setMICApiVersion:</TokenIdentifier>
+			<Abstract type="html">Setter to specify the MIC API Version.
+It might be necessary specify a version for the MIC API if you are not using the default version, for example if you are trying a beta version.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (void)setMICApiVersion:(NSString *)micApiVersion</Declaration>
+			
+			
+			<Anchor>//api/name/setMICApiVersion:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/micApiVersion</TokenIdentifier>
+			<Abstract type="html">Getter that returns the MIC API Version</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (NSString *)micApiVersion</Declaration>
+			
+			
+			<Anchor>//api/name/micApiVersion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/removeWithCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Removes a user and their data from Kinvey</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)removeWithCompletionBlock:(KCSCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">The block that is called when operation is complete or fails.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/removeWithCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/logout</TokenIdentifier>
+			<Abstract type="html">Logout the user.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (void)logout</Declaration>
+			
+			
+			<Anchor>//api/name/logout</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/refreshFromServer:</TokenIdentifier>
+			<Abstract type="html">Update the user object from the server.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)refreshFromServer:(KCSCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the refresh is complete or fails. The objectsOrNil property will have only the user, if there is no error.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/refreshFromServer:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/saveWithCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Called to update the Kinvey state of a user.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)saveWithCompletionBlock:(KCSCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">block called upon completion or error</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/saveWithCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/getValueForAttribute:</TokenIdentifier>
+			<Abstract type="html">Return the value for an attribute for this user</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (id)getValueForAttribute:(NSString *)attribute</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>attribute</Name>
+					<Abstract type="html">The attribute to retrieve</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/getValueForAttribute:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/setValue:forAttribute:</TokenIdentifier>
+			<Abstract type="html">Set the value for an attribute</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (void)setValue:(id)value forAttribute:(NSString *)attribute</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>value</Name>
+					<Abstract type="html">The value to set.</Abstract>
+				</Parameter><Parameter>
+					<Name>attribute</Name>
+					<Abstract type="html">The attribute to modify.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setValue:forAttribute:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/removeValueForAttribute:</TokenIdentifier>
+			<Abstract type="html">Remove a stored attribute. No error if the attribute has not been set.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (void)removeValueForAttribute:(NSString *)attribute</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>attribute</Name>
+					<Abstract type="html">The attribute to modify.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/removeValueForAttribute:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser/changePassword:completionBlock:</TokenIdentifier>
+			<Abstract type="html">Update a user&apos;s password and save the user object to the backend.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>- (KCSRequest *)changePassword:(NSString *)newPassword completionBlock:(KCSCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>newPassword</Name>
+					<Abstract type="html">the new password for the user</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">block to be notified when operation is completed or fails. The objectsOrNil return array will have the updated user as its only value if successful.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/changePassword:completionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/sendPasswordResetForUser:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Sends a password reset email to the specified user.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)sendPasswordResetForUser:(NSString *)usernameOrEmail withCompletionBlock:(KCSUserSendEmailBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>usernameOrEmail</Name>
+					<Abstract type="html">the username or user email to send the password reset link to</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the request callback. emailSent is true if the email address is found and an email is sent (does not guarantee delivery). If emailSent is NO, then the errorOrNil value will have information as to what went wrong on the network. For security reasons, emailSent will be true even if the user is not found or the user does not have an associated email.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/sendPasswordResetForUser:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/sendForgotUsername:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Sends a username reminder email to the specified user.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)sendForgotUsername:(NSString *)email withCompletionBlock:(KCSUserSendEmailBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>email</Name>
+					<Abstract type="html">the email address to send a reminder to</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">returns true if the system received the request, regardless if the email is valid, associated with a user, or actually sent. The error object will be non-nil if a network error occurred.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/sendForgotUsername:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/sendEmailConfirmationForUser:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Sends an request to confirm email address to the specified user.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)sendEmailConfirmationForUser:(NSString *)username withCompletionBlock:(KCSUserSendEmailBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>username</Name>
+					<Abstract type="html">the user to send the password reset link to</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the request callback. emailSent is true if the email address is found and an email is sent (does not guarantee delivery). If emailSent is NO, then the errorOrNil value will have information as to what went wrong on the network. For security reasons, emailSent will be true even if the user is not found or the user does not have an associated email.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/sendEmailConfirmationForUser:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/checkUsername:withCompletionBlock:</TokenIdentifier>
+			<Abstract type="html">Checkes the server to see if a username is already being used.</Abstract>
+			<DeclaredIn>KinveyUser.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)checkUsername:(NSString *)potentialUsername withCompletionBlock:(KCSUserCheckUsernameBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>potentialUsername</Name>
+					<Abstract type="html">the username to check</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">if there is no error, usernameAlreadyTaken will be YES if that username is in use, and NO if it is available</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/checkUsername:withCompletionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/getAccessDictionaryFromTwitterFromPrimaryAccount:</TokenIdentifier>
+			<Abstract type="html">Calls the Twitter reverse auth service to obtain an access token for the native user.</Abstract>
+			<DeclaredIn>KCSUser+SocialExtras.h</DeclaredIn>			
+			
+			<Declaration>+ (void)getAccessDictionaryFromTwitterFromPrimaryAccount:(KCSLocalCredentialBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called when the request completes or faults.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/getAccessDictionaryFromTwitterFromPrimaryAccount:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/getAccessDictionaryFromTwitterFromTwitterAccounts:accountChooseBlock:</TokenIdentifier>
+			<Abstract type="html">Calls the Twitter reverse auth service to obtain an access token for the native user.</Abstract>
+			<DeclaredIn>KCSUser+SocialExtras.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)getAccessDictionaryFromTwitterFromTwitterAccounts:(KCSLocalCredentialBlock)completionBlock accountChooseBlock:(ACAccount *( ^ ) ( NSArray *twitterAccounts ))chooseBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called when the request completes or faults.</Abstract>
+				</Parameter><Parameter>
+					<Name>chooseBlock</Name>
+					<Abstract type="html">must return a twitter account from the supplied list. CANNOT be nil. This block may be called on an arbitrary thread.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/getAccessDictionaryFromTwitterFromTwitterAccounts:accountChooseBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/getAccessDictionaryFromLinkedIn:usingWebView:</TokenIdentifier>
+			<Abstract type="html">Calls LinkedIn to obtain a user&apos;s auth token. You have to specify KCSLINKEDINAPIKEY, KCSLINKEDINSECRETKEY,  KCSLINKEDINACCEPTREDIRECT, and KCSLINKEDINCANCELREDIRECT in the KCSClient set-up. A web view is needed in order to display LinkedIn&apos;s sign-in page. A user must enter LinkedIn credentials and press &quot;Allow access&quot;. If the user cancels or the system is unable to verify the app credentials, the process will fail.</Abstract>
+			<DeclaredIn>KCSUser+SocialExtras.h</DeclaredIn>			
+			
+			<Declaration>+ (void)getAccessDictionaryFromLinkedIn:(KCSLocalCredentialBlock)completionBlock usingWebView:(KCSWebViewClass *)webview</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called when the request completes or faults. This is the place to dismiss the webview if necessary.</Abstract>
+				</Parameter><Parameter>
+					<Name>webview</Name>
+					<Abstract type="html">for showing the LinkedIn access form.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/getAccessDictionaryFromLinkedIn:usingWebView:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSUser/getAccessDictionaryFromLinkedIn:permissions:usingWebView:</TokenIdentifier>
+			<Abstract type="html">Calls LinkedIn to obtain a user&apos;s auth token. You have to specify KCSLINKEDINAPIKEY, KCSLINKEDINSECRETKEY,  KCSLINKEDINACCEPTREDIRECT, and KCSLINKEDINCANCELREDIRECT in the KCSClient set-up. A web view is needed in order to display LinkedIn&apos;s sign-in page. A user must enter LinkedIn credentials and press &quot;Allow access&quot;. If the user cancels or the system is unable to verify the app credentials, the process will fail.</Abstract>
+			<DeclaredIn>KCSUser+SocialExtras.h</DeclaredIn>			
+			
+			<Declaration>+ (void)getAccessDictionaryFromLinkedIn:(KCSLocalCredentialBlock)completionBlock permissions:(NSString *)permissions usingWebView:(KCSWebViewClass *)webview</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called when the request completes or faults. This is the place to dismiss the webview if necessary.</Abstract>
+				</Parameter><Parameter>
+					<Name>permissions</Name>
+					<Abstract type="html">the level of access to the user&apos;s account. For example, @&quot;r_network&quot; will retreive the user&apos;s profile as well as his connections. Since the LinkedIn documentation for the full list of values.</Abstract>
+				</Parameter><Parameter>
+					<Name>webview</Name>
+					<Abstract type="html">for showing the LinkedIn access form.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/getAccessDictionaryFromLinkedIn:permissions:usingWebView:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

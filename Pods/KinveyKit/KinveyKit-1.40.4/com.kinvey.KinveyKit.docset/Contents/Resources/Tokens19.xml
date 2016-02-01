@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSQueryLimitModifier.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSQueryLimitModifier</TokenIdentifier>
+			<Abstract type="html">Representation of a &apos;Limit&apos; on a Query</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>
+			
+			<NodeRef refid="19"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQueryLimitModifier/setLimit:</TokenIdentifier>
+			<Abstract type="html">The integer to use as a limit</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) NSInteger limit</Declaration>
+			
+			
+			<Anchor>//api/name/limit</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQueryLimitModifier/limit</TokenIdentifier>
+			<Abstract type="html">The integer to use as a limit</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) NSInteger limit</Declaration>
+			
+			
+			<Anchor>//api/name/limit</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQueryLimitModifier/limit</TokenIdentifier>
+			<Abstract type="html">The integer to use as a limit</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) NSInteger limit</Declaration>
+			
+			
+			<Anchor>//api/name/limit</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQueryLimitModifier/initWithLimit:</TokenIdentifier>
+			<Abstract type="html">Initialize Query Limit with integer limit.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (instancetype)initWithLimit:(NSInteger)limit</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>limit</Name>
+					<Abstract type="html">The limit to apple to a query.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The object created.</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLimit:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQueryLimitModifier/parameterStringRepresentation</TokenIdentifier>
+			<Abstract type="html">Obtain a representation suitable for sticking in a query param string</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)parameterStringRepresentation</Declaration>
+			
+			<ReturnValue><Abstract type="html">An escaped string read for a query parameter.</Abstract></ReturnValue>
+			<Anchor>//api/name/parameterStringRepresentation</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

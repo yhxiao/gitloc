@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSPersistable.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+			<Abstract type="html">Definies the interface for a persistable object.</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>
+			
+			<NodeRef refid="38"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/hostToKinveyPropertyMapping</TokenIdentifier>
+			<Abstract type="html">Provide the mapping from an Entity&apos;s representation to the Native Objective-C representation.</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>- (NSDictionary *)hostToKinveyPropertyMapping</Declaration>
+			
+			<ReturnValue><Abstract type="html">The dictionary that maps from objective-c to Kinvey (JSON) mapping.</Abstract></ReturnValue>
+			<Anchor>//api/name/hostToKinveyPropertyMapping</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/kinveyPropertyToCollectionMapping</TokenIdentifier>
+			<Abstract type="html">Provide the mapping from an Entity&apos;s represenation to their related collections.</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/kinveyObjectBuilderOptions</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>+ (NSDictionary *)kinveyPropertyToCollectionMapping</Declaration>
+			
+			<ReturnValue><Abstract type="html">a dictionary mapping Kinvey entity fields to collections.</Abstract></ReturnValue>
+			<Anchor>//api/name/kinveyPropertyToCollectionMapping</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/referenceKinveyPropertiesOfObjectsToSave</TokenIdentifier>
+			<Abstract type="html">Provide a list of backend reference objects to save when this object is saved through a KCSLinkedAppdataStore.</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/kinveyPropertyToCollectionMapping</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (NSArray *)referenceKinveyPropertiesOfObjectsToSave</Declaration>
+			
+			<ReturnValue><Abstract type="html">an array of backend property names to save</Abstract></ReturnValue>
+			<Anchor>//api/name/referenceKinveyPropertiesOfObjectsToSave</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/kinveyObjectBuilderOptions</TokenIdentifier>
+			<Abstract type="html">Returns an NSDictionary that details advanced object building options.</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDictionary *)kinveyObjectBuilderOptions</Declaration>
+			
+			<ReturnValue><Abstract type="html">A dictionary that stores a subset of the above options that KinveyKit will use to determine advanced options.</Abstract></ReturnValue>
+			<Anchor>//api/name/kinveyObjectBuilderOptions</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/kinveyDesignatedInitializer:</TokenIdentifier>
+			<Abstract type="html">Override the initializer that KinveyKit uses to build objects of this type</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>+ (id)kinveyDesignatedInitializer:(NSDictionary *)jsonDocument</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>jsonDocument</Name>
+					<Abstract type="html">the raw server object. This can be used to fetch an existing object instead of creating a brand new one. E.g. use jsonDocument[KCSEntityKeyId] to get the object id and search using a NSFetchedRequest to find an existing NSManagedObject in the context.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An instantiated object of the class implementing this protocol</Abstract></ReturnValue>
+			<Anchor>//api/name/kinveyDesignatedInitializer:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/saveToCollection:withDelegate:</TokenIdentifier>
+			<Abstract type="html">  Save an Entity into KCS for a given KCS client and register a delegate to notify when complete. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use KCSAppdataStore methods instead
+@depreatedIn 1.26.1&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>- (void)saveToCollection:(KCSCollection *)collection withDelegate:(id&lt;KCSPersistableDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">An instance of a KCS collection to use in saving this Entity</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The delegate to inform upon the completion of the save operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/saveToCollection:withDelegate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistable/deleteFromCollection:withDelegate:</TokenIdentifier>
+			<Abstract type="html">Delete an entity from Kinvey and register a delegate for notification.
+When overriding this method an implementer will most likely need to communicate with the KCSClient class,
+which has a different delegate interface.  An implementer will need to map between these delegates.  This does
+not apply to using the built-in implementation. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use KCSAppdataStore methods instead
+@depreatedIn 1.26.1&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>- (void)deleteFromCollection:(KCSCollection *)collection withDelegate:(id&lt;KCSPersistableDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>collection</Name>
+					<Abstract type="html">The collection to remove the item from.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The delegate to inform upon the completion of the delet operation.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/deleteFromCollection:withDelegate:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

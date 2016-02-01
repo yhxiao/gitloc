@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSFile.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSFile</TokenIdentifier>
+			<Abstract type="html">This class is a wrapper for file store information.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>
+			
+			<NodeRef refid="10"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setFileId:</TokenIdentifier>
+			<Abstract type="html">The unique id of the file resource.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *fileId</Declaration>
+			
+			
+			<Anchor>//api/name/fileId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/fileId</TokenIdentifier>
+			<Abstract type="html">The unique id of the file resource.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *fileId</Declaration>
+			
+			
+			<Anchor>//api/name/fileId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/fileId</TokenIdentifier>
+			<Abstract type="html">The unique id of the file resource.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *fileId</Declaration>
+			
+			
+			<Anchor>//api/name/fileId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setFilename:</TokenIdentifier>
+			<Abstract type="html">The file name (and extension) of the file. Does not have to be unique.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *filename</Declaration>
+			
+			
+			<Anchor>//api/name/filename</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/filename</TokenIdentifier>
+			<Abstract type="html">The file name (and extension) of the file. Does not have to be unique.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *filename</Declaration>
+			
+			
+			<Anchor>//api/name/filename</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/filename</TokenIdentifier>
+			<Abstract type="html">The file name (and extension) of the file. Does not have to be unique.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *filename</Declaration>
+			
+			
+			<Anchor>//api/name/filename</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setLength:</TokenIdentifier>
+			<Abstract type="html">The actual or expected size of the file.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) NSUInteger length</Declaration>
+			
+			
+			<Anchor>//api/name/length</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/length</TokenIdentifier>
+			<Abstract type="html">The actual or expected size of the file.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) NSUInteger length</Declaration>
+			
+			
+			<Anchor>//api/name/length</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/length</TokenIdentifier>
+			<Abstract type="html">The actual or expected size of the file.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) NSUInteger length</Declaration>
+			
+			
+			<Anchor>//api/name/length</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setMimeType:</TokenIdentifier>
+			<Abstract type="html">The file&apos;s type.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *mimeType</Declaration>
+			
+			
+			<Anchor>//api/name/mimeType</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/mimeType</TokenIdentifier>
+			<Abstract type="html">The file&apos;s type.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *mimeType</Declaration>
+			
+			
+			<Anchor>//api/name/mimeType</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/mimeType</TokenIdentifier>
+			<Abstract type="html">The file&apos;s type.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *mimeType</Declaration>
+			
+			
+			<Anchor>//api/name/mimeType</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setPublicFile:</TokenIdentifier>
+			<Abstract type="html">YES if the file is public on the Internet.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSNumber *publicFile</Declaration>
+			
+			
+			<Anchor>//api/name/publicFile</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/publicFile</TokenIdentifier>
+			<Abstract type="html">YES if the file is public on the Internet.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSNumber *publicFile</Declaration>
+			
+			
+			<Anchor>//api/name/publicFile</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/publicFile</TokenIdentifier>
+			<Abstract type="html">YES if the file is public on the Internet.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSNumber *publicFile</Declaration>
+			
+			
+			<Anchor>//api/name/publicFile</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setMetadata:</TokenIdentifier>
+			<Abstract type="html">Control a resource&apos;s ACLs.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/metadata</TokenIdentifier>
+			<Abstract type="html">Control a resource&apos;s ACLs.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/metadata</TokenIdentifier>
+			<Abstract type="html">Control a resource&apos;s ACLs.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setLocalURL:</TokenIdentifier>
+			<Abstract type="html">The URL to the file where the resource was saved to.</Abstract>
+			<DeclaredIn>KCSFile+KCSInternal.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSURL *localURL</Declaration>
+			
+			
+			<Anchor>//api/name/localURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/localURL</TokenIdentifier>
+			<Abstract type="html">The URL to the file where the resource was saved to.</Abstract>
+			<DeclaredIn>KCSFile+KCSInternal.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSURL *localURL</Declaration>
+			
+			
+			<Anchor>//api/name/localURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/localURL</TokenIdentifier>
+			<Abstract type="html">The URL to the file where the resource was saved to.</Abstract>
+			<DeclaredIn>KCSFile+KCSInternal.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSURL *localURL</Declaration>
+			
+			
+			<Anchor>//api/name/localURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setData:</TokenIdentifier>
+			<Abstract type="html">The downloaded data.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSData *data</Declaration>
+			
+			
+			<Anchor>//api/name/data</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/data</TokenIdentifier>
+			<Abstract type="html">The downloaded data.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSData *data</Declaration>
+			
+			
+			<Anchor>//api/name/data</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/data</TokenIdentifier>
+			<Abstract type="html">The downloaded data.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSData *data</Declaration>
+			
+			
+			<Anchor>//api/name/data</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setRemoteURL:</TokenIdentifier>
+			<Abstract type="html">The location of the remote resource on it&apos;s actual server.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSURL *remoteURL</Declaration>
+			
+			
+			<Anchor>//api/name/remoteURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/remoteURL</TokenIdentifier>
+			<Abstract type="html">The location of the remote resource on it&apos;s actual server.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSURL *remoteURL</Declaration>
+			
+			
+			<Anchor>//api/name/remoteURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/remoteURL</TokenIdentifier>
+			<Abstract type="html">The location of the remote resource on it&apos;s actual server.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSURL *remoteURL</Declaration>
+			
+			
+			<Anchor>//api/name/remoteURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setExpirationDate:</TokenIdentifier>
+			<Abstract type="html">The date until the remoteURL is good until. After that, the url must be re-fetched from Kinvey.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSDate *expirationDate</Declaration>
+			
+			
+			<Anchor>//api/name/expirationDate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/expirationDate</TokenIdentifier>
+			<Abstract type="html">The date until the remoteURL is good until. After that, the url must be re-fetched from Kinvey.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSDate *expirationDate</Declaration>
+			
+			
+			<Anchor>//api/name/expirationDate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/expirationDate</TokenIdentifier>
+			<Abstract type="html">The date until the remoteURL is good until. After that, the url must be re-fetched from Kinvey.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain, readonly) NSDate *expirationDate</Declaration>
+			
+			
+			<Anchor>//api/name/expirationDate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/setBytesWritten:</TokenIdentifier>
+			<Abstract type="html">The number of bytes sent to GCS. If the file upload fails in the middle, this will be less than the total length. This value will be &gt;= the number of byte actually received by the server.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) unsigned long long bytesWritten</Declaration>
+			
+			
+			<Anchor>//api/name/bytesWritten</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSFile/bytesWritten</TokenIdentifier>
+			<Abstract type="html">The number of bytes sent to GCS. If the file upload fails in the middle, this will be less than the total length. This value will be &gt;= the number of byte actually received by the server.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) unsigned long long bytesWritten</Declaration>
+			
+			
+			<Anchor>//api/name/bytesWritten</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSFile/bytesWritten</TokenIdentifier>
+			<Abstract type="html">The number of bytes sent to GCS. If the file upload fails in the middle, this will be less than the total length. This value will be &gt;= the number of byte actually received by the server.</Abstract>
+			<DeclaredIn>KCSFile.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) unsigned long long bytesWritten</Declaration>
+			
+			
+			<Anchor>//api/name/bytesWritten</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Constants/KCSCacheUpdatePolicy.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/c/tdef/KCSCacheUpdatePolicy</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>KCSCacheUpdatePolicy.h</DeclaredIn>
+			
+			<NodeRef refid="44"/>
+		</Token>
+		
+		
+	</File>
+</Tokens>

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSFileStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSFileStore</TokenIdentifier>
+			<Abstract type="html">Methods for finding, downloading, uploading, and removing files from Kinvey&apos;s file storage.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>
+			
+			<NodeRef refid="11"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/uploadFile:options:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Uploads a local file to Kinvey&apos;s file store</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)uploadFile:(NSURL *)fileURL options:(NSDictionary *)uploadOptions completionBlock:(KCSFileUploadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fileURL</Name>
+					<Abstract type="html">a url to a local file</Abstract>
+				</Parameter><Parameter>
+					<Name>uploadOptions</Name>
+					<Abstract type="html">upload options (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the upload is complete or error occurs. The KCSFile return object will have its filename and fileId properties set to their new values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/uploadFile:options:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/uploadFile:options:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Uploads a local file to Kinvey&apos;s file store</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)uploadFile:(NSURL *)fileURL options:(NSDictionary *)uploadOptions requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileUploadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fileURL</Name>
+					<Abstract type="html">a url to a local file</Abstract>
+				</Parameter><Parameter>
+					<Name>uploadOptions</Name>
+					<Abstract type="html">upload options (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the upload is complete or error occurs. The KCSFile return object will have its filename and fileId properties set to their new values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/uploadFile:options:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/uploadData:options:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Uploads binary data to Kinvey&apos;s file store</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)uploadData:(NSData *)data options:(NSDictionary *)uploadOptions completionBlock:(KCSFileUploadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">the bytes to upload</Abstract>
+				</Parameter><Parameter>
+					<Name>uploadOptions</Name>
+					<Abstract type="html">upload options (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the upload is complete or error occurs. The KCSFile return object will have its filename and fileId properties set to their new values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/uploadData:options:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/uploadData:options:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Uploads binary data to Kinvey&apos;s file store</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)uploadData:(NSData *)data options:(NSDictionary *)uploadOptions requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileUploadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">the bytes to upload</Abstract>
+				</Parameter><Parameter>
+					<Name>uploadOptions</Name>
+					<Abstract type="html">upload options (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the upload is complete or error occurs. The KCSFile return object will have its filename and fileId properties set to their new values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is uploaded. This only counts data transferred to the file storage service, and not the intermediate call to Kinvey to obtain the upload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/uploadData:options:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFile:options:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFile:(id)idOrIds options:(NSDictionary *)options completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>idOrIds</Name>
+					<Abstract type="html">a single string file id or an array of file ids</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">an optional (can be nil) options dictionary (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFile:options:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFile:options:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFile:(id)idOrIds options:(NSDictionary *)options requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>idOrIds</Name>
+					<Abstract type="html">a single string file id or an array of file ids</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">an optional (can be nil) options dictionary (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFile:options:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFileByName:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFileByName:(id)nameOrNames completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>nameOrNames</Name>
+					<Abstract type="html">a single string file name or an array of file names</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled. These objects may not be in the same order</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFileByName:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFileByName:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFileByName:(id)nameOrNames requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>nameOrNames</Name>
+					<Abstract type="html">a single string file name or an array of file names</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled. These objects may not be in the same order</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFileByName:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFileByQuery:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the matching file or files.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFileByQuery:(KCSQuery *)query completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">a standard Kinvey Query object</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFileByQuery:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the matching file or files.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFileByQuery:(KCSQuery *)query requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">a standard Kinvey Query object</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFileByQuery:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFileWithResolvedURL:options:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified URL.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFileWithResolvedURL:(NSURL *)url options:(NSDictionary *)options completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>url</Name>
+					<Abstract type="html">a resolved GCS file URL. This request must be sucessfully sent before the expirationTime or the request will fail.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">an optional (can be nil) options dictionary (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will have KCSFile object with its localURL, filename, fileId, length, and mimeType properties filled.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFileWithResolvedURL:options:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified URL.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadFileWithResolvedURL:(NSURL *)url options:(NSDictionary *)options requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>url</Name>
+					<Abstract type="html">a resolved GCS file URL. This request must be sucessfully sent before the expirationTime or the request will fail.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">an optional (can be nil) options dictionary (see above)</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will have KCSFile object with its localURL, filename, fileId, length, and mimeType properties filled.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadFileWithResolvedURL:options:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadData:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadData:(id)idOrIds completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>idOrIds</Name>
+					<Abstract type="html">a single string file id or an array of file ids</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their filename, fileId, length, and mimeType properties filled. The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadData:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadData:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadData:(id)idOrIds requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>idOrIds</Name>
+					<Abstract type="html">a single string file id or an array of file ids</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their filename, fileId, length, and mimeType properties filled. The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadData:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadDataByName:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadDataByName:(id)nameOrNames completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>nameOrNames</Name>
+					<Abstract type="html">a single string file name or an array of file names</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their filename, fileId, length, and mimeType properties filled.  The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadDataByName:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadDataByName:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified file or files to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadDataByName:(id)nameOrNames requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>nameOrNames</Name>
+					<Abstract type="html">a single string file name or an array of file names</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their filename, fileId, length, and mimeType properties filled.  The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadDataByName:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadDataByQuery:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the matching file or files to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadDataByQuery:(KCSQuery *)query completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">a standard Kinvey Query object</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their filename, fileId, length, and mimeType properties filled.  The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadDataByQuery:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the matching file or files to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadDataByQuery:(KCSQuery *)query requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">a standard Kinvey Query object</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their filename, fileId, length, and mimeType properties filled.  The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location. This will be represented as a percentage of overall progress.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadDataByQuery:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadDataWithResolvedURL:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified URL to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadDataWithResolvedURL:(NSURL *)url completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>url</Name>
+					<Abstract type="html">a resolved GCS file URL. This request must be sucessfully sent before the expirationTime or the request will fail.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will have KCSFile object with its filename, fileId, length, and mimeType properties filled. The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadDataWithResolvedURL:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Downloads the specified URL to memory.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)downloadDataWithResolvedURL:(NSURL *)url requestConfiguration:(KCSRequestConfiguration *)requestConfiguration completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>url</Name>
+					<Abstract type="html">a resolved GCS file URL. This request must be sucessfully sent before the expirationTime or the request will fail.</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will have KCSFile object with its filename, fileId, length, and mimeType properties filled. The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This only counts data transferred from the file storage service, and not the intermediate call to Kinvey to obtain the drownload location.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/downloadDataWithResolvedURL:requestConfiguration:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/getStreamingURL:completionBlock:</TokenIdentifier>
+			<Abstract type="html">Obtains a URL to stream the file.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)getStreamingURL:(NSString *)fileId completionBlock:(KCSFileStreamingURLCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fileId</Name>
+					<Abstract type="html">the string file id</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called once the url is ready, or error if it fails. The returned KCSFile object will have its remoteURL property be the streaming URL. This must be used before the expirationDate property has passed, or the url will be invalid and need to be re-retreived.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/getStreamingURL:completionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/getStreamingURLByName:completionBlock:</TokenIdentifier>
+			<Abstract type="html">Obtains a URL to stream the file.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)getStreamingURLByName:(NSString *)fileName completionBlock:(KCSFileStreamingURLCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fileName</Name>
+					<Abstract type="html">the string file name. If multiple files match, the first one will be used.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the block to be called once the url is ready, or error if it fails. The returned KCSFile object will have its remoteURL property be the streaming URL. This must be used before the expirationDate property has passed, or the url will be invalid and need to be re-retreived.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/getStreamingURLByName:completionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/resumeDownload:from:completionBlock:progressBlock:</TokenIdentifier>
+			<Abstract type="html">Resumes a partially downloaded file. This method is useful if the a previous getFileXXX method failed mid-transfer, such as from loss of network connectivity or app backgrounding.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)resumeDownload:(NSURL *)partialLocalFile from:(NSURL *)resolvedURL completionBlock:(KCSFileDownloadCompletionBlock)completionBlock progressBlock:(KCSProgressBlock)progressBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>partialLocalFile</Name>
+					<Abstract type="html">a file url to the already written data. This assumes the partial download&apos;s bytes are complete and contiguous up to its length.</Abstract>
+				</Parameter><Parameter>
+					<Name>resolvedURL</Name>
+					<Abstract type="html">the GCS file URL to the original file (can be obtained with getStreamingURL methods or by querying the fileMetadataCollection.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the download(s) are complete or an error occurs. The downloadedResources array will be KCSFile objects with their localURL, filename, fileId, length, and mimeType properties filled. The data property will contain the corresponing NSData values.</Abstract>
+				</Parameter><Parameter>
+					<Name>progressBlock</Name>
+					<Abstract type="html">called 0+ times with intermediate progress as the file is downloaded. This will count the total bytes to download, and thus will start with percentage previously downloaded.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/resumeDownload:from:completionBlock:progressBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/deleteFile:completionBlock:</TokenIdentifier>
+			<Abstract type="html">Removes a file from the file storage.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSRequest *)deleteFile:(NSString *)fileId completionBlock:(KCSCountBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>fileId</Name>
+					<Abstract type="html">the file id. This can only be a single string</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the operation completes or fails. The count will be 0 or 1 or an error will be provided.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">KCSRequest object that represents the pending request made against the store. Since version 1.36.0</Abstract></ReturnValue>
+			<Anchor>//api/name/deleteFile:completionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFileStore/clearCachedFiles</TokenIdentifier>
+			<Abstract type="html">Removes all downloaded files managed by KinveyKit.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (void)clearCachedFiles</Declaration>
+			
+			
+			<Anchor>//api/name/clearCachedFiles</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

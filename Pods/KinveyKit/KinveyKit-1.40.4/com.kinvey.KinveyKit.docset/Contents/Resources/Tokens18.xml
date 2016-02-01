@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSQuery.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSQuery</TokenIdentifier>
+			<Abstract type="html">A query that can be applied to a Collection.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>
+			
+			<NodeRef refid="18"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryOnField:usingConditional:forValue:</TokenIdentifier>
+			<Abstract type="html">Create a new Simple Query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryOnField:(NSString *)field usingConditional:(KCSQueryConditional)conditional forValue:(NSObject *)value</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>conditional</Name>
+					<Abstract type="html">The Query Operator (see Overview) that we use to filter.</Abstract>
+				</Parameter><Parameter>
+					<Name>value</Name>
+					<Abstract type="html">The value to search for, must be a supported Kinvey type.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryOnField:usingConditional:forValue:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryOnField:withExactMatchForValue:</TokenIdentifier>
+			<Abstract type="html">Create a new exact query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryOnField:(NSString *)field withExactMatchForValue:(NSObject *)value</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>value</Name>
+					<Abstract type="html">The value to match, must be a supported Kinvey type.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryOnField:withExactMatchForValue:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryOnField:usingConditionalsForValues:</TokenIdentifier>
+			<Abstract type="html">Query a field for multiple values (AND).</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryOnField:(NSString *)field usingConditionalsForValues:(KCSQueryConditional)firstConditional, ...</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>firstConditional</Name>
+					<Abstract type="html">The Query Operator (see Overview) that we use to filter</Abstract>
+				</Parameter><Parameter>
+					<Name>...</Name>
+					<Abstract type="html">A nil terminated list of pairs of conditionals and values.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryOnField:usingConditionalsForValues:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryOnField:usingConditionalsForValuesArgs:KCS_DEPRECATED:</TokenIdentifier>
+			<Abstract type="html">DEPRECATED method, please use queryOnField:usingConditionalPairs: method instead.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryOnField:(NSString *)field usingConditionalsForValuesArgs:(va_list)args KCS_DEPRECATED</Declaration>
+			
+			
+			<Anchor>//api/name/queryOnField:usingConditionalsForValuesArgs:KCS_DEPRECATED:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryOnField:usingConditionalPairs:</TokenIdentifier>
+			<Abstract type="html">Query a field for multiple values (AND).</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryOnField:(NSString *)field usingConditionalPairs:(NSArray *)conditionalPairs</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>firstConditional</Name>
+					<Abstract type="html">The Query Operator (see Overview) that we use to filter</Abstract>
+				</Parameter><Parameter>
+					<Name>...</Name>
+					<Abstract type="html">A nil terminated list of pairs of conditionals and values.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryOnField:usingConditionalPairs:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryForJoiningOperator:onQueries:</TokenIdentifier>
+			<Abstract type="html">Create a new query joining multiple existing queries.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryForJoiningOperator:(KCSQueryConditional)joiningOperator onQueries:(KCSQuery *)firstQuery, ...</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>joiningOperator</Name>
+					<Abstract type="html">The operator to join the queries with.</Abstract>
+				</Parameter><Parameter>
+					<Name>firstQuery</Name>
+					<Abstract type="html">The first query to join.</Abstract>
+				</Parameter><Parameter>
+					<Name>...</Name>
+					<Abstract type="html">A nil terminated list of queriers to join.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryForJoiningOperator:onQueries:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryNegatingQuery:</TokenIdentifier>
+			<Abstract type="html">Create a new query by negating an existing query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryNegatingQuery:(KCSQuery *)query</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">The query to negate.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryNegatingQuery:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryForEmptyValueInField:</TokenIdentifier>
+			<Abstract type="html">Create a query that matches entities where the field is empty or unset.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryForEmptyOrNullValueInField:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>+ (KCSQuery *)queryForEmptyValueInField:(NSString *)field</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">the backend field to query.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">an autoreleased KCSQuery object.</Abstract></ReturnValue>
+			<Anchor>//api/name/queryForEmptyValueInField:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryForEmptyOrNullValueInField:</TokenIdentifier>
+			<Abstract type="html">Create a query that matches entities where the field is empty or unset or has been excplicitly set to null.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryForEmptyValueInField:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>+ (KCSQuery *)queryForEmptyOrNullValueInField:(NSString *)field</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">the backend field to query.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">an autoreleased KCSQuery object.</Abstract></ReturnValue>
+			<Anchor>//api/name/queryForEmptyOrNullValueInField:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/query</TokenIdentifier>
+			<Abstract type="html">Create a new query that matches all entites.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)query</Declaration>
+			
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/query</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryOnField:withRegex:</TokenIdentifier>
+			<Abstract type="html">Creates a regular expression query on a field.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryOnField:(NSString *)field withRegex:(NSString *)pattern</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>pattern</Name>
+					<Abstract type="html">the regular expression string starting with ^.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/queryOnField:withRegex:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSQuery/queryWithQuery:</TokenIdentifier>
+			<Abstract type="html">Copy factory</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSQuery *)queryWithQuery:(KCSQuery *)query</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">the query to copy</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a new KCSQuery that matches the old object</Abstract></ReturnValue>
+			<Anchor>//api/name/queryWithQuery:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addQuery:</TokenIdentifier>
+			<Abstract type="html">ANDs an existing query with the current query set.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addQuery:(KCSQuery *)query</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">The query to add.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addQuery:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addQueryOnField:usingConditional:forValue:</TokenIdentifier>
+			<Abstract type="html">Add a new Simple Query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addQueryOnField:(NSString *)field usingConditional:(KCSQueryConditional)conditional forValue:(NSObject *)value</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>conditional</Name>
+					<Abstract type="html">The Query Operator (see Overview) that we use to filter.</Abstract>
+				</Parameter><Parameter>
+					<Name>value</Name>
+					<Abstract type="html">The value to search for, must be a supported Kinvey type.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addQueryOnField:usingConditional:forValue:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addQueryOnField:withExactMatchForValue:</TokenIdentifier>
+			<Abstract type="html">Add a new exact query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addQueryOnField:(NSString *)field withExactMatchForValue:(NSObject *)value</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>value</Name>
+					<Abstract type="html">The value to match, must be a supported Kinvey type.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addQueryOnField:withExactMatchForValue:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addQueryOnField:usingConditionalsForValues:</TokenIdentifier>
+			<Abstract type="html">Add a query a field for multiple values (with AND).</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addQueryOnField:(NSString *)field usingConditionalsForValues:(KCSQueryConditional)firstConditional, ...</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field in Kinvey to query on.</Abstract>
+				</Parameter><Parameter>
+					<Name>firstConditional</Name>
+					<Abstract type="html">The Query Operator (see Overview) that we use to filter</Abstract>
+				</Parameter><Parameter>
+					<Name>...</Name>
+					<Abstract type="html">A nil terminated list of pairs of conditionals and values.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addQueryOnField:usingConditionalsForValues:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addQueryForJoiningOperator:onQueries:</TokenIdentifier>
+			<Abstract type="html">Join new queries to the current queries using operator</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addQueryForJoiningOperator:(KCSQueryConditional)joiningOperator onQueries:(KCSQuery *)firstQuery, ...</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>joiningOperator</Name>
+					<Abstract type="html">The operator to join the queries with.</Abstract>
+				</Parameter><Parameter>
+					<Name>firstQuery</Name>
+					<Abstract type="html">The first query to join.</Abstract>
+				</Parameter><Parameter>
+					<Name>...</Name>
+					<Abstract type="html">A nil terminated list of queriers to join.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/addQueryForJoiningOperator:onQueries:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addQueryNegatingQuery:</TokenIdentifier>
+			<Abstract type="html">Add a new query by negating an existing query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addQueryNegatingQuery:(KCSQuery *)query</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">The query to negate.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The new KCSQuery object (autoreleased).</Abstract></ReturnValue>
+			<Anchor>//api/name/addQueryNegatingQuery:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/clear</TokenIdentifier>
+			<Abstract type="html">Remove all queries</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)clear</Declaration>
+			
+			
+			<Anchor>//api/name/clear</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/negateQuery</TokenIdentifier>
+			<Abstract type="html">Take the existing query and negate it</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)negateQuery</Declaration>
+			
+			
+			<Anchor>//api/name/negateQuery</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/queryByJoiningQuery:usingOperator:</TokenIdentifier>
+			<Abstract type="html">Create a new query by joining an existing query with the current query preserving relationships</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (KCSQuery *)queryByJoiningQuery:(KCSQuery *)query usingOperator:(KCSQueryConditional)joiningOperator</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>query</Name>
+					<Abstract type="html">The query to join</Abstract>
+				</Parameter><Parameter>
+					<Name>joiningOperator</Name>
+					<Abstract type="html">The operator to join the two queries</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The freshly created query.</Abstract></ReturnValue>
+			<Anchor>//api/name/queryByJoiningQuery:usingOperator:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/setQuery:</TokenIdentifier>
+			<Abstract type="html">The current query represented as a dictionary.</Abstract>
+			<DeclaredIn>KCSHiddenMethods.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, copy) NSMutableDictionary *query</Declaration>
+			
+			
+			<Anchor>//api/name/query</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/query</TokenIdentifier>
+			<Abstract type="html">The current query represented as a dictionary.</Abstract>
+			<DeclaredIn>KCSHiddenMethods.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, copy) NSMutableDictionary *query</Declaration>
+			
+			
+			<Anchor>//api/name/query</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuery/query</TokenIdentifier>
+			<Abstract type="html">The current query represented as a dictionary.</Abstract>
+			<DeclaredIn>KCSHiddenMethods.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, copy) NSMutableDictionary *query</Declaration>
+			
+			
+			<Anchor>//api/name/query</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/JSONStringRepresentation</TokenIdentifier>
+			<Abstract type="html">Return the JSON String representation of this query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)JSONStringRepresentation</Declaration>
+			
+			<ReturnValue><Abstract type="html">An NSString containing valid JSON for this query.</Abstract></ReturnValue>
+			<Anchor>//api/name/JSONStringRepresentation</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/UTF8JSONStringRepresentation</TokenIdentifier>
+			<Abstract type="html">Return a byte array of the UTF8 encoded JSON String</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (NSData *)UTF8JSONStringRepresentation</Declaration>
+			
+			<ReturnValue><Abstract type="html">A UTF8 encoded chunk of data that contains the JSON string</Abstract></ReturnValue>
+			<Anchor>//api/name/UTF8JSONStringRepresentation</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/parameterStringRepresentation</TokenIdentifier>
+			<Abstract type="html">Return the representation of the query suitable for using in a query paramter.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)parameterStringRepresentation</Declaration>
+			
+			<ReturnValue><Abstract type="html">An NSString ready to be put into a URL Query parameter</Abstract></ReturnValue>
+			<Anchor>//api/name/parameterStringRepresentation</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/parameterStringForSortKeys</TokenIdentifier>
+			<Abstract type="html">Return all of the sort parameters into a string able to be used in a URL query.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)parameterStringForSortKeys</Declaration>
+			
+			<ReturnValue><Abstract type="html">A String that can be used in a parameter string.</Abstract></ReturnValue>
+			<Anchor>//api/name/parameterStringForSortKeys</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/setLimitModifer:</TokenIdentifier>
+			<Abstract type="html">The current limit modifier, defaults to nil.  Set to nil to clear the limit modifier.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) KCSQueryLimitModifier *limitModifer</Declaration>
+			
+			
+			<Anchor>//api/name/limitModifer</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/limitModifer</TokenIdentifier>
+			<Abstract type="html">The current limit modifier, defaults to nil.  Set to nil to clear the limit modifier.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) KCSQueryLimitModifier *limitModifer</Declaration>
+			
+			
+			<Anchor>//api/name/limitModifer</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuery/limitModifer</TokenIdentifier>
+			<Abstract type="html">The current limit modifier, defaults to nil.  Set to nil to clear the limit modifier.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) KCSQueryLimitModifier *limitModifer</Declaration>
+			
+			
+			<Anchor>//api/name/limitModifer</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/setSkipModifier:</TokenIdentifier>
+			<Abstract type="html">The current skip modifier, defaults to nil.  Set to nil to clear the skip modifier.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) KCSQuerySkipModifier *skipModifier</Declaration>
+			
+			
+			<Anchor>//api/name/skipModifier</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/skipModifier</TokenIdentifier>
+			<Abstract type="html">The current skip modifier, defaults to nil.  Set to nil to clear the skip modifier.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) KCSQuerySkipModifier *skipModifier</Declaration>
+			
+			
+			<Anchor>//api/name/skipModifier</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuery/skipModifier</TokenIdentifier>
+			<Abstract type="html">The current skip modifier, defaults to nil.  Set to nil to clear the skip modifier.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) KCSQuerySkipModifier *skipModifier</Declaration>
+			
+			
+			<Anchor>//api/name/skipModifier</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/setSortModifiers:</TokenIdentifier>
+			<Abstract type="html">The current list of sort modifiers.  Read only, use addSortModifier: and clearSortModifiers to modify.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSArray *sortModifiers</Declaration>
+			
+			
+			<Anchor>//api/name/sortModifiers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/sortModifiers</TokenIdentifier>
+			<Abstract type="html">The current list of sort modifiers.  Read only, use addSortModifier: and clearSortModifiers to modify.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSArray *sortModifiers</Declaration>
+			
+			
+			<Anchor>//api/name/sortModifiers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuery/sortModifiers</TokenIdentifier>
+			<Abstract type="html">The current list of sort modifiers.  Read only, use addSortModifier: and clearSortModifiers to modify.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSArray *sortModifiers</Declaration>
+			
+			
+			<Anchor>//api/name/sortModifiers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/addSortModifier:</TokenIdentifier>
+			<Abstract type="html">Add a new sort modifier to our list of modifiers.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)addSortModifier:(KCSQuerySortModifier *)modifier</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>modifier</Name>
+					<Abstract type="html">The sort modifier to add to the list.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addSortModifier:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuery/clearSortModifiers</TokenIdentifier>
+			<Abstract type="html">Clear all sort modifiers</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (void)clearSortModifiers</Declaration>
+			
+			
+			<Anchor>//api/name/clearSortModifiers</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

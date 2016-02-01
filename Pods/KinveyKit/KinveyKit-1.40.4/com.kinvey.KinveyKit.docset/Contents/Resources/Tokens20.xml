@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSQuerySkipModifier.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSQuerySkipModifier</TokenIdentifier>
+			<Abstract type="html">Representation of the Skip parameter in a query</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>
+			
+			<NodeRef refid="20"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySkipModifier/setCount:</TokenIdentifier>
+			<Abstract type="html">The count of objects to skip.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) NSInteger count</Declaration>
+			
+			
+			<Anchor>//api/name/count</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySkipModifier/count</TokenIdentifier>
+			<Abstract type="html">The count of objects to skip.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) NSInteger count</Declaration>
+			
+			
+			<Anchor>//api/name/count</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuerySkipModifier/count</TokenIdentifier>
+			<Abstract type="html">The count of objects to skip.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) NSInteger count</Declaration>
+			
+			
+			<Anchor>//api/name/count</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySkipModifier/initWithcount:</TokenIdentifier>
+			<Abstract type="html">Initialize an object with a skip count set.</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (instancetype)initWithcount:(NSInteger)count</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>count</Name>
+					<Abstract type="html">The count of entities to skip.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The newly created object.</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithcount:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySkipModifier/parameterStringRepresentation</TokenIdentifier>
+			<Abstract type="html">Obtain a representation suitable for sticking in a query param string</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)parameterStringRepresentation</Declaration>
+			
+			<ReturnValue><Abstract type="html">An escaped string read for a query parameter.</Abstract></ReturnValue>
+			<Anchor>//api/name/parameterStringRepresentation</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

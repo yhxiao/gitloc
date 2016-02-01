@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/CLLocation+Kinvey.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/CLLocation(Kinvey)</TokenIdentifier>
+			<Abstract type="html">Helper Category to allow for persisting CLLocation objects to the Kinvey backend.</Abstract>
+			<DeclaredIn>CLLocation+Kinvey.h</DeclaredIn>
+			
+			<NodeRef refid="29"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CLLocation/kinveyValue</TokenIdentifier>
+			<Abstract type="html">Converts this CLLocation to a form persistable to Kinvey.</Abstract>
+			<DeclaredIn>CLLocation+Kinvey.h</DeclaredIn>			
+			
+			<Declaration>- (NSArray *)kinveyValue</Declaration>
+			
+			
+			<Anchor>//api/name/kinveyValue</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CLLocation/locationFromKinveyValue:</TokenIdentifier>
+			<Abstract type="html">turns a serialized [longitude,latitude] array into a CLLocation object.</Abstract>
+			<DeclaredIn>CLLocation+Kinvey.h</DeclaredIn>			
+			
+			<Declaration>+ (CLLocation *)locationFromKinveyValue:(NSArray *)kinveyValue</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>kinveyValue</Name>
+					<Abstract type="html">an array object loaded from the backend.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a new object represented by the array.</Abstract></ReturnValue>
+			<Anchor>//api/name/locationFromKinveyValue:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSOfflineUpdateDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSOfflineUpdateDelegate</TokenIdentifier>
+			<Abstract type="html">The KCSClient object can have single delegate for all data stores that implements this protocol. In order to participate in offline updates, there must be a global offline delegate, and each instance of KCSCachedStore or KCSLinkedAppdataStore must also have the option KCSStoreKeyOfflineUpdateEnabled set to YES.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>
+			
+			<NodeRef refid="37"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/didEnqueueObject:inCollection:</TokenIdentifier>
+			<Abstract type="html">Called when an object is enqueued to be later saved or removed.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)didEnqueueObject:(NSString *)objectId inCollection:(NSString *)collectionName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object to be saved or deleted. If the delete is a query then this will be the query string.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didEnqueueObject:inCollection:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/shouldEnqueueObject:inCollection:onError:</TokenIdentifier>
+			<Abstract type="html">Called before an object is enqueued to be later saved or removed. This allows you to prevent a request from being retried later.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)shouldEnqueueObject:(NSString *)objectId inCollection:(NSString *)collectionName onError:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object to be saved or deleted. If the delete is a query then this will be the query string.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">is the error that occurred during the last attempt to send the request, causing the retry to be queued.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if the request should be retried when the app regains connectivity</Abstract></ReturnValue>
+			<Anchor>//api/name/shouldEnqueueObject:inCollection:onError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/shouldSaveObject:inCollection:lastAttemptedSaveTime:</TokenIdentifier>
+			<Abstract type="html">Called before a queued object is saved. This method allows the client to expire old saves or otherwise control if the save should be attempted.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)shouldSaveObject:(NSString *)objectId inCollection:(NSString *)collectionName lastAttemptedSaveTime:(NSDate *)saveTime</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object to be saved.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter><Parameter>
+					<Name>saveTime</Name>
+					<Abstract type="html">the last time the save was attempted. If multiple offline failures occur this will not be the original save time.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if a save request should be sent</Abstract></ReturnValue>
+			<Anchor>//api/name/shouldSaveObject:inCollection:lastAttemptedSaveTime:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/willSaveObject:inCollection:</TokenIdentifier>
+			<Abstract type="html">Called before a save request is sent.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)willSaveObject:(NSString *)objectId inCollection:(NSString *)collectionName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object to be saved.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/willSaveObject:inCollection:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/didSaveObject:inCollection:</TokenIdentifier>
+			<Abstract type="html">Called after a save request is successful.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)didSaveObject:(NSString *)objectId inCollection:(NSString *)collectionName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object saved.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didSaveObject:inCollection:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/shouldDeleteObject:inCollection:lastAttemptedDeleteTime:</TokenIdentifier>
+			<Abstract type="html">Called before a queued object is delete. This method allows the client to expire old delete requests or otherwise control if the delete should be attempted.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)shouldDeleteObject:(NSString *)objectId inCollection:(NSString *)collectionName lastAttemptedDeleteTime:(NSDate *)time</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object to be removed.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter><Parameter>
+					<Name>time</Name>
+					<Abstract type="html">the last time the delete was attempted. If multiple offline failures occur this will not be the original deletion time.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if a delete request should be sent</Abstract></ReturnValue>
+			<Anchor>//api/name/shouldDeleteObject:inCollection:lastAttemptedDeleteTime:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/willDeleteObject:inCollection:</TokenIdentifier>
+			<Abstract type="html">Called before a delete request is sent.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)willDeleteObject:(NSString *)objectId inCollection:(NSString *)collectionName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object to be removed.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/willDeleteObject:inCollection:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSOfflineUpdateDelegate/didDeleteObject:inCollection:</TokenIdentifier>
+			<Abstract type="html">Called after a delete request is successful.</Abstract>
+			<DeclaredIn>KCSOfflineUpdateDelegate.h</DeclaredIn>			
+			
+			<Declaration>- (void)didDeleteObject:(NSString *)objectId inCollection:(NSString *)collectionName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objectId</Name>
+					<Abstract type="html">The KCSEntityKeyId of the object removed.</Abstract>
+				</Parameter><Parameter>
+					<Name>collectionName</Name>
+					<Abstract type="html">The name of the collection. For special collections such as file store or users, use the constants KCSUserCollectionName and KCSFileStoreCollectionName.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didDeleteObject:inCollection:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

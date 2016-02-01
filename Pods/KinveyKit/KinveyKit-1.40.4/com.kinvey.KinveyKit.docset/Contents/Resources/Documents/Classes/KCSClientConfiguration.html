@@ -1,0 +1,1283 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>KCSClientConfiguration Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">KinveyKit </a></h1>
+				<a id="developerHome" href="../index.html">Kinvey</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">KCSClientConfiguration Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/appKey">&nbsp;&nbsp;&nbsp;&nbsp;appKey</option>
+	
+	<option value="//api/name/appSecret">&nbsp;&nbsp;&nbsp;&nbsp;appSecret</option>
+	
+	<option value="//api/name/authHostname">&nbsp;&nbsp;&nbsp;&nbsp;authHostname</option>
+	
+	<option value="//api/name/baseURL">&nbsp;&nbsp;&nbsp;&nbsp;baseURL</option>
+	
+	<option value="//api/name/connectionTimeout">&nbsp;&nbsp;&nbsp;&nbsp;connectionTimeout</option>
+	
+	<option value="//api/name/hostDomain">&nbsp;&nbsp;&nbsp;&nbsp;hostDomain</option>
+	
+	<option value="//api/name/hostPort">&nbsp;&nbsp;&nbsp;&nbsp;hostPort</option>
+	
+	<option value="//api/name/hostProtocol">&nbsp;&nbsp;&nbsp;&nbsp;hostProtocol</option>
+	
+	<option value="//api/name/options">&nbsp;&nbsp;&nbsp;&nbsp;options</option>
+	
+	<option value="//api/name/requestConfiguration">&nbsp;&nbsp;&nbsp;&nbsp;requestConfiguration</option>
+	
+	<option value="//api/name/serviceHostname">&nbsp;&nbsp;&nbsp;&nbsp;serviceHostname</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/configurationFromPlist:">&nbsp;&nbsp;&nbsp;&nbsp;+ configurationFromPlist:</option>
+	
+	<option value="//api/name/configurationWithAppKey:secret:">&nbsp;&nbsp;&nbsp;&nbsp;+ configurationWithAppKey:secret:</option>
+	
+	<option value="//api/name/configurationWithAppKey:secret:options:">&nbsp;&nbsp;&nbsp;&nbsp;+ configurationWithAppKey:secret:options:</option>
+	
+	<option value="//api/name/configurationWithAppKey:secret:options:requestConfiguration:">&nbsp;&nbsp;&nbsp;&nbsp;+ configurationWithAppKey:secret:options:requestConfiguration:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_KCSInternal Methods">KCSInternal Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appKey">appKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appSecret">appSecret</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authHostname">authHostname</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/baseURL">baseURL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connectionTimeout">connectionTimeout</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hostDomain">hostDomain</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hostPort">hostPort</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hostProtocol">hostProtocol</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/options">options</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestConfiguration">requestConfiguration</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/serviceHostname">serviceHostname</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configurationFromPlist:">configurationFromPlist:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configurationWithAppKey:secret:">configurationWithAppKey:secret:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configurationWithAppKey:secret:options:">configurationWithAppKey:secret:options:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configurationWithAppKey:secret:options:requestConfiguration:">configurationWithAppKey:secret:options:requestConfiguration:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="KCSClientConfiguration Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">KCSClientConfiguration Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCopying</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">KCSClientConfiguration.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Configuration wrapper for setting up a KCSClient. Configurations are adjustable at compile- or run-time. See the guides at <a href="http://devecenter.kinvey.com">http://devecenter.kinvey.com</a> for how configurations work with app environments.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/appKey">&nbsp;&nbsp;appKey</a></code>
+		<span class="tooltip"><p>The application identifier</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/appSecret">&nbsp;&nbsp;appSecret</a></code>
+		<span class="tooltip"><p>The application secret</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestConfiguration">&nbsp;&nbsp;requestConfiguration</a></code>
+		<span class="tooltip"><p>The request configration</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/options">&nbsp;&nbsp;options</a></code>
+		<span class="tooltip"><p>A dictionary of options.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/serviceHostname">&nbsp;&nbsp;serviceHostname</a></code>
+		<span class="tooltip"><p>Subdomain used to connect to the backend server. Default value: &ldquo;baas&rdquo;. Sample values: &ldquo;foo-baas&rdquo; or &ldquo;foo-baas.&rdquo;.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/authHostname">&nbsp;&nbsp;authHostname</a></code>
+		<span class="tooltip"><p>Subdomain used to connect to the backend server. Default value: &ldquo;auth&rdquo;. Sample values: &ldquo;foo-auth&rdquo; or &ldquo;foo-auth.&rdquo;.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/baseURL">&nbsp;&nbsp;baseURL</a></code>
+		<span class="tooltip"><p>Base URL used to connect to the backend server. Default value: &ldquo;<a href="https://baas.kinvey.com">https://baas.kinvey.com</a>&rdquo;</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/connectionTimeout">&nbsp;&nbsp;connectionTimeout</a></code>
+		<span class="tooltip"><p>Representing in-seconds for connection timeouts</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/configurationWithAppKey:secret:">+&nbsp;configurationWithAppKey:secret:</a></code>
+		<span class="tooltip"><p>Basic configuration with an app key and secret, no <a href="#//api/name/options">options</a>. Uses the default <a href="#//api/name/options">options</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/configurationWithAppKey:secret:options:">+&nbsp;configurationWithAppKey:secret:options:</a></code>
+		<span class="tooltip"><p>Basic configuration with an app key and secret and <a href="#//api/name/options">options</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/configurationWithAppKey:secret:options:requestConfiguration:">+&nbsp;configurationWithAppKey:secret:options:requestConfiguration:</a></code>
+		<span class="tooltip"><p>Basic configuration with an app key and secret and <a href="#//api/name/options">options</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/configurationFromPlist:">+&nbsp;configurationFromPlist:</a></code>
+		<span class="tooltip"><p>Builds the configuration from the specified plist.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="KCSInternal Methods" name="task_KCSInternal Methods"></a>
+						<h3 class="subsubtitle task-title">KCSInternal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hostProtocol">&nbsp;&nbsp;hostProtocol</a></code>
+		<span class="tooltip"><p>Protocol used to connect to the backend server. Default value: &ldquo;https&rdquo;. Valid values: &ldquo;https&rdquo; or &ldquo;http&rdquo;</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hostDomain">&nbsp;&nbsp;hostDomain</a></code>
+		<span class="tooltip"><p>Domain host used to connect to the backend server. Default value: &ldquo;kinvey.com&rdquo;. Sample values: &ldquo;mydomain.com&rdquo;</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hostPort">&nbsp;&nbsp;hostPort</a></code>
+		<span class="tooltip"><p>Port used to connect to the backend server Default value: &ldquo;&rdquo; (empty string). Sample values: &ldquo;8080&rdquo; or &ldquo;:8080&rdquo;.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/appKey" title="appKey"></a>
+	<h3 class="subsubtitle method-title">appKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The application identifier</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *appKey</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.20.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The application identifier</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/appSecret" title="appSecret"></a>
+	<h3 class="subsubtitle method-title">appSecret</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The application secret</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *appSecret</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.20.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The application secret</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authHostname" title="authHostname"></a>
+	<h3 class="subsubtitle method-title">authHostname</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subdomain used to connect to the backend server. Default value: &ldquo;auth&rdquo;. Sample values: &ldquo;foo-auth&rdquo; or &ldquo;foo-auth.&rdquo;.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *authHostname</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Subdomain used to connect to the backend server. Default value: &ldquo;auth&rdquo;. Sample values: &ldquo;foo-auth&rdquo; or &ldquo;foo-auth.&rdquo;.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/baseURL" title="baseURL"></a>
+	<h3 class="subsubtitle method-title">baseURL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Base URL used to connect to the backend server. Default value: &ldquo;<a href="https://baas.kinvey.com">https://baas.kinvey.com</a>&rdquo;</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *baseURL</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Base URL used to connect to the backend server. Default value: &ldquo;<a href="https://baas.kinvey.com">https://baas.kinvey.com</a>&rdquo;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connectionTimeout" title="connectionTimeout"></a>
+	<h3 class="subsubtitle method-title">connectionTimeout</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Representing in-seconds for connection timeouts</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSTimeInterval connectionTimeout</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Representing in-seconds for connection timeouts</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hostDomain" title="hostDomain"></a>
+	<h3 class="subsubtitle method-title">hostDomain</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Domain host used to connect to the backend server. Default value: &ldquo;kinvey.com&rdquo;. Sample values: &ldquo;mydomain.com&rdquo;</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *hostDomain</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Domain host used to connect to the backend server. Default value: &ldquo;kinvey.com&rdquo;. Sample values: &ldquo;mydomain.com&rdquo;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration+KCSInternal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hostPort" title="hostPort"></a>
+	<h3 class="subsubtitle method-title">hostPort</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Port used to connect to the backend server Default value: &ldquo;&rdquo; (empty string). Sample values: &ldquo;8080&rdquo; or &ldquo;:8080&rdquo;.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *hostPort</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Port used to connect to the backend server Default value: &ldquo;&rdquo; (empty string). Sample values: &ldquo;8080&rdquo; or &ldquo;:8080&rdquo;.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration+KCSInternal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hostProtocol" title="hostProtocol"></a>
+	<h3 class="subsubtitle method-title">hostProtocol</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Protocol used to connect to the backend server. Default value: &ldquo;https&rdquo;. Valid values: &ldquo;https&rdquo; or &ldquo;http&rdquo;</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *hostProtocol</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Protocol used to connect to the backend server. Default value: &ldquo;https&rdquo;. Valid values: &ldquo;https&rdquo; or &ldquo;http&rdquo;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration+KCSInternal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/options" title="options"></a>
+	<h3 class="subsubtitle method-title">options</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A dictionary of options.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSDictionary *options</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A dictionary of options.</p>
+
+<ul>
+<li>KCS_APP_KEY  &ndash; The app key obtained from the console</li>
+<li>KCS_APP_SECRET &ndash; The app secret obtained from the console (not the master secret)</li>
+</ul>
+
+
+<p>Client Options:</p>
+
+<ul>
+<li>KCS_LOG_SINK &ndash; the <a href="../Protocols/KCSLogSink.html">KCSLogSink</a> instance to handle log messages</li>
+</ul>
+
+
+<p>Social Integration Options:</p>
+
+<ul>
+<li>KCS_FACEBOOK_APP_KEY</li>
+<li>KCS_TWITTER_CLIENT_KEY</li>
+<li>KCS_TWITTER_CLIENT_SECRET</li>
+<li>KCS_LINKEDIN_API_KEY</li>
+<li>KCS_LINKEDIN_SECRET_KEY</li>
+<li>KCS_LINKEDIN_ACCEPT_REDIRECT</li>
+<li>KCS_LINKEDIN_CANCEL_REDIRECT</li>
+<li>KCS_SALESFORCE_IDENTITY_URL</li>
+<li>KCS_SALESFORCE_REFRESH_TOKEN</li>
+<li>KCS_SALESFORCE_CLIENT_ID</li>
+</ul>
+
+
+<p>The following are advanced options. Don&rsquo;t use unless you know what you&rsquo;re doing</p>
+
+<ul>
+<li>KCS_CONNECTION_TIMEOUT &ndash; a double representing in-seconds for connection timeouts</li>
+<li>KCS_URL_CACHE_POLICY &ndash; the url caching policy (NOTE this is for the NSURLConnection&rsquo;s caching and not for the KCSCachedAppdataStore.</li>
+<li>KCS_DATE_FORMAT &ndash; the format used for date parsing</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestConfiguration" title="requestConfiguration"></a>
+	<h3 class="subsubtitle method-title">requestConfiguration</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The request configration</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) KCSRequestConfiguration *requestConfiguration</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.29.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The request configration</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/serviceHostname" title="serviceHostname"></a>
+	<h3 class="subsubtitle method-title">serviceHostname</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subdomain used to connect to the backend server. Default value: &ldquo;baas&rdquo;. Sample values: &ldquo;foo-baas&rdquo; or &ldquo;foo-baas.&rdquo;.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *serviceHostname</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Subdomain used to connect to the backend server. Default value: &ldquo;baas&rdquo;. Sample values: &ldquo;foo-baas&rdquo; or &ldquo;foo-baas.&rdquo;.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/configurationFromPlist:" title="configurationFromPlist:"></a>
+	<h3 class="subsubtitle method-title">configurationFromPlist:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Builds the configuration from the specified plist.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)configurationFromPlist:(NSString *)<em>plistName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>plistName</em></dt>
+			<dd><p>the name of the plist.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a configuartion loaded from the plis</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.20.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Builds the configuration from the specified plist.</p>
+
+<p>The plist must be in the main bundle. And include at least values for <code>KCS_APP_KEY</code> and <code>KCS_APP_SECRET</code>. It can optionally provide any of the other options, as well.</p>
+
+<p>Usage:</p>
+
+<pre><code> KCSClientConfiguration* config = [KCSClientConfiguration configurationFromPlist:@"kinveyOptions"];
+ [[KCSClient sharedClient] initializeWithConfiguration:config];
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/options">@property options</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/configurationWithAppKey:secret:" title="configurationWithAppKey:secret:"></a>
+	<h3 class="subsubtitle method-title">configurationWithAppKey:secret:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Basic configuration with an app key and secret, no <a href="#//api/name/options">options</a>. Uses the default <a href="#//api/name/options">options</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)configurationWithAppKey:(NSString *)<em>appKey</em> secret:(NSString *)<em>appSecret</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appKey</em></dt>
+			<dd><p>the App Key for a specific app&rsquo;s environment.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appSecret</em></dt>
+			<dd><p>the matching App Secret for the environment.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a configuration with the default <a href="#//api/name/options">options</a></p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.20.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Basic configuration with an app key and secret, no options. Uses the default options.</p>
+
+<p>Usage:</p>
+
+<pre><code> KCSClientConfiguration* config = [KCSClientConfiguration configurationWithAppKey:@"&lt;#KEY#&gt;" secret:@"&lt;#SECRET#&gt;"];
+ [[KCSClient sharedClient] initializeWithConfiguration:config];
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/configurationWithAppKey:secret:options:" title="configurationWithAppKey:secret:options:"></a>
+	<h3 class="subsubtitle method-title">configurationWithAppKey:secret:options:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Basic configuration with an app key and secret and <a href="#//api/name/options">options</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)configurationWithAppKey:(NSString *)<em>appKey</em> secret:(NSString *)<em>appSecret</em> options:(NSDictionary *)<em>options</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appKey</em></dt>
+			<dd><p>the App Key for a specific app&rsquo;s environment.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appSecret</em></dt>
+			<dd><p>the matching App Secret for the environment.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>a dictionary of optional configuration.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a configuration with the specified <a href="#//api/name/options">options</a></p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.20.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Basic configuration with an app key and secret and <a href="#//api/name/options">options</a>.</p>
+
+<p>Options can either be default overrides or additional configuration such as social network app keys.</p>
+
+<p>Usage:</p>
+
+<pre><code> KCSClientConfiguration* config = [KCSClientConfiguration configurationWithAppKey:@"&lt;#KEY#&gt;" secret:@"&lt;#SECRET#&gt;" options:@{KCS_CONNECTION_TIMEOUT : @60}];
+ [[KCSClient sharedClient] initializeWithConfiguration:config];
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/options">@property options</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/configurationWithAppKey:secret:options:requestConfiguration:" title="configurationWithAppKey:secret:options:requestConfiguration:"></a>
+	<h3 class="subsubtitle method-title">configurationWithAppKey:secret:options:requestConfiguration:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Basic configuration with an app key and secret and <a href="#//api/name/options">options</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)configurationWithAppKey:(NSString *)<em>appKey</em> secret:(NSString *)<em>appSecret</em> options:(NSDictionary *)<em>options</em> requestConfiguration:(KCSRequestConfiguration *)<em>requestConfiguration</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appKey</em></dt>
+			<dd><p>the App Key for a specific app&rsquo;s environment.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appSecret</em></dt>
+			<dd><p>the matching App Secret for the environment.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>a dictionary of optional configuration.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestConfiguration</em></dt>
+			<dd><p>defines how the client requests should be set up by default</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a configuration with the specified <a href="#//api/name/options">options</a></p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.20.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Basic configuration with an app key and secret and <a href="#//api/name/options">options</a>.</p>
+
+<p>Options can either be default overrides or additional configuration such as social network app keys.</p>
+
+<p>Usage:</p>
+
+<p>KCSClientConfiguration* config = [KCSClientConfiguration configurationWithAppKey:@&ldquo;&lt;#KEY#>&rdquo; secret:@&ldquo;&lt;#SECRET#>&rdquo; options:@{KCS_CONNECTION_TIMEOUT : @60} requestConfiguration:[KCSRequestConfiguration requestConfigurationWithClientAppVersion:@&ldquo;&rdquo; andCustomRequestProperties:@{@&ldquo;lang&rdquo; : @&ldquo;fr&rdquo;}]];
+[[KCSClient sharedClient] initializeWithConfiguration:config];</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/options">@property options</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSClientConfiguration.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2016 Kinvey. All rights reserved. (Last updated: 2016-02-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSURL+KinveyAdditions.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSURL(KinveyAdditions)</TokenIdentifier>
+			<Abstract type="html">Category to add some basic URL Query Support to NSURLs</Abstract>
+			<DeclaredIn>NSURL+KinveyAdditions.h</DeclaredIn>
+			
+			<NodeRef refid="33"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSURL/URLByAppendingQueryString:</TokenIdentifier>
+			<Abstract type="html">Generate a NSURL by appending a query to an existing NSURL</Abstract>
+			<DeclaredIn>NSURL+KinveyAdditions.h</DeclaredIn>			
+			
+			<Declaration>- (NSURL *)URLByAppendingQueryString:(NSString *)queryString</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>queryString</Name>
+					<Abstract type="html">The URL Query to append to the current string.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The URL object made from the URL/query.</Abstract></ReturnValue>
+			<Anchor>//api/name/URLByAppendingQueryString:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSURL/URLWithUnencodedString:</TokenIdentifier>
+			<Abstract type="html">Generate a NSURL by percent-encoding an unencoded string.</Abstract>
+			<DeclaredIn>NSURL+KinveyAdditions.h</DeclaredIn>			
+			
+			<Declaration>+ (NSURL *)URLWithUnencodedString:(NSString *)string</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>string</Name>
+					<Abstract type="html">an unencoded string that needs percent encoding.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The URL object by percent encoding the string.</Abstract></ReturnValue>
+			<Anchor>//api/name/URLWithUnencodedString:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

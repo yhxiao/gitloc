@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSPersistableDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSPersistableDelegate</TokenIdentifier>
+			<Abstract type="html">Defines the implementation details of a class expecting to perform actions after the completion of a save operation. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use KCSAppdataStore methods instead
+@depreatedIn 1.26.1&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>
+			
+			<NodeRef refid="39"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistableDelegate/entity:operationDidFailWithError:</TokenIdentifier>
+			<Abstract type="html">Invoked when a save operation fails (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use KCSAppdataStore methods instead
+@depreatedIn 1.26.1&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>- (void)entity:(id)entity operationDidFailWithError:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>entity</Name>
+					<Abstract type="html">The Object that was attempting to be saved.</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">A detailed description of the error.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/entity:operationDidFailWithError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSPersistableDelegate/entity:operationDidCompleteWithResult:</TokenIdentifier>
+			<Abstract type="html">Invoked when a save operation completes successfully. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; Use KCSAppdataStore methods instead
+@depreatedIn 1.26.1&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KinveyPersistable.h</DeclaredIn>			
+			
+			<Declaration>- (void)entity:(id)entity operationDidCompleteWithResult:(NSObject *)result</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>entity</Name>
+					<Abstract type="html">The Object that was attempting to be saved.</Abstract>
+				</Parameter><Parameter>
+					<Name>result</Name>
+					<Abstract type="html">The result of the operation (NOTE: The value of this result is still changing, do not count on the value yet)</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/entity:operationDidCompleteWithResult:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSPush.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSPush</TokenIdentifier>
+			<Abstract type="html">Push Service (APNS) Helper Container</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>
+			
+			<NodeRef refid="17"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSPush/sharedPush</TokenIdentifier>
+			<Abstract type="html">Return the single shared instance of the Push Notification Service</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>+ (KCSPush *)sharedPush</Declaration>
+			
+			<ReturnValue><Abstract type="html">The shared Push Service object.</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedPush</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSPush/registerForPush</TokenIdentifier>
+			<Abstract type="html">Start the Push Service</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>+ (void)registerForPush</Declaration>
+			
+			
+			<Anchor>//api/name/registerForPush</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/unRegisterDeviceToken:</TokenIdentifier>
+			<Abstract type="html">Removes the device token from the active user.</Abstract>
+			<DeclaredIn>KCSHiddenMethods.h</DeclaredIn>			
+			
+			<Declaration>- (void)unRegisterDeviceToken:(KCSSuccessBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called when the request to Kinvey completes. If success is YES, then the token was removed.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/unRegisterDeviceToken:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/onUnloadHelper</TokenIdentifier>
+			<Abstract type="html">Clean-up Push Service</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)onUnloadHelper</Declaration>
+			
+			
+			<Anchor>//api/name/onUnloadHelper</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/application:didReceiveRemoteNotification:</TokenIdentifier>
+			<Abstract type="html">Do library specific remote notification processing</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>application</Name>
+					<Abstract type="html">The application sending this message.</Abstract>
+				</Parameter><Parameter>
+					<Name>userInfo</Name>
+					<Abstract type="html">The userInfo dictionary provided by the application.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/application:didReceiveRemoteNotification:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/registerForRemoteNotifications</TokenIdentifier>
+			<Abstract type="html">Register for remote notifications</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)registerForRemoteNotifications</Declaration>
+			
+			
+			<Anchor>//api/name/registerForRemoteNotifications</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/application:didRegisterForRemoteNotificationsWithDeviceToken:completionBlock:</TokenIdentifier>
+			<Abstract type="html">Register device for remote notifications</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken completionBlock:(void ( ^ ) ( BOOL success , NSError *error ))completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>application</Name>
+					<Abstract type="html">The application sending this message.</Abstract>
+				</Parameter><Parameter>
+					<Name>deviceToken</Name>
+					<Abstract type="html">The device token of the device this instance of the application is running on.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">called after the token is registered on the server. success will be no if there is no active user at the time, or if the registration fails. If there is a user and the registration fails, then there will be an error object. In the error case, the request should be tried again later if it was a network error.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/application:didRegisterForRemoteNotificationsWithDeviceToken:completionBlock:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/application:didFailToRegisterForRemoteNotificationsWithError:</TokenIdentifier>
+			<Abstract type="html">Failed to register device for remote notifications</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>application</Name>
+					<Abstract type="html">The application sending this message.</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">The registration failure</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/application:didFailToRegisterForRemoteNotificationsWithError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/setPushBadgeNumber:</TokenIdentifier>
+			<Abstract type="html">Set the number of unread push notifications on the app badge</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)setPushBadgeNumber:(int)number</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>number</Name>
+					<Abstract type="html">The number to set the badge to</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setPushBadgeNumber:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSPush/resetPushBadge</TokenIdentifier>
+			<Abstract type="html">Reset the app&apos;s unread pushes to 0</Abstract>
+			<DeclaredIn>KCSPush.h</DeclaredIn>			
+			
+			<Declaration>- (void)resetPushBadge</Declaration>
+			
+			
+			<Anchor>//api/name/resetPushBadge</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSObject+KCSEntity.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSObject(KCSEntity)</TokenIdentifier>
+			<Abstract type="html">  Add ActiveRecord-style capabilities to the built-in root object (NSObject) of the AppKit/Foundation system.</Abstract>
+			<DeclaredIn>KinveyEntity.h</DeclaredIn>
+			
+			<NodeRef refid="31"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/kinveyObjectIdHostProperty</TokenIdentifier>
+			<Abstract type="html">Return the client property name for the kinvey id</Abstract>
+			<DeclaredIn>KinveyEntity.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)kinveyObjectIdHostProperty</Declaration>
+			
+			<ReturnValue><Abstract type="html">the client property name for the kinvey id</Abstract></ReturnValue>
+			<Anchor>//api/name/kinveyObjectIdHostProperty</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/kinveyObjectId</TokenIdentifier>
+			<Abstract type="html">Return the KCSEntityKeyId value for this entity</Abstract>
+			<DeclaredIn>KinveyEntity.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)kinveyObjectId</Declaration>
+			
+			<ReturnValue><Abstract type="html">the KCSEntityKeyId value for this entity.</Abstract></ReturnValue>
+			<Anchor>//api/name/kinveyObjectId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/setKinveyObjectId:</TokenIdentifier>
+			<Abstract type="html">Sets the KCSEntityKeyId value for this entity</Abstract>
+			<DeclaredIn>KinveyEntity.h</DeclaredIn>			
+			
+			<Declaration>- (void)setKinveyObjectId:(NSString *)objId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objId</Name>
+					<Abstract type="html">the string _id for the entity</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setKinveyObjectId:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

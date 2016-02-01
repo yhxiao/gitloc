@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSClient.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSClient</TokenIdentifier>
+			<Abstract type="html">A Singleton Class that provides access to all Kinvey Services.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setAppKey:</TokenIdentifier>
+			<Abstract type="html">Kinvey provided App Key, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appKey</Declaration>
+			
+			
+			<Anchor>//api/name/appKey</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/appKey</TokenIdentifier>
+			<Abstract type="html">Kinvey provided App Key, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appKey</Declaration>
+			
+			
+			<Anchor>//api/name/appKey</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/appKey</TokenIdentifier>
+			<Abstract type="html">Kinvey provided App Key, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appKey</Declaration>
+			
+			
+			<Anchor>//api/name/appKey</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setAppSecret:</TokenIdentifier>
+			<Abstract type="html">Kinvey provided App Secret, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appSecret</Declaration>
+			
+			
+			<Anchor>//api/name/appSecret</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/appSecret</TokenIdentifier>
+			<Abstract type="html">Kinvey provided App Secret, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appSecret</Declaration>
+			
+			
+			<Anchor>//api/name/appSecret</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/appSecret</TokenIdentifier>
+			<Abstract type="html">Kinvey provided App Secret, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appSecret</Declaration>
+			
+			
+			<Anchor>//api/name/appSecret</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setOptions:</TokenIdentifier>
+			<Abstract type="html">Configuration options, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSDictionary *options</Declaration>
+			
+			
+			<Anchor>//api/name/options</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/options</TokenIdentifier>
+			<Abstract type="html">Configuration options, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSDictionary *options</Declaration>
+			
+			
+			<Anchor>//api/name/options</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/options</TokenIdentifier>
+			<Abstract type="html">Configuration options, set via @see initializeKinveyServiceForAppKey:withAppSecret:usingOptions</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSDictionary *options</Declaration>
+			
+			
+			<Anchor>//api/name/options</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setNo:</TokenIdentifier>
+			<Abstract type="html">User Agent string returned to Kinvey (used automatically, provided for reference. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; no longer used
+@deprecatedIn 1.26.2&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *KCS_DEPRECATED ( no</Declaration>
+			
+			
+			<Anchor>//api/name/no</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/no</TokenIdentifier>
+			<Abstract type="html">User Agent string returned to Kinvey (used automatically, provided for reference. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; no longer used
+@deprecatedIn 1.26.2&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *KCS_DEPRECATED ( no</Declaration>
+			
+			
+			<Anchor>//api/name/no</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/no</TokenIdentifier>
+			<Abstract type="html">User Agent string returned to Kinvey (used automatically, provided for reference. (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; no longer used
+@deprecatedIn 1.26.2&lt;/span&gt;)</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *KCS_DEPRECATED ( no</Declaration>
+			
+			
+			<Anchor>//api/name/no</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setLibraryVersion:</TokenIdentifier>
+			<Abstract type="html">Library Version string returned to Kinvey (used automatically, provided for reference.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *libraryVersion</Declaration>
+			
+			
+			<Anchor>//api/name/libraryVersion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/libraryVersion</TokenIdentifier>
+			<Abstract type="html">Library Version string returned to Kinvey (used automatically, provided for reference.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *libraryVersion</Declaration>
+			
+			
+			<Anchor>//api/name/libraryVersion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/libraryVersion</TokenIdentifier>
+			<Abstract type="html">Library Version string returned to Kinvey (used automatically, provided for reference.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *libraryVersion</Declaration>
+			
+			
+			<Anchor>//api/name/libraryVersion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/set:</TokenIdentifier>
+			<Abstract type="html">Kinvey Service Hostname
+@deprecatedIn 1.20.0</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly) NSString *KCS_DEPRECATED ( @ &quot;set via KCSConfiguration&quot; , 1.20 .0 )</Declaration>
+			
+			
+			<Anchor>//api/name/)</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/)</TokenIdentifier>
+			<Abstract type="html">Kinvey Service Hostname
+@deprecatedIn 1.20.0</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly) NSString *KCS_DEPRECATED ( @ &quot;set via KCSConfiguration&quot; , 1.20 .0 )</Declaration>
+			
+			
+			<Anchor>//api/name/)</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/)</TokenIdentifier>
+			<Abstract type="html">Kinvey Service Hostname
+@deprecatedIn 1.20.0</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly) NSString *KCS_DEPRECATED ( @ &quot;set via KCSConfiguration&quot; , 1.20 .0 )</Declaration>
+			
+			
+			<Anchor>//api/name/)</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setAppdataBaseURL:</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey data service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appdataBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/appdataBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/appdataBaseURL</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey data service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appdataBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/appdataBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/appdataBaseURL</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey data service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *appdataBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/appdataBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setResourceBaseURL:</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey Resource Service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *resourceBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/resourceBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/resourceBaseURL</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey Resource Service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *resourceBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/resourceBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/resourceBaseURL</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey Resource Service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *resourceBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/resourceBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setUserBaseURL:</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey User Service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *userBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/userBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/userBaseURL</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey User Service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *userBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/userBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/userBaseURL</TokenIdentifier>
+			<Abstract type="html">Base URL for Kinvey User Service</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSString *userBaseURL</Declaration>
+			
+			
+			<Anchor>//api/name/userBaseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setConnectionTimeout:</TokenIdentifier>
+			<Abstract type="html">Connection Timeout value, set this to cause shorter or longer network timeouts. Set via configuration KCSCONNECTIONTIMEOUT.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly) double connectionTimeout</Declaration>
+			
+			
+			<Anchor>//api/name/connectionTimeout</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/connectionTimeout</TokenIdentifier>
+			<Abstract type="html">Connection Timeout value, set this to cause shorter or longer network timeouts. Set via configuration KCSCONNECTIONTIMEOUT.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly) double connectionTimeout</Declaration>
+			
+			
+			<Anchor>//api/name/connectionTimeout</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/connectionTimeout</TokenIdentifier>
+			<Abstract type="html">Connection Timeout value, set this to cause shorter or longer network timeouts. Set via configuration KCSCONNECTIONTIMEOUT.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly) double connectionTimeout</Declaration>
+			
+			
+			<Anchor>//api/name/connectionTimeout</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setConfiguration:</TokenIdentifier>
+			<Abstract type="html">The Configuration Options</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) KCSClientConfiguration *configuration</Declaration>
+			
+			
+			<Anchor>//api/name/configuration</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/configuration</TokenIdentifier>
+			<Abstract type="html">The Configuration Options</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) KCSClientConfiguration *configuration</Declaration>
+			
+			
+			<Anchor>//api/name/configuration</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/configuration</TokenIdentifier>
+			<Abstract type="html">The Configuration Options</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) KCSClientConfiguration *configuration</Declaration>
+			
+			
+			<Anchor>//api/name/configuration</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setNetworkReachability:</TokenIdentifier>
+			<Abstract type="html">Overall Network Status Reachability Object</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) KCSReachability *networkReachability</Declaration>
+			
+			
+			<Anchor>//api/name/networkReachability</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/networkReachability</TokenIdentifier>
+			<Abstract type="html">Overall Network Status Reachability Object</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) KCSReachability *networkReachability</Declaration>
+			
+			
+			<Anchor>//api/name/networkReachability</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/networkReachability</TokenIdentifier>
+			<Abstract type="html">Overall Network Status Reachability Object</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) KCSReachability *networkReachability</Declaration>
+			
+			
+			<Anchor>//api/name/networkReachability</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setKinveyReachability:</TokenIdentifier>
+			<Abstract type="html">Kinvey Host Specific Reachability Object</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) KCSReachability *kinveyReachability</Declaration>
+			
+			
+			<Anchor>//api/name/kinveyReachability</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/kinveyReachability</TokenIdentifier>
+			<Abstract type="html">Kinvey Host Specific Reachability Object</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) KCSReachability *kinveyReachability</Declaration>
+			
+			
+			<Anchor>//api/name/kinveyReachability</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/kinveyReachability</TokenIdentifier>
+			<Abstract type="html">Kinvey Host Specific Reachability Object</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) KCSReachability *kinveyReachability</Declaration>
+			
+			
+			<Anchor>//api/name/kinveyReachability</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/setDateStorageFormatString:</TokenIdentifier>
+			<Abstract type="html">NSDateFormatter String for Date storage. Set via configuration.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (retain, nonatomic, readonly) NSString *dateStorageFormatString</Declaration>
+			
+			
+			<Anchor>//api/name/dateStorageFormatString</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/dateStorageFormatString</TokenIdentifier>
+			<Abstract type="html">NSDateFormatter String for Date storage. Set via configuration.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (retain, nonatomic, readonly) NSString *dateStorageFormatString</Declaration>
+			
+			
+			<Anchor>//api/name/dateStorageFormatString</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSClient/dateStorageFormatString</TokenIdentifier>
+			<Abstract type="html">NSDateFormatter String for Date storage. Set via configuration.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>@property (retain, nonatomic, readonly) NSString *dateStorageFormatString</Declaration>
+			
+			
+			<Anchor>//api/name/dateStorageFormatString</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSClient/sharedClient</TokenIdentifier>
+			<Abstract type="html">Return the instance of the singleton.  (NOTE: Thread Safe)</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)sharedClient</Declaration>
+			
+			<ReturnValue><Abstract type="html">The instance of the singleton client.</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedClient</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/initializeKinveyServiceForAppKey:withAppSecret:usingOptions:</TokenIdentifier>
+			<Abstract type="html">Initialize the singleton KCSClient with this application&apos;s key and the secret for this app, along with any needed options.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>- (instancetype)initializeKinveyServiceForAppKey:(NSString *)appKey withAppSecret:(NSString *)appSecret usingOptions:(NSDictionary *)options</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>appKey</Name>
+					<Abstract type="html">The Kinvey provided App Key used to identify this application</Abstract>
+				</Parameter><Parameter>
+					<Name>appSecret</Name>
+					<Abstract type="html">The Kinvey provided App Secret used to authenticate this application.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">The NSDictionary used to configure optional services.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The KCSClient singleton (can be used to chain several calls)
+
+For example, KCSClient *client = [[KCSClient sharedClient] initializeKinveyServiceForAppKey:@&quot;key&quot; withAppSecret:@&quot;secret&quot; usingOptions:nil];</Abstract></ReturnValue>
+			<Anchor>//api/name/initializeKinveyServiceForAppKey:withAppSecret:usingOptions:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/initializeKinveyServiceForAppKey:withAppSecret:usingOptions:requestConfiguration:</TokenIdentifier>
+			<Abstract type="html">Initialize the singleton KCSClient with this application&apos;s key and the secret for this app, along with any needed options.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>- (instancetype)initializeKinveyServiceForAppKey:(NSString *)appKey withAppSecret:(NSString *)appSecret usingOptions:(NSDictionary *)options requestConfiguration:(KCSRequestConfiguration *)requestConfiguration</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>appKey</Name>
+					<Abstract type="html">The Kinvey provided App Key used to identify this application</Abstract>
+				</Parameter><Parameter>
+					<Name>appSecret</Name>
+					<Abstract type="html">The Kinvey provided App Secret used to authenticate this application.</Abstract>
+				</Parameter><Parameter>
+					<Name>options</Name>
+					<Abstract type="html">The NSDictionary used to configure optional services.</Abstract>
+				</Parameter><Parameter>
+					<Name>requestConfiguration</Name>
+					<Abstract type="html">defines how the client requests should be set up by default</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The KCSClient singleton (can be used to chain several calls)
+
+For example, KCSClient *client = [[KCSClient sharedClient] initializeKinveyServiceForAppKey:@&quot;key&quot; withAppSecret:@&quot;secret&quot; usingOptions:nil];</Abstract></ReturnValue>
+			<Anchor>//api/name/initializeKinveyServiceForAppKey:withAppSecret:usingOptions:requestConfiguration:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/initializeKinveyServiceWithPropertyList</TokenIdentifier>
+			<Abstract type="html">Initialize the singleton KCSClient with a dictionary plist containing options to run</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>- (instancetype)initializeKinveyServiceWithPropertyList</Declaration>
+			
+			<ReturnValue><Abstract type="html">The KCSClient singleton (can be used to chain several calls)</Abstract></ReturnValue>
+			<Anchor>//api/name/initializeKinveyServiceWithPropertyList</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/initializeWithConfiguration:</TokenIdentifier>
+			<Abstract type="html">Initialize the singleton KCSClient with the supplied conifguration.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>- (void)initializeWithConfiguration:(KCSClientConfiguration *)configuration</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>configuration</Name>
+					<Abstract type="html">the app&apos;s configuration, including the app key and app secret</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The KCSClient singleton (can be used to chain several calls)</Abstract></ReturnValue>
+			<Anchor>//api/name/initializeWithConfiguration:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSClient/configureLoggingWithNetworkEnabled:debugEnabled:traceEnabled:warningEnabled:errorEnabled:</TokenIdentifier>
+			<Abstract type="html">Controls what internal data is reported while using the KinveyKit debug library</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>+ (void)configureLoggingWithNetworkEnabled:(BOOL)networkIsEnabled debugEnabled:(BOOL)debugIsEnabled traceEnabled:(BOOL)traceIsEnabled warningEnabled:(BOOL)warningIsEnabled errorEnabled:(BOOL)errorIsEnabled</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>networkIsEnabled</Name>
+					<Abstract type="html">Set to YES if you want to see network debugging information.</Abstract>
+				</Parameter><Parameter>
+					<Name>debugIsEnabled</Name>
+					<Abstract type="html">Set to YES if you want to see debugging information.</Abstract>
+				</Parameter><Parameter>
+					<Name>traceIsEnabled</Name>
+					<Abstract type="html">Set to YES if you want to see tracing information</Abstract>
+				</Parameter><Parameter>
+					<Name>warningIsEnabled</Name>
+					<Abstract type="html">Set to YES if you want to see warning information.</Abstract>
+				</Parameter><Parameter>
+					<Name>errorIsEnabled</Name>
+					<Abstract type="html">Set to YES if you want to see error information.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/configureLoggingWithNetworkEnabled:debugEnabled:traceEnabled:warningEnabled:errorEnabled:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/clearCache</TokenIdentifier>
+			<Abstract type="html">Clears out all the caches maintained by the library.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+			<Declaration>- (void)clearCache</Declaration>
+			
+			
+			<Anchor>//api/name/clearCache</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/applicationProtectedDataDidBecomeAvailable:</TokenIdentifier>
+			<Abstract type="html">Helper method to preform data protection activities when the device is unlocked.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSClient/applicationProtectedDataWillBecomeUnavailable:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)applicationProtectedDataDidBecomeAvailable:(UIApplication *)application</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>application</Name>
+					<Abstract type="html">The singleton app object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/applicationProtectedDataDidBecomeAvailable:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSClient/applicationProtectedDataWillBecomeUnavailable:</TokenIdentifier>
+			<Abstract type="html">Helper method to preform data protection activities when the device is locked.</Abstract>
+			<DeclaredIn>KCSClient.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSClient/applicationProtectedDataDidBecomeAvailable:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)applicationProtectedDataWillBecomeUnavailable:(UIApplication *)application</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>application</Name>
+					<Abstract type="html">The singleton app object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/applicationProtectedDataWillBecomeUnavailable:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSBackgroundAppdataStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSBackgroundAppdataStore</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>KCSBackgroundAppdataStore.h</DeclaredIn>
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSBackgroundAppdataStore/setCacheUpdatePolicy:</TokenIdentifier>
+			<Abstract type="html">Enable delta set caching for this store. This optimize the time to retrieve objects from the server since it will only return the delta between the local cache and the Kinvey server.</Abstract>
+			<DeclaredIn>KCSBackgroundAppdataStore.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) KCSCacheUpdatePolicy cacheUpdatePolicy</Declaration>
+			
+			
+			<Anchor>//api/name/cacheUpdatePolicy</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSBackgroundAppdataStore/cacheUpdatePolicy</TokenIdentifier>
+			<Abstract type="html">Enable delta set caching for this store. This optimize the time to retrieve objects from the server since it will only return the delta between the local cache and the Kinvey server.</Abstract>
+			<DeclaredIn>KCSBackgroundAppdataStore.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) KCSCacheUpdatePolicy cacheUpdatePolicy</Declaration>
+			
+			
+			<Anchor>//api/name/cacheUpdatePolicy</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSBackgroundAppdataStore/cacheUpdatePolicy</TokenIdentifier>
+			<Abstract type="html">Enable delta set caching for this store. This optimize the time to retrieve objects from the server since it will only return the delta between the local cache and the Kinvey server.</Abstract>
+			<DeclaredIn>KCSBackgroundAppdataStore.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic) KCSCacheUpdatePolicy cacheUpdatePolicy</Declaration>
+			
+			
+			<Anchor>//api/name/cacheUpdatePolicy</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

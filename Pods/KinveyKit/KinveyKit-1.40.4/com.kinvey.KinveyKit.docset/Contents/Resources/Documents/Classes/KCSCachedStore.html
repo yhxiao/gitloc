@@ -1,0 +1,1042 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>KCSCachedStore Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">KinveyKit </a></h1>
+				<a id="developerHome" href="../index.html">Kinvey</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">KCSCachedStore Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/cachePolicy">&nbsp;&nbsp;&nbsp;&nbsp;cachePolicy</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/clearCaches">&nbsp;&nbsp;&nbsp;&nbsp;+ clearCaches</option>
+	
+	<option value="//api/name/defaultCachePolicy">&nbsp;&nbsp;&nbsp;&nbsp;+ defaultCachePolicy</option>
+	
+	<option value="//api/name/setDefaultCachePolicy:">&nbsp;&nbsp;&nbsp;&nbsp;+ setDefaultCachePolicy:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/exportCache">&nbsp;&nbsp;&nbsp;&nbsp;- exportCache</option>
+	
+	<option value="//api/name/group:reduce:condition:completionBlock:progressBlock:cachePolicy:">&nbsp;&nbsp;&nbsp;&nbsp;- group:reduce:condition:completionBlock:progressBlock:cachePolicy:</option>
+	
+	<option value="//api/name/import:KCS_DEPRECATED:">&nbsp;&nbsp;&nbsp;&nbsp;- import:KCS_DEPRECATED:</option>
+	
+	<option value="//api/name/importCache:">&nbsp;&nbsp;&nbsp;&nbsp;- importCache:</option>
+	
+	<option value="//api/name/loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:">&nbsp;&nbsp;&nbsp;&nbsp;- loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:</option>
+	
+	<option value="//api/name/queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:">&nbsp;&nbsp;&nbsp;&nbsp;- queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Cache Policy">Cache Policy</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Querying/Fetching">Querying/Fetching</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Bulk Data Operations">Bulk Data Operations</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePolicy">cachePolicy</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCaches">clearCaches</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultCachePolicy">defaultCachePolicy</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDefaultCachePolicy:">setDefaultCachePolicy:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/exportCache">exportCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/group:reduce:condition:completionBlock:progressBlock:cachePolicy:">group:reduce:condition:completionBlock:progressBlock:cachePolicy:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/import:KCS_DEPRECATED:">import:KCS_DEPRECATED:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/importCache:">importCache:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:">loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:">queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="KCSCachedStore Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">KCSCachedStore Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/KCSAppdataStore.html">KCSAppdataStore</a> : <a href="../Classes/KCSBackgroundAppdataStore.html">KCSBackgroundAppdataStore</a> : NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">KCSCachedStore.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This application data store caches queries, depending on the policy.</p>
+
+<p>Available caching policies:</p>
+
+<ul>
+<li><code>KCSCachePolicyNone</code> - No caching, all queries are sent to the server.</li>
+<li><code>KCSCachePolicyLocalOnly</code> - Only the cache is queried, the server is never called. If a result is not in the cache, an error is returned.</li>
+<li><code>KCSCachePolicyLocalFirst</code> - The cache is queried and if the result is stored, the <code>completionBlock</code> is called with that value. The cache is then updated in the background. If the cache does not contain a result for the query, then the server is queried first.</li>
+<li><code>KCSCachePolicyNetworkFirst</code> - The network is queried and the cache is updated with each result. The cached value is only returned when the network is unavailable.</li>
+<li><code>KCSCachePolicyBoth</code> - If available, the cached value is returned to <code>completionBlock</code>. The network is then queried and cache updated, afterwards. The <code>completionBlock</code> will be called again with the updated result from the server.</li>
+</ul>
+
+
+<p>For an individual store, the cache policy can inherit from the <a href="#//api/name/defaultCachePolicy">defaultCachePolicy</a>, be set using storeWithOptions: factory constructor, supplying the enum for the key <code>KCSStoreKeyCahcePolicy</code>.</p>
+
+<p>This store also provides offline save semantics. To enable offline save, supply a unique string for this store for the <code>KCSStoreKeyUniqueOfflineSaveIdentifier</code> key in the options dictionary passed in class factory method (<a href="../Classes/KCSAppdataStore.html#//api/name/storeWithCollection:options:">[KCSAppdataStore storeWithCollection:options:]</a>. You can also supply an optional <code>KCSStoreKeyOfflineSaveDelegate</code> to intercept or be notified when those saves happen when the application becomes online.</p>
+
+<p>If offline save is enabled, and the application is offline when the <code>saveObject:withCompletionBlock:withProgressBlock</code> method processes the saves, the completionBlock will be called with a networking error, but the saves will be queued to be saved when the application becomes online. This completion block will <em>not</em> be called when those queued saves are processed. Instead, the the offline save delegate will be called. The completion block <code>errorOrNil</code> object will have in addition to the error information, an array in its <code>userInfo</code> for the <code>KCS_ERROR_UNSAVED_OBJECT_IDS_KEY</code> containing the <code>_id</code>s of the unsaved objects. If the objects haven&rsquo;t been assigned an <code>_id</code> yet, the value will be a <code>NSNull</code>, in order to keep the array count reliable.</p>
+
+<p>For more information about offline saving, see KCSOfflineSaveStore and our iOS developer&rsquo;s user guide at docs.kinvey.com.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Cache Policy" name="task_Cache Policy"></a>
+						<h3 class="subsubtitle task-title">Cache Policy</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachePolicy">&nbsp;&nbsp;cachePolicy</a></code>
+		<span class="tooltip"><p>The cache policy used, by default, for this store</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/defaultCachePolicy">+&nbsp;defaultCachePolicy</a></code>
+		<span class="tooltip"><p>gets the default cache policy for all new KCSCachedStore&rsquo;s</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setDefaultCachePolicy:">+&nbsp;setDefaultCachePolicy:</a></code>
+		<span class="tooltip"><p>Sets the default cache policy for all new KCSCachedStore&rsquo;s.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Querying/Fetching" name="task_Querying/Fetching"></a>
+						<h3 class="subsubtitle task-title">Querying/Fetching</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:">&ndash;&nbsp;loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:</a></code>
+		<span class="tooltip"><p>  Load objects from the store with the given IDs (optional cache policy).</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:">&ndash;&nbsp;queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:</a></code>
+		<span class="tooltip"><p>Query or fetch an object (or objects) in the store (optional cache policy).</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/group:reduce:condition:completionBlock:progressBlock:cachePolicy:">&ndash;&nbsp;group:reduce:condition:completionBlock:progressBlock:cachePolicy:</a></code>
+		<span class="tooltip"><p>Aggregate objects in the store and apply a function to all members in that group (optional cache policy).</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Bulk Data Operations" name="task_Bulk Data Operations"></a>
+						<h3 class="subsubtitle task-title">Bulk Data Operations</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/import:KCS_DEPRECATED:">&ndash;&nbsp;import:KCS_DEPRECATED:</a></code>
+		<span class="tooltip"><p>Seed the store&rsquo;s cache with entities</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/importCache:">&ndash;&nbsp;importCache:</a></code>
+		<span class="tooltip"><p>Seed the store&rsquo;s cache with entities.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/exportCache">&ndash;&nbsp;exportCache</a></code>
+		<span class="tooltip"><p>Export the cache as an array of entities ready for serialization.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearCaches">+&nbsp;clearCaches</a></code>
+		<span class="tooltip"><p>Clears the data caches.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cachePolicy" title="cachePolicy"></a>
+	<h3 class="subsubtitle method-title">cachePolicy</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The cache policy used, by default, for this store</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite) KCSCachePolicy cachePolicy</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The cache policy used, by default, for this store</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/clearCaches" title="clearCaches"></a>
+	<h3 class="subsubtitle method-title">clearCaches</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Clears the data caches.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)clearCaches</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.24.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Clears the data caches.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/defaultCachePolicy" title="defaultCachePolicy"></a>
+	<h3 class="subsubtitle method-title">defaultCachePolicy</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>gets the default cache policy for all new KCSCachedStore&rsquo;s</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (KCSCachePolicy)defaultCachePolicy</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>gets the default cache policy for all new KCSCachedStore&rsquo;s</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setDefaultCachePolicy:" title="setDefaultCachePolicy:"></a>
+	<h3 class="subsubtitle method-title">setDefaultCachePolicy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets the default cache policy for all new KCSCachedStore&rsquo;s.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)setDefaultCachePolicy:(KCSCachePolicy)<em>cachePolicy</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cachePolicy</em></dt>
+			<dd><p>the default <a href="../Constants/KCSCachePolicy.html"><code>KCSCachePolicy</code></a> for all new stores.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sets the default cache policy for all new KCSCachedStore&rsquo;s.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/exportCache" title="exportCache"></a>
+	<h3 class="subsubtitle method-title">exportCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Export the cache as an array of entities ready for serialization.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSArray *)exportCache</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>an array of the entity data</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.24.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Export the cache as an array of entities ready for serialization.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/group:reduce:condition:completionBlock:progressBlock:cachePolicy:" title="group:reduce:condition:completionBlock:progressBlock:cachePolicy:"></a>
+	<h3 class="subsubtitle method-title">group:reduce:condition:completionBlock:progressBlock:cachePolicy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Aggregate objects in the store and apply a function to all members in that group (optional cache policy).</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (KCSRequest *)group:(id)<em>fieldOrFields</em> reduce:(KCSReduceFunction *)<em>function</em> condition:(KCSQuery *)<em>condition</em> completionBlock:(KCSGroupCompletionBlock)<em>completionBlock</em> progressBlock:(KCSProgressBlock)<em>progressBlock</em> cachePolicy:(KCSCachePolicy)<em>cachePolicy</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fieldOrFields</em></dt>
+			<dd><p>The array of fields to group by (or a single <code>NSString</code> field name). If multiple field names are supplied the groups will be made from objects that form the intersection of the field values. For instance, if you have two fields &ldquo;a&rdquo; and &ldquo;b&rdquo;, and objects &ldquo;{a:1,b:1},{a:1,b:1},{a:1,b:2},{a:2,b:2}&rdquo; and apply the <code>COUNT</code> function, the returned <a href="../Classes/KCSGroup.html">KCSGroup</a> object will have an array of 3 objects: &ldquo;{a:1,b:1,count:2},{a:1,b:2,count:1},{a:2,b:2,count:1}&rdquo;. For objects that don&rsquo;t have a value for a given field, the value used will be <code>NSNull</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>function</em></dt>
+			<dd><p>This is the function that is applied to the items in the group. If you do not want to apply a function, just use queryWithQuery:withCompletionBlock:withProgressBlock: instead and query for items that match specific field values.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>condition</em></dt>
+			<dd><p>This is a <a href="../Classes/KCSQuery.html">KCSQuery</a> object that is used to filter the objects before grouping. Only groupings with at least one object that matches the condition will appear in the resultant <a href="../Classes/KCSGroup.html">KCSGroup</a> object.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>A block that is invoked when the grouping is complete, or an error occurs.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>A block that is invoked whenever the store can offer an update on the progress of the operation.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cachePolicy</em></dt>
+			<dd><p>override the object&rsquo;s <a href="#//api/name/cachePolicy">cachePolicy</a> for this group query only.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Aggregate objects in the store and apply a function to all members in that group (optional cache policy).</p>
+
+<p>This method will find the objects in the store, collect them with other other objects that have the same value for the specified fields, and then apply the supplied function on those objects. Right now the types of functions that can be applied are simple mathematical operations. See <a href="../Classes/KCSReduceFunction.html">KCSReduceFunction</a> for more information on the types of functions available.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/KCSAppdataStore.html#//api/name/group:reduce:condition:completionBlock:progressBlock:">[KCSAppdataStore group:reduce:condition:completionBlock:progressBlock:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/import:KCS_DEPRECATED:" title="import:KCS_DEPRECATED:"></a>
+	<h3 class="subsubtitle method-title">import:KCS_DEPRECATED:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Seed the store&rsquo;s cache with entities</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)import:(NSArray *)<em>jsonObjects</em> KCS_DEPRECATED</code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>jsonObjects</em></dt>
+			<dd><p>an array of <code>NSDictionary</code> objects to place into the store&rsquo;s cache. These must have at least an <code>_id</code> field set.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.24.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Seed the store&rsquo;s cache with entities</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/exportCache">- exportCache</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/importCache:" title="importCache:"></a>
+	<h3 class="subsubtitle method-title">importCache:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Seed the store&rsquo;s cache with entities.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)importCache:(NSArray *)<em>jsonObjects</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>jsonObjects</em></dt>
+			<dd><p>an array of <code>NSDictionary</code> objects to place into the store&rsquo;s cache. These must have at least an <code>_id</code> field set.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>1.31.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Seed the store&rsquo;s cache with entities.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/exportCache">- exportCache</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:" title="loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:"></a>
+	<h3 class="subsubtitle method-title">loadObjectWithID:withCompletionBlock:withProgressBlock:cachePolicy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>  Load objects from the store with the given IDs (optional cache policy).</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (KCSRequest *)loadObjectWithID:(id)<em>objectID</em> withCompletionBlock:(KCSCompletionBlock)<em>completionBlock</em> withProgressBlock:(KCSProgressBlock)<em>progressBlock</em> cachePolicy:(KCSCachePolicy)<em>cachePolicy</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>objectID</em></dt>
+			<dd><p>this is an individual ID or an array of IDs to load</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>A block that gets invoked when all objects are loaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>A block that is invoked whenever the store can offer an update on the progress of the operation.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cachePolicy</em></dt>
+			<dd><p>override the object&rsquo;s <a href="#//api/name/cachePolicy">cachePolicy</a> for this load only.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>  Load objects from the store with the given IDs (optional cache policy).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/KCSAppdataStore.html#//api/name/loadObjectWithID:withCompletionBlock:withProgressBlock:">[KCSAppdataStore loadObjectWithID:withCompletionBlock:withProgressBlock:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:" title="queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:"></a>
+	<h3 class="subsubtitle method-title">queryWithQuery:withCompletionBlock:withProgressBlock:cachePolicy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Query or fetch an object (or objects) in the store (optional cache policy).</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (KCSRequest *)queryWithQuery:(id)<em>query</em> withCompletionBlock:(KCSCompletionBlock)<em>completionBlock</em> withProgressBlock:(KCSProgressBlock)<em>progressBlock</em> cachePolicy:(KCSCachePolicy)<em>cachePolicy</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>query</em></dt>
+			<dd><p>A query to act on a store.  The store defines the type of queries it accepts, an object of type <a href="../Classes/KCSQuery.html#//api/name/query"><code>[KCSQuery query]</code></a> causes all objects to be returned.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>A block that gets invoked when the query/fetch is &ldquo;complete&rdquo; (as defined by the store)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressBlock</em></dt>
+			<dd><p>A block that is invoked whenever the store can offer an update on the progress of the operation.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>cachePolicy</em></dt>
+			<dd><p>the policy for to use for this query only.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><a href="../Classes/KCSRequest.html">KCSRequest</a> object that represents the pending request made against the store. Since version 1.36.0</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Query or fetch an object (or objects) in the store (optional cache policy).</p>
+
+<p>This method takes a query object and returns the value from the server or cache, depending on the supplied <a href="#//api/name/cachePolicy"><code>cachePolicy</code></a>.</p>
+
+<p>This method might be used when you know the network is unavailable and you want to use <code>KCSCachePolicyLocalOnly</code> until the network connection is reestablished, and then go back to using the store&rsquo;s normal policy.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">KCSCachedStore.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2016 Kinvey. All rights reserved. (Last updated: 2016-02-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSQuerySortModifier.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSQuerySortModifier</TokenIdentifier>
+			<Abstract type="html">Representation of a sorting directive</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>
+			
+			<NodeRef refid="21"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySortModifier/setField:</TokenIdentifier>
+			<Abstract type="html">The field to sort on</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *field</Declaration>
+			
+			
+			<Anchor>//api/name/field</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySortModifier/field</TokenIdentifier>
+			<Abstract type="html">The field to sort on</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *field</Declaration>
+			
+			
+			<Anchor>//api/name/field</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuerySortModifier/field</TokenIdentifier>
+			<Abstract type="html">The field to sort on</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *field</Declaration>
+			
+			
+			<Anchor>//api/name/field</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySortModifier/setDirection:</TokenIdentifier>
+			<Abstract type="html">The direction to sort that field on</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) KCSSortDirection direction</Declaration>
+			
+			
+			<Anchor>//api/name/direction</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySortModifier/direction</TokenIdentifier>
+			<Abstract type="html">The direction to sort that field on</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) KCSSortDirection direction</Declaration>
+			
+			
+			<Anchor>//api/name/direction</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSQuerySortModifier/direction</TokenIdentifier>
+			<Abstract type="html">The direction to sort that field on</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) KCSSortDirection direction</Declaration>
+			
+			
+			<Anchor>//api/name/direction</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSQuerySortModifier/initWithField:inDirection:</TokenIdentifier>
+			<Abstract type="html">Designated initializer, with field and direction</Abstract>
+			<DeclaredIn>KCSQuery.h</DeclaredIn>			
+			
+			<Declaration>- (instancetype)initWithField:(NSString *)field inDirection:(KCSSortDirection)direction</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>field</Name>
+					<Abstract type="html">The field to sort on</Abstract>
+				</Parameter><Parameter>
+					<Name>direction</Name>
+					<Abstract type="html">The direction to sort</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The created object.</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithField:inDirection:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

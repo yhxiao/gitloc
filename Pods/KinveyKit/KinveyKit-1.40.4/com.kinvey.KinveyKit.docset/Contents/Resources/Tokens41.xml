@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/KCSUser2.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/KCSUser2</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>
+			
+			<NodeRef refid="41"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSUser2/setEmail:</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/KCSUser2/email</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfp/KCSUser2/email</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

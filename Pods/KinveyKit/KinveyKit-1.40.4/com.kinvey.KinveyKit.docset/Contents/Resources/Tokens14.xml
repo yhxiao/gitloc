@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSMetadata.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSMetadata</TokenIdentifier>
+			<Abstract type="html">This object represents backend information about the entity, such a timestamp and read/write permissions.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>
+			
+			<NodeRef refid="14"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/setReaders:</TokenIdentifier>
+			<Abstract type="html">The array of users with explicit read access.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSMutableArray *readers</Declaration>
+			
+			
+			<Anchor>//api/name/readers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/readers</TokenIdentifier>
+			<Abstract type="html">The array of users with explicit read access.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSMutableArray *readers</Declaration>
+			
+			
+			<Anchor>//api/name/readers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSMetadata/readers</TokenIdentifier>
+			<Abstract type="html">The array of users with explicit read access.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSMutableArray *readers</Declaration>
+			
+			
+			<Anchor>//api/name/readers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/setWriters:</TokenIdentifier>
+			<Abstract type="html">The array of users with explicit write access.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSMutableArray *writers</Declaration>
+			
+			
+			<Anchor>//api/name/writers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/writers</TokenIdentifier>
+			<Abstract type="html">The array of users with explicit write access.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSMutableArray *writers</Declaration>
+			
+			
+			<Anchor>//api/name/writers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSMetadata/writers</TokenIdentifier>
+			<Abstract type="html">The array of users with explicit write access.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSMutableArray *writers</Declaration>
+			
+			
+			<Anchor>//api/name/writers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/lastModifiedTime</TokenIdentifier>
+			<Abstract type="html">The time at which the server recorded the most recent change to the entity.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/creationTime</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (NSDate *)lastModifiedTime</Declaration>
+			
+			<ReturnValue><Abstract type="html">the server time when the entity was last saved</Abstract></ReturnValue>
+			<Anchor>//api/name/lastModifiedTime</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/creationTime</TokenIdentifier>
+			<Abstract type="html">The time at which the server the entity&apos;s creation.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/lastModifiedTime</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (NSDate *)creationTime</Declaration>
+			
+			<ReturnValue><Abstract type="html">the server time when the entity was created. Nil if the object was created before Kinvey data store started to keep track of this value.</Abstract></ReturnValue>
+			<Anchor>//api/name/creationTime</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/creatorId</TokenIdentifier>
+			<Abstract type="html">The id of the user that created the associated entity</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)creatorId</Declaration>
+			
+			<ReturnValue><Abstract type="html">the user id that created the entity</Abstract></ReturnValue>
+			<Anchor>//api/name/creatorId</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/hasWritePermission</TokenIdentifier>
+			<Abstract type="html">A quick test to see the current user can make changes to the associated object. This only takes into account permissions set on the metadata. The user may still have access to change the entity if the collection grants broader write access to its entities.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)hasWritePermission</Declaration>
+			
+			
+			<Anchor>//api/name/hasWritePermission</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/isGloballyReadable</TokenIdentifier>
+			<Abstract type="html">The global read permission for the associated entity. This could be broader or more restrictive than its collection&apos;s permissions.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/setGloballyReadable:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (BOOL)isGloballyReadable</Declaration>
+			
+			<ReturnValue><Abstract type="html">YES if the entity can be read by any user</Abstract></ReturnValue>
+			<Anchor>//api/name/isGloballyReadable</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/setGloballyReadable:</TokenIdentifier>
+			<Abstract type="html">Set global read permission for the associated object.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/isGloballyReadable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)setGloballyReadable:(BOOL)readable</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>readable</Name>
+					<Abstract type="html">YES to allow the associated object to be read by any user.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setGloballyReadable:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/isGloballyWritable</TokenIdentifier>
+			<Abstract type="html">The global write permission for the associated entity. This could be broader or more restrictive than its collection&apos;s permissions.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/setGloballyWritable:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (BOOL)isGloballyWritable</Declaration>
+			
+			<ReturnValue><Abstract type="html">YES if the entity can be modified by any user</Abstract></ReturnValue>
+			<Anchor>//api/name/isGloballyWritable</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/setGloballyWritable:</TokenIdentifier>
+			<Abstract type="html">Set global write permission for the associated object.</Abstract>
+			<DeclaredIn>KCSMetadata.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/KCSMetadata/isGloballyWritable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)setGloballyWritable:(BOOL)writable</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>writable</Name>
+					<Abstract type="html">YES to allow the associated object to be modified by any user.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setGloballyWritable:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

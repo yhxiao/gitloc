@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocSetNodes version="1.0">
+    <TOC>
+        <Node type="folder">
+            <Name>KinveyKit</Name>
+            <Path>index.html</Path>
+			<Subnodes>
+                
+				<Node type="folder">
+					<Name>Programming Guides</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="1"/>
+						
+					</Subnodes>
+				</Node>
+				
+				
+				<Node type="folder">
+					<Name>Classes</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="2"/>
+						<NodeRef refid="3"/>
+						<NodeRef refid="4"/>
+						<NodeRef refid="5"/>
+						<NodeRef refid="6"/>
+						<NodeRef refid="7"/>
+						<NodeRef refid="8"/>
+						<NodeRef refid="9"/>
+						<NodeRef refid="10"/>
+						<NodeRef refid="11"/>
+						<NodeRef refid="12"/>
+						<NodeRef refid="13"/>
+						<NodeRef refid="14"/>
+						<NodeRef refid="15"/>
+						<NodeRef refid="16"/>
+						<NodeRef refid="17"/>
+						<NodeRef refid="18"/>
+						<NodeRef refid="19"/>
+						<NodeRef refid="20"/>
+						<NodeRef refid="21"/>
+						<NodeRef refid="22"/>
+						<NodeRef refid="23"/>
+						<NodeRef refid="24"/>
+						<NodeRef refid="25"/>
+						<NodeRef refid="26"/>
+						<NodeRef refid="27"/>
+						<NodeRef refid="28"/>
+						
+					</Subnodes>
+				</Node>
+				
+				
+				<Node type="folder">
+					<Name>Categories</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="29"/>
+						<NodeRef refid="30"/>
+						<NodeRef refid="31"/>
+						<NodeRef refid="32"/>
+						<NodeRef refid="33"/>
+						
+					</Subnodes>
+				</Node>
+				
+				
+				<Node type="folder">
+					<Name>Protocols</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="34"/>
+						<NodeRef refid="35"/>
+						<NodeRef refid="36"/>
+						<NodeRef refid="37"/>
+						<NodeRef refid="38"/>
+						<NodeRef refid="39"/>
+						<NodeRef refid="40"/>
+						<NodeRef refid="41"/>
+						<NodeRef refid="42"/>
+						
+					</Subnodes>
+				</Node>
+				
+			</Subnodes>
+        </Node>
+    </TOC>
+	<Library>
+		<Node id="1" type="file">
+			<Name>KinveyKit-History</Name>
+			<Path>docs/KinveyKit-History.html</Path>
+		</Node>
+		
+		<Node id="2" type="file">
+			<Name>KCSAppdataStore</Name>
+			<Path>Classes/KCSAppdataStore.html</Path>
+		</Node>
+		<Node id="3" type="file">
+			<Name>KCSBackgroundAppdataStore</Name>
+			<Path>Classes/KCSBackgroundAppdataStore.html</Path>
+		</Node>
+		<Node id="4" type="file">
+			<Name>KCSCachedStore</Name>
+			<Path>Classes/KCSCachedStore.html</Path>
+		</Node>
+		<Node id="5" type="file">
+			<Name>KCSClient</Name>
+			<Path>Classes/KCSClient.html</Path>
+		</Node>
+		<Node id="6" type="file">
+			<Name>KCSClientConfiguration</Name>
+			<Path>Classes/KCSClientConfiguration.html</Path>
+		</Node>
+		<Node id="7" type="file">
+			<Name>KCSCollection</Name>
+			<Path>Classes/KCSCollection.html</Path>
+		</Node>
+		<Node id="8" type="file">
+			<Name>KCSCustomEndpoints</Name>
+			<Path>Classes/KCSCustomEndpoints.html</Path>
+		</Node>
+		<Node id="9" type="file">
+			<Name>KCSFacebookHelper</Name>
+			<Path>Classes/KCSFacebookHelper.html</Path>
+		</Node>
+		<Node id="10" type="file">
+			<Name>KCSFile</Name>
+			<Path>Classes/KCSFile.html</Path>
+		</Node>
+		<Node id="11" type="file">
+			<Name>KCSFileStore</Name>
+			<Path>Classes/KCSFileStore.html</Path>
+		</Node>
+		<Node id="12" type="file">
+			<Name>KCSGroup</Name>
+			<Path>Classes/KCSGroup.html</Path>
+		</Node>
+		<Node id="13" type="file">
+			<Name>KCSLinkedAppdataStore</Name>
+			<Path>Classes/KCSLinkedAppdataStore.html</Path>
+		</Node>
+		<Node id="14" type="file">
+			<Name>KCSMetadata</Name>
+			<Path>Classes/KCSMetadata.html</Path>
+		</Node>
+		<Node id="15" type="file">
+			<Name>KCSPing</Name>
+			<Path>Classes/KCSPing.html</Path>
+		</Node>
+		<Node id="16" type="file">
+			<Name>KCSPingResult</Name>
+			<Path>Classes/KCSPingResult.html</Path>
+		</Node>
+		<Node id="17" type="file">
+			<Name>KCSPush</Name>
+			<Path>Classes/KCSPush.html</Path>
+		</Node>
+		<Node id="18" type="file">
+			<Name>KCSQuery</Name>
+			<Path>Classes/KCSQuery.html</Path>
+		</Node>
+		<Node id="19" type="file">
+			<Name>KCSQueryLimitModifier</Name>
+			<Path>Classes/KCSQueryLimitModifier.html</Path>
+		</Node>
+		<Node id="20" type="file">
+			<Name>KCSQuerySkipModifier</Name>
+			<Path>Classes/KCSQuerySkipModifier.html</Path>
+		</Node>
+		<Node id="21" type="file">
+			<Name>KCSQuerySortModifier</Name>
+			<Path>Classes/KCSQuerySortModifier.html</Path>
+		</Node>
+		<Node id="22" type="file">
+			<Name>KCSReduceFunction</Name>
+			<Path>Classes/KCSReduceFunction.html</Path>
+		</Node>
+		<Node id="23" type="file">
+			<Name>KCSRequest</Name>
+			<Path>Classes/KCSRequest.html</Path>
+		</Node>
+		<Node id="24" type="file">
+			<Name>KCSRequestConfiguration</Name>
+			<Path>Classes/KCSRequestConfiguration.html</Path>
+		</Node>
+		<Node id="25" type="file">
+			<Name>KCSURLProtocol</Name>
+			<Path>Classes/KCSURLProtocol.html</Path>
+		</Node>
+		<Node id="26" type="file">
+			<Name>KCSUser</Name>
+			<Path>Classes/KCSUser.html</Path>
+		</Node>
+		<Node id="27" type="file">
+			<Name>KCSUser2</Name>
+			<Path>Classes/KCSUser2.html</Path>
+		</Node>
+		<Node id="28" type="file">
+			<Name>KCSUserDiscovery</Name>
+			<Path>Classes/KCSUserDiscovery.html</Path>
+		</Node>
+		
+		<Node id="29" type="file">
+			<Name>CLLocation(Kinvey)</Name>
+			<Path>Categories/CLLocation+Kinvey.html</Path>
+		</Node>
+		<Node id="30" type="file">
+			<Name>NSDictionary(KCSEntityDict)</Name>
+			<Path>Categories/NSDictionary+KCSEntityDict.html</Path>
+		</Node>
+		<Node id="31" type="file">
+			<Name>NSObject(KCSEntity)</Name>
+			<Path>Categories/NSObject+KCSEntity.html</Path>
+		</Node>
+		<Node id="32" type="file">
+			<Name>NSString(KinveyAdditions)</Name>
+			<Path>Categories/NSString+KinveyAdditions.html</Path>
+		</Node>
+		<Node id="33" type="file">
+			<Name>NSURL(KinveyAdditions)</Name>
+			<Path>Categories/NSURL+KinveyAdditions.html</Path>
+		</Node>
+		
+		<Node id="34" type="file">
+			<Name>KCSCollectionDelegate</Name>
+			<Path>Protocols/KCSCollectionDelegate.html</Path>
+		</Node>
+		<Node id="35" type="file">
+			<Name>KCSInformationDelegate</Name>
+			<Path>Protocols/KCSInformationDelegate.html</Path>
+		</Node>
+		<Node id="36" type="file">
+			<Name>KCSLogSink</Name>
+			<Path>Protocols/KCSLogSink.html</Path>
+		</Node>
+		<Node id="37" type="file">
+			<Name>KCSOfflineUpdateDelegate</Name>
+			<Path>Protocols/KCSOfflineUpdateDelegate.html</Path>
+		</Node>
+		<Node id="38" type="file">
+			<Name>KCSPersistable</Name>
+			<Path>Protocols/KCSPersistable.html</Path>
+		</Node>
+		<Node id="39" type="file">
+			<Name>KCSPersistableDelegate</Name>
+			<Path>Protocols/KCSPersistableDelegate.html</Path>
+		</Node>
+		<Node id="40" type="file">
+			<Name>KCSStore</Name>
+			<Path>Protocols/KCSStore.html</Path>
+		</Node>
+		<Node id="41" type="file">
+			<Name>KCSUser2</Name>
+			<Path>Protocols/KCSUser2.html</Path>
+		</Node>
+		<Node id="42" type="file">
+			<Name>KCSUserActionDelegate</Name>
+			<Path>Protocols/KCSUserActionDelegate.html</Path>
+		</Node>
+		
+	</Library>
+</DocSetNodes>

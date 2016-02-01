@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSCollection.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSCollection</TokenIdentifier>
+			<Abstract type="html">Object for managing a collection of KinveyEntities</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>
+			
+			<NodeRef refid="7"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/setCollectionName:</TokenIdentifier>
+			<Abstract type="html">String representation of the name of the Kinvey Collection.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) NSString *collectionName</Declaration>
+			
+			
+			<Anchor>//api/name/collectionName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/collectionName</TokenIdentifier>
+			<Abstract type="html">String representation of the name of the Kinvey Collection.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) NSString *collectionName</Declaration>
+			
+			
+			<Anchor>//api/name/collectionName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSCollection/collectionName</TokenIdentifier>
+			<Abstract type="html">String representation of the name of the Kinvey Collection.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) NSString *collectionName</Declaration>
+			
+			
+			<Anchor>//api/name/collectionName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/setObjectTemplate:</TokenIdentifier>
+			<Abstract type="html">An instance of an object stored by this collection</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) Class objectTemplate</Declaration>
+			
+			
+			<Anchor>//api/name/objectTemplate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/objectTemplate</TokenIdentifier>
+			<Abstract type="html">An instance of an object stored by this collection</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) Class objectTemplate</Declaration>
+			
+			
+			<Anchor>//api/name/objectTemplate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSCollection/objectTemplate</TokenIdentifier>
+			<Abstract type="html">An instance of an object stored by this collection</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) Class objectTemplate</Declaration>
+			
+			
+			<Anchor>//api/name/objectTemplate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/set:</TokenIdentifier>
+			<Abstract type="html">A cached copy of the last results from Kinvey (handy if you forget to copy them in your delegate)</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) NSArray *KCS_DEPRECATED ( Use KCSAppdataStore API instead , 1.26 .0 )</Declaration>
+			
+			
+			<Anchor>//api/name/)</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/)</TokenIdentifier>
+			<Abstract type="html">A cached copy of the last results from Kinvey (handy if you forget to copy them in your delegate)</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) NSArray *KCS_DEPRECATED ( Use KCSAppdataStore API instead , 1.26 .0 )</Declaration>
+			
+			
+			<Anchor>//api/name/)</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSCollection/)</TokenIdentifier>
+			<Abstract type="html">A cached copy of the last results from Kinvey (handy if you forget to copy them in your delegate)</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (strong) NSArray *KCS_DEPRECATED ( Use KCSAppdataStore API instead , 1.26 .0 )</Declaration>
+			
+			
+			<Anchor>//api/name/)</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/setBaseURL:</TokenIdentifier>
+			<Abstract type="html">The Endpoint where we look for a request</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *baseURL</Declaration>
+			
+			
+			<Anchor>//api/name/baseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/baseURL</TokenIdentifier>
+			<Abstract type="html">The Endpoint where we look for a request</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *baseURL</Declaration>
+			
+			
+			<Anchor>//api/name/baseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSCollection/baseURL</TokenIdentifier>
+			<Abstract type="html">The Endpoint where we look for a request</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *baseURL</Declaration>
+			
+			
+			<Anchor>//api/name/baseURL</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSCollection/collectionFromString:ofClass:</TokenIdentifier>
+			<Abstract type="html">Return a representation of a Kinvey Collection</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)collectionFromString:(NSString *)string ofClass:(Class)templateClass</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>string</Name>
+					<Abstract type="html">Name of the Collection (the name you&apos;ll see in the Kinvey Console) we&apos;re accessing</Abstract>
+				</Parameter><Parameter>
+					<Name>templateClass</Name>
+					<Abstract type="html">The Class of objects that we&apos;re storing.  Instances of this class will be returned</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The collection object representing the back-end collection.</Abstract></ReturnValue>
+			<Anchor>//api/name/collectionFromString:ofClass:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSCollection/userCollection</TokenIdentifier>
+			<Abstract type="html">The special user collection</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)userCollection</Declaration>
+			
+			<ReturnValue><Abstract type="html">a Collection that can be used to query KCSUser objects.</Abstract></ReturnValue>
+			<Anchor>//api/name/userCollection</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/fetchAllWithDelegate:</TokenIdentifier>
+			<Abstract type="html">Fetch all of the entities in the collection</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>- (void)fetchAllWithDelegate:(id&lt;KCSCollectionDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The delegate that we&apos;ll notify upon completion of the request.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/fetchAllWithDelegate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSCollection/fetchWithDelegate:</TokenIdentifier>
+			<Abstract type="html">Fetch all of the entites that match the query instance variable.</Abstract>
+			<DeclaredIn>KinveyCollection.h</DeclaredIn>			
+			
+			<Declaration>- (void)fetchWithDelegate:(id&lt;KCSCollectionDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The delegate that we&apos;ll notify upon completion of the request.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/fetchWithDelegate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSCollection/fileMetadataCollection</TokenIdentifier>
+			<Abstract type="html">Helper method to access the file store metadata. Objects will be KCSFile type.</Abstract>
+			<DeclaredIn>KCSFileStore.h</DeclaredIn>			
+			
+			<Declaration>+ (instancetype)fileMetadataCollection</Declaration>
+			
+			
+			<Anchor>//api/name/fileMetadataCollection</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

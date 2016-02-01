@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSFacebookHelper.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSFacebookHelper</TokenIdentifier>
+			<Abstract type="html">Helper class for Kinvey/Facebook Integrations.</Abstract>
+			<DeclaredIn>KCSFacebookHelper.h</DeclaredIn>
+			
+			<NodeRef refid="9"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFacebookHelper/parseDeepLink:</TokenIdentifier>
+			<Abstract type="html">Parses a link to extract the action type, object type, and entity id. These values can be used for loading the appropriate item from the data store.</Abstract>
+			<DeclaredIn>KCSFacebookHelper.h</DeclaredIn>			
+			
+			<Declaration>+ (NSDictionary *)parseDeepLink:(NSURL *)url</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>url</Name>
+					<Abstract type="html">the callback URL.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a dictionary with the following values:
+
+  * KCSFacebookOGAction - the story&apos;s action type
+  * KCSFacebookOGObjectType - the story&apos;s object type
+  * KCSFacebookOGEntityId - the id of the entity in the data store</Abstract></ReturnValue>
+			<Anchor>//api/name/parseDeepLink:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/KCSFacebookHelper/publishToOpenGraph:action:objectType:optionalParams:completion:</TokenIdentifier>
+			<Abstract type="html">Publish an open graph story to the user&apos;s timeline.</Abstract>
+			<DeclaredIn>KCSFacebookHelper.h</DeclaredIn>			
+			
+			<Declaration>+ (void)publishToOpenGraph:(NSString *)entityId action:(NSString *)action objectType:(NSString *)objectType optionalParams:(NSDictionary *)extraParams completion:(FacebookOGCompletionBlock)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>entityId</Name>
+					<Abstract type="html">the KCSEntityKeyId of the object in the mapped collection</Abstract>
+				</Parameter><Parameter>
+					<Name>action</Name>
+					<Abstract type="html">the actionType. This must be one of the ones specified in the Open Graph data link in the Kinvey console</Abstract>
+				</Parameter><Parameter>
+					<Name>objectType</Name>
+					<Abstract type="html">the object type of the entity. A collection can be mapped to multiple object types</Abstract>
+				</Parameter><Parameter>
+					<Name>extraParams</Name>
+					<Abstract type="html">optional action parameters. E.g. tags (friends), place, starttime, endtime, etc.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">the callback for publishing to Open Graph. actionId is the id for the published story; this can be used to read, update, or delete the story separately using the Facebook SDK or API. errorOrNil will the error object if one was generated.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/publishToOpenGraph:action:objectType:optionalParams:completion:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

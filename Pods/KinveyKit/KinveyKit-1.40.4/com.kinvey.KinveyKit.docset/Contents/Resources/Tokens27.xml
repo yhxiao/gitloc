@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/KCSUser2.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/KCSUser2</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>
+			
+			<NodeRef refid="27"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/setEmail:</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/email</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser2/email</TokenIdentifier>
+			<Abstract type="html">Optional email address for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/setSurname:</TokenIdentifier>
+			<Abstract type="html">Optional surname for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *surname</Declaration>
+			
+			
+			<Anchor>//api/name/surname</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/surname</TokenIdentifier>
+			<Abstract type="html">Optional surname for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *surname</Declaration>
+			
+			
+			<Anchor>//api/name/surname</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser2/surname</TokenIdentifier>
+			<Abstract type="html">Optional surname for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *surname</Declaration>
+			
+			
+			<Anchor>//api/name/surname</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/setGivenName:</TokenIdentifier>
+			<Abstract type="html">Optional given (first) name for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *givenName</Declaration>
+			
+			
+			<Anchor>//api/name/givenName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/givenName</TokenIdentifier>
+			<Abstract type="html">Optional given (first) name for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *givenName</Declaration>
+			
+			
+			<Anchor>//api/name/givenName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser2/givenName</TokenIdentifier>
+			<Abstract type="html">Optional given (first) name for the user. Publicly queryable be default.</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *givenName</Declaration>
+			
+			
+			<Anchor>//api/name/givenName</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/setMetadata:</TokenIdentifier>
+			<Abstract type="html">Access Control Metadata of this User</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/metadata</TokenIdentifier>
+			<Abstract type="html">Access Control Metadata of this User</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser2/metadata</TokenIdentifier>
+			<Abstract type="html">Access Control Metadata of this User</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/KCSPersistable</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong) KCSMetadata *metadata</Declaration>
+			
+			
+			<Anchor>//api/name/metadata</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/setDeviceTokens:</TokenIdentifier>
+			<Abstract type="html">Device Tokens of this User</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, strong) NSMutableSet *deviceTokens</Declaration>
+			
+			
+			<Anchor>//api/name/deviceTokens</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/KCSUser2/deviceTokens</TokenIdentifier>
+			<Abstract type="html">Device Tokens of this User</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, strong) NSMutableSet *deviceTokens</Declaration>
+			
+			
+			<Anchor>//api/name/deviceTokens</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/KCSUser2/deviceTokens</TokenIdentifier>
+			<Abstract type="html">Device Tokens of this User</Abstract>
+			<DeclaredIn>KCSUser2.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readonly, strong) NSMutableSet *deviceTokens</Declaration>
+			
+			
+			<Anchor>//api/name/deviceTokens</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>
