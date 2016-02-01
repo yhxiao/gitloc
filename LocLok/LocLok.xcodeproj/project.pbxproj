@@ -7,6 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0F24921C5FF65F004BDCCF /* AddFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F248F1C5FF65F004BDCCF /* AddFriends.m */; };
+		3A0F24A31C5FF689004BDCCF /* BasicData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24941C5FF689004BDCCF /* BasicData.plist */; };
+		3A0F24A41C5FF689004BDCCF /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24961C5FF689004BDCCF /* CommonFunctions.m */; };
+		3A0F24A51C5FF689004BDCCF /* CreateNewAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24981C5FF689004BDCCF /* CreateNewAccountVC.m */; };
+		3A0F24A61C5FF689004BDCCF /* CreateNewAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24991C5FF689004BDCCF /* CreateNewAccountVC.xib */; };
+		3A0F24A71C5FF689004BDCCF /* FindFriendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F249B1C5FF689004BDCCF /* FindFriendVC.m */; };
+		3A0F24A81C5FF689004BDCCF /* FindFriendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F249C1C5FF689004BDCCF /* FindFriendVC.xib */; };
+		3A0F24A91C5FF689004BDCCF /* FriendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F249E1C5FF689004BDCCF /* FriendInfo.m */; };
+		3A0F24AA1C5FF689004BDCCF /* FriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24A01C5FF689004BDCCF /* FriendList.m */; };
+		3A0F24AB1C5FF689004BDCCF /* Friendship.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24A21C5FF689004BDCCF /* Friendship.m */; };
+		3A0F24E81C5FF6CF004BDCCF /* LocSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24AD1C5FF6CF004BDCCF /* LocSeries.m */; };
+		3A0F24E91C5FF6CF004BDCCF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24AF1C5FF6CF004BDCCF /* LoginViewController.m */; };
+		3A0F24EA1C5FF6CF004BDCCF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24B01C5FF6CF004BDCCF /* LoginViewController.xib */; };
+		3A0F24EB1C5FF6CF004BDCCF /* MaskAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24B21C5FF6CF004BDCCF /* MaskAnnotation.m */; };
+		3A0F24EC1C5FF6CF004BDCCF /* MaskMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24B41C5FF6CF004BDCCF /* MaskMap.m */; };
+		3A0F24ED1C5FF6CF004BDCCF /* MaskMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24B61C5FF6CF004BDCCF /* MaskMapView.m */; };
+		3A0F24EE1C5FF6CF004BDCCF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24B81C5FF6CF004BDCCF /* MBProgressHUD.m */; };
+		3A0F24EF1C5FF6CF004BDCCF /* MoreTabFile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24B91C5FF6CF004BDCCF /* MoreTabFile.plist */; };
+		3A0F24F01C5FF6CF004BDCCF /* MoreTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24BB1C5FF6CF004BDCCF /* MoreTabVC.m */; };
+		3A0F24F21C5FF6CF004BDCCF /* PrivacyRuleSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24BF1C5FF6CF004BDCCF /* PrivacyRuleSettingVC.m */; };
+		3A0F24F31C5FF6CF004BDCCF /* PrivacyRuleSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24C01C5FF6CF004BDCCF /* PrivacyRuleSettingVC.xib */; };
+		3A0F24F41C5FF6CF004BDCCF /* PrivacySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24C21C5FF6CF004BDCCF /* PrivacySettingViewController.m */; };
+		3A0F24F51C5FF6CF004BDCCF /* PrivSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24C41C5FF6CF004BDCCF /* PrivSetting.m */; };
+		3A0F24F61C5FF6CF004BDCCF /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24C61C5FF6CF004BDCCF /* PullRefreshTableViewController.m */; };
+		3A0F24F71C5FF6CF004BDCCF /* QueryAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24C81C5FF6CF004BDCCF /* QueryAnswerViewController.m */; };
+		3A0F24F81C5FF6CF004BDCCF /* showNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24CA1C5FF6CF004BDCCF /* showNotificationsVC.m */; };
+		3A0F24F91C5FF6CF004BDCCF /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24CC1C5FF6CF004BDCCF /* SSKeychain.m */; };
+		3A0F24FA1C5FF6CF004BDCCF /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24CE1C5FF6CF004BDCCF /* SSKeychainQuery.m */; };
+		3A0F24FB1C5FF6CF004BDCCF /* StatusShareUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24D01C5FF6CF004BDCCF /* StatusShareUpdate.m */; };
+		3A0F24FD1C5FF6CF004BDCCF /* TimePeriodPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24D41C5FF6CF004BDCCF /* TimePeriodPrivacy.m */; };
+		3A0F24FE1C5FF6CF004BDCCF /* TimeSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24D61C5FF6CF004BDCCF /* TimeSettingVC.m */; };
+		3A0F24FF1C5FF6CF004BDCCF /* UIColor+KinveyHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24D81C5FF6CF004BDCCF /* UIColor+KinveyHelpers.m */; };
+		3A0F25001C5FF6CF004BDCCF /* UpdateMyInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24DA1C5FF6CF004BDCCF /* UpdateMyInfoVC.m */; };
+		3A0F25011C5FF6CF004BDCCF /* UpdateMyInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24DB1C5FF6CF004BDCCF /* UpdateMyInfoVC.xib */; };
+		3A0F25021C5FF6CF004BDCCF /* User_Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24DD1C5FF6CF004BDCCF /* User_Photo.m */; };
+		3A0F25031C5FF6CF004BDCCF /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24DE1C5FF6CF004BDCCF /* UserInfo.plist */; };
+		3A0F25041C5FF6CF004BDCCF /* WriteUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24E01C5FF6CF004BDCCF /* WriteUpdateViewController.m */; };
+		3A0F25051C5FF6CF004BDCCF /* WriteUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F24E11C5FF6CF004BDCCF /* WriteUpdateViewController.xib */; };
+		3A0F25061C5FF6CF004BDCCF /* YXThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24E31C5FF6CF004BDCCF /* YXThumbnail.m */; };
+		3A0F25071C5FF6CF004BDCCF /* YXThumbnailAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24E51C5FF6CF004BDCCF /* YXThumbnailAnnotation.m */; };
+		3A0F25081C5FF6CF004BDCCF /* YXThumbnailAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F24E71C5FF6CF004BDCCF /* YXThumbnailAnnotationView.m */; };
+		3A0F250A1C5FF70C004BDCCF /* LocalImagePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25091C5FF70C004BDCCF /* LocalImagePlist.plist */; };
+		3A0F250D1C5FFBDD004BDCCF /* QuerySettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F250C1C5FFBDD004BDCCF /* QuerySettingVC.m */; };
+		3A0F25211C6000DD004BDCCF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25141C6000DD004BDCCF /* Default-568h@2x.png */; };
+		3A0F25221C6000DD004BDCCF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25151C6000DD004BDCCF /* Default.png */; };
+		3A0F25231C6000DD004BDCCF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25161C6000DD004BDCCF /* Default@2x.png */; };
+		3A0F25241C6000DD004BDCCF /* five_star_png.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25171C6000DD004BDCCF /* five_star_png.png */; };
+		3A0F25251C6000DD004BDCCF /* five_star_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25181C6000DD004BDCCF /* five_star_small.png */; };
+		3A0F25271C6000DD004BDCCF /* globe_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F251B1C6000DD004BDCCF /* globe_green.png */; };
+		3A0F25281C6000DD004BDCCF /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F251C1C6000DD004BDCCF /* globe.png */; };
+		3A0F25291C6000DD004BDCCF /* Info_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F251D1C6000DD004BDCCF /* Info_light.png */; };
+		3A0F252A1C6000DD004BDCCF /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F251E1C6000DD004BDCCF /* lock.png */; };
+		3A0F252B1C6000DD004BDCCF /* profile_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F251F1C6000DD004BDCCF /* profile_default.png */; };
+		3A0F252C1C6000DD004BDCCF /* unlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25201C6000DD004BDCCF /* unlock.png */; };
+		3A0F252E1C600109004BDCCF /* blue_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F252D1C600109004BDCCF /* blue_background.png */; };
 		3A2DC1251C5FF085008FD46E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC1241C5FF085008FD46E /* main.m */; };
 		3A2DC1281C5FF085008FD46E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC1271C5FF085008FD46E /* AppDelegate.m */; };
 		3A2DC12B1C5FF085008FD46E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC12A1C5FF085008FD46E /* ViewController.m */; };
@@ -37,12 +92,100 @@
 
 /* Begin PBXFileReference section */
 		0BD368CFB4A6007BA01B0862 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3A0F248E1C5FF65F004BDCCF /* AddFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddFriends.h; path = LocLok/AddFriends.h; sourceTree = "<group>"; };
+		3A0F248F1C5FF65F004BDCCF /* AddFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddFriends.m; path = LocLok/AddFriends.m; sourceTree = "<group>"; };
+		3A0F24941C5FF689004BDCCF /* BasicData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BasicData.plist; sourceTree = "<group>"; };
+		3A0F24951C5FF689004BDCCF /* CommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunctions.h; sourceTree = "<group>"; };
+		3A0F24961C5FF689004BDCCF /* CommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunctions.m; sourceTree = "<group>"; };
+		3A0F24971C5FF689004BDCCF /* CreateNewAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateNewAccountVC.h; path = LocLok/CreateNewAccountVC.h; sourceTree = "<group>"; };
+		3A0F24981C5FF689004BDCCF /* CreateNewAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateNewAccountVC.m; path = LocLok/CreateNewAccountVC.m; sourceTree = "<group>"; };
+		3A0F24991C5FF689004BDCCF /* CreateNewAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateNewAccountVC.xib; path = LocLok/CreateNewAccountVC.xib; sourceTree = "<group>"; };
+		3A0F249A1C5FF689004BDCCF /* FindFriendVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindFriendVC.h; path = LocLok/FindFriendVC.h; sourceTree = "<group>"; };
+		3A0F249B1C5FF689004BDCCF /* FindFriendVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FindFriendVC.m; path = LocLok/FindFriendVC.m; sourceTree = "<group>"; };
+		3A0F249C1C5FF689004BDCCF /* FindFriendVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FindFriendVC.xib; path = LocLok/FindFriendVC.xib; sourceTree = "<group>"; };
+		3A0F249D1C5FF689004BDCCF /* FriendInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendInfo.h; path = LocLok/FriendInfo.h; sourceTree = "<group>"; };
+		3A0F249E1C5FF689004BDCCF /* FriendInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendInfo.m; path = LocLok/FriendInfo.m; sourceTree = "<group>"; };
+		3A0F249F1C5FF689004BDCCF /* FriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendList.h; path = LocLok/FriendList.h; sourceTree = "<group>"; };
+		3A0F24A01C5FF689004BDCCF /* FriendList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendList.m; path = LocLok/FriendList.m; sourceTree = "<group>"; };
+		3A0F24A11C5FF689004BDCCF /* Friendship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friendship.h; path = LocLok/Friendship.h; sourceTree = "<group>"; };
+		3A0F24A21C5FF689004BDCCF /* Friendship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friendship.m; path = LocLok/Friendship.m; sourceTree = "<group>"; };
+		3A0F24AC1C5FF6CF004BDCCF /* LocSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocSeries.h; path = LocLok/LocSeries.h; sourceTree = "<group>"; };
+		3A0F24AD1C5FF6CF004BDCCF /* LocSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocSeries.m; path = LocLok/LocSeries.m; sourceTree = "<group>"; };
+		3A0F24AE1C5FF6CF004BDCCF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = LocLok/LoginViewController.h; sourceTree = "<group>"; };
+		3A0F24AF1C5FF6CF004BDCCF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = LocLok/LoginViewController.m; sourceTree = "<group>"; };
+		3A0F24B01C5FF6CF004BDCCF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = LocLok/LoginViewController.xib; sourceTree = "<group>"; };
+		3A0F24B11C5FF6CF004BDCCF /* MaskAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskAnnotation.h; path = LocLok/MaskAnnotation.h; sourceTree = "<group>"; };
+		3A0F24B21C5FF6CF004BDCCF /* MaskAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaskAnnotation.m; path = LocLok/MaskAnnotation.m; sourceTree = "<group>"; };
+		3A0F24B31C5FF6CF004BDCCF /* MaskMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskMap.h; path = LocLok/MaskMap.h; sourceTree = "<group>"; };
+		3A0F24B41C5FF6CF004BDCCF /* MaskMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaskMap.m; path = LocLok/MaskMap.m; sourceTree = "<group>"; };
+		3A0F24B51C5FF6CF004BDCCF /* MaskMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskMapView.h; path = LocLok/MaskMapView.h; sourceTree = "<group>"; };
+		3A0F24B61C5FF6CF004BDCCF /* MaskMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaskMapView.m; path = LocLok/MaskMapView.m; sourceTree = "<group>"; };
+		3A0F24B71C5FF6CF004BDCCF /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		3A0F24B81C5FF6CF004BDCCF /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		3A0F24B91C5FF6CF004BDCCF /* MoreTabFile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MoreTabFile.plist; sourceTree = "<group>"; };
+		3A0F24BA1C5FF6CF004BDCCF /* MoreTabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreTabVC.h; path = LocLok/MoreTabVC.h; sourceTree = "<group>"; };
+		3A0F24BB1C5FF6CF004BDCCF /* MoreTabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreTabVC.m; path = LocLok/MoreTabVC.m; sourceTree = "<group>"; };
+		3A0F24BE1C5FF6CF004BDCCF /* PrivacyRuleSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyRuleSettingVC.h; path = LocLok/PrivacyRuleSettingVC.h; sourceTree = "<group>"; };
+		3A0F24BF1C5FF6CF004BDCCF /* PrivacyRuleSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyRuleSettingVC.m; path = LocLok/PrivacyRuleSettingVC.m; sourceTree = "<group>"; };
+		3A0F24C01C5FF6CF004BDCCF /* PrivacyRuleSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrivacyRuleSettingVC.xib; path = LocLok/PrivacyRuleSettingVC.xib; sourceTree = "<group>"; };
+		3A0F24C11C5FF6CF004BDCCF /* PrivacySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacySettingViewController.h; path = LocLok/PrivacySettingViewController.h; sourceTree = "<group>"; };
+		3A0F24C21C5FF6CF004BDCCF /* PrivacySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacySettingViewController.m; path = LocLok/PrivacySettingViewController.m; sourceTree = "<group>"; };
+		3A0F24C31C5FF6CF004BDCCF /* PrivSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivSetting.h; path = LocLok/PrivSetting.h; sourceTree = "<group>"; };
+		3A0F24C41C5FF6CF004BDCCF /* PrivSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivSetting.m; path = LocLok/PrivSetting.m; sourceTree = "<group>"; };
+		3A0F24C51C5FF6CF004BDCCF /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
+		3A0F24C61C5FF6CF004BDCCF /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		3A0F24C71C5FF6CF004BDCCF /* QueryAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryAnswerViewController.h; path = LocLok/QueryAnswerViewController.h; sourceTree = "<group>"; };
+		3A0F24C81C5FF6CF004BDCCF /* QueryAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryAnswerViewController.m; path = LocLok/QueryAnswerViewController.m; sourceTree = "<group>"; };
+		3A0F24C91C5FF6CF004BDCCF /* showNotificationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = showNotificationsVC.h; path = LocLok/showNotificationsVC.h; sourceTree = "<group>"; };
+		3A0F24CA1C5FF6CF004BDCCF /* showNotificationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = showNotificationsVC.m; path = LocLok/showNotificationsVC.m; sourceTree = "<group>"; };
+		3A0F24CB1C5FF6CF004BDCCF /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKeychain.h; path = LocLok/SSKeychain.h; sourceTree = "<group>"; };
+		3A0F24CC1C5FF6CF004BDCCF /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKeychain.m; path = LocLok/SSKeychain.m; sourceTree = "<group>"; };
+		3A0F24CD1C5FF6CF004BDCCF /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKeychainQuery.h; path = LocLok/SSKeychainQuery.h; sourceTree = "<group>"; };
+		3A0F24CE1C5FF6CF004BDCCF /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKeychainQuery.m; path = LocLok/SSKeychainQuery.m; sourceTree = "<group>"; };
+		3A0F24CF1C5FF6CF004BDCCF /* StatusShareUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusShareUpdate.h; sourceTree = "<group>"; };
+		3A0F24D01C5FF6CF004BDCCF /* StatusShareUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusShareUpdate.m; sourceTree = "<group>"; };
+		3A0F24D31C5FF6CF004BDCCF /* TimePeriodPrivacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimePeriodPrivacy.h; path = LocLok/TimePeriodPrivacy.h; sourceTree = "<group>"; };
+		3A0F24D41C5FF6CF004BDCCF /* TimePeriodPrivacy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimePeriodPrivacy.m; path = LocLok/TimePeriodPrivacy.m; sourceTree = "<group>"; };
+		3A0F24D51C5FF6CF004BDCCF /* TimeSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeSettingVC.h; path = LocLok/TimeSettingVC.h; sourceTree = "<group>"; };
+		3A0F24D61C5FF6CF004BDCCF /* TimeSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeSettingVC.m; path = LocLok/TimeSettingVC.m; sourceTree = "<group>"; };
+		3A0F24D71C5FF6CF004BDCCF /* UIColor+KinveyHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KinveyHelpers.h"; sourceTree = "<group>"; };
+		3A0F24D81C5FF6CF004BDCCF /* UIColor+KinveyHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KinveyHelpers.m"; sourceTree = "<group>"; };
+		3A0F24D91C5FF6CF004BDCCF /* UpdateMyInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateMyInfoVC.h; path = LocLok/UpdateMyInfoVC.h; sourceTree = "<group>"; };
+		3A0F24DA1C5FF6CF004BDCCF /* UpdateMyInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateMyInfoVC.m; path = LocLok/UpdateMyInfoVC.m; sourceTree = "<group>"; };
+		3A0F24DB1C5FF6CF004BDCCF /* UpdateMyInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UpdateMyInfoVC.xib; path = LocLok/UpdateMyInfoVC.xib; sourceTree = "<group>"; };
+		3A0F24DC1C5FF6CF004BDCCF /* User_Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User_Photo.h; path = LocLok/User_Photo.h; sourceTree = "<group>"; };
+		3A0F24DD1C5FF6CF004BDCCF /* User_Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User_Photo.m; path = LocLok/User_Photo.m; sourceTree = "<group>"; };
+		3A0F24DE1C5FF6CF004BDCCF /* UserInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
+		3A0F24DF1C5FF6CF004BDCCF /* WriteUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteUpdateViewController.h; sourceTree = "<group>"; };
+		3A0F24E01C5FF6CF004BDCCF /* WriteUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteUpdateViewController.m; sourceTree = "<group>"; };
+		3A0F24E11C5FF6CF004BDCCF /* WriteUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteUpdateViewController.xib; sourceTree = "<group>"; };
+		3A0F24E21C5FF6CF004BDCCF /* YXThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXThumbnail.h; path = LocLok/YXThumbnail.h; sourceTree = "<group>"; };
+		3A0F24E31C5FF6CF004BDCCF /* YXThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXThumbnail.m; path = LocLok/YXThumbnail.m; sourceTree = "<group>"; };
+		3A0F24E41C5FF6CF004BDCCF /* YXThumbnailAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXThumbnailAnnotation.h; path = LocLok/YXThumbnailAnnotation.h; sourceTree = "<group>"; };
+		3A0F24E51C5FF6CF004BDCCF /* YXThumbnailAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXThumbnailAnnotation.m; path = LocLok/YXThumbnailAnnotation.m; sourceTree = "<group>"; };
+		3A0F24E61C5FF6CF004BDCCF /* YXThumbnailAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXThumbnailAnnotationView.h; path = LocLok/YXThumbnailAnnotationView.h; sourceTree = "<group>"; };
+		3A0F24E71C5FF6CF004BDCCF /* YXThumbnailAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXThumbnailAnnotationView.m; path = LocLok/YXThumbnailAnnotationView.m; sourceTree = "<group>"; };
+		3A0F25091C5FF70C004BDCCF /* LocalImagePlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocalImagePlist.plist; sourceTree = "<group>"; };
+		3A0F250B1C5FFBDD004BDCCF /* QuerySettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuerySettingVC.h; path = LocLok/QuerySettingVC.h; sourceTree = "<group>"; };
+		3A0F250C1C5FFBDD004BDCCF /* QuerySettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuerySettingVC.m; path = LocLok/QuerySettingVC.m; sourceTree = "<group>"; };
+		3A0F25141C6000DD004BDCCF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3A0F25151C6000DD004BDCCF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3A0F25161C6000DD004BDCCF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		3A0F25171C6000DD004BDCCF /* five_star_png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = five_star_png.png; sourceTree = "<group>"; };
+		3A0F25181C6000DD004BDCCF /* five_star_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = five_star_small.png; sourceTree = "<group>"; };
+		3A0F251B1C6000DD004BDCCF /* globe_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe_green.png; sourceTree = "<group>"; };
+		3A0F251C1C6000DD004BDCCF /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
+		3A0F251D1C6000DD004BDCCF /* Info_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info_light.png; sourceTree = "<group>"; };
+		3A0F251E1C6000DD004BDCCF /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		3A0F251F1C6000DD004BDCCF /* profile_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_default.png; sourceTree = "<group>"; };
+		3A0F25201C6000DD004BDCCF /* unlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock.png; sourceTree = "<group>"; };
+		3A0F252D1C600109004BDCCF /* blue_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_background.png; sourceTree = "<group>"; };
 		3A2DC1201C5FF085008FD46E /* LocLok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocLok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2DC1241C5FF085008FD46E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3A2DC1261C5FF085008FD46E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A2DC1271C5FF085008FD46E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3A2DC1291C5FF085008FD46E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3A2DC12A1C5FF085008FD46E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3A2DC1291C5FF085008FD46E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = LocLok/ViewController.h; sourceTree = "<group>"; };
+		3A2DC12A1C5FF085008FD46E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = LocLok/ViewController.m; sourceTree = "<group>"; };
 		3A2DC12D1C5FF085008FD46E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A2DC12F1C5FF085008FD46E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A2DC1321C5FF085008FD46E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,9 +226,139 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0F250E1C5FFC10004BDCCF /* FriendshipLogic */ = {
+			isa = PBXGroup;
+			children = (
+				3A0F248E1C5FF65F004BDCCF /* AddFriends.h */,
+				3A0F248F1C5FF65F004BDCCF /* AddFriends.m */,
+				3A0F24DC1C5FF6CF004BDCCF /* User_Photo.h */,
+				3A0F24DD1C5FF6CF004BDCCF /* User_Photo.m */,
+				3A0F249D1C5FF689004BDCCF /* FriendInfo.h */,
+				3A0F249E1C5FF689004BDCCF /* FriendInfo.m */,
+				3A0F249F1C5FF689004BDCCF /* FriendList.h */,
+				3A0F24A01C5FF689004BDCCF /* FriendList.m */,
+				3A0F24A11C5FF689004BDCCF /* Friendship.h */,
+				3A0F24A21C5FF689004BDCCF /* Friendship.m */,
+				3A0F249A1C5FF689004BDCCF /* FindFriendVC.h */,
+				3A0F249B1C5FF689004BDCCF /* FindFriendVC.m */,
+				3A0F249C1C5FF689004BDCCF /* FindFriendVC.xib */,
+			);
+			name = FriendshipLogic;
+			sourceTree = "<group>";
+		};
+		3A0F250F1C5FFD1D004BDCCF /* Viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				3A0F24AE1C5FF6CF004BDCCF /* LoginViewController.h */,
+				3A0F24AF1C5FF6CF004BDCCF /* LoginViewController.m */,
+				3A0F24B01C5FF6CF004BDCCF /* LoginViewController.xib */,
+				3A0F24971C5FF689004BDCCF /* CreateNewAccountVC.h */,
+				3A0F24981C5FF689004BDCCF /* CreateNewAccountVC.m */,
+				3A0F24991C5FF689004BDCCF /* CreateNewAccountVC.xib */,
+				3A0F24D91C5FF6CF004BDCCF /* UpdateMyInfoVC.h */,
+				3A0F24DA1C5FF6CF004BDCCF /* UpdateMyInfoVC.m */,
+				3A0F24DB1C5FF6CF004BDCCF /* UpdateMyInfoVC.xib */,
+				3A2DC1291C5FF085008FD46E /* ViewController.h */,
+				3A2DC12A1C5FF085008FD46E /* ViewController.m */,
+				3A0F24C91C5FF6CF004BDCCF /* showNotificationsVC.h */,
+				3A0F24CA1C5FF6CF004BDCCF /* showNotificationsVC.m */,
+				3A0F24D51C5FF6CF004BDCCF /* TimeSettingVC.h */,
+				3A0F24D61C5FF6CF004BDCCF /* TimeSettingVC.m */,
+				3A0F250B1C5FFBDD004BDCCF /* QuerySettingVC.h */,
+				3A0F250C1C5FFBDD004BDCCF /* QuerySettingVC.m */,
+				3A0F24C71C5FF6CF004BDCCF /* QueryAnswerViewController.h */,
+				3A0F24C81C5FF6CF004BDCCF /* QueryAnswerViewController.m */,
+				3A0F24BE1C5FF6CF004BDCCF /* PrivacyRuleSettingVC.h */,
+				3A0F24BF1C5FF6CF004BDCCF /* PrivacyRuleSettingVC.m */,
+				3A0F24C01C5FF6CF004BDCCF /* PrivacyRuleSettingVC.xib */,
+				3A0F24C11C5FF6CF004BDCCF /* PrivacySettingViewController.h */,
+				3A0F24C21C5FF6CF004BDCCF /* PrivacySettingViewController.m */,
+				3A0F24BA1C5FF6CF004BDCCF /* MoreTabVC.h */,
+				3A0F24BB1C5FF6CF004BDCCF /* MoreTabVC.m */,
+			);
+			name = Viewcontrollers;
+			sourceTree = "<group>";
+		};
+		3A0F25101C5FFE47004BDCCF /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				3A0F24C51C5FF6CF004BDCCF /* PullRefreshTableViewController.h */,
+				3A0F24C61C5FF6CF004BDCCF /* PullRefreshTableViewController.m */,
+				3A0F24B71C5FF6CF004BDCCF /* MBProgressHUD.h */,
+				3A0F24B81C5FF6CF004BDCCF /* MBProgressHUD.m */,
+				3A0F25121C5FFF2A004BDCCF /* StatusShare */,
+			);
+			name = 3rdParty;
+			sourceTree = "<group>";
+		};
+		3A0F25111C5FFE69004BDCCF /* PrivacyLogic */ = {
+			isa = PBXGroup;
+			children = (
+				3A0F24CB1C5FF6CF004BDCCF /* SSKeychain.h */,
+				3A0F24CC1C5FF6CF004BDCCF /* SSKeychain.m */,
+				3A0F24CD1C5FF6CF004BDCCF /* SSKeychainQuery.h */,
+				3A0F24CE1C5FF6CF004BDCCF /* SSKeychainQuery.m */,
+				3A0F24D31C5FF6CF004BDCCF /* TimePeriodPrivacy.h */,
+				3A0F24D41C5FF6CF004BDCCF /* TimePeriodPrivacy.m */,
+				3A0F24AC1C5FF6CF004BDCCF /* LocSeries.h */,
+				3A0F24AD1C5FF6CF004BDCCF /* LocSeries.m */,
+				3A0F24C31C5FF6CF004BDCCF /* PrivSetting.h */,
+				3A0F24C41C5FF6CF004BDCCF /* PrivSetting.m */,
+				3A0F24B31C5FF6CF004BDCCF /* MaskMap.h */,
+				3A0F24B41C5FF6CF004BDCCF /* MaskMap.m */,
+				3A0F24B11C5FF6CF004BDCCF /* MaskAnnotation.h */,
+				3A0F24B21C5FF6CF004BDCCF /* MaskAnnotation.m */,
+				3A0F24B51C5FF6CF004BDCCF /* MaskMapView.h */,
+				3A0F24B61C5FF6CF004BDCCF /* MaskMapView.m */,
+				3A0F24E21C5FF6CF004BDCCF /* YXThumbnail.h */,
+				3A0F24E31C5FF6CF004BDCCF /* YXThumbnail.m */,
+				3A0F24E41C5FF6CF004BDCCF /* YXThumbnailAnnotation.h */,
+				3A0F24E51C5FF6CF004BDCCF /* YXThumbnailAnnotation.m */,
+				3A0F24E61C5FF6CF004BDCCF /* YXThumbnailAnnotationView.h */,
+				3A0F24E71C5FF6CF004BDCCF /* YXThumbnailAnnotationView.m */,
+			);
+			name = PrivacyLogic;
+			sourceTree = "<group>";
+		};
+		3A0F25121C5FFF2A004BDCCF /* StatusShare */ = {
+			isa = PBXGroup;
+			children = (
+				3A0F24CF1C5FF6CF004BDCCF /* StatusShareUpdate.h */,
+				3A0F24D01C5FF6CF004BDCCF /* StatusShareUpdate.m */,
+				3A0F24D71C5FF6CF004BDCCF /* UIColor+KinveyHelpers.h */,
+				3A0F24D81C5FF6CF004BDCCF /* UIColor+KinveyHelpers.m */,
+				3A0F24DF1C5FF6CF004BDCCF /* WriteUpdateViewController.h */,
+				3A0F24E01C5FF6CF004BDCCF /* WriteUpdateViewController.m */,
+				3A0F24E11C5FF6CF004BDCCF /* WriteUpdateViewController.xib */,
+			);
+			name = StatusShare;
+			sourceTree = "<group>";
+		};
+		3A0F25131C600057004BDCCF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3A0F252D1C600109004BDCCF /* blue_background.png */,
+				3A0F25141C6000DD004BDCCF /* Default-568h@2x.png */,
+				3A0F25151C6000DD004BDCCF /* Default.png */,
+				3A0F25161C6000DD004BDCCF /* Default@2x.png */,
+				3A0F25171C6000DD004BDCCF /* five_star_png.png */,
+				3A0F25181C6000DD004BDCCF /* five_star_small.png */,
+				3A0F251B1C6000DD004BDCCF /* globe_green.png */,
+				3A0F251C1C6000DD004BDCCF /* globe.png */,
+				3A0F251D1C6000DD004BDCCF /* Info_light.png */,
+				3A0F251E1C6000DD004BDCCF /* lock.png */,
+				3A0F251F1C6000DD004BDCCF /* profile_default.png */,
+				3A0F25201C6000DD004BDCCF /* unlock.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		3A2DC1171C5FF085008FD46E = {
 			isa = PBXGroup;
 			children = (
+				3A0F25111C5FFE69004BDCCF /* PrivacyLogic */,
+				3A0F250F1C5FFD1D004BDCCF /* Viewcontrollers */,
+				3A0F250E1C5FFC10004BDCCF /* FriendshipLogic */,
 				3A2DC1221C5FF085008FD46E /* LocLok */,
 				3A2DC13C1C5FF085008FD46E /* LocLokTests */,
 				3A2DC1471C5FF085008FD46E /* LocLokUITests */,
@@ -110,12 +383,8 @@
 			children = (
 				3A2DC1261C5FF085008FD46E /* AppDelegate.h */,
 				3A2DC1271C5FF085008FD46E /* AppDelegate.m */,
-				3A2DC1291C5FF085008FD46E /* ViewController.h */,
-				3A2DC12A1C5FF085008FD46E /* ViewController.m */,
 				3A2DC12C1C5FF085008FD46E /* Main.storyboard */,
-				3A2DC12F1C5FF085008FD46E /* Assets.xcassets */,
 				3A2DC1311C5FF085008FD46E /* LaunchScreen.storyboard */,
-				3A2DC1341C5FF085008FD46E /* Info.plist */,
 				3A2DC1231C5FF085008FD46E /* Supporting Files */,
 			);
 			path = LocLok;
@@ -124,7 +393,17 @@
 		3A2DC1231C5FF085008FD46E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A2DC12F1C5FF085008FD46E /* Assets.xcassets */,
+				3A0F24B91C5FF6CF004BDCCF /* MoreTabFile.plist */,
+				3A0F24941C5FF689004BDCCF /* BasicData.plist */,
+				3A2DC1341C5FF085008FD46E /* Info.plist */,
+				3A0F24DE1C5FF6CF004BDCCF /* UserInfo.plist */,
+				3A0F25091C5FF70C004BDCCF /* LocalImagePlist.plist */,
 				3A2DC1241C5FF085008FD46E /* main.m */,
+				3A0F24951C5FF689004BDCCF /* CommonFunctions.h */,
+				3A0F24961C5FF689004BDCCF /* CommonFunctions.m */,
+				3A0F25131C600057004BDCCF /* Images */,
+				3A0F25101C5FFE47004BDCCF /* 3rdParty */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -270,9 +549,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0F25231C6000DD004BDCCF /* Default@2x.png in Resources */,
+				3A0F252C1C6000DD004BDCCF /* unlock.png in Resources */,
+				3A0F252E1C600109004BDCCF /* blue_background.png in Resources */,
+				3A0F24A61C5FF689004BDCCF /* CreateNewAccountVC.xib in Resources */,
+				3A0F25011C5FF6CF004BDCCF /* UpdateMyInfoVC.xib in Resources */,
+				3A0F25241C6000DD004BDCCF /* five_star_png.png in Resources */,
 				3A2DC1331C5FF085008FD46E /* LaunchScreen.storyboard in Resources */,
+				3A0F25281C6000DD004BDCCF /* globe.png in Resources */,
+				3A0F25031C5FF6CF004BDCCF /* UserInfo.plist in Resources */,
+				3A0F25291C6000DD004BDCCF /* Info_light.png in Resources */,
+				3A0F25221C6000DD004BDCCF /* Default.png in Resources */,
+				3A0F24A31C5FF689004BDCCF /* BasicData.plist in Resources */,
+				3A0F25211C6000DD004BDCCF /* Default-568h@2x.png in Resources */,
+				3A0F250A1C5FF70C004BDCCF /* LocalImagePlist.plist in Resources */,
+				3A0F24F31C5FF6CF004BDCCF /* PrivacyRuleSettingVC.xib in Resources */,
+				3A0F252B1C6000DD004BDCCF /* profile_default.png in Resources */,
 				3A2DC1301C5FF085008FD46E /* Assets.xcassets in Resources */,
 				3A2DC12E1C5FF085008FD46E /* Main.storyboard in Resources */,
+				3A0F25271C6000DD004BDCCF /* globe_green.png in Resources */,
+				3A0F252A1C6000DD004BDCCF /* lock.png in Resources */,
+				3A0F25251C6000DD004BDCCF /* five_star_small.png in Resources */,
+				3A0F24EF1C5FF6CF004BDCCF /* MoreTabFile.plist in Resources */,
+				3A0F24EA1C5FF6CF004BDCCF /* LoginViewController.xib in Resources */,
+				3A0F24A81C5FF689004BDCCF /* FindFriendVC.xib in Resources */,
+				3A0F25051C5FF6CF004BDCCF /* WriteUpdateViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,9 +646,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0F250D1C5FFBDD004BDCCF /* QuerySettingVC.m in Sources */,
+				3A0F24A91C5FF689004BDCCF /* FriendInfo.m in Sources */,
+				3A0F24AB1C5FF689004BDCCF /* Friendship.m in Sources */,
+				3A0F24FF1C5FF6CF004BDCCF /* UIColor+KinveyHelpers.m in Sources */,
+				3A0F24E91C5FF6CF004BDCCF /* LoginViewController.m in Sources */,
+				3A0F25041C5FF6CF004BDCCF /* WriteUpdateViewController.m in Sources */,
+				3A0F24F71C5FF6CF004BDCCF /* QueryAnswerViewController.m in Sources */,
 				3A2DC12B1C5FF085008FD46E /* ViewController.m in Sources */,
+				3A0F24F91C5FF6CF004BDCCF /* SSKeychain.m in Sources */,
+				3A0F24F41C5FF6CF004BDCCF /* PrivacySettingViewController.m in Sources */,
+				3A0F24FB1C5FF6CF004BDCCF /* StatusShareUpdate.m in Sources */,
+				3A0F24F21C5FF6CF004BDCCF /* PrivacyRuleSettingVC.m in Sources */,
+				3A0F25021C5FF6CF004BDCCF /* User_Photo.m in Sources */,
+				3A0F24FA1C5FF6CF004BDCCF /* SSKeychainQuery.m in Sources */,
+				3A0F24F81C5FF6CF004BDCCF /* showNotificationsVC.m in Sources */,
+				3A0F25081C5FF6CF004BDCCF /* YXThumbnailAnnotationView.m in Sources */,
+				3A0F24FD1C5FF6CF004BDCCF /* TimePeriodPrivacy.m in Sources */,
+				3A0F24F01C5FF6CF004BDCCF /* MoreTabVC.m in Sources */,
+				3A0F24AA1C5FF689004BDCCF /* FriendList.m in Sources */,
+				3A0F24A41C5FF689004BDCCF /* CommonFunctions.m in Sources */,
+				3A0F24FE1C5FF6CF004BDCCF /* TimeSettingVC.m in Sources */,
+				3A0F24EE1C5FF6CF004BDCCF /* MBProgressHUD.m in Sources */,
+				3A0F25001C5FF6CF004BDCCF /* UpdateMyInfoVC.m in Sources */,
+				3A0F24A71C5FF689004BDCCF /* FindFriendVC.m in Sources */,
+				3A0F24F61C5FF6CF004BDCCF /* PullRefreshTableViewController.m in Sources */,
+				3A0F25071C5FF6CF004BDCCF /* YXThumbnailAnnotation.m in Sources */,
 				3A2DC1281C5FF085008FD46E /* AppDelegate.m in Sources */,
 				3A2DC1251C5FF085008FD46E /* main.m in Sources */,
+				3A0F24EC1C5FF6CF004BDCCF /* MaskMap.m in Sources */,
+				3A0F25061C5FF6CF004BDCCF /* YXThumbnail.m in Sources */,
+				3A0F24EB1C5FF6CF004BDCCF /* MaskAnnotation.m in Sources */,
+				3A0F24921C5FF65F004BDCCF /* AddFriends.m in Sources */,
+				3A0F24ED1C5FF6CF004BDCCF /* MaskMapView.m in Sources */,
+				3A0F24F51C5FF6CF004BDCCF /* PrivSetting.m in Sources */,
+				3A0F24A51C5FF689004BDCCF /* CreateNewAccountVC.m in Sources */,
+				3A0F24E81C5FF6CF004BDCCF /* LocSeries.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

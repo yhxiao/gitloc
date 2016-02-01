@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Friends" syncable="YES">
+        <attribute name="color_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friend_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendpermission_to_me" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mypermission_to_friend" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="photo_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="friends_photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photos" inverseName="photo_belongs_to" inverseEntity="Photos" syncable="YES"/>
+    </entity>
+    <entity name="Photos" syncable="YES">
+        <attribute name="photo_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="photo_image" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="photo_belongs_to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friends" inverseName="friends_photo" inverseEntity="Friends" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Photos" positionX="-317" positionY="-252" width="128" height="88"/>
+        <element name="Friends" positionX="-74" positionY="-297" width="128" height="133"/>
+    </elements>
+</model>

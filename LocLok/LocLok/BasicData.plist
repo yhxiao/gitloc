@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>lastLoc</key>
+	<array>
+		<real>33.82664756</real>
+		<real>-84.27009787999999</real>
+	</array>
+	<key>spanDelta</key>
+	<array>
+		<string>0.1123523452345</string>
+		<string>0.3521234123423</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WriteUpdateViewController">
+            <connections>
+                <outlet property="view" destination="Fif-as-hRr" id="jGU-tj-Uxf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="s5K-Uw-xTH" customClass="WriteUpdateViewController">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="MpO-I6-gdK"/>
+                <viewControllerLayoutGuide type="bottom" id="Gwx-UT-wy8"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="gHX-4I-7VV">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            </view>
+        </viewController>
+        <view contentMode="scaleToFill" id="Fif-as-hRr">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+        </view>
+    </objects>
+</document>

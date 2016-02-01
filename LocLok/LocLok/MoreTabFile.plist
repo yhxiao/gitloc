@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Settings</key>
+	<array>
+		<string>My History</string>
+		<string>Update Info</string>
+		<string>Notification Setting</string>
+		<string>Save Battery</string>
+	</array>
+	<key>Friends Management</key>
+	<array>
+		<string>Find Friends</string>
+	</array>
+	<key>Advanced</key>
+	<array>
+		<string>My Statistics</string>
+		<string>My Privacy Policy</string>
+	</array>
+	<key>About LocShare</key>
+	<array>
+		<string>About LocShare</string>
+		<string>Log Out</string>
+	</array>
+</dict>
+</plist>
