@@ -149,10 +149,10 @@ extern NSString* LocalImagePlist;
     width=self.view.bounds.size.width;
     height=self.view.bounds.size.height;
     self.updateStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"AddFriend",KCSStoreKeyCollectionTemplateClass : [AddFriends class],
-        KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)}
+        KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
                       ];
     self.friendshipStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"Friendship",KCSStoreKeyCollectionTemplateClass : [Friendship class],
-                                                                KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
+                                                                KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
                       ];
     PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{
             KCSStoreKeyCollectionName : @"UserPhotos",
@@ -281,12 +281,24 @@ extern NSString* LocalImagePlist;
     }
     
     if(lookupFields.count==0){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"Please fill in one of the fields."
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@""
+                                      message:@"Please fill in one of the fields."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else{
     
@@ -705,14 +717,25 @@ extern NSString* LocalImagePlist;
         isEqualToString:
        [[KCSUser activeUser] userId]
         ]){
-        UIAlertView* alert = [[UIAlertView alloc]
-                              initWithTitle:@""
-                              message:@"Can not add yourself as a friend"
-                              delegate:self
-                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                              otherButtonTitles:nil
-                              ];
-        [alert show];
+        
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@""
+                                      message:@"Can not add yourself as a friend"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         return;
         
     }
@@ -747,17 +770,27 @@ extern NSString* LocalImagePlist;
             NSLog(@"Get an error when checking if a friend request is already in AddFriend: %@",errorOrNil);
         }
         if(objectsOrNil.count!=0){//request already sent;
-            UIAlertView* alert = [[UIAlertView alloc]
-                                  initWithTitle:@""
-                                  message:[[@"Request already sent to "
-                                            stringByAppendingString:str_Name]
-                                           stringByAppendingString:@", Please wait for acceptance."
-                                           ]
-                                  delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                  otherButtonTitles:nil
-                                  ];
-            [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:[[@"Request already sent to "
+                                                    stringByAppendingString:str_Name]
+                                                   stringByAppendingString:@", Please wait for acceptance."
+                                                   ]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             return;
             
         }
@@ -771,44 +804,78 @@ extern NSString* LocalImagePlist;
                             }
                             
                             if(objectsOrNil.count!=0){//request already exists;
-                                UIAlertView* alert = [[UIAlertView alloc]
-                                                      initWithTitle:@""
-                                                      message:[[@"You and "
-                                                                stringByAppendingString:str_Name]
-                                                               stringByAppendingString:@" are already friends."
-                                                               ]
-                                                      delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles:nil
-                                                      ];
-                                [alert show];
+                                
+                                UIAlertController * alert=   [UIAlertController
+                                                              alertControllerWithTitle:@""
+                                                              message:[[@"You and "
+                                                                        stringByAppendingString:str_Name]
+                                                                       stringByAppendingString:@" are already friends."
+                                                                       ]
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                
+                                UIAlertAction* ok = [UIAlertAction
+                                                     actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action)
+                                                     {
+                                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                                         
+                                                     }];
+                                
+                                [alert addAction:ok];
+                                
+                                [self presentViewController:alert animated:YES completion:nil];
+                                
+                                
                                 return;
                             }
                             else{//send the request;
                                 [self.updateStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                                     if (errorOrNil != nil) {
                                         //save failed, show an error alert
-                                        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Save failed", @"Save Failed")
-                                                                                            message:[errorOrNil localizedFailureReason] //not actually localized
-                                                                                           delegate:nil
-                                                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                                  otherButtonTitles:nil];
-                                        [alertView show];
+                                        
+                                        UIAlertController * alert=   [UIAlertController
+                                                                      alertControllerWithTitle:@"Save failed"
+                                                                      message:[errorOrNil localizedFailureReason] //not actually localized
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                        
+                                        UIAlertAction* ok = [UIAlertAction
+                                                             actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                                             {
+                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                 
+                                                             }];
+                                        
+                                        
+                                        [alert addAction:ok];
+                                        
+                                        [self presentViewController:alert animated:YES completion:nil];
                                     } else {
                                         //save was successful
                                         
                                         
-                                        UIAlertView* alert = [[UIAlertView alloc]
-                                                              initWithTitle:@"Request sent"
-                                                              message:[[@"Friend request has been sent to "
-                                                                        stringByAppendingString:str_Name]
-                                                                       stringByAppendingString:@" . Please wait for acceptance."
-                                                                       ]
-                                                              delegate:self
-                                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                              otherButtonTitles:nil
-                                                              ];
-                                        [alert show];
+                                        UIAlertController * alert=   [UIAlertController
+                                                                      alertControllerWithTitle:@"Request sent"
+                                                                      message:[[@"Friend request has been sent to "
+                                                                                stringByAppendingString:str_Name]
+                                                                               stringByAppendingString:@" . Please wait for acceptance."
+                                                                               ]
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                        
+                                        UIAlertAction* ok = [UIAlertAction
+                                                             actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                                             {
+                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                 
+                                                             }];
+                                        
+                                        [alert addAction:ok];
+                                        
+                                        [self presentViewController:alert animated:YES completion:nil];
                                     }
                                     return;
                                     

@@ -1,1 +1,1 @@
-../../../KinveyKit/KinveyKit-1.40.4/include/KinveyKit/KCSReachability.h
+../../../KinveyKit/KinveyKit-1.38.0/include/KinveyKit/KCSReachability.h

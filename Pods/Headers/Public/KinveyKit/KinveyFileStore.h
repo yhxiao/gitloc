@@ -1,1 +1,1 @@
-../../../KinveyKit/KinveyKit-1.40.4/include/KinveyKit/KinveyFileStore.h
+../../../KinveyKit/KinveyKit-1.38.0/include/KinveyKit/KinveyFileStore.h

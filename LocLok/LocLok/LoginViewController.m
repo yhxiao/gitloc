@@ -173,12 +173,24 @@ extern NSString *const FBFailedLoginNotification;
     } else {
         [textField resignFirstResponder];
         if(![self  NSStringIsValidEmail:self.userNameTextField.text]){
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                message:@"Please input a valid email"
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles:nil];
-                [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Please input a valid email"
+                                          message:@""
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
                 [self.userNameTextField setBackgroundColor:[UIColor colorWithRed:0.5 green:0 blue:0 alpha:0.2]];
                 self.userNameTextField.clearButtonMode=UITextFieldViewModeAlways;
         }
@@ -210,16 +222,29 @@ extern NSString *const FBFailedLoginNotification;
 {
     //[self reenableButtons];
     if (errorOrNil != nil) {
+        //self.view.frame =CGRectMake(0,0,self.view.bounds.size.width,self.view.bounds.size.height+80);
+        
         BOOL wasUserError = [[errorOrNil domain] isEqual:KCSUserErrorDomain];
         NSString* title = wasUserError ? NSLocalizedString(@"Invalid Credentials", @"credentials error title") : NSLocalizedString(@"An error occurred.", @"Generic error message");
-        //NSString* message = wasUserError ? NSLocalizedString(@"Wrong username or password. Please check and try again.", @"credentials error message") : [errorOrNil localizedDescription];
-        NSString* message = NSLocalizedString(@"Wrong username or password. Please check and try again.", @"credentials error message");
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
+        NSString* message = wasUserError ? NSLocalizedString(@"Wrong username or password. Please check and try again.", @"credentials error message") : [errorOrNil localizedDescription];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:title
+                                      message:message
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     } else {
         //clear fields on success
         self.userNameTextField.text = @"";
@@ -280,7 +305,7 @@ extern NSString *const FBFailedLoginNotification;
 - (void)viewDidLoad
 {
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
-    UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
+    //UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
     UIColor *bgColor3=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
     UIColor *bgColor4=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
     [super viewDidLoad];
@@ -295,7 +320,7 @@ extern NSString *const FBFailedLoginNotification;
     width=self.view.bounds.size.width;
     height=self.view.bounds.size.height;
     
-    
+    //self.view.frame=CGRectMake(0, 0, width, height+80);
     
     //labels;
     
@@ -306,7 +331,7 @@ extern NSString *const FBFailedLoginNotification;
     welcomeLabel.backgroundColor = bgColor;
     welcomeLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
     [self.view addSubview:welcomeLabel];
-    welcomeLabel.text = @"LocShare";
+    welcomeLabel.text = @"LocLok";
     
     UILabel *orLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, initialHeight+200, width, 40) ];
     orLabel.textAlignment =  NSTextAlignmentCenter;
@@ -619,9 +644,11 @@ extern NSString *const FBFailedLoginNotification;
 - (void)login
 {
     //[self disableButtons:NSLocalizedString(@"Logging in", @"Logging In Message")];
-    
+    [self.userNameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
     ///Kinvey-Use code: login with the typed credentials
     [KCSUser loginWithUsername:[self.userNameTextField.text lowercaseString] password:self.passwordTextField.text withCompletionBlock:^(KCSUser *user, NSError *errorOrNil, KCSUserActionResult result) {
+        
         
         [self handeLogin:errorOrNil];
         if(!errorOrNil){
@@ -630,10 +657,9 @@ extern NSString *const FBFailedLoginNotification;
             appDelegate.fList=[[FriendList alloc] loadWithID:[[KCSUser activeUser] userId ]];
             [appDelegate getPrivRulesFromBackend];
             
-            //[appDelegate.locManager startUpdatingLocation];
-            
-        //[self dismissViewControllerAnimated:YES completion:nil];
+        
         }
+        
     }];
     //NSLog(@"Log in finished.");
     //[self performSegueWithIdentifier:@"toSignUp" sender:self];
@@ -718,12 +744,24 @@ extern NSString *const FBFailedLoginNotification;
 
 -(void)resetPassword{
     if(![self  NSStringIsValidEmail:self.userNameTextField.text]){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"Please input a valid email."
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@""
+                                      message:@"Please input a valid email."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         [self.userNameTextField setBackgroundColor:[UIColor colorWithRed:0.5 green:0 blue:0 alpha:0.2]];
         self.userNameTextField.clearButtonMode=UITextFieldViewModeAlways;
     }
@@ -733,13 +771,24 @@ extern NSString *const FBFailedLoginNotification;
                 
             }
         }];
-        UIAlertView* alert1 = [[UIAlertView alloc] initWithTitle:@"Password Reset"
-                                                         message:[[@"An email has been sent to " stringByAppendingString:self.userNameTextField.text] stringByAppendingString:@". Please follow the instructions in the email to change your password. Note that the email is only valid in twenty minutes from now."]
-                                                        delegate:self
-                                               cancelButtonTitle:NSLocalizedString(@"OK",@"OK")
-                                               otherButtonTitles:nil
-                               ];
-        [alert1 show];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Password Reset"
+                                      message:[[@"An email has been sent to " stringByAppendingString:self.userNameTextField.text] stringByAppendingString:@". Please follow the instructions in the email to change your password. Note that the email is only valid in twenty minutes from now."]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

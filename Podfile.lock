@@ -11,14 +11,15 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.9.1):
     - FBSDKCoreKit
-  - KinveyKit (1.40.4)
+  - KinveyKit (1.38.0)
   - LocationKit (3.0.2)
 
 DEPENDENCIES:
+  - Bolts
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - KinveyKit
+  - KinveyKit (= 1.38.0)
   - LocationKit (~> 3.0)
 
 SPEC CHECKSUMS:
@@ -26,7 +27,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
   FBSDKLoginKit: ec22dc49bd372b064e93d6773df4ffefb3a552a2
   FBSDKShareKit: b8c8ef0ed173f9fc1b3c8df384a0202ce53008d4
-  KinveyKit: 07e34a2c4592482db84599726fb4f566f25c6343
+  KinveyKit: 680dfb81ded986275c9ec8ad6b9bafab1ef664f7
   LocationKit: 76441e1fd18be0e390e31fa7c0c88f05ba975d3e
 
 COCOAPODS: 0.39.0

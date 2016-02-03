@@ -415,36 +415,71 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
 -(void)touchRecognizer_info1{
     
     //if(CGRectContainsPoint(info1.frame, pt)){//info1: true locations;
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Info about true location."
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                          otherButtonTitles:nil
-                          ];
-    [alert show];
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@""
+                                  message:@"Info about true location."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     //}
 }
 -(void)touchRecognizer_info2{
     //if(CGRectContainsPoint(info2.frame, pt)){//info1: true locations;
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Info about protected location."
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                          otherButtonTitles:nil
-                          ];
-    [alert show];
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@""
+                                  message:@"Info about protected location."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     //}
 }
 -(void)touchRecognizer_info3{
     //if(CGRectContainsPoint(info3.frame, pt)){//info1: true locations;
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Info about radius."
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                          otherButtonTitles:nil
-                          ];
-    [alert show];
+    
     //}
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@""
+                                  message:@"Info about radius."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

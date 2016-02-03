@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSArray* locCollection;
 @end
 
-@implementation QueryAnswerViewController
+@property (nonatomic) eryAnswerViewController
 @synthesize timeArray,queryStore,locCollection;
 @synthesize mapView;
 
@@ -76,7 +76,7 @@
 	NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&errorDesc];
 	if (!temp)
 	{
-		NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+		NSLog(@"Error reading plist: %@, format: %lu", errorDesc, (unsigned long)format);
 	}
 	
     
@@ -116,13 +116,25 @@
             
         } else {
             //load failed
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Load failed"
-                                                            message:[errorOrNil localizedDescription]
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
             
-            [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Load failed"
+                                          message:[errorOrNil localizedDescription]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             
         }
         

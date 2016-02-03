@@ -286,12 +286,27 @@
 //             ];
 //        }
         if([self.givenname isEqual:@""] || [self.surname isEqual:@""]){//given name;
-            [[[UIAlertView alloc] initWithTitle:@""
-                                        message:@"Given name and Surname cannot be empty."
-                                       delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil] show
-             ];
+            
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:@"Given name and Surname cannot be empty."
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
             return;
         }
         
@@ -299,12 +314,25 @@
             UIColor *alertColor=[UIColor colorWithRed:1 green:0.8 blue:1 alpha:1];
             UIColor *normalColor=[UIColor colorWithRed:1 green:1 blue:1 alpha:1];
             if(![self  NSStringIsValidEmail:self.userName.text]){
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                message:@"Please input a valid email"
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles:nil];
-                [alert show];
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@""
+                                              message:@"Please input a valid email"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+                
                 [self.userName setBackgroundColor:alertColor];
                 self.userName.clearButtonMode=UITextFieldViewModeAlways;
             }
@@ -313,12 +341,26 @@
                 self.userName.clearButtonMode=UITextFieldViewModeWhileEditing;
             }
             if(![passwordRepeat.text isEqualToString:password.text]){
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                message:@"Please input the same passwords"
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles:nil];
-                [alert show];
+                
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@""
+                                              message:@"Please input the same passwords"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                
+                [alert addAction:ok];
+                
+                [self presentViewController:alert animated:YES completion:nil];
                 [self.password setBackgroundColor:alertColor];
                 self.password.clearButtonMode=UITextFieldViewModeAlways;
                 [self.passwordRepeat setBackgroundColor:alertColor];
@@ -371,12 +413,25 @@
             [user saveWithCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil1) {
                 if (errorOrNil1 == nil) {
                     //was successful!
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Account Creation Successful", @"account success note title")
-                                                                    message:NSLocalizedString(@"User created. Welcome!", @"account success message body")
-                                                                   delegate:nil
-                                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                          otherButtonTitles:nil];
-                    [alert show];
+                    
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@"Account Creation Successful"
+                                                  message:@"User created. Welcome!"
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* ok = [UIAlertAction
+                                         actionWithTitle:@"OK"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             [alert dismissViewControllerAnimated:YES completion:nil];
+                                             
+                                         }];
+                    
+                    
+                    [alert addAction:ok];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
                     //return to the login page;
                     [self dismissViewControllerAnimated:YES completion:nil];
                     UIResponder* nextResponder = [self.view.superview nextResponder];
@@ -387,12 +442,25 @@
                 } else {
                     //there was an error with the update save
                     NSString* message = [errorOrNil1 localizedDescription];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Create account failed", @"Create account failed")
-                                                                    message:message
-                                                                   delegate:nil
-                                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                          otherButtonTitles: nil];
-                    [alert show];
+                    
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@"Create account failed"
+                                                  message:message
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* ok = [UIAlertAction
+                                         actionWithTitle:@"OK"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             [alert dismissViewControllerAnimated:YES completion:nil];
+                                             
+                                         }];
+                    
+                    
+                    [alert addAction:ok];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
                     //return to the login page;
                     [self dismissViewControllerAnimated:YES completion:nil];
                     
@@ -443,11 +511,24 @@
             BOOL wasUserError = [[errorOrNil domain] isEqual: KCSUserErrorDomain];
             NSString* title = wasUserError ? [NSString stringWithFormat:NSLocalizedString(@"Could not create new user with username %@", @"create username error title"), username]: NSLocalizedString(@"An error occurred.", @"Generic error message");
             NSString* message = wasUserError ? NSLocalizedString(@"Please choose a different username.", @"create username error message") : [errorOrNil localizedDescription];
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil];
-            [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:title
+                                          message:message
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             
         }
     }];
@@ -506,12 +587,24 @@
 {
     [self validate];
     if(textField==self.userName && ![self NSStringIsValidEmail:userName.text ]){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"Please input a valid email"
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@""
+                                      message:@"Please input a valid email"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         return NO;
     }
     if(textField==self.userName && [self NSStringIsValidEmail:userName.text ]){//username
@@ -522,12 +615,25 @@
         [KCSUser checkUsername:[userName.text lowercaseString] withCompletionBlock:^(NSString *username_1, BOOL usernameAlreadyTaken, NSError *error) {
             /*<#Handle error#>*/
             if (usernameAlreadyTaken == YES) {
-                [[[UIAlertView alloc] initWithTitle:@"Username Already Taken"
-                                            message:[NSString stringWithFormat:@"'%@' already in use, choose another username", username_1]
-                                           delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil] show
-                 ];
+                
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@"Username Already Taken"
+                                              message:[NSString stringWithFormat:@"'%@' already in use, choose another username", username_1]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok];
+                
+                [self presentViewController:alert animated:YES completion:nil];
                 shouldReturnOfEmail=NO;
             } else {
                 shouldReturnOfEmail=YES;
@@ -546,12 +652,25 @@
         [self.passwordRepeat becomeFirstResponder];
     }
     else if(textField==self.password && textField.text.length<kMinPasswordLength){
-        [[[UIAlertView alloc] initWithTitle:@"Password Error"
-                                    message:@"Password must be longer than 6 digits."
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show
-         ];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Password Error"
+                                      message:@"Password must be longer than 6 digits."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
         return NO;
         
     }
@@ -567,12 +686,24 @@
         UIColor *alertColor=[UIColor colorWithRed:1 green:0.8 blue:1 alpha:1];
         UIColor *normalColor=[UIColor colorWithRed:1 green:1 blue:1 alpha:1];
         if(![self  NSStringIsValidEmail:self.userName.text]){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"Please input a valid email"
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil];
-            [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:@"Please input a valid email"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             [self.userName setBackgroundColor:alertColor];
             self.userName.clearButtonMode=UITextFieldViewModeAlways;
         }
@@ -581,12 +712,24 @@
             self.userName.clearButtonMode=UITextFieldViewModeWhileEditing;
         }
         if(![passwordRepeat.text isEqualToString:password.text]){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"Please input the same passwords"
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil];
-            [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:@"Please input the same passwords"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             [self.password setBackgroundColor:alertColor];
             self.password.clearButtonMode=UITextFieldViewModeAlways;
             [self.passwordRepeat setBackgroundColor:alertColor];

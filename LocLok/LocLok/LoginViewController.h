@@ -34,4 +34,5 @@
 //-(IBAction)logout:(id)sender;
 - (void)createAccount;
 -(void)resetPassword;
+- (void) handeLogin:(NSError*)errorOrNil;
 @end

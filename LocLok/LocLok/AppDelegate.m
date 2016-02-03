@@ -98,11 +98,32 @@ extern NSString* LocalImagePlist;
 {
     [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
     // Additional push notification handling code should be performed here
-    [[[UIAlertView alloc] initWithTitle:@"Received a Push"
-                                message:userInfo[@"aps"][@"alert"]
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Wow"
+                                  message:@"Received a Push"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    //UIAlertAction* cancel = [UIAlertAction
+    //                         actionWithTitle:@"Cancel"
+    //                         style:UIAlertActionStyleDefault
+    //                         handler:^(UIAlertAction * action)
+    //                         {
+    //                             [alert dismissViewControllerAnimated:YES completion:nil];
+    //
+    //                         }];
+    
+    [alert addAction:ok];
+    //[alert addAction:cancel];
+    
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     
 }
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -129,14 +150,7 @@ extern NSString* LocalImagePlist;
         [application cancelAllLocalNotifications]; // Restart the Local Notifications list
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"is_first_time"];
         
-        /*UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"A default privacy setting has been configured for you. To edit personal privacy setting, please click \"My Privacy\"."
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil
-                              ];
-        [alert show];
-         */
+        
     }
     
     
@@ -303,8 +317,7 @@ extern NSString* LocalImagePlist;
     if([KCSUser activeUser]){
         // FBSample logic
         // Call the 'activateApp' method to log an app event for use in analytics and advertising reporting.
-        //[FBAppEvents activateApp];
-        [FBSDKAppEvents activateApp];
+        //[FBSDKAppEvents activateApp];
         
         // FBSample logic
         // We need to properly handle activation of the application with regards to SSO
@@ -335,8 +348,11 @@ extern NSString* LocalImagePlist;
     
     
     [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];//auto update profile;
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                    didFinishLaunchingWithOptions:launchOptions];
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
+    return YES;
 }
 // Displays an alert that can take the user to Settings if the location authorization status is not satisfactory.
 - (void)checkAlwaysAuthorization {
@@ -347,8 +363,39 @@ extern NSString* LocalImagePlist;
         NSString *title =  (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
         NSString *message = @"To use background location you must turn on 'Always' in the Location Services Settings";
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Settings", nil];
-        [alertView show];
+
+       
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:title
+                                      message:message
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        UIAlertAction* right = [UIAlertAction
+                                 actionWithTitle:@"Settings"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        [alert addAction:left];
+        [alert addAction:right];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        
+        
+        
     }
     
     else if (status == kCLAuthorizationStatusNotDetermined) {
@@ -380,11 +427,7 @@ extern NSString* LocalImagePlist;
     //NSLog(@"local notif's fireDate=%@",notification.fireDate);
     NSLog(@"activeLocationUntilWhen=%@",activeLocationUntilWhen);
     [self toggleUpdatingLocations];//open or close location updating;
-//    [[[UIAlertView alloc] initWithTitle:@"Received a LocalNotif"
-//                                message:@"LocalNotif"
-//                               delegate:nil
-//                      cancelButtonTitle:@"OK"
-//                      otherButtonTitles:nil] show];
+
 }
 */
 
@@ -475,7 +518,7 @@ extern NSString* LocalImagePlist;
     
     [[KCSPush sharedPush] registerForRemoteNotifications];
     
-    
+    [FBSDKAppEvents activateApp];
     //[self.window makeKeyAndVisible];
 }
 
@@ -542,14 +585,29 @@ extern NSString* LocalImagePlist;
 {
     //[self reenableButtons];
     if (errorOrNil != nil) {
-        BOOL wasUserError = [errorOrNil domain] == KCSUserErrorDomain;
+        BOOL wasUserError = [[errorOrNil domain]  isEqual: KCSUserErrorDomain];
         NSString* title = wasUserError ? NSLocalizedString(@"Invalid Credentials", @"credentials error title") : NSLocalizedString(@"An error occurred.", @"Generic error message");
         NSString* message = wasUserError ? NSLocalizedString(@"Wrong username or password. Please check and try again.", @"credentials error message") : [errorOrNil localizedDescription];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message                                                           delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:title
+                                      message:message
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        
+        [alert addAction:ok];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     } else {
         NSLog(@"Facebook->Kinvey error==nil");
         
@@ -736,12 +794,25 @@ extern NSString* LocalImagePlist;
                         [KCSUser checkUsername:strEmail withCompletionBlock:^(NSString *username_1, BOOL usernameAlreadyTaken, NSError *error1) {
                             
                                if (usernameAlreadyTaken == YES && first_time_user) {
-                                   [[[UIAlertView alloc] initWithTitle:@"Email Already Taken"
-                                                               message:[NSString stringWithFormat:@"\"%@\" is already in use, you can log in with \"%@\" if it is your email. Or you can reclaim this email as your user name by clicking \"Forgot Password\". Thanks.", username_1,username_1]
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"OK"
-                                                     otherButtonTitles:nil] show
-                                    ];
+                                   
+                                   
+                                   UIAlertController * alert=   [UIAlertController
+                                                                 alertControllerWithTitle:@"Email Already Taken"
+                                                                 message:[NSString stringWithFormat:@"\"%@\" is already in use, you can log in with \"%@\" if it is your email. Or you can reclaim this email as your user name by clicking \"Forgot Password\". Thanks.", username_1,username_1]
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+                                   
+                                   UIAlertAction* ok = [UIAlertAction
+                                                        actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * action)
+                                                        {
+                                                            [alert dismissViewControllerAnimated:YES completion:nil];
+                                                            
+                                                        }];
+                                   
+                                   [alert addAction:ok];
+                                   
+                                   [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
                                    
                                    
                                    //remove KCS user;
@@ -835,15 +906,26 @@ extern NSString* LocalImagePlist;
                                         if(first_time_user ){
                                             if (errorOrNil1 == nil) {
                                                 //was successful!
-                                                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Facebook Log in Successful", @"account success note title")
-                                                                      
-                                                                      
-                                                                                                message:[NSString stringWithFormat:NSLocalizedString(@"Welcome, %@ %@! \"%@\" will be your account name. You can either reset a password for it or still log in with facebook in the future.",@"account success message body"), strFirstName,strLastName,strEmail ]
-                                                                      
-                                                                                               delegate:nil
-                                                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                                      otherButtonTitles:nil];
-                                                [alert show];
+                                                
+                                                UIAlertController * alert=   [UIAlertController
+                                                                              alertControllerWithTitle:@"Facebook Log in Successful"
+                                                                              message:[NSString stringWithFormat:NSLocalizedString(@"Welcome, %@ %@! \"%@\" will be your account name. You can either reset a password for it or still log in with facebook in the future.",@"account success message body"), strFirstName,strLastName,strEmail ]
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                                
+                                                UIAlertAction* ok = [UIAlertAction
+                                                                     actionWithTitle:@"OK"
+                                                                     style:UIAlertActionStyleDefault
+                                                                     handler:^(UIAlertAction * action)
+                                                                     {
+                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                         
+                                                                     }];
+                                                
+                                                [alert addAction:ok];
+                                                
+                                                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+                                                
+                                                
                                                 
                                                 //fList=[[FriendList alloc] loadWithID:[user userId ]];
                                                 //send notification of successful login;
@@ -856,12 +938,25 @@ extern NSString* LocalImagePlist;
                                             } else {
                                                 //there was an error with the update save
                                                 NSString* message = [errorOrNil1 localizedDescription];
-                                                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log in account failed", @"Log in account failed")
-                                                                                                message:message
-                                                                                               delegate:nil
-                                                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                                      otherButtonTitles: nil];
-                                                [alert show];
+                                                
+                                                UIAlertController * alert=   [UIAlertController
+                                                                              alertControllerWithTitle:@"Log in account failed"
+                                                                              message:message
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                                
+                                                UIAlertAction* ok = [UIAlertAction
+                                                                     actionWithTitle:@"OK"
+                                                                     style:UIAlertActionStyleDefault
+                                                                     handler:^(UIAlertAction * action)
+                                                                     {
+                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                         
+                                                                     }];
+                                                
+                                                
+                                                [alert addAction:ok];
+                                                
+                                                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
                                             }
                                         }
                                     }
@@ -926,14 +1021,25 @@ extern NSString* LocalImagePlist;
                                         [PhotoStore saveObject:uPhoto withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                                             if (errorOrNil != nil) {
                                                 //save failed, show an error alert
-                                                UIAlertView* alertView = [[UIAlertView alloc]
-                                                                          initWithTitle:NSLocalizedString(@"Save failed", @"Save failed")
-                                                                          message:[errorOrNil localizedFailureReason]
-                                                                          delegate:nil
-                                                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                          otherButtonTitles:nil
-                                                                          ];
-                                                [alertView show];
+                                                
+                                                UIAlertController * alert=   [UIAlertController
+                                                                              alertControllerWithTitle:@"Save failed"
+                                                                              message:[errorOrNil localizedFailureReason]
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                                
+                                                UIAlertAction* ok = [UIAlertAction
+                                                                     actionWithTitle:@"OK"
+                                                                     style:UIAlertActionStyleDefault
+                                                                     handler:^(UIAlertAction * action)
+                                                                     {
+                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                         
+                                                                     }];
+                                                
+                                                
+                                                [alert addAction:ok];
+                                                
+                                                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
                                             } else {
                                                 //save was successful
                                                 NSLog(@"Successfully saved photo.");
@@ -1017,13 +1123,25 @@ extern NSString* LocalImagePlist;
     // ];
     
     if (error) {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Facebook session error"
-                                  message:error.localizedDescription
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
+        
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Facebook session error"
+                                      message:[error localizedDescription]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
         
         //Clear this token
         //[FBSession.activeSession closeAndClearTokenInformation];
@@ -1076,7 +1194,7 @@ extern NSString* LocalImagePlist;
     id<KCSStore> privStore=[KCSLinkedAppdataStore storeWithOptions:@{
                 KCSStoreKeyCollectionName : @"UserPrivacy",
                 KCSStoreKeyCollectionTemplateClass : [PrivSetting class],
-                KCSStoreKeyCachePolicy:@(KCSCachePolicyNetworkFirst)
+                KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
         }
     ];
     
@@ -1086,7 +1204,8 @@ extern NSString* LocalImagePlist;
                        withExactMatchForValue:[[KCSUser activeUser] userId]
                         ];
     
-    //NSLog(@"%@",privStore);
+    NSLog(@"%@",privStore);
+    NSLog(@"%@",[KCSUser activeUser]);
     
     [privStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil==nil){
@@ -1106,13 +1225,52 @@ extern NSString* LocalImagePlist;
                 NSLog(@"%@",[[[UIDevice currentDevice] identifierForVendor] UUIDString]);
                 if(![privacy.deviceID isEqualToString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]){
                     conditionMultipleDevices=[NSNumber numberWithBool:NO];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Warning: Multiple devices detected!"
-                                                                    message:@"This warning was caused by one of the following conditions. 1. Reinstalling this app; 2. Using multiple devices for one user. If you set this device as your primary device, then it will represent your location. Do you want to set this device as your primary device?"
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"No"
-                                                          otherButtonTitles:@"Yes",nil
-                                          ];
-                    [alert show];
+
+                    
+                    
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@"Warning: Multiple devices detected!"
+                                                  message:@"This warning was caused by one of the following conditions. 1. Reinstalling this app; 2. Using multiple devices for one user. If you set this device as your primary device, then it will represent your location. Do you want to set this device as your primary device?"
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* ok = [UIAlertAction
+                                         actionWithTitle:@"YES"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             //flagSetPrimaryDevice=[NSNumber numberWithInt:1];
+                                             conditionMultipleDevices=[NSNumber numberWithBool:YES];
+                                             privacy.deviceID=[[[UIDevice currentDevice] identifierForVendor] UUIDString];
+                                             [self savePrivRulesToBackend];
+                                             
+                                             [alert dismissViewControllerAnimated:YES completion:nil];
+                                             
+                                         }];
+                    UIAlertAction* cancel = [UIAlertAction
+                                             actionWithTitle:@"NO"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 //flagSetPrimaryDevice=[NSNumber numberWithInt:0];
+                                                 [self DataCleanBeforeLogout];
+                                                 
+                                                 
+                                                 LoginViewController* loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                                                 loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                                                 [self.window.rootViewController presentViewController:loginVC animated:NO completion:^{
+                                                     //AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+                                                     //jump to the root view controller: map;
+                                                     //[self tabBarController].selectedIndex=0;
+                                                 }
+                                                  ];
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                    
+                    [alert addAction:ok];
+                    [alert addAction:cancel];
+                    
+                    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
                 }
                 //check if the deviceID is current device;
                 //if(![privacy.deviceID isEqualToString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]){
@@ -1177,41 +1335,41 @@ extern NSString* LocalImagePlist;
     
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if([alertView.title isEqualToString:@"Warning: Multiple devices detected!"]){
-        if( buttonIndex == 1 ) {//Yes
-            //flagSetPrimaryDevice=[NSNumber numberWithInt:1];
-            conditionMultipleDevices=[NSNumber numberWithBool:YES];
-            privacy.deviceID=[[[UIDevice currentDevice] identifierForVendor] UUIDString];
-            [self savePrivRulesToBackend];
-            
-            
-        }
-        else{//No
-            //flagSetPrimaryDevice=[NSNumber numberWithInt:0];
-            [self DataCleanBeforeLogout];
-            
-            
-            LoginViewController* loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-            [self.window.rootViewController presentViewController:loginVC animated:NO completion:^{
-                //AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-                //jump to the root view controller: map;
-                //[self tabBarController].selectedIndex=0;
-            }
-             ];
-            //conditionMultipleDevices=[NSNumber numberWithBool:YES];
-            
-        }
-    }
-    
-    if([alertView.title isEqualToString:@"Location services are off"] || [alertView.title isEqualToString:@"Background location is not enabled"])
-    {//location Authorization alert;
-    if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-    }
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+////    if([alertView.title isEqualToString:@"Warning: Multiple devices detected!"]){
+////        if( buttonIndex == 1 ) {//Yes
+////            //flagSetPrimaryDevice=[NSNumber numberWithInt:1];
+////            conditionMultipleDevices=[NSNumber numberWithBool:YES];
+////            privacy.deviceID=[[[UIDevice currentDevice] identifierForVendor] UUIDString];
+////            [self savePrivRulesToBackend];
+////            
+////            
+////        }
+////        else{//No
+////            //flagSetPrimaryDevice=[NSNumber numberWithInt:0];
+////            [self DataCleanBeforeLogout];
+////            
+////            
+////            LoginViewController* loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+////            loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+////            [self.window.rootViewController presentViewController:loginVC animated:NO completion:^{
+////                //AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+////                //jump to the root view controller: map;
+////                //[self tabBarController].selectedIndex=0;
+////            }
+////             ];
+////            //conditionMultipleDevices=[NSNumber numberWithBool:YES];
+////            
+////        }
+////    }
+//    
+////    if([alertView.title isEqualToString:@"Location services are off"] || [alertView.title isEqualToString:@"Background location is not enabled"])
+////    {//location Authorization alert;
+////        if (buttonIndex == 1) {
+////            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+////        }
+////    }
+//}
 
 -(void)savePrivRulesToBackend{
     //AppDelegate *appDelegate1 = [[UIApplication sharedApplication] delegate];
@@ -1236,30 +1394,56 @@ extern NSString* LocalImagePlist;
     id<KCSStore> privStore=[KCSLinkedAppdataStore storeWithOptions:@{
                 KCSStoreKeyCollectionName : @"UserPrivacy",
                 KCSStoreKeyCollectionTemplateClass : [PrivSetting class],
-                KCSStoreKeyCachePolicy:@(KCSCachePolicyNetworkFirst)
+                KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
         }
         ];
     
     
     [privStore saveObject:localizedPolicy withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil!=nil){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:[@"when saving privacy setting to cloud server, error occured. " stringByAppendingString:[errorOrNil localizedDescription]]
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil
-                                  ];
-            [alert show];
+            
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:[@"when saving privacy setting to cloud server, error occured. " stringByAppendingString:[errorOrNil localizedDescription]]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            
+            [alert addAction:ok];
+            
+            [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
             //NSLog(@"when saving privacy setting to backend, error occured. %@",errorOrNil);
         }
         else{
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"Privacy setting has been saved!"
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil
-                                  ];
-            [alert show];
+            
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:@"Privacy setting has been saved!"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            
+            [alert addAction:ok];
+            
+            [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
             
         }
         

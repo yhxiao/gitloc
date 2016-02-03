@@ -288,13 +288,25 @@
     
     if([[dateFormat dateFromString:[detailedText objectAtIndex:1]] compare:[dateFormat dateFromString:[detailedText objectAtIndex:2]]]==NSOrderedDescending){
         NSLog(@"%@, %@",[dateFormat dateFromString:[detailedText objectAtIndex:1]],[dateFormat dateFromString:[detailedText objectAtIndex:2]]);
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"\"End time\" must be larger than \"Start time\"."
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil
-                              ];
-        [alert show];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@""
+                                      message:@"\"End time\" must be larger than \"Start time\"."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }
     
 }

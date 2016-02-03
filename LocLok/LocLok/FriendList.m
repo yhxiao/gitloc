@@ -30,7 +30,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
         KCSStoreKeyCollectionName : @"Friendship",
         KCSStoreKeyCollectionTemplateClass : [Friendship class],
-        KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+        KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
     }];
 
     //NSLog(@"In friendlist query, the userId is %@",[[KCSUser activeUser] userId]);
@@ -160,13 +160,13 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     LocStore=[KCSAppdataStore storeWithOptions:@{
                                                  KCSStoreKeyCollectionName:@"LocSeries",
                                                  KCSStoreKeyCollectionTemplateClass:[LocSeries class],
-                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
+                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
                                                  }];
     if(LokStore==nil)
     LokStore=[KCSAppdataStore storeWithOptions:@{
                                                  KCSStoreKeyCollectionName:@"LokSeries",
                                                  KCSStoreKeyCollectionTemplateClass:[LocSeries class],
-                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
+                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
                                                  }];
     
     //NSLog(@"%d",PermissionForFriends);
@@ -230,7 +230,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
                                                             ofClass:[AddFriends class]
                                  ];
     loadStore = [KCSAppdataStore storeWithCollection:collection
-                                             options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
+                                             options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
                  ];
     
     KCSQuery* query1 = [KCSQuery queryOnField:@"from_user._id"
@@ -249,7 +249,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
                                                                      ofClass:[Friendship class]
                                           ];
     __block id<KCSStore> friendship_store=[KCSAppdataStore storeWithCollection:collection_friendship
-                                                                       options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
+                                                                       options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
                                            ];
     
     [loadStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
@@ -271,12 +271,25 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
                 [friendship_store saveObject:newFriendship withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                     if (errorOrNil != nil) {
                         //save failed, show an error alert
-                        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Save failed", @"Save Failed")
-                                                                            message:[errorOrNil localizedFailureReason] //not actually localized
-                                                                           delegate:nil
-                                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                  otherButtonTitles:nil];
-                        [alertView show];
+                        
+//                        UIAlertController * alert=   [UIAlertController
+//                                                      alertControllerWithTitle:@"Save failed"
+//                                                      message:[errorOrNil localizedFailureReason] //not actually localized
+//                                                      preferredStyle:UIAlertControllerStyleAlert];
+//                        
+//                        UIAlertAction* ok = [UIAlertAction
+//                                             actionWithTitle:@"OK"
+//                                             style:UIAlertActionStyleDefault
+//                                             handler:^(UIAlertAction * action)
+//                                             {
+//                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+//                                                 
+//                                             }];
+//                        
+//                        [alert addAction:ok];
+//                        
+//                        [self presentViewController:alert animated:YES completion:nil];
+                        NSLog(@"FriendList: save failed.");
                     } else {
                         //save was successful
                         NSLog(@"Successfully saved event (id='%@').", [objectsOrNil[0] kinveyObjectId]);

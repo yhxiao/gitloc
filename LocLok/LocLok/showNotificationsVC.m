@@ -317,11 +317,11 @@ extern NSString* LocalImagePlist;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section==0){
-        return [NSString stringWithFormat: @"%d requests sent to me",toCollection.count];
+        return [NSString stringWithFormat: @"%lu requests sent to me",(unsigned long)toCollection.count];
         
     }
     if(section==1){
-        return [NSString stringWithFormat: @"%d requests sent from me",fromCollection.count];
+        return [NSString stringWithFormat: @"%lu requests sent from me",(unsigned long)fromCollection.count];
         
     }
     else{return 0;}
@@ -643,15 +643,185 @@ extern NSString* LocalImagePlist;
                 
                 void (^block_after_assign)(AddFriends *assigned_array)=^(AddFriends *assigned_array){
                     NSLog(@"%@",self.oneFriend);
-                    UIAlertView *alert = [[UIAlertView alloc]
-                    initWithTitle:@"Request Back"
-                    message:[[@"You have agreed the request. Would you like to add " stringByAppendingString:senderName] stringByAppendingString:@" as a friend too?"]
-                    delegate:self
-                    cancelButtonTitle:@"YES"
-                    otherButtonTitles:@"NO"
-                    ,nil
-                    ];
-                    [alert show];
+                    
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@"Request Back"
+                                                  message:[[@"You have agreed the request. Would you like to add " stringByAppendingString:senderName] stringByAppendingString:@" as a friend too?"]
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* ok = [UIAlertAction
+                                         actionWithTitle:@"YES"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             [alert dismissViewControllerAnimated:YES completion:nil];
+                                             
+                                             
+                                                 //Code to add friend back;
+                                                 
+                                                 KCSQuery *query_exist11=[KCSQuery queryOnField:@"from_user._id"
+                                                                         withExactMatchForValue:[[KCSUser activeUser] userId]
+                                                                          ];
+                                                 KCSQuery *query_exist22=[KCSQuery queryOnField:@"to_user._id"
+                                                                         withExactMatchForValue:
+                                                                          [self.oneFriend.to_user userId]
+                                                                          ];
+                                                 KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist11,query_exist22, nil];
+                                                 
+                                                 NSString *str_Name=  [[[self.oneFriend.to_user givenName]
+                                                                        stringByAppendingString:@" "]
+                                                                       stringByAppendingString:[self.oneFriend.to_user surname]
+                                                                       ];
+                                                 
+                                                 
+                                                 //check if friend request is already in AddFriend;
+                                                 [loadStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                                     if(errorOrNil!=nil){
+                                                         NSLog(@"Get an error when checking if a friend request is already in AddFriend: %@",errorOrNil);
+                                                     }
+                                                     if(objectsOrNil.count!=0){//request already sent;
+                                                         
+                                                         
+                                                         UIAlertController * alert=   [UIAlertController
+                                                                                       alertControllerWithTitle:@""
+                                                                                       message:[[@"Request already sent to "
+                                                                                                 stringByAppendingString:str_Name]
+                                                                                                stringByAppendingString:@", Please wait for acceptance."
+                                                                                                ]
+                                                                                       preferredStyle:UIAlertControllerStyleAlert];
+                                                         
+                                                         UIAlertAction* ok = [UIAlertAction
+                                                                              actionWithTitle:@"OK"
+                                                                              style:UIAlertActionStyleDefault
+                                                                              handler:^(UIAlertAction * action)
+                                                                              {
+                                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                  
+                                                                              }];
+                                                         
+                                                         [alert addAction:ok];
+                                                         
+                                                         [self presentViewController:alert animated:YES completion:nil];
+                                                         return;
+                                                         
+                                                     }
+                                                     if(objectsOrNil.count==0){// not in AddFriend;
+                                                         //check if they are already friends.
+                                                         [self.friendshipStore queryWithQuery:query_exist
+                                                                          withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                                                              if(errorOrNil!=nil){
+                                                                                  NSLog(@"Got an error: %@", errorOrNil);
+                                                                                  
+                                                                              }
+                                                                              
+                                                                              if(objectsOrNil.count!=0){//request already exists;
+                                                                                  
+                                                                                  
+                                                                                  UIAlertController * alert=   [UIAlertController
+                                                                                                                alertControllerWithTitle:@""
+                                                                                                                message:[[@"You and "
+                                                                                                                          stringByAppendingString:str_Name]
+                                                                                                                         stringByAppendingString:@" are already friends."
+                                                                                                                         ]
+                                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                                                                  
+                                                                                  UIAlertAction* ok = [UIAlertAction
+                                                                                                       actionWithTitle:@"OK"
+                                                                                                       style:UIAlertActionStyleDefault
+                                                                                                       handler:^(UIAlertAction * action)
+                                                                                                       {
+                                                                                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                           
+                                                                                                       }];
+                                                                                  
+                                                                                  [alert addAction:ok];
+                                                                                  
+                                                                                  [self presentViewController:alert animated:YES completion:nil];
+                                                                                  return;
+                                                                              }
+                                                                              else{//send the request;
+                                                                                  [loadStore saveObject:self.oneFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                                                                      if (errorOrNil != nil) {
+                                                                                          //save failed, show an error alert
+                                                                                          
+                                                                                          
+                                                                                          UIAlertController * alert=   [UIAlertController
+                                                                                                                        alertControllerWithTitle:@"Save failed"
+                                                                                                                        message:[errorOrNil localizedFailureReason] //not actually localized
+                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                                                                                          
+                                                                                          UIAlertAction* ok = [UIAlertAction
+                                                                                                               actionWithTitle:@"OK"
+                                                                                                               style:UIAlertActionStyleDefault
+                                                                                                               handler:^(UIAlertAction * action)
+                                                                                                               {
+                                                                                                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                   
+                                                                                                               }];
+                                                                                          
+                                                                                          [alert addAction:ok];
+                                                                                          
+                                                                                          [self presentViewController:alert animated:YES completion:nil];
+                                                                                          
+                                                                                      } else {
+                                                                                          //save was successful
+                                                                                          
+                                                                                          
+                                                                                          UIAlertController * alert=   [UIAlertController
+                                                                                                                        alertControllerWithTitle:@"Request sent"
+                                                                                                                        message:[[@"Friend request has been sent to "
+                                                                                                                                  stringByAppendingString:str_Name]
+                                                                                                                                 stringByAppendingString:@" . Please wait for acceptance."
+                                                                                                                                 ]
+                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                                                                                          
+                                                                                          UIAlertAction* ok = [UIAlertAction
+                                                                                                               actionWithTitle:@"OK"
+                                                                                                               style:UIAlertActionStyleDefault
+                                                                                                               handler:^(UIAlertAction * action)
+                                                                                                               {
+                                                                                                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                   
+                                                                                                               }];
+                                                                                          
+                                                                                          [alert addAction:ok];
+                                                                                          
+                                                                                          [self presentViewController:alert animated:YES completion:nil];
+                                                                                      }
+                                                                                      return;
+                                                                                      
+                                                                                  } withProgressBlock:nil
+                                                                                   ];//save to AddFriend
+                                                                                  
+                                                                              }
+                                                                              
+                                                                              
+                                                                          } withProgressBlock:nil
+                                                          ];//is in Friendship
+                                                         
+                                                         
+                                                     }
+                                                     
+                                                 } withProgressBlock:nil
+                                                  ];//is in AddFriend;
+                                                 
+                                                 
+                                             
+                                             
+                                         }];
+                    UIAlertAction* cancel = [UIAlertAction
+                                             actionWithTitle:@"NO"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                    
+                    [alert addAction:ok];
+                    [alert addAction:cancel];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
                 };
                 //assure the sequence that block will only be executed after self.oneFriend is assigned;
                 block_after_assign(self.oneFriend);
@@ -682,120 +852,120 @@ extern NSString* LocalImagePlist;
     NSLog(@"tapped");
 }
 
-//UIAlertView delegate:
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if([alertView.title isEqual:@"Request Back"]){//friendship request back to sender;
-        if (buttonIndex == 0)
-        {
-            //Code to add friend back;
-            
-            KCSQuery *query_exist11=[KCSQuery queryOnField:@"from_user._id"
-                                   withExactMatchForValue:[[KCSUser activeUser] userId]
-                                    ];
-            KCSQuery *query_exist22=[KCSQuery queryOnField:@"to_user._id"
-                                   withExactMatchForValue:
-                                    [self.oneFriend.to_user userId]
-                                    ];
-            KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist11,query_exist22, nil];
-            
-            NSString *str_Name=  [[[self.oneFriend.to_user givenName]
-                                   stringByAppendingString:@" "]
-                                  stringByAppendingString:[self.oneFriend.to_user surname]
-                                  ];
-            
-            
-            //check if friend request is already in AddFriend;
-            [loadStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                if(errorOrNil!=nil){
-                    NSLog(@"Get an error when checking if a friend request is already in AddFriend: %@",errorOrNil);
-                }
-                if(objectsOrNil.count!=0){//request already sent;
-                    UIAlertView* alert = [[UIAlertView alloc]
-                                          initWithTitle:@""
-                                          message:[[@"Request already sent to "
-                                                    stringByAppendingString:str_Name]
-                                                   stringByAppendingString:@", Please wait for acceptance."
-                                                   ]
-                                          delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                          otherButtonTitles:nil
-                                          ];
-                    [alert show];
-                    return;
-                    
-                }
-                if(objectsOrNil.count==0){// not in AddFriend;
-                    //check if they are already friends.
-                    [self.friendshipStore queryWithQuery:query_exist
-                                     withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                                         if(errorOrNil!=nil){
-                                             NSLog(@"Got an error: %@", errorOrNil);
-                                             
-                                         }
-                                         
-                                         if(objectsOrNil.count!=0){//request already exists;
-                                             UIAlertView* alert = [[UIAlertView alloc]
-                                                                   initWithTitle:@""
-                                                                   message:[[@"You and "
-                                                                             stringByAppendingString:str_Name]
-                                                                            stringByAppendingString:@" are already friends."
-                                                                            ]
-                                                                   delegate:self
-                                                                   cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                   otherButtonTitles:nil
-                                                                   ];
-                                             [alert show];
-                                             return;
-                                         }
-                                         else{//send the request;
-                                             [loadStore saveObject:self.oneFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                                                 if (errorOrNil != nil) {
-                                                     //save failed, show an error alert
-                                                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Save failed", @"Save Failed")
-                                                                                                         message:[errorOrNil localizedFailureReason] //not actually localized
-                                                                                                        delegate:nil
-                                                                                               cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                                               otherButtonTitles:nil];
-                                                     [alertView show];
-                                                 } else {
-                                                     //save was successful
-                                                     
-                                                     
-                                                     UIAlertView* alert = [[UIAlertView alloc]
-                                                                           initWithTitle:@"Request sent"
-                                                                           message:[[@"Friend request has been sent to "
-                                                                                     stringByAppendingString:str_Name]
-                                                                                    stringByAppendingString:@" . Please wait for acceptance."
-                                                                                    ]
-                                                                           delegate:self
-                                                                           cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                                           otherButtonTitles:nil
-                                                                           ];
-                                                     [alert show];
-                                                 }
-                                                 return;
-                                                 
-                                             } withProgressBlock:nil
-                                              ];//save to AddFriend
-                                             
-                                         }
-                                         
-                                         
-                                     } withProgressBlock:nil
-                     ];//is in Friendship
-                    
-                    
-                }
-                
-            } withProgressBlock:nil
-             ];//is in AddFriend;
-            
-
-        }
-        
-    }
-}
+////UIAlertView delegate:
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if([alertView.title isEqual:@"Request Back"]){//friendship request back to sender;
+//        if (buttonIndex == 0)
+//        {
+//            //Code to add friend back;
+//            
+//            KCSQuery *query_exist11=[KCSQuery queryOnField:@"from_user._id"
+//                                   withExactMatchForValue:[[KCSUser activeUser] userId]
+//                                    ];
+//            KCSQuery *query_exist22=[KCSQuery queryOnField:@"to_user._id"
+//                                   withExactMatchForValue:
+//                                    [self.oneFriend.to_user userId]
+//                                    ];
+//            KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist11,query_exist22, nil];
+//            
+//            NSString *str_Name=  [[[self.oneFriend.to_user givenName]
+//                                   stringByAppendingString:@" "]
+//                                  stringByAppendingString:[self.oneFriend.to_user surname]
+//                                  ];
+//            
+//            
+//            //check if friend request is already in AddFriend;
+//            [loadStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+//                if(errorOrNil!=nil){
+//                    NSLog(@"Get an error when checking if a friend request is already in AddFriend: %@",errorOrNil);
+//                }
+//                if(objectsOrNil.count!=0){//request already sent;
+//                    UIAlertView* alert = [[UIAlertView alloc]
+//                                          initWithTitle:@""
+//                                          message:[[@"Request already sent to "
+//                                                    stringByAppendingString:str_Name]
+//                                                   stringByAppendingString:@", Please wait for acceptance."
+//                                                   ]
+//                                          delegate:self
+//                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+//                                          otherButtonTitles:nil
+//                                          ];
+//                    [alert show];
+//                    return;
+//                    
+//                }
+//                if(objectsOrNil.count==0){// not in AddFriend;
+//                    //check if they are already friends.
+//                    [self.friendshipStore queryWithQuery:query_exist
+//                                     withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+//                                         if(errorOrNil!=nil){
+//                                             NSLog(@"Got an error: %@", errorOrNil);
+//                                             
+//                                         }
+//                                         
+//                                         if(objectsOrNil.count!=0){//request already exists;
+//                                             UIAlertView* alert = [[UIAlertView alloc]
+//                                                                   initWithTitle:@""
+//                                                                   message:[[@"You and "
+//                                                                             stringByAppendingString:str_Name]
+//                                                                            stringByAppendingString:@" are already friends."
+//                                                                            ]
+//                                                                   delegate:self
+//                                                                   cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+//                                                                   otherButtonTitles:nil
+//                                                                   ];
+//                                             [alert show];
+//                                             return;
+//                                         }
+//                                         else{//send the request;
+//                                             [loadStore saveObject:self.oneFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+//                                                 if (errorOrNil != nil) {
+//                                                     //save failed, show an error alert
+//                                                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Save failed", @"Save Failed")
+//                                                                                                         message:[errorOrNil localizedFailureReason] //not actually localized
+//                                                                                                        delegate:nil
+//                                                                                               cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+//                                                                                               otherButtonTitles:nil];
+//                                                     [alertView show];
+//                                                 } else {
+//                                                     //save was successful
+//                                                     
+//                                                     
+//                                                     UIAlertView* alert = [[UIAlertView alloc]
+//                                                                           initWithTitle:@"Request sent"
+//                                                                           message:[[@"Friend request has been sent to "
+//                                                                                     stringByAppendingString:str_Name]
+//                                                                                    stringByAppendingString:@" . Please wait for acceptance."
+//                                                                                    ]
+//                                                                           delegate:self
+//                                                                           cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+//                                                                           otherButtonTitles:nil
+//                                                                           ];
+//                                                     [alert show];
+//                                                 }
+//                                                 return;
+//                                                 
+//                                             } withProgressBlock:nil
+//                                              ];//save to AddFriend
+//                                             
+//                                         }
+//                                         
+//                                         
+//                                     } withProgressBlock:nil
+//                     ];//is in Friendship
+//                    
+//                    
+//                }
+//                
+//            } withProgressBlock:nil
+//             ];//is in AddFriend;
+//            
+//
+//        }
+//        
+//    }
+//}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

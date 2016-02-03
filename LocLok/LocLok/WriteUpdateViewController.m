@@ -165,11 +165,24 @@
                 BOOL wasNetworkError = [[errorOrNil domain] isEqual:KCSNetworkErrorDomain];
                 NSString* title = wasNetworkError ? NSLocalizedString(@"There was a netowrk error.", @"network error title"): NSLocalizedString(@"An error occurred.", @"Generic error message");
                 NSString* message = wasNetworkError ? NSLocalizedString(@"Please wait a few minutes and try again.", @"try again error message") : [errorOrNil localizedDescription];
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-                                                                message:message                                                           delegate:self 
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK") 
-                                                      otherButtonTitles:nil];
-                [alert show];
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:title
+                                              message:message
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok];
+                
+                [self presentViewController:alert animated:YES completion:nil];
             }
         } withProgressBlock:nil];
     }
@@ -203,7 +216,8 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     self.attachedImage = image;
     
     dispatch_async(dispatch_get_main_queue(), ^{

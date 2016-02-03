@@ -577,6 +577,7 @@
 		934A3E2C2D4D65D0FD5CFABEFB4DADEE /* FBSDKWebDialogView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebDialogView.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.h; sourceTree = "<group>"; };
 		9410F78FB0D106528F546309511B2562 /* FBSDKGameRequestDialog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGameRequestDialog.m; path = FBSDKShareKit/FBSDKShareKit/FBSDKGameRequestDialog.m; sourceTree = "<group>"; };
 		945430333FBA787AA8A60533D5876F58 /* BFAppLink.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFAppLink.h; path = Bolts/iOS/BFAppLink.h; sourceTree = "<group>"; };
+		945FFF9A4E55304424F7FE1FF7CFD218 /* libKinveyKit.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libKinveyKit.a; path = "KinveyKit-1.38.0/libKinveyKit.a"; sourceTree = "<group>"; };
 		955D9C206C5E9EFC9331D39C36F061D1 /* BFAppLinkReturnToRefererView_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFAppLinkReturnToRefererView_Internal.h; path = Bolts/iOS/BFAppLinkReturnToRefererView_Internal.h; sourceTree = "<group>"; };
 		95AFA61D948B71649200B80EC5694BDF /* FBSDKGameRequestFrictionlessRecipientCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGameRequestFrictionlessRecipientCache.h; path = FBSDKShareKit/FBSDKShareKit/Internal/FBSDKGameRequestFrictionlessRecipientCache.h; sourceTree = "<group>"; };
 		9677D4C8DE79E4A5209CCECBECBC710F /* FBSDKInternalUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKInternalUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKInternalUtility.h; sourceTree = "<group>"; };
@@ -633,7 +634,6 @@
 		B405B056E6B0F04E9005BCB0CE42F6F7 /* LocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LocationKit.framework; sourceTree = "<group>"; };
 		B4DA67C1507AEDA7FA9F0457757CB0D1 /* FBSDKLikeButton+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLikeButton+Internal.h"; path = "FBSDKShareKit/FBSDKShareKit/Internal/FBSDKLikeButton+Internal.h"; sourceTree = "<group>"; };
 		B563B2851659B7017DC532EF205C7C6E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B69C19B0C1E60221F592686069115EB2 /* libKinveyKit.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libKinveyKit.a; path = "KinveyKit-1.40.4/libKinveyKit.a"; sourceTree = "<group>"; };
 		B6EF980DC8C644E1B2077854278C46AD /* FBSDKBridgeAPIProtocolWebV1.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIProtocolWebV1.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV1.m; sourceTree = "<group>"; };
 		B91F19461B01227A021A7D0E1A2D3F90 /* FBSDKIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKIcon.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKIcon.m; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -825,7 +825,7 @@
 		2C1CD692A83A4360044CB6C545C2C00E /* KinveyKit */ = {
 			isa = PBXGroup;
 			children = (
-				A5F468B30CA3774EC4BA0671562F51A7 /* Frameworks */,
+				82D7DD54629B096AC5A9A6A124F4BFAD /* Frameworks */,
 			);
 			path = KinveyKit;
 			sourceTree = "<group>";
@@ -975,6 +975,14 @@
 			path = LocationKit;
 			sourceTree = "<group>";
 		};
+		82D7DD54629B096AC5A9A6A124F4BFAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				945FFF9A4E55304424F7FE1FF7CFD218 /* libKinveyKit.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8DE8C4AAF8D22A3FF86328A8D6B9987D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -995,14 +1003,6 @@
 				C309FC8A80AE74158CA8B58B499B405F /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		A5F468B30CA3774EC4BA0671562F51A7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B69C19B0C1E60221F592686069115EB2 /* libKinveyKit.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		AD6D1C20D91A2FEEE00E9C49C9B05E91 /* Support Files */ = {

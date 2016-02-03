@@ -614,14 +614,24 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
          [PhotoStore saveObject:uPhoto withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
              if (errorOrNil != nil) {
                  //save failed, show an error alert
-                 UIAlertView* alertView = [[UIAlertView alloc]
-                                           initWithTitle:NSLocalizedString(@"Save failed", @"Save failed")
-                                           message:[errorOrNil localizedFailureReason]
-                                           delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                           otherButtonTitles:nil
-                                           ];
-                 [alertView show];
+                 
+                 UIAlertController * alert=   [UIAlertController
+                                               alertControllerWithTitle:@"Save failed"
+                                               message:[errorOrNil localizedFailureReason]
+                                               preferredStyle:UIAlertControllerStyleAlert];
+                 
+                 UIAlertAction* ok = [UIAlertAction
+                                      actionWithTitle:@"OK"
+                                      style:UIAlertActionStyleDefault
+                                      handler:^(UIAlertAction * action)
+                                      {
+                                          [alert dismissViewControllerAnimated:YES completion:nil];
+                                          
+                                      }];
+                 
+                 [alert addAction:ok];
+                 
+                 [self presentViewController:alert animated:YES completion:nil];
              } else {
                  //save was successful
                  NSLog(@"Successfully saved photo.");
@@ -1028,16 +1038,25 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
 - (void)reset{
     [KCSUser sendPasswordResetForUser:[KCSUser activeUser].email withCompletionBlock:^(BOOL emailSent, NSError *errorOrNil) {
         if(errorOrNil==nil){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password Reset Successful", @"account success note title")
-                                  
-                                  
-                                                            message:[NSString stringWithFormat:NSLocalizedString(@"An email has been sent to %@, please follow the instructions in the email to reset your password. Note that the email is only valid for 60 minutes. Thanks.",@"account success message body"), self.AccountName.text
-                                                                     ]
-                                  
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil];
-            [alert show];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:NSLocalizedString(@"Password Reset Successful", @"account success note title")
+                                          message:[NSString stringWithFormat:NSLocalizedString(@"An email has been sent to %@, please follow the instructions in the email to reset your password. Note that the email is only valid for 60 minutes. Thanks.",@"account success message body"), self.AccountName.text
+                                                   ]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }
@@ -1049,25 +1068,47 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
         
             if (errorOrNil1 == nil) {
                 //was successful!
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Account change saved", @"account success note title")
-                                      
-                                      
-                                                                message:[NSString stringWithFormat:NSLocalizedString(@"%@ %@ will be your name.",@"account success message body"), self.FirstNameTextField.text,self.LastNameTextField.text
-                                                                         ]
-                                      
-                                                               delegate:nil
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles:nil];
-                [alert show];
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:NSLocalizedString(@"Account change saved", @"account success note title")
+
+                                              message:[NSString stringWithFormat:NSLocalizedString(@"%@ %@ will be your name.",@"account success message body"), self.FirstNameTextField.text,self.LastNameTextField.text
+                                                       ]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok];
+                
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 //there was an error with the update save
                 NSString* message = [errorOrNil1 localizedDescription];
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Account change not saved, please try later", @"Log in account failed")
-                                                                message:message
-                                                               delegate:nil
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles: nil];
-                [alert show];
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:NSLocalizedString(@"Account change not saved, please try later", @"Log in account failed")
+                                              message:message
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok];
+                
+                [self presentViewController:alert animated:YES completion:nil];
             }
         }
     
