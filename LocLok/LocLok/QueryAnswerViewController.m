@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSArray* locCollection;
 @end
 
-@property (nonatomic) eryAnswerViewController
+@implementation QueryAnswerViewController
 @synthesize timeArray,queryStore,locCollection;
 @synthesize mapView;
 

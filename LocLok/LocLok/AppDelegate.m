@@ -1194,7 +1194,7 @@ extern NSString* LocalImagePlist;
     id<KCSStore> privStore=[KCSLinkedAppdataStore storeWithOptions:@{
                 KCSStoreKeyCollectionName : @"UserPrivacy",
                 KCSStoreKeyCollectionTemplateClass : [PrivSetting class],
-                KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
+                KCSStoreKeyCachePolicy:@(KCSCachePolicyNetworkFirst)
         }
     ];
     
@@ -1394,7 +1394,7 @@ extern NSString* LocalImagePlist;
     id<KCSStore> privStore=[KCSLinkedAppdataStore storeWithOptions:@{
                 KCSStoreKeyCollectionName : @"UserPrivacy",
                 KCSStoreKeyCollectionTemplateClass : [PrivSetting class],
-                KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
+                KCSStoreKeyCachePolicy:@(KCSCachePolicyNetworkFirst)
         }
         ];
     

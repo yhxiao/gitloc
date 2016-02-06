@@ -64,6 +64,7 @@
 		3A0F252E1C600109004BDCCF /* blue_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F252D1C600109004BDCCF /* blue_background.png */; };
 		3A0F25311C60074D004BDCCF /* icon_cell_add60.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F252F1C60074D004BDCCF /* icon_cell_add60.png */; };
 		3A0F25321C60074D004BDCCF /* icon_cell_add60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0F25301C60074D004BDCCF /* icon_cell_add60@2x.png */; };
+		3A0F25351C63ABDB004BDCCF /* PbCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0F25341C63ABDB004BDCCF /* PbCircle.m */; };
 		3A2DC1251C5FF085008FD46E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC1241C5FF085008FD46E /* main.m */; };
 		3A2DC1281C5FF085008FD46E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC1271C5FF085008FD46E /* AppDelegate.m */; };
 		3A2DC12B1C5FF085008FD46E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC12A1C5FF085008FD46E /* ViewController.m */; };
@@ -184,6 +185,8 @@
 		3A0F252D1C600109004BDCCF /* blue_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_background.png; sourceTree = "<group>"; };
 		3A0F252F1C60074D004BDCCF /* icon_cell_add60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cell_add60.png; sourceTree = "<group>"; };
 		3A0F25301C60074D004BDCCF /* icon_cell_add60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cell_add60@2x.png"; sourceTree = "<group>"; };
+		3A0F25331C63ABDB004BDCCF /* PbCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PbCircle.h; path = LocLok/PbCircle.h; sourceTree = "<group>"; };
+		3A0F25341C63ABDB004BDCCF /* PbCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PbCircle.m; path = LocLok/PbCircle.m; sourceTree = "<group>"; };
 		3A2DC1201C5FF085008FD46E /* LocLok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocLok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2DC1241C5FF085008FD46E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3A2DC1261C5FF085008FD46E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				3A0F24E51C5FF6CF004BDCCF /* YXThumbnailAnnotation.m */,
 				3A0F24E61C5FF6CF004BDCCF /* YXThumbnailAnnotationView.h */,
 				3A0F24E71C5FF6CF004BDCCF /* YXThumbnailAnnotationView.m */,
+				3A0F25331C63ABDB004BDCCF /* PbCircle.h */,
+				3A0F25341C63ABDB004BDCCF /* PbCircle.m */,
 			);
 			name = PrivacyLogic;
 			sourceTree = "<group>";
@@ -683,6 +688,7 @@
 				3A0F24FE1C5FF6CF004BDCCF /* TimeSettingVC.m in Sources */,
 				3A0F24EE1C5FF6CF004BDCCF /* MBProgressHUD.m in Sources */,
 				3A0F25001C5FF6CF004BDCCF /* UpdateMyInfoVC.m in Sources */,
+				3A0F25351C63ABDB004BDCCF /* PbCircle.m in Sources */,
 				3A0F24A71C5FF689004BDCCF /* FindFriendVC.m in Sources */,
 				3A0F24F61C5FF6CF004BDCCF /* PullRefreshTableViewController.m in Sources */,
 				3A0F25071C5FF6CF004BDCCF /* YXThumbnailAnnotation.m in Sources */,

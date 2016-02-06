@@ -26,10 +26,10 @@ extern NSString *LocalImagePlist;
 
 @implementation ViewController
 @synthesize mapView,navigationBar;//,locManager;
-@synthesize maskView;//,updateStore;
+//@synthesize maskView;//rect overlay
 //@synthesize lastUpdateTime;//,dateFormatter;
 @synthesize leftTableView,rightTableView;
-@synthesize showFriends,countLocationUpdates,selfLocAnnotation,selfLokAnnotation,frdAnnotations;
+@synthesize showFriends,countLocationUpdates,selfLocAnnotation,selfLokAnnotation,frdAnnotations,frdRegions;
 
 
 //@synthesize myNavController;
@@ -288,6 +288,7 @@ extern NSString *LocalImagePlist;
             }
         
             //generate maskView
+            /*//rect overlay
             MKCoordinateRegion maskRgn=MKCoordinateRegionMakeWithDistance(location.coordinate, 5000, 5000);
             MaskMap *mask=[[MaskMap alloc] initWithLocation:maskRgn
                                                    x_degree:x
@@ -299,6 +300,7 @@ extern NSString *LocalImagePlist;
             }
             //add maskView;
             [self.mapView addOverlay:mask];
+             */
             
             //add Annotation
             //[mapView removeAnnotations:mapView.annotations];
@@ -339,6 +341,8 @@ extern NSString *LocalImagePlist;
     
     [mapView removeAnnotations:mapView.annotations];
     frdAnnotations=nil;
+    [mapView removeOverlays:mapView.overlays];
+    frdRegions=nil;
     
     
 }
@@ -348,12 +352,13 @@ extern NSString *LocalImagePlist;
     
 }
 
+/*//rect overlay
 - (MKOverlayView *)mapView:(MKMapView *)mapView1 viewForOverlay:(id <MKOverlay>)overlay
 {
     maskView=[[MaskMapView alloc] initWithOverlay:overlay];
     return maskView;
 }
-
+*/
 - (MKAnnotationView *)mapView:(MKMapView *)mapView1 viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation conformsToProtocol:@protocol(YXThumbnailAnnotationProtocol)]) {
         return [((NSObject<YXThumbnailAnnotationProtocol> *)annotation) annotationViewInMap:mapView1];
@@ -386,6 +391,18 @@ extern NSString *LocalImagePlist;
     if ([view conformsToProtocol:@protocol(YXThumbnailAnnotationViewProtocol)]) {
         [((NSObject<YXThumbnailAnnotationViewProtocol> *)view) didSelectAnnotationViewInMap:mapView1];
     }
+}
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    if ([overlay isKindOfClass:MKCircle.class]) {
+        MKCircleRenderer *circleView = [[MKCircleRenderer alloc] initWithOverlay:overlay];
+        circleView.strokeColor = [UIColor blueColor];
+        circleView.alpha=0.1;
+        circleView.fillColor=[UIColor blueColor];
+        circleView.lineWidth=2.0;
+        return circleView;
+    }
+    
+    return nil;
 }
 
 
@@ -649,8 +666,9 @@ extern NSString *LocalImagePlist;
     
     
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
-    if(frdAnnotations==nil){
+    if(frdAnnotations==nil && frdRegions==nil){
         frdAnnotations=[[NSMutableArray alloc] init];
+        frdRegions=[[NSMutableArray alloc] init];
         for(int i=0;i<appDelegate.fList.friends.count;i++){
             YXThumbnail *annotation1=[[YXThumbnail alloc] init];
             Friendship *aFriend=[appDelegate.fList.friends objectAtIndex:i];
@@ -676,10 +694,14 @@ extern NSString *LocalImagePlist;
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
                 [frd1 updateThumbnail:frd1.thumbnail animated:YES];
                 //[frd1 setCoordinate:frd1.thumbnail.coordinate];
+                
+                //NSLog(@"%f",[frdLoc.precision doubleValue]);
+                [frdRegions addObject:[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]*1000]];
             }
             
         }
         [self.mapView addAnnotations:frdAnnotations];
+        [self.mapView addOverlays:frdRegions];
         
         
         
@@ -694,7 +716,10 @@ extern NSString *LocalImagePlist;
         selfLokAnnotation=[YXThumbnailAnnotation annotationWithThumbnail:selfLocAnnotation1];
         //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
             [self.mapView addAnnotation:selfLokAnnotation];
-            
+            //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
+            [self.mapView addOverlay:[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
+                                                               radius:[appDelegate.privacy.SharingRadius doubleValue]*1000]];
+        
         //}
         //selfLocAnnotation.coordinate=appDelegate.latestTrueLocation.coordinate;
         //[self.mapView addAnnotation:selfLocAnnotation];
@@ -710,6 +735,11 @@ extern NSString *LocalImagePlist;
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
                 [frd1 updateThumbnail:frd1.thumbnail animated:YES];
                 [frd1 setCoordinate:frd1.thumbnail.coordinate];
+                /* change the location of MKCircle, not sure if this works
+                 http://stackoverflow.com/questions/4759317/moving-mkcircle-in-mkmapview
+                 */
+                MKCircle *cir=[frdRegions objectAtIndex:i];
+                [cir setCoordinate:frd1.thumbnail.coordinate];
             }
             
         }

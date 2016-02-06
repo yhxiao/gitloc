@@ -24,7 +24,7 @@
     
     //UINavigationController *myNavController;
     //int initWindow;
-    MaskMapView *maskView;
+    //MaskMapView *maskView;//rect overlay
     //CLLocationCoordinate2D initLoc;
     //NSMutableArray *initLoc;
     BOOL leftTVOpen,rightTVOpen;
@@ -40,7 +40,7 @@
 //@property (retain) CLLocationManager *locManager;
 @property (retain) IBOutlet UITableView *leftTableView;
 @property (retain) IBOutlet UITableView *rightTableView;
-@property (retain) MaskMapView *maskView;
+//@property (retain) MaskMapView *maskView;//rect overlay
 @property (nonatomic, retain) IBOutlet UINavigationBar *navigationBar;
 //@property (nonatomic, retain) NSDate* lastUpdateTime;
 //@property (nonatomic, retain) NSDateFormatter *dateFormatter;
@@ -49,6 +49,7 @@
 @property (nonatomic,strong) MKPointAnnotation *selfLocAnnotation;//self true location annotation;
 @property (nonatomic,strong) YXThumbnailAnnotation *selfLokAnnotation;//self perturbed location annotation;
 @property (nonatomic,strong) NSMutableArray* frdAnnotations;
+@property (nonatomic,strong) NSMutableArray* frdRegions;
 -(void)loadLeftTV;
 -(void) drawFriendsLocations;
 - (void)GotSelfTrueLocationUpdate;

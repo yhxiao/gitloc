@@ -57,7 +57,7 @@
     KCSCollection* collection = [KCSCollection collectionFromString:@"StatusShare" ofClass:[StatusShareUpdate class]];
     self.updateStore = [KCSLinkedAppdataStore storeWithOptions:@{
             KCSStoreKeyResource : collection,
-            KCSStoreKeyCachePolicy : @(KCSCachePolicyBoth)//, KCSStoreKeyUniqueOfflineUpdateIdentifier : @"WriteUpdateViewController" ,
+            KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)//, KCSStoreKeyUniqueOfflineUpdateIdentifier : @"WriteUpdateViewController" ,
             //KCSOfflineUpdateDelegate : self
             ,KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
             ,KCSStoreKeyOfflineUpdateEnabled : @YES

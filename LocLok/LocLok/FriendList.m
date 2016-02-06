@@ -30,7 +30,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
         KCSStoreKeyCollectionName : @"Friendship",
         KCSStoreKeyCollectionTemplateClass : [Friendship class],
-        KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
+        KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
     }];
 
     //NSLog(@"In friendlist query, the userId is %@",[[KCSUser activeUser] userId]);
@@ -160,13 +160,13 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     LocStore=[KCSAppdataStore storeWithOptions:@{
                                                  KCSStoreKeyCollectionName:@"LocSeries",
                                                  KCSStoreKeyCollectionTemplateClass:[LocSeries class],
-                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
+                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
                                                  }];
     if(LokStore==nil)
     LokStore=[KCSAppdataStore storeWithOptions:@{
                                                  KCSStoreKeyCollectionName:@"LokSeries",
                                                  KCSStoreKeyCollectionTemplateClass:[LocSeries class],
-                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
+                                                 KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
                                                  }];
     
     //NSLog(@"%d",PermissionForFriends);
@@ -230,7 +230,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
                                                             ofClass:[AddFriends class]
                                  ];
     loadStore = [KCSAppdataStore storeWithCollection:collection
-                                             options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
+                                             options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
                  ];
     
     KCSQuery* query1 = [KCSQuery queryOnField:@"from_user._id"
@@ -249,7 +249,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
                                                                      ofClass:[Friendship class]
                                           ];
     __block id<KCSStore> friendship_store=[KCSAppdataStore storeWithCollection:collection_friendship
-                                                                       options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
+                                                                       options:@{KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
                                            ];
     
     [loadStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {

@@ -149,10 +149,10 @@ extern NSString* LocalImagePlist;
     width=self.view.bounds.size.width;
     height=self.view.bounds.size.height;
     self.updateStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"AddFriend",KCSStoreKeyCollectionTemplateClass : [AddFriends class],
-        KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
+        KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)}
                       ];
     self.friendshipStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"Friendship",KCSStoreKeyCollectionTemplateClass : [Friendship class],
-                                                                KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)}
+                                                                KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
                       ];
     PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{
             KCSStoreKeyCollectionName : @"UserPhotos",
