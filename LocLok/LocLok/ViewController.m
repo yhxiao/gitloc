@@ -22,6 +22,7 @@ extern NSString *LocalImagePlist;
 
 @interface ViewController ()
 //@property (nonatomic, retain) id<KCSStore> updateStore;
+@property (nonatomic, retain) UIFont * cellFont;
 @end
 
 @implementation ViewController
@@ -73,6 +74,7 @@ extern NSString *LocalImagePlist;
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:0.4];
     UIColor *bgColor3=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
     UIColor *bgColor4=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
+    self.cellFont=[ UIFont fontWithName: @"Arial" size: 10 ];
     
     /*If not logged in, modally present login page*/
     //if ([KCSUser hasSavedCredentials] == NO){
@@ -667,6 +669,33 @@ extern NSString *LocalImagePlist;
     
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     if(frdAnnotations==nil && frdRegions==nil){
+        //add self annotation;
+        YXThumbnail* selfLocAnnotation1 = [[YXThumbnail alloc] init];
+        selfLocAnnotation1.image =[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+        selfLocAnnotation1.title = [[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                                    stringByAppendingString:[[KCSUser activeUser] surname] ];
+        selfLocAnnotation1.subtitle = [appDelegate.yearToSecondFormatter stringFromDate:appDelegate.latestPerturbedLocation.timestamp ];
+        selfLocAnnotation1.coordinate = appDelegate.latestPerturbedLocation.coordinate;
+        selfLocAnnotation1.disclosureBlock = ^{ NSLog(@"selected Self location"); };
+        selfLokAnnotation=[YXThumbnailAnnotation annotationWithThumbnail:selfLocAnnotation1];
+        //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
+        [self.mapView addAnnotation:selfLokAnnotation];
+        selfLokAnnotation.thumbnail.subtitle=[appDelegate.yearToSecondFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
+        selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
+        [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
+        
+        //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
+        MKCircle* c3=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
+                                                  radius:[appDelegate.privacy.SharingRadius doubleValue]*1000];
+        c3.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                  stringByAppendingString:[[KCSUser activeUser] surname] ];
+        [self.mapView addOverlay:c3];
+        
+        //}
+        //selfLocAnnotation.coordinate=appDelegate.latestTrueLocation.coordinate;
+        //[self.mapView addAnnotation:selfLocAnnotation];
+        
+        
         frdAnnotations=[[NSMutableArray alloc] init];
         frdRegions=[[NSMutableArray alloc] init];
         for(int i=0;i<appDelegate.fList.friends.count;i++){
@@ -680,49 +709,60 @@ extern NSString *LocalImagePlist;
             
             UIImage* profileImg=[CommonFunctions loadImageFromLocal:[aFriend.to_user userId]];
             annotation1.image= (profileImg==nil?[UIImage imageNamed:@"profile_default.png"]:profileImg);
-            annotation1.disclosureBlock = ^{ NSLog(@"selected Empire"); };
+            annotation1.disclosureBlock = ^{ NSLog(@"selected"); };
             //annotation1.subtitle=nil;
             //annotation1.coordinate=appDelegate.latestPerturbedLocation.coordinate;
             
-            [frdAnnotations addObject:[YXThumbnailAnnotation annotationWithThumbnail:annotation1]];
-        }
-        for(int i=0;i<appDelegate.fList.friends.count;i++){
+            YXThumbnailAnnotation* frd1=[YXThumbnailAnnotation annotationWithThumbnail:annotation1];
+            [frdAnnotations addObject:frd1];
+            
             LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
             if(frdLoc!=nil && ![frdLoc isKindOfClass:[NSNull class]]){
-                YXThumbnailAnnotation* frd1=[frdAnnotations objectAtIndex:i];
                 frd1.thumbnail.subtitle=[appDelegate.yearToSecondFormatter stringFromDate: frdLoc.userDate];
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
                 [frd1 updateThumbnail:frd1.thumbnail animated:YES];
-                //[frd1 setCoordinate:frd1.thumbnail.coordinate];
                 
-                //NSLog(@"%f",[frdLoc.precision doubleValue]);
-                [frdRegions addObject:[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]*1000]];
+                MKCircle* c1=[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]*1000];
+                c1.title=annotation1.title;
+                [frdRegions addObject:c1];
+                
             }
-            
-        }
+            else{//when frdLoc is null;
+                MKCircle* c2=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate radius:0];
+                c2.title=annotation1.title;
+                [frdRegions addObject:c2];
+            }
+        }//for loop;
+//        for(int i=0;i<appDelegate.fList.friends.count;i++){
+//            LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
+//            if(frdLoc!=nil && ![frdLoc isKindOfClass:[NSNull class]]){
+//                YXThumbnailAnnotation* frd1=[frdAnnotations objectAtIndex:i];
+//                frd1.thumbnail.subtitle=[appDelegate.yearToSecondFormatter stringFromDate: frdLoc.userDate];
+//                frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
+//                [frd1 updateThumbnail:frd1.thumbnail animated:YES];
+//                //[frd1 setCoordinate:frd1.thumbnail.coordinate];
+//                
+//                //NSLog(@"%f",[frdLoc.precision doubleValue]);
+//                [frdRegions addObject:[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]*1000]];
+//                
+//                
+//            }
+//            
+//        }
         [self.mapView addAnnotations:frdAnnotations];
         [self.mapView addOverlays:frdRegions];
-        
-        
-        
-        //add self annotation;
-        YXThumbnail* selfLocAnnotation1 = [[YXThumbnail alloc] init];
-        selfLocAnnotation1.image =[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
-        selfLocAnnotation1.title = [[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
-                                    stringByAppendingString:[[KCSUser activeUser] surname] ];
-        selfLocAnnotation1.subtitle = [appDelegate.yearToSecondFormatter stringFromDate:appDelegate.latestPerturbedLocation.timestamp ];
-        selfLocAnnotation1.coordinate = appDelegate.latestPerturbedLocation.coordinate;
-        selfLocAnnotation1.disclosureBlock = ^{ NSLog(@"selected Self location"); };
-        selfLokAnnotation=[YXThumbnailAnnotation annotationWithThumbnail:selfLocAnnotation1];
-        //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
-            [self.mapView addAnnotation:selfLokAnnotation];
-            //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
-            [self.mapView addOverlay:[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
-                                                               radius:[appDelegate.privacy.SharingRadius doubleValue]*1000]];
-        
+        //for(int i=0;i<mapView.annotations.count;i++){
+        //    if(![[mapView.annotations objectAtIndex:i] isKindOfClass:[MKUserLocation class]]){
+        //    YXThumbnailAnnotation* addr=[mapView.annotations objectAtIndex:i];
+        //    NSLog(@"%@%n",addr.thumbnail.title);
+        //    }
         //}
-        //selfLocAnnotation.coordinate=appDelegate.latestTrueLocation.coordinate;
-        //[self.mapView addAnnotation:selfLocAnnotation];
+        //NSLog(@"%@",selfLokAnnotation.thumbnail.title);
+        //NSLog(@"%@",mapView.annotations);
+        //NSLog(@"%@",mapView.overlays);
+        
+        
+        
     }else{
     //start to draw locations;
     //dispatch_async( dispatch_get_main_queue(), ^{
@@ -733,6 +773,7 @@ extern NSString *LocalImagePlist;
                 YXThumbnailAnnotation* frd1=[frdAnnotations objectAtIndex:i];
                 frd1.thumbnail.subtitle=[appDelegate.yearToSecondFormatter stringFromDate: frdLoc.userDate];
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
+                //frd1.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "] stringByAppendingString:[[KCSUser activeUser] surname] ];
                 [frd1 updateThumbnail:frd1.thumbnail animated:YES];
                 [frd1 setCoordinate:frd1.thumbnail.coordinate];
                 /* change the location of MKCircle, not sure if this works
@@ -757,25 +798,38 @@ extern NSString *LocalImagePlist;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;//From me and to me;
+    return 2;//me and friends;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	if(section==0){
+	if(section==1){
         return appDelegate.fList.friends.count;
     }
     else{
-        return 0;
+        return 1;//only me;
     }
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    return @"";
-//    
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section==0){
+    return @"Me";
+    }
+    else{return @"Friends";
+        
+    }
+    
+}
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
+        
+        UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
+        tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"mainTableViewCell";
@@ -786,9 +840,39 @@ extern NSString *LocalImagePlist;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    if(indexPath.section==0){//about me;
+        NSDictionary *temp = [CommonFunctions retrieveFromPlist:@"UserInfo.plist"];
+        
+        cell.textLabel.text=[[[[temp objectForKey:@"userInfo"] objectAtIndex:1] stringByAppendingString:@" "]
+                    stringByAppendingString:[[temp objectForKey:@"userInfo"] objectAtIndex:2]];
+        cell.textLabel.font=self.cellFont;
+        
+        //The icon on the right side of a row;
+        //cell.accessoryType = UITableViewCellAccessoryNone;
+        UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
+        button.frame = frame;
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        
+        [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
+        button.backgroundColor = [UIColor clearColor];
+        cell.accessoryView = button;
+        
+        
+        UIImage* profileImg=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+        [cell.imageView  setImage:profileImg==nil?[UIImage imageNamed:@"profile_default.png"]:profileImg];
+        //[cell.imageView  setImage:uPhoto.photo];
+        [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
+        
+        //use rounded corner for the image;
+        cell.imageView.layer.cornerRadius =4;
+        cell.imageView.layer.masksToBounds = YES;
+    }
     //__block NSString* userName1=[NSString alloc ];
     //the text
-    if(indexPath.section==0){//toCollection;
+    if(indexPath.section==1){//toCollection;
         
         Friendship *aFriend=[appDelegate.fList.friends objectAtIndex:indexPath.row];
         //cell.textLabel.text =[(NSDictionary*)aFriend.to_user objectForKey:@"_id"];
@@ -797,6 +881,13 @@ extern NSString *LocalImagePlist;
                                 stringByAppendingString:[aFriend.to_user surname]]
                                stringByAppendingString:@""
                                ];
+        cell.textLabel.font=self.cellFont;
+        
+        //change the color of not-found friends;
+//        LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:indexPath.row];
+//        if(frdLoc==nil || [frdLoc isKindOfClass:[NSNull class]]){
+//            cell.textLabel.textColor = [UIColor grayColor];
+//        }
         
         //NSLog(@"",[(NSDictionary*)aFriend.to_user objectForKey:@"_id"]);
         
@@ -918,7 +1009,7 @@ extern NSString *LocalImagePlist;
         cell.imageView.layer.masksToBounds = YES;
         //cell.imageView.layer.borderColor = [UIColor blackColor].CGColor;
         //cell.imageView.layer.borderWidth = 3.0;
-    }//section==0
+    }//section==1
 
     
     

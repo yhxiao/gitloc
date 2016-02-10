@@ -5,8 +5,10 @@
 //
 
 #import <MapKit/MapKit.h>
+//#import "YXThumbnailAnnotation.h"
 
 @class YXThumbnail;
+//@class YXThumbnailAnnotation;
 
 extern NSString * const kYXThumbnailAnnotationViewReuseID;
 

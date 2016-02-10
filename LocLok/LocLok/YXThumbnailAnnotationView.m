@@ -128,11 +128,39 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
     self.disclosureBlock = thumbnail.disclosureBlock;
 }
 
+
+- (NSUInteger)indexofAnnotationInOverlays:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapoverlays{
+    //NSUInteger j=0;
+    for(NSUInteger i=0;i<mapoverlays.count;i++){
+        //NSLog(@"%@, %@",name,[[mapoverlays objectAtIndex:i] title] );
+        id<MKOverlay> ithOverlay=[mapoverlays objectAtIndex:i];
+        if([name isEqualToString:ithOverlay.title] && pos.longitude==ithOverlay.coordinate.longitude && pos.latitude==ithOverlay.coordinate.latitude){
+            
+            return i;
+        }
+    }
+    
+    return 0;
+}
+
 #pragma mark - YXThumbnailAnnotationViewProtocol
 
 - (void)didSelectAnnotationViewInMap:(MKMapView *)mapView {
     // Center map at annotation point
     [mapView setCenterCoordinate:self.coordinate animated:YES];
+    
+    //NSLog(@"%@",mapView.annotations);
+    //NSLog(@"%@",mapView.overlays);
+    //NSLog(@"%lu",(unsigned long)[mapView.annotations indexOfObject:self.annotation]);
+    MKCircleRenderer *circleView =(MKCircleRenderer*)[mapView rendererForOverlay:[mapView.overlays objectAtIndex:
+                                                                                  [self indexofAnnotationInOverlays:self.titleLabel.text at:self.coordinate in:mapView.overlays]
+    ]];
+    circleView.strokeColor = [UIColor redColor];
+    //circleView.alpha=0.1;
+    circleView.fillColor=[UIColor redColor];
+    //circleView.lineWidth=2.0;
+    [circleView invalidatePath];
+    
     [self expand];
     //[_imageView setTintColor:[UIColor redColor]];
     
@@ -154,6 +182,17 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
     //[_imageView setTintColor:nil];
     [_bgLayer removeAllAnimations];
     _bgLayer.fillColor = [UIColor whiteColor].CGColor;
+    
+    //MKCircleRenderer *circleView =[mapView rendererForOverlay:[mapView.overlays objectAtIndex:[mapView.annotations indexOfObject:self.annotation]]];
+    MKCircleRenderer *circleView =(MKCircleRenderer*)[mapView rendererForOverlay:[mapView.overlays objectAtIndex:
+                                                                                  [self indexofAnnotationInOverlays:self.titleLabel.text at:self.coordinate in:mapView.overlays]
+    ]];
+    circleView.strokeColor = [UIColor blueColor];
+    //circleView.alpha=0.1;
+    circleView.fillColor=[UIColor blueColor];
+    //circleView.lineWidth=2.0;
+    [circleView invalidatePath];
+    
     
     
 }
