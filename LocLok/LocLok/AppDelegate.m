@@ -13,7 +13,7 @@
 
 @synthesize window;
 //@synthesize sessionFacebook;
-@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,latestTrueLocation;
+@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,latestTrueLocation;
 //@synthesize locManager;
 NSString *const FBSuccessfulLoginNotification =
 @"com.yxiao.Login:FBSessionStateChangedNotification";
@@ -289,6 +289,8 @@ extern NSString* LocalImagePlist;
     [yearToDateFormatter setDateFormat:@"yyyy-MM-dd"];
     yearToSecondFormatter = [[NSDateFormatter alloc]init];
     [yearToSecondFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    timeDateFormatter = [[NSDateFormatter alloc]init];
+    [timeDateFormatter setDateFormat:@"HH:mm:ss MM-dd-yyyy"];
     
     
     LocSeriesStore=[KCSAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"LocSeries",KCSStoreKeyCollectionTemplateClass : [LocSeries class]

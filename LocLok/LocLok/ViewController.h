@@ -48,6 +48,7 @@
 @property (nonatomic,strong) NSNumber* countLocationUpdates;
 @property (nonatomic,strong) MKPointAnnotation *selfLocAnnotation;//self true location annotation;
 @property (nonatomic,strong) YXThumbnailAnnotation *selfLokAnnotation;//self perturbed location annotation;
+@property (nonatomic,strong) MKCircle* selfLokOverlay;//self perturbed circle;
 @property (nonatomic,strong) NSMutableArray* frdAnnotations;
 @property (nonatomic,strong) NSMutableArray* frdRegions;
 -(void)loadLeftTV;

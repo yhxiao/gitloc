@@ -248,6 +248,33 @@ double quantile_radius(int percentage,float R){//
     }
     return -1;
 }
-
++ (NSUInteger)indexofAnnotationInOverlays:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapoverlays{
+    //NSUInteger j=0;
+    for(NSUInteger i=0;i<mapoverlays.count;i++){
+        //NSLog(@"%@, %@",name,[[mapoverlays objectAtIndex:i] title] );
+        id<MKOverlay> ithOverlay=[mapoverlays objectAtIndex:i];
+        if([name isEqualToString:ithOverlay.title] && pos.longitude==ithOverlay.coordinate.longitude && pos.latitude==ithOverlay.coordinate.latitude){
+            
+            return i;
+        }
+    }
+    
+    return 0;
+}
+//+ (NSUInteger)indexofAnnotation:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapannotations{
+//
+//    for(NSUInteger i=0;i<mapannotations.count;i++){
+//        //NSLog(@"%@, %@",name,[[mapoverlays objectAtIndex:i] title] );
+//        if([[mapannotations objectAtIndex:i] isKindOfClass:[YXThumbnailAnnotation class]]){
+//            YXThumbnailAnnotation* ithAnnotation=(YXThumbnailAnnotation*) [mapannotations objectAtIndex:i];
+//        if([name isEqualToString:ithAnnotation.thumbnail.title] && pos.longitude==ithAnnotation.coordinate.longitude && pos.latitude==ithAnnotation.coordinate.latitude){
+//            
+//            return i;
+//        }
+//        }
+//    }
+//    
+//    return 0;
+//}
 
 @end

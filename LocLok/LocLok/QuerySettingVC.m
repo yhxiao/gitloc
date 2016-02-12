@@ -11,10 +11,12 @@
 
 @interface QuerySettingVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, retain) UIFont * cellFont;
+@property (nonatomic, retain) UIFont * cellFont2;
 @end
 
 @implementation QuerySettingVC
-@synthesize timeArray;
+@synthesize timeArray,today00,yesterday00,thisWeek00,lastWeek00,thisMonth00,lastMonth00,last3day00;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +35,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.cellFont=[ UIFont fontWithName: @"Arial" size: 16 ];
+    self.cellFont2=[ UIFont fontWithName: @"Arial" size: 8 ];
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -52,6 +56,46 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [self refreshControl];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:( NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond ) fromDate:[[NSDate alloc] init]];
+    
+    [components setHour:-[components hour]];
+    [components setMinute:-[components minute]];
+    [components setSecond:-[components second]];
+    today00 = [cal dateByAddingComponents:components toDate:[[NSDate alloc] init] options:0]; //This variable should now be pointing at a date object that is the start of today (midnight);
+    
+    [components setHour:-24];
+    [components setMinute:0];
+    [components setSecond:0];
+    yesterday00 = [cal dateByAddingComponents:components toDate: today00 options:0];
+    
+    [components setHour:-72];
+    [components setMinute:0];
+    [components setSecond:0];
+    last3day00=[cal dateByAddingComponents:components toDate: today00 options:0];
+    
+    components = [cal components:NSCalendarUnitWeekday | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[[NSDate alloc] init]];
+    
+    [components setDay:([components day] - ([components weekday] - 1))];
+    thisWeek00  = [cal dateFromComponents:components];
+    
+    [components setDay:([components day] - 7)];
+    lastWeek00  = [cal dateFromComponents:components];
+    
+    [components setDay:([components day] - ([components day] -1))];
+    thisMonth00 = [cal dateFromComponents:components];
+    
+    [components setMonth:([components month] - 1)];
+    lastMonth00 = [cal dateFromComponents:components];
+    
+//    NSLog(@"today=%@",today00);
+//    NSLog(@"yesterday=%@",yesterday00);
+//    NSLog(@"yesterday=%@",last3day00);
+//    NSLog(@"thisWeek=%@",thisWeek00);
+//    NSLog(@"lastWeek=%@",lastWeek00);
+//    NSLog(@"thisMonth=%@",thisMonth00);
+//    NSLog(@"lastMonth=%@",lastMonth00);
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -72,26 +116,104 @@
 {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
     static NSString *CellIdentifier = @"Query_TimeSetting";
     //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CellID_TimeSetting"];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell==nil)cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    
+    if(cell==nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    cell.textLabel.font=self.cellFont;
+    cell.detailTextLabel.font=self.cellFont2;
+    cell.detailTextLabel.numberOfLines=2;
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"Today";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:today00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:@"now"
+                                         ];
+            break;
+            
+        case 1:
+            cell.textLabel.text = @"Yesterday";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:yesterday00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:[appDelegate.yearToSecondFormatter stringFromDate:today00]
+                                         ];
+            break;
+            
+        case 2:
+            cell.textLabel.text = @"Last 3 days";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:last3day00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:[appDelegate.yearToSecondFormatter stringFromDate:today00]
+                                         ];
+            break;
+            
+        case 3:
+            cell.textLabel.text = @"This week";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:thisWeek00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:@"now"
+                                         ];
+
+            break;
+            
+        case 4:
+            cell.textLabel.text = @"Last week";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:lastWeek00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:[appDelegate.yearToSecondFormatter stringFromDate:thisWeek00]
+                                         ];
+
+            break;
+            
+        case 5:
+            cell.textLabel.text = @"This month";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:thisMonth00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:@"now"
+                                         ];
+
+            break;
+            
+        case 6:
+            cell.textLabel.text = @"Last month";
+            cell.detailTextLabel.text = [
+                                         [[appDelegate.yearToSecondFormatter stringFromDate:lastMonth00]
+                                          stringByAppendingString:@" ~ "
+                                          ]stringByAppendingString:[appDelegate.yearToSecondFormatter stringFromDate:thisMonth00]
+                                         ];
+
+            break;
+        case 7:
+            cell.textLabel.text = @"Customize";
+            cell.detailTextLabel.text = [
+                                         [[self.timeArray objectAtIndex:0]
+                                          stringByAppendingString:@" ~ "
+                                          ]
+                                         stringByAppendingString:[self.timeArray objectAtIndex:1]
+                                         ];            break;
+        default:
+            break;
+    }
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = @"Time:";
-	cell.detailTextLabel.text = [
-                                 [[self.timeArray objectAtIndex:0]
-                                    stringByAppendingString:@" ~ "
-                                 ]
-                                 stringByAppendingString:[self.timeArray objectAtIndex:1]
-                                ];
+    
     
     return cell;
 }

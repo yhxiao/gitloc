@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "476226202.000701"
+            timestampString = "476830001.939769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1211"
-            endingLineNumber = "1211"
+            startingLineNumber = "1213"
+            endingLineNumber = "1213"
             landmarkName = "-getPrivRulesFromBackend"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "476226202.000701"
+            timestampString = "476830001.939769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1210"
-            endingLineNumber = "1210"
+            startingLineNumber = "1212"
+            endingLineNumber = "1212"
             landmarkName = "-getPrivRulesFromBackend"
             landmarkType = "5">
             <Locations>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "476226202.000701"
+            timestampString = "476830001.939769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1402"
-            endingLineNumber = "1402"
+            startingLineNumber = "1404"
+            endingLineNumber = "1404"
             landmarkName = "-savePrivRulesToBackend"
             landmarkType = "5">
             <Locations>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "476226202.000701"
+            timestampString = "476830001.939769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1403"
-            endingLineNumber = "1403"
+            startingLineNumber = "1405"
+            endingLineNumber = "1405"
             landmarkName = "-savePrivRulesToBackend"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "476565784.261604"
+            timestampString = "476900992.504703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
             landmarkName = "-mapView:rendererForOverlay:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/YXThumbnailAnnotationView.m"
-            timestampString = "476764194.324443"
+            timestampString = "476830001.939769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "-didSelectAnnotationViewInMap:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "476763768.363204"
+            timestampString = "476900992.504703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "761"
-            endingLineNumber = "761"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
             landmarkName = "-drawFriendsLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -310,31 +310,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LocLok/LocLok/YXThumbnailAnnotationView.m"
-            timestampString = "476764194.324443"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-indexofAnnotationInOverlays:at:in:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "476760305.921379"
+            timestampString = "476900992.504703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "685"
-            endingLineNumber = "685"
+            startingLineNumber = "783"
+            endingLineNumber = "783"
             landmarkName = "-drawFriendsLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,12 +330,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "476764294.145798"
+            timestampString = "476912969.869973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "692"
-            endingLineNumber = "692"
-            landmarkName = "-drawFriendsLocations"
+            startingLineNumber = "1105"
+            endingLineNumber = "1105"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/QuerySettingVC.m"
+            timestampString = "476911539.167979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

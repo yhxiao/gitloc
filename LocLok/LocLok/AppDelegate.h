@@ -32,6 +32,7 @@
 @property (nonatomic, retain) NSDateFormatter *timestampFormatter;//"HH:mm"
 @property (nonatomic, retain) NSDateFormatter *yearToDateFormatter;//"yyyy-MM-dd"
 @property (nonatomic, retain) NSDateFormatter *yearToSecondFormatter;//"yyyy-MM-dd HH:mm:ss"
+@property (nonatomic, retain) NSDateFormatter *timeDateFormatter;//"HH:mm:ss MM-dd-yyyy "
 
 @property (nonatomic, retain) NSDate* activeLocationUntilWhen;
 @property (nonatomic, retain) CLLocation *latestPerturbedLocation;

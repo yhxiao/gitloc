@@ -6,6 +6,7 @@
 
 #import <MapKit/MapKit.h>
 //#import "YXThumbnailAnnotation.h"
+#import "CommonFunctions.h"
 
 @class YXThumbnail;
 //@class YXThumbnailAnnotation;

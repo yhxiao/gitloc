@@ -129,19 +129,7 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
 }
 
 
-- (NSUInteger)indexofAnnotationInOverlays:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapoverlays{
-    //NSUInteger j=0;
-    for(NSUInteger i=0;i<mapoverlays.count;i++){
-        //NSLog(@"%@, %@",name,[[mapoverlays objectAtIndex:i] title] );
-        id<MKOverlay> ithOverlay=[mapoverlays objectAtIndex:i];
-        if([name isEqualToString:ithOverlay.title] && pos.longitude==ithOverlay.coordinate.longitude && pos.latitude==ithOverlay.coordinate.latitude){
-            
-            return i;
-        }
-    }
-    
-    return 0;
-}
+
 
 #pragma mark - YXThumbnailAnnotationViewProtocol
 
@@ -153,7 +141,7 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
     //NSLog(@"%@",mapView.overlays);
     //NSLog(@"%lu",(unsigned long)[mapView.annotations indexOfObject:self.annotation]);
     MKCircleRenderer *circleView =(MKCircleRenderer*)[mapView rendererForOverlay:[mapView.overlays objectAtIndex:
-                                                                                  [self indexofAnnotationInOverlays:self.titleLabel.text at:self.coordinate in:mapView.overlays]
+                                                                                  [CommonFunctions indexofAnnotationInOverlays:self.titleLabel.text at:self.coordinate in:mapView.overlays]
     ]];
     circleView.strokeColor = [UIColor redColor];
     //circleView.alpha=0.1;
@@ -162,19 +150,19 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
     [circleView invalidatePath];
     
     [self expand];
-    //[_imageView setTintColor:[UIColor redColor]];
+    //[_imageView setTintColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:0.1]];
     
     /*
     //Create animation
     CABasicAnimation *fillColorAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
     fillColorAnimation.duration = 1.5f;
     fillColorAnimation.fromValue = (id)[[UIColor whiteColor] CGColor];
-    fillColorAnimation.toValue = (id)[[UIColor colorWithRed:0.5 green:0 blue:0 alpha:1] CGColor];
+    fillColorAnimation.toValue = (id)[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.1] CGColor];
     fillColorAnimation.repeatCount = 10;
     fillColorAnimation.autoreverses = YES;
     [_bgLayer addAnimation:fillColorAnimation forKey:@"fillColor"];
-     */
-    
+    */
+    _bgLayer.fillColor = [[UIColor colorWithRed:1 green:0.9 blue:0.9 alpha:1] CGColor];
 }
 
 - (void)didDeselectAnnotationViewInMap:(MKMapView *)mapView {
@@ -185,12 +173,21 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
     
     //MKCircleRenderer *circleView =[mapView rendererForOverlay:[mapView.overlays objectAtIndex:[mapView.annotations indexOfObject:self.annotation]]];
     MKCircleRenderer *circleView =(MKCircleRenderer*)[mapView rendererForOverlay:[mapView.overlays objectAtIndex:
-                                                                                  [self indexofAnnotationInOverlays:self.titleLabel.text at:self.coordinate in:mapView.overlays]
+                                                                                  [CommonFunctions indexofAnnotationInOverlays:self.titleLabel.text at:self.coordinate in:mapView.overlays]
     ]];
     circleView.strokeColor = [UIColor blueColor];
     //circleView.alpha=0.1;
     circleView.fillColor=[UIColor blueColor];
     //circleView.lineWidth=2.0;
+    /*
+    CABasicAnimation *fillColorAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    fillColorAnimation.duration = 1.5f;
+    fillColorAnimation.fromValue = (id)[[UIColor whiteColor] CGColor];
+    fillColorAnimation.toValue = (id)[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.1] CGColor];
+    fillColorAnimation.repeatCount = 10;
+    fillColorAnimation.autoreverses = YES;
+    [circleView addAnimation:fillColorAnimation forKey:@"fillColor"];
+    */
     [circleView invalidatePath];
     
     

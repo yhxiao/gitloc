@@ -7,7 +7,10 @@
 //
 
 #import<UIKit/UIKit.h>
-
+#import<MapKit/MapKit.h>
+//#import "YXThumbnailAnnotation.h"
+//#import "YXThumbnail.h"
+//@class YXThumbnail;
 #define ARC4RANDOM_MAX      0x100000000
 @interface CommonFunctions : NSObject
 
@@ -38,6 +41,8 @@
                             withUserId:(NSString*)id;
 
 +(NSInteger)Weekday2Number:(NSString *)strWeekday;
++ (NSUInteger)indexofAnnotationInOverlays:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapoverlays;
+//+ (NSUInteger)indexofAnnotation:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapannotations;
 //+(PrivSetting*)initPrivSettingWithDefault;
 double GenGammaRV(float radius);//radius is the expect radius chose by user;
 double GenRandomU01();
