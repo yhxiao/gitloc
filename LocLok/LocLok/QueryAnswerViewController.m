@@ -49,7 +49,7 @@
     [self.dateLocale setTimeZone:[NSTimeZone localTimeZone]];
     
     
-    CGRect mapRect=CGRectMake(self.view.bounds.origin.x,self.view.bounds.origin.y,self.view.bounds.size.width,self.view.bounds.size.height-88);
+    CGRect mapRect=CGRectMake(self.view.bounds.origin.x,self.view.bounds.origin.y,self.view.bounds.size.width,self.view.bounds.size.height-48);
     self.mapView.frame=mapRect;
     self.mapView.hidden=NO;
     mapView.delegate=self;
@@ -97,17 +97,33 @@
     
     
     
-    queryStore=[KCSAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"LocSeries",KCSStoreKeyCollectionTemplateClass : [LocSeries class],
+    queryStore=[KCSAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"LocSeries",
+                                                    KCSStoreKeyCollectionTemplateClass : [LocSeries class],
         KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
                  }];
     
+    
     /*ask all the locSeries between start_time and end_time*/
-    KCSQuery* query = [KCSQuery queryOnField:@"userDate" usingConditionalsForValues:kKCSGreaterThan, [self.dateFormatter dateFromString:[timeArray objectAtIndex:0]], kKCSLessThan, [self.dateFormatter dateFromString:[timeArray objectAtIndex:1]], nil];
+    KCSQuery* query2 = [KCSQuery queryOnField:@"userDate" usingConditionalsForValues:kKCSGreaterThan, [timeArray objectAtIndex:0], kKCSLessThan, [timeArray objectAtIndex:1], nil];
     
-    [query addSortModifier:[[KCSQuerySortModifier alloc] initWithField:KCSMetadataFieldLastModifiedTime inDirection:kKCSDescending]];
+    [query2 addQueryOnField:@"owner" withExactMatchForValue:[[KCSUser activeUser] userId]];
     
-    [queryStore queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-        
+    [query2 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"userDate" inDirection:kKCSAscending]];
+    //KCSQuery * query2=[KCSQuery queryOnField:@"owner" withExactMatchForValue:[[KCSUser activeUser] userId]];
+    //[query2  setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
+    //NSLog(@"%@",[KCSUser activeUser].userId);
+//    KCSQuery* locQuery=[KCSQuery queryOnField:@"owner"
+//             withExactMatchForValue:[KCSUser activeUser].userId
+//              ];
+//    [locQuery  addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"userDate" inDirection:kKCSDescending]];
+//    
+//    
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    
+    
+    [queryStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+    //[appDelegate.fList.LocStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+    
         if (errorOrNil == nil && objectsOrNil != nil) {
             //load is successful!
             locCollection=objectsOrNil;
@@ -146,11 +162,13 @@
 -(void) showRealTrajectory{
     
     [mapView removeAnnotations:mapView.annotations];
+    CLLocation* pos1=nil;
     for(int i=0;i<locCollection.count;i++){
         LocSeries* result=[locCollection objectAtIndex:i];
         //declare location2D;
         CLLocation *loc2D=[CLLocation locationFromKinveyValue:result.location];
         
+        if(pos1==nil || [loc2D distanceFromLocation:pos1]>20){
         //add Annotation
         MaskAnnotation *maskAnnotation=[[MaskAnnotation alloc]
                                         initWithLocation:loc2D.coordinate
@@ -161,6 +179,8 @@
                                         withPhoto:nil
                                     ];
         [self.mapView addAnnotation:maskAnnotation];
+            pos1=loc2D;
+        }
     }
 }
 - (void)didReceiveMemoryWarning
@@ -211,4 +231,7 @@
     return pinView;
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.mapView removeAnnotations:self.mapView.annotations];
+}
 @end

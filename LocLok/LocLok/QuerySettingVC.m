@@ -16,7 +16,7 @@
 @end
 
 @implementation QuerySettingVC
-@synthesize timeArray,today00,yesterday00,thisWeek00,lastWeek00,thisMonth00,lastMonth00,last3day00;
+@synthesize timeArray,timeArrayConst, today00,yesterday00,thisWeek00,lastWeek00,thisMonth00,lastMonth00,last3day00,isCustomized;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isCustomized=NO;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -42,7 +43,7 @@
     [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     
-    self.timeArray = [NSArray arrayWithObjects:@"?", @"?", nil];
+    self.timeArray =nil;
     
     UIBarButtonItem *closeBarButtonItem = [[UIBarButtonItem alloc]
                                            initWithTitle:@"Show"
@@ -53,6 +54,8 @@
     
     
     self.navigationItem.rightBarButtonItem = closeBarButtonItem;
+    self.navigationItem.rightBarButtonItem.enabled=NO;
+    self.clearsSelectionOnViewWillAppear=YES;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [self refreshControl];
@@ -96,6 +99,15 @@
 //    NSLog(@"thisMonth=%@",thisMonth00);
 //    NSLog(@"lastMonth=%@",lastMonth00);
     
+    if(timeArray!=nil && [self.tableView indexPathForSelectedRow].row==7){
+        self.navigationItem.rightBarButtonItem.enabled=YES;
+    }
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -133,6 +145,7 @@
     cell.textLabel.font=self.cellFont;
     cell.detailTextLabel.font=self.cellFont2;
     cell.detailTextLabel.numberOfLines=2;
+    cell.detailTextLabel.textColor=[UIColor blackColor];
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Today";
@@ -202,12 +215,14 @@
             break;
         case 7:
             cell.textLabel.text = @"Customize";
-            cell.detailTextLabel.text = [
-                                         [[self.timeArray objectAtIndex:0]
+            cell.detailTextLabel.text = [[
+            self.timeArray==nil?@"?":[self.dateFormatter stringFromDate:[self.timeArray objectAtIndex:0]]
                                           stringByAppendingString:@" ~ "
-                                          ]
-                                         stringByAppendingString:[self.timeArray objectAtIndex:1]
-                                         ];            break;
+                                         ]
+                                         stringByAppendingString:
+            self.timeArray==nil?@"?":[self.dateFormatter stringFromDate:[self.timeArray objectAtIndex:1]]
+                                         ] ;
+            break;
         default:
             break;
     }
@@ -268,13 +283,86 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
-    if([targetCell.reuseIdentifier isEqualToString:@"Query_TimeSetting" ]){
-        [self performSegueWithIdentifier:@"toTimeSetting" sender:self];
-        
-        /*TimeSettingVC *timeVC = [[TimeSettingVC alloc] init];
-        timeVC.timedelegate = self;
-        [[self navigationController] pushViewController:timeVC animated:YES];*/
+    if(indexPath.row<7){//not custom
+        isCustomized=NO;
+        self.navigationItem.rightBarButtonItem.enabled=YES;
+        switch(indexPath.row){
+            case 0:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:today00,
+                                                          [NSDate date],nil];
+                break;
+                
+            case 1:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:yesterday00,
+                                                          today00,nil
+                                
+                                ];
+                break;
+                
+            case 2:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:last3day00,
+                                                          today00,nil
+                                
+                                ];
+                break;
+                
+            case 3:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:thisWeek00,
+                                                          [NSDate date],nil
+                                
+                                ];
+                
+                break;
+                
+            case 4:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:lastWeek00,
+                                                          thisWeek00,nil
+                                
+                                ];
+                
+                break;
+                
+            case 5:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:thisMonth00,
+                                                          [NSDate date],nil
+                                
+                                ];
+                
+                break;
+                
+            case 6:
+                timeArrayConst=nil;
+                timeArrayConst=[NSArray arrayWithObjects:lastMonth00,
+                                                          thisMonth00,nil
+                                
+                                ];
+                
+                break;
+            default:break;
+        }
+    }
+    else{//customize
+        isCustomized=YES;
+        //UITableViewCell *targetCell = [tableView cellForRowAtIndexPath:indexPath];
+        //if([targetCell.reuseIdentifier isEqualToString:@"Query_TimeSetting" ]){
+            [self performSegueWithIdentifier:@"toTimeSetting" sender:self];
+            
+            /*TimeSettingVC *timeVC = [[TimeSettingVC alloc] init];
+            timeVC.timedelegate = self;
+            [[self navigationController] pushViewController:timeVC animated:YES];*/
+        //}
+        if(self.timeArray!=nil){
+            self.navigationItem.rightBarButtonItem.enabled=YES;
+        }
+        else{
+            self.navigationItem.rightBarButtonItem.enabled=NO;
+        }
     }
     
     //[tableView reloadData];
@@ -289,7 +377,9 @@
     self.timeArray=theTime;
     //NSLog([self.timeArray objectAtIndex:0]);
     // Do something with the array
+    NSIndexPath *ipath = [self.tableView indexPathForSelectedRow];
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (IBAction)sendQuery{
@@ -303,6 +393,9 @@
         TimeSettingVC *destination = segue.destinationViewController;
         if ([destination isKindOfClass:[TimeSettingVC class]]) {
             destination.timedelegate = self;
+            if([self.tableView indexPathForSelectedRow].row==7){
+                destination.timeArray=self.timeArray;
+            }
         }
     }
     
@@ -310,7 +403,12 @@
     if([segue.identifier isEqualToString:@"toAnswer"]){
         QueryAnswerViewController* destination=segue.destinationViewController;
         if([destination isKindOfClass:[QueryAnswerViewController class]]){
-            destination.timeArray=self.timeArray;
+            if(isCustomized){
+                destination.timeArray=self.timeArray;
+            }
+            else{
+                destination.timeArray=self.timeArrayConst;
+            }
         }
         
     }

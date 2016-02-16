@@ -175,14 +175,24 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     //if(frdLocations!=nil)[frdLocations removeAllObjects];
     
     for(int i=0;i<self.friends.count;i++){
+        //NSLog(@"i=%d\n\n",i);
             locQuery=[KCSQuery queryOnField:@"owner"
                                withExactMatchForValue:[[[self.friends objectAtIndex:i] to_user] userId]
                                 ];
             [locQuery  addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"userDate" inDirection:kKCSDescending]];
             [locQuery  setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
-            
+        
+        //test
+//        KCSQuery* query2 = [KCSQuery queryOnField:@"userDate" usingConditionalsForValues:kKCSGreaterThan, [NSDate dateWithTimeIntervalSinceNow:-2592000], kKCSLessThan, [NSDate date], nil];
+//        
+//        [query2 addQueryOnField:@"owner" withExactMatchForValue:[[KCSUser activeUser] userId]];
+//        
+//        [query2 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"userDate" inDirection:kKCSDescending]];
+//        
+        
             if([[[self.friends objectAtIndex:i] permission] integerValue]==PermissionForFamily){//exact precision;
                 [LocStore  queryWithQuery:locQuery withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                //[LocStore  queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                     //NSLog(@"%@, i=%d",objectsOrNil,i);
                     if(objectsOrNil!=nil && [objectsOrNil count]>0){
                         [frdLocations replaceObjectAtIndex:i withObject:objectsOrNil[0]];

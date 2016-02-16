@@ -190,6 +190,30 @@ double GenGammaRV(float radius){//in km; radius is the expect radius chose by us
     double a1= ((double)arc4random() / ARC4RANDOM_MAX),a2=((double)arc4random() / ARC4RANDOM_MAX);
     return (-log(a1)-log(a2))*radius/2;
 }
+double GenGammaRV99(float radius){//in km; shape is circle containing 99% probability mass;
+    //truncated geo-indistinguishability;
+    double a1= ((double)arc4random() / ARC4RANDOM_MAX),a2=((double)arc4random() / ARC4RANDOM_MAX);
+    //double v=(-log(a1)-log(a2))*radius/6.63835;//this means eps=6.6/r;
+    double v=-log(a1)-log(a2);//this means eps=1;
+    while(v>6.63835){//99% CDF
+        a1= ((double)arc4random() / ARC4RANDOM_MAX),a2=((double)arc4random() / ARC4RANDOM_MAX);
+        v=(-log(a1)-log(a2));
+    }
+    v=radius*v/6.3835;
+    return v;
+}
+double GenGammaRV59(float radius){//in km; shape is circle containing 59% probability mass; center/edge=1/e;
+    //truncated geo-indistinguishability;
+    double a1= ((double)arc4random() / ARC4RANDOM_MAX),a2=((double)arc4random() / ARC4RANDOM_MAX);
+    //double v=(-log(a1)-log(a2))*radius/6.63835;//this means eps=6.6/r;
+    double v=-log(a1)-log(a2);//this means eps=1;
+    while(v>2){//99% CDF
+        a1= ((double)arc4random() / ARC4RANDOM_MAX),a2=((double)arc4random() / ARC4RANDOM_MAX);
+        v=(-log(a1)-log(a2));
+    }
+    v=radius*v/2;
+    return v;
+}
 double GenRandomU01(){
     return  ((double)arc4random() / ARC4RANDOM_MAX);
 }

@@ -10,6 +10,7 @@
 #import <KinveyKit/KinveyKit.h>
 #import "LocSeries.h"
 #import <MapKit/MapKit.h>
+#import "AppDelegate.h"
 @interface QueryAnswerViewController : UIViewController<MKMapViewDelegate>{
     IBOutlet MKMapView *mapView;
 }

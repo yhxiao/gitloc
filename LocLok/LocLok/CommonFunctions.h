@@ -45,6 +45,8 @@
 //+ (NSUInteger)indexofAnnotation:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapannotations;
 //+(PrivSetting*)initPrivSettingWithDefault;
 double GenGammaRV(float radius);//radius is the expect radius chose by user;
+double GenGammaRV99(float radius);//radius is the circle containing 99% probability mass;
+double GenGammaRV59(float radius);
 double GenRandomU01();
 double quantile_radius(int percentage,float R);
 @end

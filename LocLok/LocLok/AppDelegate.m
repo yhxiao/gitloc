@@ -1843,7 +1843,13 @@ extern NSString* LocalImagePlist;
         perturbed.validUntilWhen=activeLocationUntilWhen;
         
         double bearing=GenRandomU01()*2*M_PI;
-        double r=GenGammaRV([privacy.SharingRadius floatValue]*1000);
+        //test
+        //for(int i=0;i<10;i++){
+        //    NSLog(@"%f",GenGammaRV59([privacy.SharingRadius floatValue])*1000);
+        //}
+        //double r=GenGammaRV([privacy.SharingRadius floatValue]*1000);
+        //change radius to the circle containing 99% probability mass.
+        double r=GenGammaRV59([privacy.SharingRadius floatValue])*1000;//(2/radius)-differential privacy;
         CLLocationCoordinate2D  perturbedCoordinate=[self locationWithBearing:bearing
                                                                      distance:r
                                                                  fromLocation:currentLocation.coordinate ];

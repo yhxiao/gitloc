@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 @protocol TimeSettingVCDelegate;
 
-@interface TimeSettingVC : UITableViewController{
+@interface TimeSettingVC : UIViewController<UITableViewDelegate,UITableViewDataSource>{
 
 //id<TimeSettingVCDelegate> timedelegate;
     //__unsafe_unretained id<TimeSettingVCDelegate> timedelegate;
 }
-
+@property (retain) IBOutlet UITableView *timetable;
 @property (nonatomic, strong) NSMutableArray *timeArray;
 @property (nonatomic,weak) id<TimeSettingVCDelegate> timedelegate;
 

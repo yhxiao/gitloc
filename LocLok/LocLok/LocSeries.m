@@ -14,7 +14,7 @@
 @synthesize kinveyId ;
 @synthesize userDate ;
 //@synthesize attachment = _attachment;
-@synthesize precision,speed;
+@synthesize precision,speed,course,movement,mode;
 @synthesize meta ;
 @synthesize location ,validUntilWhen;
 

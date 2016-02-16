@@ -16,7 +16,7 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton; // this button appears only when the date picker is shown
 
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter,*dateFormatterGMT;
 //@property (nonatomic, strong) NSIndexPath *path;
 
 @end
@@ -26,7 +26,7 @@
 
 @implementation TimeSettingVC
 @synthesize timedelegate;
-@synthesize timeArray;
+@synthesize timeArray,timetable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,12 +42,33 @@
     [super viewDidLoad];
     //self.path=[NSIndexPath alloc];
     
+    timetable=[[UITableView alloc] init];
+    timetable=[[UITableView alloc] init];
+    timetable.hidden=NO;
+    timetable.frame=CGRectMake(0, 0, self.view.bounds.size.width,160);
+    //self.notifTable.style=UITableViewStylePlain;
+    [self.view addSubview:timetable];
+    //self.resultTable.=bgColor;
+    timetable.delegate=self;
+    timetable.dataSource=self;
+    
+    
+    self.view.backgroundColor=[UIColor whiteColor];
+    
     self.dataArray = [NSArray arrayWithObjects:@"Start Date", @"End Date", nil];
+    if(timeArray==nil){
     self.timeArray=[NSMutableArray arrayWithCapacity:2];
-    [self.timeArray addObjectsFromArray:self.dataArray];
+    [timeArray addObject:[NSDate date]];
+    [timeArray addObject:[NSDate date]];
+    }
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    self.dateFormatterGMT = [[NSDateFormatter alloc] init];
+    [self.dateFormatterGMT setDateStyle:NSDateFormatterShortStyle];
+    [self.dateFormatterGMT setTimeStyle:NSDateFormatterShortStyle];
+    [self.dateFormatterGMT setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     
     //timedelegate=[self navigationController].topViewController;
     UIBarButtonItem *closeBarButtonItem = [[UIBarButtonItem alloc]
@@ -71,6 +92,19 @@
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSIndexPath *indexPath = [self.timetable indexPathForSelectedRow];
+    NSUInteger intPath[2];
+    intPath[0]=0;intPath[1]=0;
+    indexPath=[NSIndexPath indexPathWithIndexes:intPath length:2];
+    
+    [self.timetable selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    if(timeArray!=nil){
+        self.pickerView.date = [timeArray objectAtIndex:0];
+    }
+    
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -97,7 +131,12 @@
 	//UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCustomCellID];
     
 	cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    if(timeArray==nil){
 	cell.detailTextLabel.text = [self.dateFormatter stringFromDate:[NSDate date]];
+    }
+    else{
+        cell.detailTextLabel.text =[self.dateFormatter stringFromDate:[timeArray objectAtIndex:indexPath.row]];
+    }
     //cell.selected=YES;
 	
     /*if(self.path==nil){
@@ -149,17 +188,17 @@
 
 - (IBAction)dateAction:(id)sender
 {
-	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	NSIndexPath *indexPath = [self.timetable indexPathForSelectedRow];
     
     if(indexPath==nil){
         NSUInteger intPath[2];
         intPath[0]=0;intPath[1]=0;
         indexPath=[NSIndexPath indexPathWithIndexes:intPath length:2];
     }
-	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+	UITableViewCell *cell = [self.timetable cellForRowAtIndexPath:indexPath];
 	cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.pickerView.date];
     [self.timeArray replaceObjectAtIndex:[indexPath indexAtPosition:1]
-                              withObject:cell.detailTextLabel.text
+                              withObject:[self.dateFormatter dateFromString:cell.detailTextLabel.text]
     ];
 }
 
@@ -185,14 +224,34 @@
 	self.navigationItem.rightBarButtonItem = nil;
 	*/
 	// deselect the current table row
-	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    //timedelegate=self.navigationController.parentViewController;
-    
-    [self.timedelegate TimeSettingVCDidFinish:self.timeArray];
-    [[self navigationController] popViewControllerAnimated:YES];
-    
+    if([[timeArray objectAtIndex:1] timeIntervalSinceDate:[timeArray objectAtIndex:0]]<0){
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Error"
+                                      message:@"End date must be larger than Start date."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else{
+        NSIndexPath *indexPath = [self.timetable indexPathForSelectedRow];
+        [self.timetable deselectRowAtIndexPath:indexPath animated:YES];
+        
+        //timedelegate=self.navigationController.parentViewController;
+        
+        [self.timedelegate TimeSettingVCDidFinish:self.timeArray];
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
     //[self performSegueWithIdentifier:@"toQuerySetting1" sender:self];
 }
 
