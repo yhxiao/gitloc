@@ -18,6 +18,7 @@
 #import "PrivSetting.h"
 //#import "PrivacyMath.h"
 #import <LocationKit/LocationKit.h>
+#import "MeetEvent.h"
 #import "ViewController.h"
 
 
@@ -47,6 +48,8 @@
 @property (nonatomic, retain) LKSetting* LKmode_inactive;
 @property (nonatomic) LKActivityMode ActivityMode;
 @property (nonatomic, retain, nullable) LKLocationManager *locationManager;
+@property (nonatomic)NSInteger badgeCount;
+@property (nonatomic, retain, nullable)MeetEvent* myMeetEvent;//only a temporary variable;
 
 - (void)sessionStateChanged:(FBSDKLoginManagerLoginResult*)result
                       error:(NSError *)error;
@@ -65,4 +68,8 @@
                                   fromLocation:(CLLocationCoordinate2D)origin ;
 
 -(NSString *)getUniqueDeviceIdentifierAsString;//this method syncs the unique id through all apple devices. If this app is uninstalled and reinstalled, the id remains the same, but for all devices.
+-(void)AgreeMeetEventRequest:(NSDictionary * _Nullable)userInfo;
+-(void)ReceiveAgreedMeeting:(NSDictionary  * _Nullable )userInfo;
+-(void)DeclineMeetEventRequest:(NSDictionary *_Nullable)userInfo;
+-(NSInteger)findFriendinFListbyID:(NSString*_Nullable)friend_id;
 @end

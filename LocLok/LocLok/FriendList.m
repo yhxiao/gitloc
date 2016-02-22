@@ -10,7 +10,7 @@
 
 @implementation FriendList
 @synthesize friends,frdLocations;
-@synthesize frdStore,PhotoStore,LocStore,LokStore;
+@synthesize frdStore,PhotoStore,LocStore,LokStore;//,myMeetingFriendIndex;
 
 NSString *const fListLoadingCompleteNotification =
 @"com.yxiao.friendlistloadingfinished";
@@ -156,6 +156,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
 
 
 -(void)updateLocations{
+    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if(LocStore==nil)
     LocStore=[KCSAppdataStore storeWithOptions:@{
                                                  KCSStoreKeyCollectionName:@"LocSeries",
@@ -174,7 +175,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     KCSQuery *locQuery;
     //if(frdLocations!=nil)[frdLocations removeAllObjects];
     
-    for(int i=0;i<self.friends.count;i++){
+    for(NSInteger i=0;i<self.friends.count;i++){
         //NSLog(@"i=%d\n\n",i);
             locQuery=[KCSQuery queryOnField:@"owner"
                                withExactMatchForValue:[[[self.friends objectAtIndex:i] to_user] userId]
@@ -189,8 +190,9 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
 //        
 //        [query2 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"userDate" inDirection:kKCSDescending]];
 //        
-        
-            if([[[self.friends objectAtIndex:i] permission] integerValue]==PermissionForFamily){//exact precision;
+        MeetEvent* meet1=[[self.friends objectAtIndex:i] meetinglink];
+        NSLog(@"%ld",(long)[meet1.MeetEventStatus integerValue]);
+            if([[[self.friends objectAtIndex:i] permission] integerValue]==PermissionForFamily  || (meet1!=nil && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed && [meet1.MeetEventStatus integerValue]>MeetEventFinished)){//exact precision;
                 [LocStore  queryWithQuery:locQuery withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                 //[LocStore  queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                     //NSLog(@"%@, i=%d",objectsOrNil,i);
@@ -210,7 +212,8 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
                 ];
             }
             
-            if([[[self.friends objectAtIndex:i] permission ] integerValue]==PermissionForFriends){//protected precision;
+            //if(([[[self.friends objectAtIndex:i] permission ] integerValue]==PermissionForFriends && [meet1.MeetEventStatus integerValue]>MeetEventAgreed) || meet1==nil)
+            else{//protected precision;
                 [LokStore queryWithQuery:locQuery withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                     //NSLog(@"%@, i=%d",objectsOrNil,i);
                     if(objectsOrNil!=nil && [objectsOrNil count]>0){
@@ -233,6 +236,80 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
 }
 
 
+
+-(void)checkMeetingFriends:(CLLocation*)myLocation{
+    if(LocStore==nil)
+        LocStore=[KCSAppdataStore storeWithOptions:@{
+                                                     KCSStoreKeyCollectionName:@"LocSeries",
+                                                     KCSStoreKeyCollectionTemplateClass:[LocSeries class],
+                                                     KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
+                                                     }];
+    
+    id<KCSStore> meetStore=
+    [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+                                              KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                              KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+                                              }];
+    KCSQuery *locQuery;
+    
+    for(NSInteger i=0;i<self.friends.count;i++){
+        Friendship* thisFriend=[self.friends objectAtIndex:i];
+        MeetEvent* meet1=thisFriend.meetinglink;
+        //for all the meeting friends;
+        if(meet1!=nil){
+            locQuery=[KCSQuery queryOnField:@"owner"
+                     withExactMatchForValue:[[[self.friends objectAtIndex:i] to_user] userId]
+                      ];
+            [locQuery  addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"userDate" inDirection:kKCSDescending]];
+            [locQuery  setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
+            
+            [LocStore  queryWithQuery:locQuery withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                
+                if(objectsOrNil!=nil && [objectsOrNil count]>0){
+                    [frdLocations replaceObjectAtIndex:i withObject:objectsOrNil[0]];
+                    LocSeries* meetingfrdLoc=objectsOrNil[0];
+                    CLLocationDistance dist=[myLocation distanceFromLocation:[CLLocation locationFromKinveyValue:meetingfrdLoc.location]];
+                    //already met; < Meet_meters;
+                    if(dist<Meet_meters && [meet1.MeetEventStatus integerValue]>MeetEventFinished && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed){
+                        meet1.MeetEventStatus=[NSNumber numberWithInteger:MeetEventFinished];//finished;
+                        
+                        
+                        [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                            if(errorOrNil!=nil){
+                                NSLog(@"%@",errorOrNil);
+                            }
+                        } withProgressBlock:nil];
+                        
+                    }
+                    //nearby;
+                    else{ if(dist<Nearby_meters && [meet1.MeetEventStatus integerValue]>MeetEventNearby && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed){
+                        meet1.MeetEventStatus=[NSNumber numberWithInteger:MeetEventNearby];
+                        
+                        [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                            if(errorOrNil!=nil){
+                                NSLog(@"%@",errorOrNil);
+                            }
+                        } withProgressBlock:nil];
+                    }
+                    //halfway;
+                    else{if(dist<[[CLLocation locationFromKinveyValue:meet1.from_location] distanceFromLocation:[CLLocation locationFromKinveyValue:meet1.from_location]]/2 && [meet1.MeetEventStatus integerValue]>MeetEventHalfway && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed){
+                        meet1.MeetEventStatus=[NSNumber numberWithInteger:MeetEventHalfway];
+                        
+                        [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                            if(errorOrNil!=nil){
+                                NSLog(@"%@",errorOrNil);
+                            }
+                        } withProgressBlock:nil];
+                        
+                    }}}
+                }
+            }withProgressBlock:nil];
+        }
+    }
+    
+
+    
+}
 
 +(void)checkNewFriend{
     id<KCSStore> loadStore;

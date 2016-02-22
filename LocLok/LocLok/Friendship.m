@@ -11,7 +11,7 @@
 @implementation Friendship
 @synthesize from_user,to_user,permission,shownColor;
 
-const int PermissionFamily=0,PermissionFriends=10;
+//const int PermissionFamily=0,PermissionFriends=10;
 
 
 - (NSDictionary *)hostToKinveyPropertyMapping
@@ -24,7 +24,8 @@ const int PermissionFamily=0,PermissionFriends=10;
              @"permission" : @"permission",
              @"shownColor" : @"shownColor",
              @"from_id"    : @"from_id",
-             @"to_id"      : @"to_id"
+             @"to_id"      : @"to_id",
+             @"meetinglink": @"meetinglink"
              };
 }
 
@@ -32,14 +33,19 @@ const int PermissionFamily=0,PermissionFriends=10;
 {
     return @{@"from_user" /* backend field name */ : KCSUserCollectionName /* collection name for invitations */
              ,
-             @"to_user":KCSUserCollectionName
+             @"to_user":KCSUserCollectionName,
+             @"meetinglink":@"MeetEvent"
              };
 }
 //+(NSDictionary *)kinveyObjectBuilderOptions{//optinal, reference class map - maps properties to objects
-//    return @{ KCS_REFERENCE_MAP_KEY : @{ @"from_user" : [KCSUserCollectionName class],
-//                                         @"to_user":[KCSUserCollectionName class]
+//    return @{ KCS_REFERENCE_MAP_KEY : @{ //@"from_user" : [KCSUserCollectionName class],
+//                                         //@"to_user":[KCSUserCollectionName class],
+//                                         @"meetinglink":[MeetEvent class]
 //                                         }
 //              };
 //}
-
+//- (NSArray *)referenceKinveyPropertiesOfObjectsToSave
+//{
+//    return @[@"meetinglink"];
+//}
 @end

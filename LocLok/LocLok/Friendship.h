@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <KinveyKit/KinveyKit.h>
+#import "MeetEvent.h"
 typedef NS_ENUM(NSInteger, AllLocPermissions) {
-    PermissionForFamily,//show protected location; value=0;
-    PermissionForFriends//show precise location; value=1;
+    PermissionForFamily=0,//show protected location; value=0;
+    PermissionForFriends=1//show precise location; value=1;
 };
 
 @interface Friendship : NSObject<KCSPersistable>
@@ -20,6 +21,7 @@ typedef NS_ENUM(NSInteger, AllLocPermissions) {
 @property (nonatomic, retain) NSNumber* shownColor;
 @property (nonatomic, retain) NSString* from_id;
 @property (nonatomic, retain) NSString* to_id;
+@property (nonatomic, retain) MeetEvent* meetinglink;
 @property (nonatomic, copy) NSString* entityId;
 @property (nonatomic, retain) KCSMetadata* metadata; //Kinvey metadata, optional
 

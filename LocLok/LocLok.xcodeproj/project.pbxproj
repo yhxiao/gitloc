@@ -73,6 +73,10 @@
 		3A2DC1331C5FF085008FD46E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A2DC1311C5FF085008FD46E /* LaunchScreen.storyboard */; };
 		3A2DC13E1C5FF085008FD46E /* LocLokTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC13D1C5FF085008FD46E /* LocLokTests.m */; };
 		3A2DC1491C5FF085008FD46E /* LocLokUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DC1481C5FF085008FD46E /* LocLokUITests.m */; };
+		3A2DF46B1C76459200530F1A /* MeetEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DF46A1C76459200530F1A /* MeetEvent.m */; };
+		3A2DF46D1C76573100530F1A /* Meeting-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2DF46C1C76573100530F1A /* Meeting-96.png */; };
+		3A2DF46F1C76936200530F1A /* User-Shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2DF46E1C76936200530F1A /* User-Shield.png */; };
+		3A72872B1C74054C00AAE148 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A72872A1C74054C00AAE148 /* MapKit.framework */; };
 		46229E7C8F1E3A4602C606A7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9044989EF906D5D9ED56348 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +207,12 @@
 		3A2DC1441C5FF085008FD46E /* LocLokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocLokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2DC1481C5FF085008FD46E /* LocLokUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocLokUITests.m; sourceTree = "<group>"; };
 		3A2DC14A1C5FF085008FD46E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A2DF4681C74E6B500530F1A /* LocLok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocLok.entitlements; sourceTree = "<group>"; };
+		3A2DF4691C76459200530F1A /* MeetEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeetEvent.h; path = LocLok/MeetEvent.h; sourceTree = "<group>"; };
+		3A2DF46A1C76459200530F1A /* MeetEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeetEvent.m; path = LocLok/MeetEvent.m; sourceTree = "<group>"; };
+		3A2DF46C1C76573100530F1A /* Meeting-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Meeting-96.png"; sourceTree = "<group>"; };
+		3A2DF46E1C76936200530F1A /* User-Shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-Shield.png"; sourceTree = "<group>"; };
+		3A72872A1C74054C00AAE148 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E9044989EF906D5D9ED56348 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54955367CA041C86AC4622 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A72872B1C74054C00AAE148 /* MapKit.framework in Frameworks */,
 				46229E7C8F1E3A4602C606A7 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +255,8 @@
 				3A0F249E1C5FF689004BDCCF /* FriendInfo.m */,
 				3A0F249F1C5FF689004BDCCF /* FriendList.h */,
 				3A0F24A01C5FF689004BDCCF /* FriendList.m */,
+				3A2DF4691C76459200530F1A /* MeetEvent.h */,
+				3A2DF46A1C76459200530F1A /* MeetEvent.m */,
 				3A0F24A11C5FF689004BDCCF /* Friendship.h */,
 				3A0F24A21C5FF689004BDCCF /* Friendship.m */,
 				3A0F249A1C5FF689004BDCCF /* FindFriendVC.h */,
@@ -346,6 +359,8 @@
 		3A0F25131C600057004BDCCF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3A2DF46E1C76936200530F1A /* User-Shield.png */,
+				3A2DF46C1C76573100530F1A /* Meeting-96.png */,
 				3A0F252F1C60074D004BDCCF /* icon_cell_add60.png */,
 				3A0F25301C60074D004BDCCF /* icon_cell_add60@2x.png */,
 				3A0F252D1C600109004BDCCF /* blue_background.png */,
@@ -393,6 +408,7 @@
 		3A2DC1221C5FF085008FD46E /* LocLok */ = {
 			isa = PBXGroup;
 			children = (
+				3A2DF4681C74E6B500530F1A /* LocLok.entitlements */,
 				3A2DC1261C5FF085008FD46E /* AppDelegate.h */,
 				3A2DC1271C5FF085008FD46E /* AppDelegate.m */,
 				3A2DC12C1C5FF085008FD46E /* Main.storyboard */,
@@ -450,6 +466,7 @@
 		B473C9F1485F14BC520676A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A72872A1C74054C00AAE148 /* MapKit.framework */,
 				E9044989EF906D5D9ED56348 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -525,8 +542,18 @@
 				TargetAttributes = {
 					3A2DC11F1C5FF085008FD46E = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = BK99PVUP6A;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -580,10 +607,12 @@
 				3A0F25221C6000DD004BDCCF /* Default.png in Resources */,
 				3A0F24A31C5FF689004BDCCF /* BasicData.plist in Resources */,
 				3A0F25211C6000DD004BDCCF /* Default-568h@2x.png in Resources */,
+				3A2DF46D1C76573100530F1A /* Meeting-96.png in Resources */,
 				3A0F250A1C5FF70C004BDCCF /* LocalImagePlist.plist in Resources */,
 				3A0F24F31C5FF6CF004BDCCF /* PrivacyRuleSettingVC.xib in Resources */,
 				3A0F252B1C6000DD004BDCCF /* profile_default.png in Resources */,
 				3A2DC1301C5FF085008FD46E /* Assets.xcassets in Resources */,
+				3A2DF46F1C76936200530F1A /* User-Shield.png in Resources */,
 				3A2DC12E1C5FF085008FD46E /* Main.storyboard in Resources */,
 				3A0F25271C6000DD004BDCCF /* globe_green.png in Resources */,
 				3A0F25321C60074D004BDCCF /* icon_cell_add60@2x.png in Resources */,
@@ -670,6 +699,7 @@
 				3A0F24AB1C5FF689004BDCCF /* Friendship.m in Sources */,
 				3A0F24FF1C5FF6CF004BDCCF /* UIColor+KinveyHelpers.m in Sources */,
 				3A0F24E91C5FF6CF004BDCCF /* LoginViewController.m in Sources */,
+				3A2DF46B1C76459200530F1A /* MeetEvent.m in Sources */,
 				3A0F25041C5FF6CF004BDCCF /* WriteUpdateViewController.m in Sources */,
 				3A0F24F71C5FF6CF004BDCCF /* QueryAnswerViewController.m in Sources */,
 				3A2DC12B1C5FF085008FD46E /* ViewController.m in Sources */,
@@ -841,11 +871,15 @@
 			baseConfigurationReference = EF54955367CA041C86AC4622 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LocLok/LocLok.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocLok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yxiao.LocLok;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loclok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -854,11 +888,15 @@
 			baseConfigurationReference = 0BD368CFB4A6007BA01B0862 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LocLok/LocLok.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LocLok/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yxiao.LocLok;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loclok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

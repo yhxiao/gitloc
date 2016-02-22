@@ -13,7 +13,7 @@
 
 @synthesize window;
 //@synthesize sessionFacebook;
-@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,latestTrueLocation;
+@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,latestTrueLocation,badgeCount,myMeetEvent;
 //@synthesize locManager;
 NSString *const FBSuccessfulLoginNotification =
 @"com.yxiao.Login:FBSessionStateChangedNotification";
@@ -25,6 +25,10 @@ NSString * const GotSelfPerturbedLocationNotification=
 @"com.yxiao.gotperturbedlocationupdate_from_self";
 NSString * const GotSelfTrueLocationNotification=
 @"com.yxiao.got_true_location_from_self";
+NSString * const NotificationCategoryIdent  = @"MeetEventRequestSent";
+NSString * const NotificationActionOneIdent = @"MeetEventRequestAccepted";
+NSString * const NotificationActionTwoIdent = @"MeetEventRequestDeclined";
+
 
 
 extern NSString* LocalImagePlist;
@@ -83,49 +87,226 @@ extern NSString* LocalImagePlist;
 
 
 
-
+-(NSInteger)findFriendinFListbyID:(NSString*)friend_id{
+    for(NSInteger i=0;i<fList.friends.count;i++){
+        if([[[[fList.friends objectAtIndex:i] to_user] userId] isEqualToString:friend_id]){
+            return i;
+        }
+    }
+    return -1;
+}
 
 //Push Notifications;
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [[KCSPush sharedPush] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken completionBlock:^(BOOL success, NSError *error) {
-        //if there is an error, try again laster
+        //if there is an error, try again later
     }];
     // Additional registration goes here (if needed)
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    //payload customized at:http://devcenter.kinvey.com/html5/reference/business-logic/reference.html
+    
     [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
     // Additional push notification handling code should be performed here
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Wow"
-                                  message:@"Received a Push"
-                                  preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    //UIAlertAction* cancel = [UIAlertAction
-    //                         actionWithTitle:@"Cancel"
-    //                         style:UIAlertActionStyleDefault
-    //                         handler:^(UIAlertAction * action)
-    //                         {
-    //                             [alert dismissViewControllerAnimated:YES completion:nil];
-    //
-    //                         }];
     
-    [alert addAction:ok];
-    //[alert addAction:cancel];
+    //NSLog(@"%d",[[userInfo objectForKey:@"code"] intValue]-100);
+    //NSLog(@"%ld",(long)MeetEventRequest);
+    if([[userInfo objectForKey:@"code"] unsignedIntegerValue]-100== MeetEventRequest){//friend permission from_user;
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Request"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"Agree"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   [self AgreeMeetEventRequest:userInfo];
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        UIAlertAction* right = [UIAlertAction
+                                actionWithTitle:@"Decline"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action)
+                                {
+                                    [self DeclineMeetEventRequest:userInfo];
+                                    [alert dismissViewControllerAnimated:YES completion:nil];
+                                    
+                                }];
+        
+        [alert addAction:left];
+        [alert addAction:right];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
     
-    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventNotice){//family permission
+        
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Request"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   [self AgreeMeetEventRequest:userInfo];
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+    
+    
+    if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventAgreed){//agreed
+        
+        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Agreed"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   [self ReceiveAgreedMeeting:userInfo];
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+    
+    if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventDeclined){//declined
+        
+        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Declined"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //[self ReceiveAgreedMeeting:userInfo];
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+    
+    if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventHalfway){//halfway
+        
+        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Update"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+    
+    if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventNearby){//nearby
+        
+        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Update"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+    
+    
+    
+    if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventFinished){//meeting finished;
+        myMeetEvent=nil;
+        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:-1];
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Real-time Meeting Finished"
+                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //[self AgreeMeetEventRequest:userInfo];
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }
+    
     
 }
+/*- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
+{
+    //payload customized at:http://devcenter.kinvey.com/html5/reference/business-logic/reference.html
+    
+    [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
+    
+    //30 seconds to fetch data, then must call completionhandler;
+    handler(UIBackgroundFetchResultNoData);
+    
+    
+}*/
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     [[KCSPush sharedPush] application:application didFailToRegisterForRemoteNotificationsWithError:error];
@@ -178,12 +359,48 @@ extern NSString* LocalImagePlist;
     
     
     //[[KCSPush sharedPush] setPushBadgeNumber:100];
-    /*my Kinvey Key LocShare*/
-    (void) [[KCSClient sharedClient]
+    /*my Kinvey Key LocLok*/
+    //set LocLok version for backend;
+    KCSRequestConfiguration* requestConfig = [KCSRequestConfiguration requestConfigurationWithClientAppVersion:@"1.0.0" andCustomRequestProperties:nil];
+    KCSClientConfiguration* config =
+    [KCSClientConfiguration configurationWithAppKey:@"kid_PeVcDHs6oJ"
+                                             secret:@"95bf9dd03735465fb5f83955c92eade5"
+                                            options:nil
+                               requestConfiguration: requestConfig
+     ];
+    [[KCSClient sharedClient] initializeWithConfiguration:config];
+    
+    /*
+    [[KCSClient sharedClient]
             initializeKinveyServiceForAppKey:@"kid_PeVcDHs6oJ"
                                withAppSecret:@"95bf9dd03735465fb5f83955c92eade5"
                                 usingOptions:nil
             ];
+    */
+    UIMutableUserNotificationAction *action1;
+    action1 = [[UIMutableUserNotificationAction alloc] init];
+    [action1 setActivationMode:UIUserNotificationActivationModeBackground];
+    [action1 setTitle:@"Accept"];
+    [action1 setIdentifier:NotificationActionOneIdent];
+    [action1 setDestructive:NO];
+    [action1 setAuthenticationRequired:NO];
+    
+    UIMutableUserNotificationAction *action2;
+    action2 = [[UIMutableUserNotificationAction alloc] init];
+    [action2 setActivationMode:UIUserNotificationActivationModeBackground];
+    [action2 setTitle:@"Decline"];
+    [action2 setIdentifier:NotificationActionTwoIdent];
+    [action2 setDestructive:NO];
+    [action2 setAuthenticationRequired:NO];
+    
+    UIMutableUserNotificationCategory *actionCategory;
+    actionCategory = [[UIMutableUserNotificationCategory alloc] init];
+    [actionCategory setIdentifier:NotificationCategoryIdent];
+    [actionCategory setActions:@[action1, action2]
+                    forContext:UIUserNotificationActionContextDefault];
+    
+    NSSet *categories = [NSSet setWithObject:actionCategory];
+    
     
     
     
@@ -191,7 +408,7 @@ extern NSString* LocalImagePlist;
     if([version floatValue] >=8.0){//register LocalNotification;
         UIUserNotificationType types = UIUserNotificationTypeNone | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
         UIUserNotificationSettings *mySettings =
-        [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [UIUserNotificationSettings settingsForTypes:types categories:categories];
         [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     }
     
@@ -219,8 +436,16 @@ extern NSString* LocalImagePlist;
     
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     UITabBar *tabBar = tabBarController.tabBar;
-    tabBar.backgroundColor=bgColor;
+    tabBar.backgroundColor=[UIColor whiteColor];
     tabBar.backgroundImage=nil;
+    UITabBarItem *tabBarItem0 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:2];
+    UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:3];
+    UITabBarItem *tabBarItem4 = [tabBar.items objectAtIndex:4];
+    
+    
+    //[tabBarItem1 initWithTitle:@"My Privacy" image:[UIImage imageNamed:@"User-Shield.png"] selectedImage:[UIImage imageNamed:@"User-Shield.png"]];
     
     
     /*Navigation Bar*/
@@ -345,8 +570,9 @@ extern NSString* LocalImagePlist;
         NSLog(@"has not user's credential");
     }
     
-    
-    
+    fList=[FriendList alloc];
+    //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:-1];
+    myMeetEvent=nil;
     
     
     [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];//auto update profile;
@@ -433,6 +659,218 @@ extern NSString* LocalImagePlist;
 }
 */
 
+- (void)application:(UIApplication *)application
+handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void (^)())completionHandler {
+    
+    if ([identifier isEqualToString:NotificationActionOneIdent]) {
+        //NSLog(@"You chose action Accept.");
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Push Action"
+                                      message:@"You chose to accept the meeting request"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        
+        
+        
+        [self  AgreeMeetEventRequest:userInfo];
+        
+    }
+    if ([identifier isEqualToString:NotificationActionTwoIdent]) {
+        //NSLog(@"You chose action Decline.");
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Push Action"
+                                      message:@"You chose to decline the meeting request"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        
+        
+        
+        
+        [self DeclineMeetEventRequest:userInfo];
+    }
+    if (completionHandler) {
+        
+        completionHandler();
+    }
+}
+-(void)AgreeMeetEventRequest:(NSDictionary *)userInfo{
+    id<KCSStore> meetStore=
+    [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+        KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                        KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+    }];
+    NSString *meet_id=[userInfo objectForKey:@"meet_id"];
+    //NSLog(@"%@",meet_id);
+    KCSQuery* query1 = [KCSQuery queryOnField:KCSEntityKeyId
+                       withExactMatchForValue:meet_id
+                        ];
+    
+    //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"from_user"]]];
+    [meetStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil2, NSError *errorOrNil2) {
+        if (errorOrNil2 == nil && objectsOrNil2.count>0) {
+            myMeetEvent=objectsOrNil2[0];
+            
+            //save permission of meetinglink to Friendlist;
+            id<KCSStore>frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
+                                                                           KCSStoreKeyCollectionName : @"Friendship",
+                                                                           KCSStoreKeyCollectionTemplateClass : [Friendship class],
+                                                                           KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+                                                                           }];
+            KCSQuery* query2 = [KCSQuery queryOnField:@"to_user._id"
+                               withExactMatchForValue:[[KCSUser activeUser] userId]
+                                ];
+            [query2 addQueryOnField:@"from_user._id" withExactMatchForValue:[userInfo objectForKey:@"from_user"]];
+            [frdStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+                if(objectsOrNil1!=nil){
+                    Friendship* friend1=objectsOrNil1[0];
+                    friend1.meetinglink=objectsOrNil2[0];
+                    [frdStore saveObject:friend1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                        if(errorOrNil!=nil){
+                            NSLog(@"error when saving meetinglink in Friendship");
+                        }
+                        
+                    } withProgressBlock:nil];
+                }
+            } withProgressBlock:nil];
+            
+            
+            
+            
+            
+            
+            [self.locationManager requestLocation:^(CLLocation * _Nullable location, NSError * _Nullable error) {
+                // We have to make sure the location is set, could be nil
+                if (location != nil) {
+                    myMeetEvent.to_location=[location kinveyValue];
+                    myMeetEvent.distance=[NSNumber numberWithInt:(int)[location distanceFromLocation:[CLLocation locationFromKinveyValue:myMeetEvent.from_location]] ];
+                    if([myMeetEvent.distance doubleValue]>Nearby_meters){
+                        myMeetEvent.MeetEventStatus=[NSNumber numberWithInteger:MeetEventAgreed];
+                    }
+                    else{ if([myMeetEvent.distance doubleValue]<Meet_meters){
+                        myMeetEvent.end_time=[NSDate date];
+                        myMeetEvent.MeetEventStatus=[NSNumber numberWithInteger:MeetEventFinished];
+                    }
+                    else{
+                        myMeetEvent.MeetEventStatus=[NSNumber numberWithInteger:MeetEventNearby];
+                    }
+                    }
+                    [meetStore saveObject:myMeetEvent withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                        //finished meeting event;
+                        if(myMeetEvent.MeetEventStatus==MeetEventFinished){
+                            myMeetEvent=nil;
+                            //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:-1];
+                        }
+                    } withProgressBlock:nil];
+                }
+            }];
+        } else {
+            NSLog(@"error occurred: %@", errorOrNil2);
+        }
+    } withProgressBlock:nil];
+    
+    
+}
+-(void)DeclineMeetEventRequest:(NSDictionary *)userInfo{
+    id<KCSStore> meetStore=
+    [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+                                              KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                              KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+                                              }];
+    NSString *meet_id=[userInfo objectForKey:@"meet_id"];
+    //NSLog(@"%@",meet_id);
+    KCSQuery* query1 = [KCSQuery queryOnField:KCSEntityKeyId
+                       withExactMatchForValue:meet_id
+                        ];
+    
+    [meetStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil2, NSError *errorOrNil2) {
+        if (errorOrNil2 == nil && objectsOrNil2.count>0) {
+            MeetEvent*  meet1=objectsOrNil2[0];
+            meet1.MeetEventStatus=[NSNumber numberWithInteger:MeetEventDeclined];
+            
+            [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                if(errorOrNil!=nil){
+                    NSLog(@"%@",errorOrNil);
+                }
+            } withProgressBlock:nil];
+            
+        }
+    }
+    withProgressBlock:nil];
+    
+    
+    
+}
+-(void)ReceiveAgreedMeeting:(NSDictionary  * _Nullable )userInfo{
+    NSString * strMeetID=[userInfo objectForKey:@"meet_id"];
+    
+    NSInteger i=[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]];
+    
+    NSString* originalMeetID=[[fList.friends objectAtIndex:i] meetinglink].entityId;
+    
+    //if agreed meeting is not the proposed meeting when several requests were sent;
+    if(![originalMeetID isEqualToString:strMeetID]){
+        id<KCSStore> meetStore=
+        [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+                                                  KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                                  KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+                                                  }];
+        KCSQuery* query1 = [KCSQuery queryOnField:KCSEntityKeyId
+                           withExactMatchForValue:strMeetID
+                            ];
+        
+        [meetStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil2, NSError *errorOrNil2) {
+            if (errorOrNil2 == nil && objectsOrNil2.count>0) {
+                myMeetEvent=objectsOrNil2[0];
+                
+                
+                id<KCSStore>frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
+                                                                               KCSStoreKeyCollectionName : @"Friendship",
+                                                                               KCSStoreKeyCollectionTemplateClass : [Friendship class],
+                                                                               KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+                                                                               }];
+                KCSQuery* query2 = [KCSQuery queryOnField:@"to_user._id"
+                                   withExactMatchForValue:[[KCSUser activeUser] userId]
+                                    ];
+                [query2 addQueryOnField:@"from_user._id" withExactMatchForValue:[userInfo objectForKey:@"to_user"]];
+                [frdStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+                    if(objectsOrNil1!=nil){
+                        Friendship* friend1=objectsOrNil1[0];
+                        friend1.meetinglink=objectsOrNil2[0];
+                        [frdStore saveObject:friend1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                            if(errorOrNil!=nil){
+                                NSLog(@"error when saving meetinglink in Friendship");
+                            }
+                            
+                        } withProgressBlock:nil];
+                    }
+                } withProgressBlock:nil];
+                
+                
+            }
+        }withProgressBlock:nil];
+         
+    }
+}
 ///*
 // * If we have a valid session at the time of openURL call, we handle
 // * Facebook transitions by passing the url argument to handleOpenURL
@@ -568,6 +1006,7 @@ extern NSString* LocalImagePlist;
     //UITabBarController* tabController = (UITabBarController*)  self.window.rootViewController;
     //[[[[[tabController viewControllers] objectAtIndex:0] objectAtIndex:0] mapView] removeAnnotations:[[[[tabController viewControllers] objectAtIndex:0] objectAtIndex:0] mapView].annotations];
     
+    [[KCSPush sharedPush] onUnloadHelper];
 }
 
 
@@ -579,7 +1018,7 @@ extern NSString* LocalImagePlist;
     
     [self DataCleanBeforeLogout];
     
-    [[KCSPush sharedPush] onUnloadHelper];
+    
 }
 
 
@@ -1892,12 +2331,13 @@ extern NSString* LocalImagePlist;
     
     
     //save true location to backend
-    if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=100.0){
+    if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=200.0){
     if([currentLocation distanceFromLocation:latestTrueLocation]>5 || latestTrueLocation==nil){//only update the perturbed location if movement>1.5m;
         LocSeries* update = [[LocSeries alloc] init];
         update.owner =[KCSUser activeUser].userId;
         update.userDate = currentLocation.timestamp;
         update.precision=[NSNumber numberWithInt:0];
+        //update.precision=[NSNumber numberWithInt:currentLocation.horizontalAccuracy];
         update.location =[currentLocation kinveyValue];
         update.validUntilWhen=activeLocationUntilWhen;
         update.speed=[NSNumber numberWithDouble:speed];
@@ -1923,7 +2363,8 @@ extern NSString* LocalImagePlist;
         } withProgressBlock:nil];
         
         
-        
+        // *********check the meeting friends & update meeting status*****
+        [fList checkMeetingFriends:currentLocation];
         
         // *********update latestUpdatedLocation**********************
         latestTrueLocation = currentLocation;

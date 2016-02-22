@@ -178,8 +178,16 @@ extern NSString *LocalImagePlist;
     //self.notifTable.style=UITableViewStylePlain;
     [self.view addSubview:self.leftTableView ];
     //self.resultTable.=bgColor;
+    self.leftTableView.preservesSuperviewLayoutMargins=NO;
+    self.leftTableView.layoutMargins=UIEdgeInsetsZero;
+    //self.leftTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 20);
+    //self.leftTableView.layoutMargins= UIEdgeInsetsMake(0, 0, 0, -20);
+    self.leftTableView.separatorInset=UIEdgeInsetsZero;
+    //self.leftTableView.contentInset= UIEdgeInsetsMake(0, 0, 0, 20);
     self.leftTableView.delegate=self;
     self.leftTableView.dataSource=self;
+    
+    
     
     //friends table;
     self.showFriends = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -603,7 +611,7 @@ extern NSString *LocalImagePlist;
     
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     //if(appDelegate.fList==nil && [KCSUser activeUser]!=nil){
-        appDelegate.fList=[[FriendList alloc] loadWithID:[[KCSUser activeUser] userId ]];
+        appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
     //[appDelegate.locManager startUpdatingLocation];
     
     //Also update friends' locations;
@@ -679,7 +687,7 @@ extern NSString *LocalImagePlist;
     }
     [self.leftTableView reloadData];
     
-    
+    NSNumber *num0=[NSNumber numberWithDouble:0];
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     if(frdAnnotations==nil && frdRegions==nil){
         //add self annotation;
@@ -690,6 +698,7 @@ extern NSString *LocalImagePlist;
         selfLocAnnotation1.subtitle = [appDelegate.timeDateFormatter stringFromDate:appDelegate.latestPerturbedLocation.timestamp ];
         selfLocAnnotation1.coordinate = appDelegate.latestPerturbedLocation.coordinate;
         selfLocAnnotation1.disclosureBlock = ^{ NSLog(@"selected Self location"); };
+        //selfLocAnnotation1.disclosureBlock =nil;
         selfLokAnnotation=[YXThumbnailAnnotation annotationWithThumbnail:selfLocAnnotation1];
         //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
         [self.mapView addAnnotation:selfLokAnnotation];
@@ -735,7 +744,10 @@ extern NSString *LocalImagePlist;
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
                 [frd1 updateThumbnail:frd1.thumbnail animated:YES];
                 
-                MKCircle* c1=[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]*1000];
+                
+                MKCircle* c1=[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:
+                              (([frdLoc.precision isEqualToNumber:num0])?
+                               0.01:[frdLoc.precision doubleValue])*1000];
                 c1.title=annotation1.title;
                 [frdRegions addObject:c1];
                 
@@ -853,6 +865,9 @@ extern NSString *LocalImagePlist;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.detailTextLabel.numberOfLines=2;
+    cell.preservesSuperviewLayoutMargins=NO;
+    cell.layoutMargins =UIEdgeInsetsMake(0, 0, 0, -20);
+    cell.separatorInset = UIEdgeInsetsZero;//if you also want to adjust separatorInset
     
     if(indexPath.section==0){//about me;
         NSDictionary *temp = [CommonFunctions retrieveFromPlist:@"UserInfo.plist"];
@@ -865,6 +880,8 @@ extern NSString *LocalImagePlist;
         
         //The icon on the right side of a row;
         //cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        /* for self, no need the meet event;
         UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -875,7 +892,7 @@ extern NSString *LocalImagePlist;
         [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = [UIColor clearColor];
         cell.accessoryView = button;
-        
+        */
         
         UIImage* profileImg=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
         [cell.imageView  setImage:profileImg==nil?[UIImage imageNamed:@"profile_default.png"]:profileImg];
@@ -908,7 +925,23 @@ extern NSString *LocalImagePlist;
             cell.detailTextLabel.textColor=[UIColor grayColor];
         }
         else{
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor=[UIColor blackColor];
             cell.detailTextLabel.text=[appDelegate.timeDateFormatter stringFromDate: frdLoc.userDate];
+            
+            //The icon on the right side of a row;
+            //cell.accessoryType = UITableViewCellAccessoryNone;
+            UIImage *image =  [UIImage imageNamed:@"Meeting-96.png"] ;
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
+            button.frame = frame;
+            [button setBackgroundImage:image forState:UIControlStateNormal];
+            
+            [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
+            button.backgroundColor = [UIColor clearColor];
+            cell.accessoryView = button;
+
         }
         
         //NSLog(@"",[(NSDictionary*)aFriend.to_user objectForKey:@"_id"]);
@@ -964,19 +997,7 @@ extern NSString *LocalImagePlist;
     
     
     
-    //The icon on the right side of a row;
-	//cell.accessoryType = UITableViewCellAccessoryNone;
-    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
-    button.frame = frame;
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor clearColor];
-    cell.accessoryView = button;
-    
+        
     
     
     /*id<KCSStore> PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName : @"UserPhotos", KCSStoreKeyCollectionTemplateClass : [User_Photo class]}];
@@ -1037,9 +1058,142 @@ extern NSString *LocalImagePlist;
     
     return cell;
 }
-
-- (void)checkButtonTapped:(id)sender event:(id)event
+//-(void)viewDidLayoutSubviews
+//{
+//    if ([self.leftTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [self.leftTableView setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    
+//    if ([self.leftTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [self.leftTableView setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//}
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [tableView setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [tableView setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//        cell.preservesSuperviewLayoutMargins = NO;
+//        [cell setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//}
+- (void)checkButtonTapped:(id)sender event:(id)event//clicked accessory button;
 {
+    NSIndexPath * indexPath = [leftTableView indexPathForRowAtPoint: [[[event touchesForView: sender] anyObject] locationInView: leftTableView]];
+    if ( indexPath == nil ){
+        return;
+    }
+    //trigger the delegate method accessoryButtonTappedForRowWithIndexPath;
+    //[self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    
+    NSString* friendName=[leftTableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    NSString* title=[@"Go To " stringByAppendingString:friendName];
+    
+    NSString* message=[[@"Do you want to send a meeting request to " stringByAppendingString:friendName] stringByAppendingString:@"? This will let you share true locations with each other until you meet. Notifications will also be sent when you get closer (halfway and nearby)."];
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:title
+                                  message:message
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* left = [UIAlertAction
+                           actionWithTitle:@"Cancel"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               [alert dismissViewControllerAnimated:YES completion:nil];
+                               
+                           }];
+    UIAlertAction* right = [UIAlertAction
+                            actionWithTitle:@"Yes"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                //
+                                
+                                [self sendMeetingRequestFromUser:indexPath.row];
+                                
+                                
+                                
+                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                
+                            }];
+    
+    [alert addAction:left];
+    [alert addAction:right];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+-(void)sendMeetingRequestFromUser:(NSInteger)userInFList{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    Friendship *aFriend=[appDelegate.fList.friends objectAtIndex:userInFList];
+    //[appDelegate.fList.myMeetingFriendIndex integerValue]=userInFList;//have to wait for agreed;
+    
+    MeetEvent* myRequest=[[MeetEvent alloc] init];
+    myRequest.from_user=[KCSUser activeUser];
+    myRequest.to_user=aFriend.to_user;
+    [appDelegate.locationManager requestLocation:^(CLLocation * _Nullable location, NSError * _Nullable error) {
+        // We have to make sure the location is set, could be nil
+        if (location != nil) {
+            myRequest.from_location=[location kinveyValue];
+
+        }
+    }];
+    myRequest.to_location=nil;
+    if([aFriend.permission integerValue]==PermissionForFamily){
+        myRequest.MeetEventStatus=[NSNumber numberWithInteger:MeetEventNotice];
+    }
+    if([aFriend.permission integerValue]==PermissionForFriends){
+        myRequest.MeetEventStatus=[NSNumber numberWithInteger:MeetEventRequest];
+    }
+    myRequest.start_time=[NSDate date];
+    myRequest.end_time=nil;
+    myRequest.distance=nil;
+    
+    id<KCSStore> meetStore=[KCSLinkedAppdataStore storeWithOptions:
+                            @{KCSStoreKeyCollectionName : @"MeetEvent",
+                              KCSStoreKeyCollectionTemplateClass : [MeetEvent class],
+                              KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
+    }];
+    
+    [meetStore saveObject:myRequest withCompletionBlock:^(NSArray *objectsOrNil2, NSError *errorOrNil2) {
+        if(objectsOrNil2!=nil){
+            //aFriend.meetinglink=objectsOrNil[0];
+            
+            //save aFriend to Friendlist;
+            id<KCSStore>frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
+                                                               KCSStoreKeyCollectionName : @"Friendship",
+                                                               KCSStoreKeyCollectionTemplateClass : [Friendship class],
+                                                               KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+                                                               }];
+            KCSQuery* query1 = [KCSQuery queryOnField:@"to_user._id"
+                               withExactMatchForValue:[[KCSUser activeUser] userId]
+                                ];
+            [query1 addQueryOnField:@"from_user._id" withExactMatchForValue:[aFriend.to_user userId]];
+            [frdStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+                if(objectsOrNil1!=nil){
+                    Friendship* friend1=objectsOrNil1[0];
+                    friend1.meetinglink=objectsOrNil2[0];
+                    [frdStore saveObject:friend1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                        if(errorOrNil!=nil){
+                            NSLog(@"error when saving meetinglink in Friendship");
+                        }
+                        
+                    } withProgressBlock:nil];
+                }
+            } withProgressBlock:nil];
+            
+            
+            
+        }
+        
+    } withProgressBlock:nil];
     
 }
 
@@ -1128,5 +1282,12 @@ extern NSString *LocalImagePlist;
     
 }
 
+//trigger meet event;
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+//    
+//    
+//    
+//
+//}
 
 @end

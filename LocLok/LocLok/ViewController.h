@@ -14,6 +14,7 @@
 #import "User_Photo.h"
 #import "Friendship.h"
 #import "LocSeries.h"
+#import "MeetEvent.h"
 //#import "YXThumbnail.h"
 #import "YXThumbnailAnnotation.h"
 
@@ -55,4 +56,6 @@
 -(void) drawFriendsLocations;
 - (void)GotSelfTrueLocationUpdate;
 - (void)GotSelfPerturbedLocationUpdate;
+- (NSUInteger)indexofAnnotation:(NSString*)name at:(CLLocationCoordinate2D)pos in:(NSArray*)mapannotations;
+-(void)sendMeetingRequestFromUser:(NSInteger)userInFList;
 @end

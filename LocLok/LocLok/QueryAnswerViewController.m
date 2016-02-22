@@ -168,8 +168,9 @@
         //declare location2D;
         CLLocation *loc2D=[CLLocation locationFromKinveyValue:result.location];
         
-        if(pos1==nil || [loc2D distanceFromLocation:pos1]>20){
         //add Annotation
+        //do not show any movement within 10 meters;
+        if(pos1==nil || [loc2D distanceFromLocation:pos1]>10){
         MaskAnnotation *maskAnnotation=[[MaskAnnotation alloc]
                                         initWithLocation:loc2D.coordinate
                                         withMainTitle:[self.dateLocale

@@ -849,7 +849,7 @@ extern NSString* LocalImagePlist;
     }
     
     [self.notifTable reloadData];
-    NSLog(@"tapped");
+    NSLog(@"tapped\n");
 }
 
 ////UIAlertView delegate:

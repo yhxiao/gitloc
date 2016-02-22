@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location will be shared with friends strictly under your in-app privacy settings.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Your location will be shared with friends strictly under your in-app privacy settings.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -19,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -82,6 +78,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location will be shared with friends strictly under your in-app privacy settings.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Your location will be shared with friends strictly under your in-app privacy settings.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
