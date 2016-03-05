@@ -1,0 +1,79 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 function onPostSave(request, response, modules)\{\
+  //when a user updated her photo using KCSLinkedAppdataStore, \
+  //this method changes the image to a public accessible file;\
+	/*var	collectionAccess = modules.collectionAccess;\
+  var logger = modules.logger;\
+  logger.info=request;\
+  return response.complete(200);*/\
+  /*collectionAccess.collection('user').find(\
+      \{"last_name": "Xiao"\} //query\
+      //,[['ID', 1]]//sort\
+      //,\{$set:\{KCSFilePublic:@\{YES\}\}\}//doc\
+      ,function (err, docs) \{//callback\
+         if (err) \{\
+						logger.error(err);\
+         \} else\{\
+        		logger.info('find function is executed.');\
+      			response.body=docs;\
+        		response.complete(200);\
+						return;\
+         \}\
+      \} \
+    );*/\
+  \
+  \
+  var push = modules.push, collectionAccess = modules.collectionAccess, logger = modules.logger;\
+  var thisCollection = collectionAccess.collection('UserPhotos');\
+  var userCollection = collectionAccess.collection('user');\
+  var body = response.body;\
+  //logger.info(request);\
+  logger.info(response);\
+  //logger.info(modules);\
+  if (body.photo) \{\
+    //logger.info(body.photo._id);\
+    //var distanceInMiles = 5.0 /*5 mi radius*/ / 3963.192;\
+    \
+    //var query = \{"first_name": "YH"\};\
+    userCollection.find(\{'last_name':"Xiao"\},function (err,userColl)\{\
+      logger.info(userColl.length);\
+      if(err)\{\
+        logger.info(err);\
+      \}\
+      else\{\
+        logger.info("have found this photo ");\
+        logger.info(userColl);\
+      \}\
+      response.continue();\
+    \});\
+    \
+    \
+    /*myACL=body._acl;\
+    logger.info(myACL);\
+    myACL=\{\
+      "gr": true\
+      ,"creator": body.user_id._id\
+    \};\
+    //logger.info(myACL);\
+    thisCollection.findAndModify(\{"_id": body._id\},[['_id',1]],\{$set:\{_acl:myACL\}\}, function (err, userColl) \{\
+      logger.info("got " + userColl.length + " files.");\
+      if (err) \{\
+        logger.error('Error: '+ err);\
+      \} else \{\
+        logger.info("modified ACL: "+ userColl._acl);\
+      \
+      \}\
+    \});*/\
+		\
+    //response.continue();\
+ \} else \{\
+   logger.info("no tags in " + body);\
+   response.continue();\
+ \}\
+  //response.continue();\
+\}}

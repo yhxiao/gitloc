@@ -654,6 +654,10 @@ extern NSString *const FBFailedLoginNotification;
         if(!errorOrNil){
             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             //[FriendList checkNewFriend ];
+            NSLog(@"%@",[[KCSUser activeUser] userId ]);
+            if(appDelegate.fList==nil){
+                appDelegate.fList=[FriendList alloc];
+            }
             appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
             [appDelegate getPrivRulesFromBackend];
             

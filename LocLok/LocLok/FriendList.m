@@ -149,6 +149,44 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     
     
     
+    //load self photo;
+    KCSQuery* query = [KCSQuery queryOnField:@"user_id._id"
+                      withExactMatchForValue:[[KCSUser activeUser] userId]
+                       ];
+    KCSQuerySortModifier* sortByDate = [[KCSQuerySortModifier alloc] initWithField:@"date" inDirection:kKCSDescending];
+    [query addSortModifier:sortByDate]; //sort the return by the date field
+    [query setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
+    
+    
+    [PhotoStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        //NSLog(@"%@",[aFriend.to_user username]);
+        if (objectsOrNil != nil && [objectsOrNil count]>0) {
+            User_Photo * uPhoto=objectsOrNil[0];
+            
+            //get existing image's URL;
+            NSDictionary *temp = [CommonFunctions retrieveFromPlist:LocalImagePlist];
+            NSString *frdImageURL =[[temp objectForKey:[[KCSUser activeUser] userId]] objectAtIndex:0];
+            
+            if(frdImageURL==nil || ![frdImageURL isEqualToString:uPhoto.photoURL]){//new or has update
+                //write new photo's URL to UserInfo.plist;
+                [CommonFunctions writeToPlist:LocalImagePlist
+                                             :[NSArray arrayWithObject:uPhoto.photoURL]
+                                             :[uPhoto.user_id userId]
+                 ];
+                //write new photo as a file in local directory;
+                [CommonFunctions saveImageFromURLToLocal:uPhoto.photoURL :[uPhoto.user_id userId]];
+                
+                //test
+                //UIImage* img=[CommonFunctions loadImageFromLocal:[uPhoto.user_id userId]];
+                //NSLog(@"%@",[CommonFunctions retrieveFromPlist:LocalImagePlist]);
+            }
+            
+        }
+        
+        
+    }withProgressBlock:nil
+     ];//PhotoStore;
+    
     
     return self;
     

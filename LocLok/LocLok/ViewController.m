@@ -339,7 +339,7 @@ extern NSString *LocalImagePlist;
                 //move the overlay circle;
                 [mapView removeOverlay:selfLokOverlay];
                 selfLokOverlay=[MKCircle circleWithCenterCoordinate:location.coordinate
-                                                             radius:[appDelegate.privacy.SharingRadius doubleValue]*1000];
+                                                             radius:[appDelegate.privacy.SharingRadius doubleValue]];
                 selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
                                       stringByAppendingString:[[KCSUser activeUser] surname] ];
                 [self.mapView addOverlay:selfLokOverlay];
@@ -611,6 +611,7 @@ extern NSString *LocalImagePlist;
     
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     //if(appDelegate.fList==nil && [KCSUser activeUser]!=nil){
+    
         appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
     //[appDelegate.locManager startUpdatingLocation];
     
@@ -708,7 +709,7 @@ extern NSString *LocalImagePlist;
         
         //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
         selfLokOverlay=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
-                                                  radius:[appDelegate.privacy.SharingRadius doubleValue]*1000];
+                                                  radius:[appDelegate.privacy.SharingRadius doubleValue]];
         selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
                   stringByAppendingString:[[KCSUser activeUser] surname] ];
         [self.mapView addOverlay:selfLokOverlay];
@@ -745,9 +746,8 @@ extern NSString *LocalImagePlist;
                 [frd1 updateThumbnail:frd1.thumbnail animated:YES];
                 
                 
-                MKCircle* c1=[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:
-                              (([frdLoc.precision isEqualToNumber:num0])?
-                               0.01:[frdLoc.precision doubleValue])*1000];
+                MKCircle* c1=[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]];
+                              //radius:(([frdLoc.precision doubleValue]<100)?0.01:[frdLoc.precision doubleValue])];
                 c1.title=annotation1.title;
                 [frdRegions addObject:c1];
                 

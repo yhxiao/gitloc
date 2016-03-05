@@ -58,7 +58,6 @@
     self.clearsSelectionOnViewWillAppear=YES;
 }
 - (void)viewWillAppear:(BOOL)animated{
-    [self refreshControl];
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:( NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond ) fromDate:[[NSDate alloc] init]];
     
@@ -103,6 +102,11 @@
         self.navigationItem.rightBarButtonItem.enabled=YES;
     }
     
+    //[self refreshControl];
+    
+    NSIndexPath *ipath = [self.tableView indexPathForSelectedRow];
+    [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

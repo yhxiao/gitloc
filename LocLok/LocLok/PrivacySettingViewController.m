@@ -274,7 +274,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     //[slider setBackgroundColor:[UIColor clearColor]];
     radius_slider_km.minimumValue = 0.1;
     radius_slider_km.maximumValue = 10.0;
-    radius_slider_km.continuous = YES;
+    radius_slider_km.continuous =YES;
     //slider.value = 25.0;
     [scrollView addSubview:radius_slider_km];
     
@@ -875,6 +875,10 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
 
 -(void)savePrivRulesToBackend1{
     AppDelegate *appDelegate1 = [[UIApplication sharedApplication] delegate];
+    appDelegate1.privacy.SharingRadius=[NSNumber numberWithFloat:[[NSString stringWithFormat:@"%.01f",radius_slider_km.value] floatValue]*1000];
+    
+    appDelegate1.privacy.SharingSwitch=sharing_switch.on?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
+    
     
     [appDelegate1 savePrivRulesToBackend];
     
@@ -893,8 +897,8 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     )];
     
     
-    radius_slider_km.value=appDelegate1.privacy.SharingRadius.floatValue;
-    [self sliderAction:radius_slider_km];
+    //radius_slider_km.value=appDelegate1.privacy.SharingRadius.floatValue/1000;
+    //[self sliderAction:radius_slider_km];
     self.rulesTableView.frame=CGRectMake(10, 240, scrollView.bounds.size.width-20,44*appDelegate1.privacy.SharingTime.count);
     [self.rulesTableView reloadData];
     
@@ -903,7 +907,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     [stranger_switch setOn:appDelegate1.privacy.StrangerVisible.intValue==1];
     [self flipSwitch:sharing_switch];
     [self flipSwitch:sharing_switch0];
-    radius_slider_km.value=appDelegate1.privacy.SharingRadius.floatValue;
+    radius_slider_km.value=appDelegate1.privacy.SharingRadius.floatValue/1000;
     [self sliderAction:radius_slider_km];
     
     

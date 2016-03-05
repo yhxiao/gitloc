@@ -1911,7 +1911,7 @@ forRemoteNotification:(NSDictionary *)userInfo
     defaultSetting.StrangerVisible=[NSNumber numberWithInt:0];
     defaultSetting.SharingSwitch=[NSNumber numberWithInt:1];
     defaultSetting.SharingSwitch0=[NSNumber numberWithInt:1];
-    defaultSetting.SharingRadius=[NSNumber numberWithFloat:3.2];
+    defaultSetting.SharingRadius=[NSNumber numberWithFloat:3200];//3200km = 2 miles;
     defaultSetting.SharingTime=[[NSMutableArray alloc] init];
     defaultSetting.deviceID=[[[UIDevice currentDevice] identifierForVendor] UUIDString];//device id; 1 user can only have 1 device to represent his location;
     defaultSetting.activeLocationUntilWhen=
@@ -2288,7 +2288,7 @@ forRemoteNotification:(NSDictionary *)userInfo
         //}
         //double r=GenGammaRV([privacy.SharingRadius floatValue]*1000);
         //change radius to the circle containing 99% probability mass.
-        double r=GenGammaRV59([privacy.SharingRadius floatValue])*1000;//(2/radius)-differential privacy;
+        double r=GenGammaRV59([privacy.SharingRadius floatValue]);//(2/radius)-differential privacy;
         CLLocationCoordinate2D  perturbedCoordinate=[self locationWithBearing:bearing
                                                                      distance:r
                                                                  fromLocation:currentLocation.coordinate ];
@@ -2332,7 +2332,7 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     //save true location to backend
     if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=200.0){
-    if([currentLocation distanceFromLocation:latestTrueLocation]>5 || latestTrueLocation==nil){//only update the perturbed location if movement>1.5m;
+    if([currentLocation distanceFromLocation:latestTrueLocation]>10 || latestTrueLocation==nil){//only update the perturbed location if movement>1.5m;
         LocSeries* update = [[LocSeries alloc] init];
         update.owner =[KCSUser activeUser].userId;
         update.userDate = currentLocation.timestamp;
