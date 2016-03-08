@@ -9,20 +9,21 @@
 #import "AddFriends.h"
 
 @implementation AddFriends
-@synthesize from_user,to_user,agreed,finished;
-@synthesize entityId,metadata;
+//@synthesize from_user,to_user,agreed,finished,permission,date;
+//@synthesize entityId,metadata;
 
 
 - (NSDictionary *)hostToKinveyPropertyMapping
 {
     return @{
-             @"entityId" : KCSEntityKeyId, //the required _id field
-             @"metadata" : KCSEntityKeyMetadata,
-             @"from_user" : @"from_user",
-             @"to_user"   : @"to_user",
-             @"agreed" : @"agreed",
-             @"finished":@"finished"
-             
+             @"entityId"    : KCSEntityKeyId, //the required _id field
+             @"metadata"    : KCSEntityKeyMetadata,
+             @"from_user"   : @"from_user",
+             @"to_user"     : @"to_user",
+             @"agreed"      : @"agreed",
+             @"finished"    : @"finished",
+             @"permission"  : @"permission",
+             @"date"        : @"date"
              };
 }
 

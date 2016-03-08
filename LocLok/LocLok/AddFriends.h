@@ -8,14 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <KinveyKit/KinveyKit.h>
+//#import "Friendship.h"
+
+typedef NS_ENUM(NSInteger, AddFriendagreed) {
+    AddFriendFirstTime=0,//first time add friend; value=0;
+    AddFriendModifyPermission=1//modify permission; value=1;
+};
 
 @interface AddFriends : NSObject<KCSPersistable>
 @property (nonatomic, retain) KCSUser* from_user;
 @property (nonatomic, retain) KCSUser* to_user;
+@property (nonatomic, retain) NSNumber* permission;
 @property (nonatomic, retain) NSNumber* agreed;
 @property (nonatomic, retain) NSNumber* finished;
 @property (nonatomic, copy) NSString* entityId;
 @property (nonatomic, retain) KCSMetadata* metadata; //Kinvey metadata, optional
+@property (nonatomic, retain) NSDate* date;
 
 
 @end

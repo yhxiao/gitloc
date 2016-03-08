@@ -291,6 +291,9 @@ extern NSString* LocalImagePlist;
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     }
+    if([[userInfo objectForKey:@"code"] unsignedIntegerValue]==200){
+        NSLog(@"permission request received.");
+    }
     
     
 }
@@ -2331,12 +2334,14 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     
     //save true location to backend
-    if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=200.0){
-    if([currentLocation distanceFromLocation:latestTrueLocation]>10 || latestTrueLocation==nil){//only update the perturbed location if movement>1.5m;
+    //if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=200.0){
+    if(1){
+    if([currentLocation distanceFromLocation:latestTrueLocation]>10 || latestTrueLocation==nil){
+        //only update the true location if movement>10m;
         LocSeries* update = [[LocSeries alloc] init];
         update.owner =[KCSUser activeUser].userId;
         update.userDate = currentLocation.timestamp;
-        update.precision=[NSNumber numberWithInt:0];
+        update.precision=[NSNumber numberWithDouble: currentLocation.horizontalAccuracy];
         //update.precision=[NSNumber numberWithInt:currentLocation.horizontalAccuracy];
         update.location =[currentLocation kinveyValue];
         update.validUntilWhen=activeLocationUntilWhen;

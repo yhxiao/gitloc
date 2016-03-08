@@ -13,6 +13,9 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "AppDelegate.h"
 #import "UpdateMyInfoVC.h"
+#import "FindFriendVC.h"
+#import "FriendsPermissions.h"
+#import "MyPermissions.h"
 #import "WriteUpdateViewController.h"
 
 @interface MoreTabVC : UIViewController<UITableViewDelegate,UITableViewDataSource>

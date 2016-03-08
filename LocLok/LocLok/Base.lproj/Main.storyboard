@@ -116,7 +116,7 @@
                         <segue destination="iIj-aq-BTu" kind="relationship" relationship="viewControllers" id="vEV-we-had"/>
                         <segue destination="Cjs-HP-vIf" kind="relationship" relationship="viewControllers" id="NCr-7N-FRg"/>
                         <segue destination="cH7-Hl-oNp" kind="relationship" relationship="viewControllers" id="Erz-UJ-zBu"/>
-                        <segue destination="rXI-OP-rc5" kind="relationship" relationship="viewControllers" id="bev-rB-gPR"/>
+                        <segue destination="60Y-ws-puK" kind="relationship" relationship="viewControllers" id="XEB-0e-8uX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="raL-Qg-MF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -341,6 +341,23 @@
             </objects>
             <point key="canvasLocation" x="-2212" y="892"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hwC-CE-9pt">
+            <objects>
+                <navigationController id="60Y-ws-puK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="more" id="biY-Jl-KPd"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9BV-Pz-qoJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rXI-OP-rc5" kind="relationship" relationship="rootViewController" id="SlG-fY-9Jr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSn-3c-0z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1917" y="1660"/>
+        </scene>
         <!--More TabVC-->
         <scene sceneID="XzI-ck-UQR">
             <objects>
@@ -360,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S7e-PO-UO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1602" y="1784"/>
+            <point key="canvasLocation" x="-1310" y="1652"/>
         </scene>
         <!--Query-->
         <scene sceneID="zqu-lD-F41">

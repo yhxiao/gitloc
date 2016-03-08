@@ -463,7 +463,7 @@ UIImageView *myImageView;
     id<KCSStore> PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{
                                                          KCSStoreKeyCollectionName : @"UserPhotos",
                                                          KCSStoreKeyCollectionTemplateClass : [User_Photo class],
-                                                         KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
+                                                         KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
                                                          }];
     [PhotoStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         //NSLog(@"%@",[aFriend.to_user username]);

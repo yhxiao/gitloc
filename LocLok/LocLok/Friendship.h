@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, AllLocPermissions) {
     PermissionForFriends=1//show precise location; value=1;
 };
 
+
 @interface Friendship : NSObject<KCSPersistable>
 @property (nonatomic, retain) KCSUser* from_user;
 @property (nonatomic, retain) KCSUser* to_user;

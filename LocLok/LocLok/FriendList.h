@@ -21,6 +21,10 @@
 @property (strong, nonatomic) NSArray *friends;
 //@property (strong, nonatomic) NSArray *frdMeetings;
 @property (strong, nonatomic) NSMutableArray *frdLocations;
+@property (nonatomic, retain) NSMutableArray* NotifsFromMe;//add friends requests from me;
+@property (nonatomic, retain) NSMutableArray* NotifsToMe;// add friends requests to me;
+
+@property (nonatomic, retain) id<KCSStore> addFriendStore;//AddFriend store;
 @property (strong,nonatomic) id<KCSStore> frdStore;
 @property (strong,nonatomic) id<KCSStore> PhotoStore;
 //@property (strong,nonatomic) id<KCSStore> MeetStore;
@@ -32,4 +36,9 @@
 -(FriendList*)loadWithID:(NSString*)user_id;
 -(void)updateLocations;
 -(void)checkMeetingFriends:(CLLocation*)myLocation;
+
++(void)AddOneFriend:(KCSUser*)addUser Permission:(NSNumber*)perm Controller:(id)controller Initial:(NSNumber*)initial;
+//initial can be either AddFriendFirstTime or AddFriendModifyPermission;
+
+-(void)searchNotifInAddFriends;
 @end

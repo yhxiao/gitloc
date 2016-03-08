@@ -9,14 +9,17 @@
 #import "FriendList.h"
 
 @implementation FriendList
-@synthesize friends,frdLocations;
-@synthesize frdStore,PhotoStore,LocStore,LokStore;//,myMeetingFriendIndex;
+@synthesize friends,frdLocations,NotifsFromMe,NotifsToMe;
+@synthesize frdStore,PhotoStore,LocStore,LokStore,addFriendStore;//,myMeetingFriendIndex;
 
 NSString *const fListLoadingCompleteNotification =
 @"com.yxiao.friendlistloadingfinished";
 
 NSString* const realtimelocationUpdateNotification=@"com.yxiao.realtimeLocationUpdateNotification";
 NSString *const LocalImagePlist=@"LocalImagePlist.plist";
+NSString*  const fromCollection_finished_Notification=@"Notification_query_fromCollection_finished";
+NSString* const toCollection_finished_Notification=@"Notification_query_toCollection_finished";
+
 
 -(FriendList*)loadWithID:(NSString*) user_id{
     if(user_id==nil)return nil;
@@ -24,7 +27,7 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{
             KCSStoreKeyCollectionName : @"UserPhotos",
             KCSStoreKeyCollectionTemplateClass : [User_Photo class],
-            KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
+            KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
     }];
     
     frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
@@ -40,13 +43,32 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     
     
     //the sequence of friend list;
-    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"to_user.surname" inDirection:kKCSAscending]];
-    
+    //[query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"to_user.surname" inDirection:kKCSAscending]];
+    NSSortDescriptor *sortName1 = [NSSortDescriptor sortDescriptorWithKey:@"to_user.surname"
+                                                               ascending:YES
+                                                                //selector:@selector(caseInsensitiveCompare:)
+                                  ];
+    NSSortDescriptor *sortName2 = [NSSortDescriptor sortDescriptorWithKey:@"to_user.givenName"
+                                                                ascending:YES
+                                                                 //selector:@selector(caseInsensitiveCompare:)
+                                   ];
     
     [frdStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil==nil){
             friends=objectsOrNil;
-            
+            //friends=[friends sortedArrayUsingSelector:[NSArray arrayWithObjects:sortName1,sortName2,nil]];
+            /*friends=[objectsOrNil sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                Friendship *first = (Friendship  *)a;
+                Friendship *second = (Friendship  *)b;
+                
+                return [first.to_user.surname caseInsensitiveCompare:second.to_user.surname]==NSOrderedSame?
+                [first.to_user.givenName caseInsensitiveCompare:second.to_user.givenName]
+                :[first.to_user.surname caseInsensitiveCompare:second.to_user.surname]
+                ;
+                
+            }
+            ];
+            */
             for(int i=0;i<friends.count;i++){
                 Friendship *aFriend=[friends objectAtIndex:i];
                 
@@ -449,6 +471,350 @@ NSString *const LocalImagePlist=@"LocalImagePlist.plist";
     
     
 }
+
+
+
++(void)AddOneFriend:(KCSUser *)addUser
+         Permission:(NSNumber*)perm
+         Controller:(id)controller
+            Initial:(NSNumber*)initial{
+    AddFriends *aFriend=[[AddFriends alloc] init];
+    aFriend.to_user=addUser;
+    aFriend.from_user=[KCSUser activeUser];
+    aFriend.agreed=initial;
+    aFriend.finished=[[NSNumber alloc] initWithInt:0];
+    aFriend.permission=perm;
+    aFriend.date=[NSDate date];
+    
+    id<KCSStore> updateStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"AddFriend",KCSStoreKeyCollectionTemplateClass : [AddFriends class],
+                                                                        KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)}
+                              ];
+    id<KCSStore> friendshipStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"Friendship",KCSStoreKeyCollectionTemplateClass : [Friendship class],
+                                                                            KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)}
+                                  ];
+    
+    
+    
+    
+    KCSQuery *query_exist1=[KCSQuery queryOnField:@"from_user._id"
+                           withExactMatchForValue:[[KCSUser activeUser] userId]
+                            ];
+    KCSQuery *query_exist2=[KCSQuery queryOnField:@"to_user._id"
+                           withExactMatchForValue:addUser.userId
+                            ];
+    KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist1,query_exist2, nil];
+    KCSQuerySortModifier* sortByDate = [[KCSQuerySortModifier alloc] initWithField:@"date" inDirection:kKCSDescending];
+    [query_exist addSortModifier:sortByDate]; //sort the return by the date field
+    [query_exist setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
+    
+    
+    NSString *str_Name=  [[addUser.givenName
+                           stringByAppendingString:@" "]
+                          stringByAppendingString:addUser.surname
+                          ];
+    
+    
+    //check if friend request is already in AddFriend;
+    [updateStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        if(errorOrNil!=nil){
+            NSLog(@"Get an error when checking if a friend request is already in AddFriend: %@",errorOrNil);
+        }
+        AddFriends* aRequest;
+        if(objectsOrNil.count!=0){
+            aRequest=objectsOrNil[0];
+            
+            if([aRequest.permission integerValue]==[perm integerValue]){//request already sent;
+                
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@""
+                                              message:[[@"Request already sent to "
+                                                        stringByAppendingString:str_Name]
+                                                       stringByAppendingString:@", Please wait for acceptance."
+                                                       ]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                
+                [alert addAction:ok];
+                
+                [controller presentViewController:alert animated:YES completion:nil];
+                return;
+                
+            }//equal permission
+            else{//different permission;
+                [updateStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                    if (errorOrNil != nil) {
+                        //save failed, show an error alert
+                        
+                        UIAlertController * alert=   [UIAlertController
+                                                      alertControllerWithTitle:@"Save failed"
+                                                      message:[errorOrNil localizedFailureReason] //not actually localized
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction* ok = [UIAlertAction
+                                             actionWithTitle:@"OK"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                        
+                        
+                        [alert addAction:ok];
+                        
+                        [controller presentViewController:alert animated:YES completion:nil];
+                    } else {
+                        //save was successful
+                        
+                        
+                        UIAlertController * alert=   [UIAlertController
+                                                      alertControllerWithTitle:@"Request sent"
+                                                      message:[[@"Friend request has been sent to "
+                                                                stringByAppendingString:str_Name]
+                                                               stringByAppendingString:@" . Please wait for acceptance."
+                                                               ]
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction* ok = [UIAlertAction
+                                             actionWithTitle:@"OK"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                        
+                        [alert addAction:ok];
+                        
+                        [controller presentViewController:alert animated:YES completion:nil];
+                    }
+                    return;
+                    
+                } withProgressBlock:nil
+                 ];//save to AddFriend
+            }
+        }//if count!=0;
+        if(objectsOrNil.count==0){// not in AddFriend;
+            //check if they are already friends.
+            [friendshipStore queryWithQuery:query_exist
+                        withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                            if(errorOrNil!=nil){
+                                NSLog(@"Got an error: %@", errorOrNil);
+                                
+                            }
+                            Friendship* aFriendship;
+                            if(objectsOrNil.count!=0){
+                                aFriendship=objectsOrNil[0];
+                            }
+                            if(aFriendship!=nil && [aFriendship.permission integerValue]==[perm integerValue]){//request already exists;
+                                
+                                UIAlertController * alert=   [UIAlertController
+                                                              alertControllerWithTitle:@""
+                                                              message:[[[[@"You and "
+                                                                          stringByAppendingString:str_Name]
+                                                                         stringByAppendingString:@" are already friends with "]
+                                                                        stringByAppendingString:[perm integerValue]==PermissionForFamily?@"\"True Loc\"":@"\"Cloaked Loc\"" ]
+                                                                       stringByAppendingString:@" permission."
+                                                                       ]
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                
+                                UIAlertAction* ok = [UIAlertAction
+                                                     actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action)
+                                                     {
+                                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                                         
+                                                     }];
+                                
+                                [alert addAction:ok];
+                                
+                                [controller presentViewController:alert animated:YES completion:nil];
+                                
+                                
+                                return;
+                            }
+                            else{//send the request;
+                                
+                                
+                                
+                                
+                                
+                                [updateStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                    if (errorOrNil != nil) {
+                                        //save failed, show an error alert
+                                        
+                                        UIAlertController * alert=   [UIAlertController
+                                                                      alertControllerWithTitle:@"Save failed"
+                                                                      message:[errorOrNil localizedFailureReason] //not actually localized
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                        
+                                        UIAlertAction* ok = [UIAlertAction
+                                                             actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                                             {
+                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                 
+                                                             }];
+                                        
+                                        
+                                        [alert addAction:ok];
+                                        
+                                        [controller presentViewController:alert animated:YES completion:nil];
+                                    } else {
+                                        //save was successful
+                                        
+                                        
+                                        UIAlertController * alert=   [UIAlertController
+                                                                      alertControllerWithTitle:@"Request sent"
+                                                                      message:[[@"Friend request has been sent to "
+                                                                                stringByAppendingString:str_Name]
+                                                                               stringByAppendingString:@" . Please wait for acceptance."
+                                                                               ]
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                        
+                                        UIAlertAction* ok = [UIAlertAction
+                                                             actionWithTitle:@"OK"
+                                                             style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                                             {
+                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                 
+                                                             }];
+                                        
+                                        [alert addAction:ok];
+                                        
+                                        [controller presentViewController:alert animated:YES completion:nil];
+                                    }
+                                    return;
+                                    
+                                } withProgressBlock:nil
+                                 ];//save to AddFriend
+                                
+                            }
+                            
+                            
+                        } withProgressBlock:nil
+             ];//is in Friendship
+            
+            
+        }//if count==0;
+        
+    } withProgressBlock:nil
+     ];//is in AddFriend;
+    
+    
+}
+
+
+
+
+-(void)searchNotifInAddFriends{
+    
+    if(addFriendStore==nil){
+        addFriendStore=[KCSLinkedAppdataStore storeWithOptions:@{
+                                                            KCSStoreKeyCollectionName : @"AddFriend",
+                                                            KCSStoreKeyCollectionTemplateClass : [AddFriends class],
+                                                            KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
+                                                            }];
+    }
+//    if(frdStore==nil){
+//        frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
+//                                                           KCSStoreKeyCollectionName : @"Friendship",
+//                                                           KCSStoreKeyCollectionTemplateClass : [Friendship class],
+//                                                           KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+//                                                           }];
+//    }
+    
+    
+    NSString* myId = [KCSUser activeUser].userId;
+    
+
+    KCSQuery* queryfrom = [KCSQuery queryOnField:@"from_user._id"
+                      withExactMatchForValue:myId
+                       ];
+    
+    //[queryfrom addSortModifier:[[KCSQuerySortModifier alloc] initWithField:KCSMetadataFieldLastModifiedTime inDirection:kKCSDescending]];
+    
+    [queryfrom addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"date" inDirection:kKCSDescending]];
+    [addFriendStore  queryWithQuery:queryfrom withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        
+        
+        
+        if (errorOrNil == nil) {
+            
+            //load is successful!
+            NotifsFromMe=objectsOrNil;
+            
+            void (^block_after_assign)(NSArray *assigned_array)=^(NSArray *assigned_array){
+                NSLog(@"%@",NotifsFromMe);
+                [[NSNotificationCenter defaultCenter] postNotificationName:fromCollection_finished_Notification
+                                                                    object:nil
+                 ];
+                //return;
+            };
+            //dispatch_async(dispatch_queue_create("com.kinvey.lotsofwork", NULL), ^{
+                block_after_assign(NotifsFromMe);
+            //});
+            
+            
+            
+        }
+        NSLog(@"finished notif query 1");
+    } withProgressBlock:nil
+     //^(NSArray *objects, double percentComplete){
+     //   [spinner startAnimating];}
+     ];
+ 
+    
+    
+    KCSQuery* queryto = [KCSQuery queryOnField:@"to_user._id"
+            withExactMatchForValue:myId
+             ];
+    
+    //[queryto addSortModifier:[[KCSQuerySortModifier alloc] initWithField:KCSMetadataFieldLastModifiedTime inDirection:kKCSDescending]];
+    
+    [queryto addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"date" inDirection:kKCSDescending]];
+    [addFriendStore queryWithQuery:queryto withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        
+        
+        if (errorOrNil == nil) {
+            //load is successful!
+            
+            NotifsToMe=objectsOrNil;
+            
+            
+            void (^block_after_assign)(NSArray *assigned_array)=^(NSArray *assigned_array){
+                NSLog(@"%@",NotifsToMe);
+                [[NSNotificationCenter defaultCenter] postNotificationName:toCollection_finished_Notification
+                                                                    object:nil
+                 ];
+                //    return;
+            };
+            //dispatch_async(dispatch_queue_create("com.kinvey.lotsofwork", NULL), ^{
+                block_after_assign(NotifsToMe);
+            //});
+            //block_after_assign(NotifsToMe);
+            
+        }
+        NSLog(@"finished notif query 2");
+
+    } withProgressBlock:nil];
+    
+    
+}
+
+
+
 
 
 @end

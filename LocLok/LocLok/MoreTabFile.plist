@@ -12,15 +12,17 @@
 	<key>Friends Management</key>
 	<array>
 		<string>Find Friends</string>
+		<string>Friends&apos; Permissions of Me</string>
+		<string>My Permissions of Friends</string>
 	</array>
 	<key>Advanced</key>
 	<array>
 		<string>My Statistics</string>
 		<string>My Privacy Policy</string>
 	</array>
-	<key>About LocShare</key>
+	<key>About LocLok</key>
 	<array>
-		<string>About LocShare</string>
+		<string>About LocLok</string>
 		<string>Log Out</string>
 	</array>
 </dict>

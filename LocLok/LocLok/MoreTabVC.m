@@ -72,7 +72,7 @@
                                self.view.bounds.size.height-[[self tabBarController] tabBar].frame.size.height-20
     );
     //self.MoreTableView.frame=mapRect;
-    self.MoreTableView = [[UITableView alloc] initWithFrame:viewRect style:UITableViewStylePlain];
+    self.MoreTableView = [[UITableView alloc] initWithFrame:viewRect style:UITableViewStyleGrouped];
     //self.MoreTableView = [[UITableView alloc] init];
     self.MoreTableView.dataSource=self;
     self.MoreTableView.hidden=NO;
@@ -159,7 +159,7 @@
             wordsInSection =[self.words objectForKey:@"Advanced"];
             break;
         case 3:
-            wordsInSection =[self.words objectForKey:@"About LocShare"];
+            wordsInSection =[self.words objectForKey:@"About LocLok"];
             break;
             
         default:
@@ -183,7 +183,7 @@
             wordsInSection =[self.words objectForKey:@"Advanced"];
             break;
         case 3:
-            wordsInSection =[self.words objectForKey:@"About LocShare"];
+            wordsInSection =[self.words objectForKey:@"About LocLok"];
             break;
             
         default:
@@ -206,6 +206,12 @@
 	cell.textLabel.text = [self wordAtIndexPath:indexPath];
     //The icon on the right side of a row;
 	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if([cell.textLabel.text isEqualToString:@"Log Out"]){
+        cell.textLabel.textColor=[UIColor redColor];
+    }
+    else{
+        cell.textLabel.textColor=[UIColor blackColor];
+    }
     
     return cell;
 }
@@ -245,7 +251,7 @@
             return @"Advanced";
             break;
         case 3:
-            return @"About LocShare";
+            return @"About LocLok";
             break;
             
         default:
@@ -287,7 +293,8 @@
                     infoVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
                     
                     //[self.window makeKeyAndVisible];
-                    [self presentViewController:infoVC animated:NO completion:NULL];
+                    //[self presentViewController:infoVC animated:NO completion:NULL];
+                    [self.navigationController pushViewController:infoVC animated:YES];
                 }
                     break;
                 case 2:break;
@@ -311,6 +318,34 @@
             break;
             
         case 1:{
+            switch (indexPath.row) {
+                case 0:{//Find Friends;
+                    FindFriendVC* ffVC = [[FindFriendVC alloc] initWithNibName:@"FindFriendVC" bundle:nil];
+                    //LoginVC.modalTransitionStyle=UIModalTrans
+                    ffVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                    
+                    //[self.window makeKeyAndVisible];
+                    //[self presentViewController:ffVC animated:NO completion:NULL];
+                    [self.navigationController pushViewController:ffVC animated:YES];
+                }
+                    break;
+                case 1:{//Friends' permissions of me;
+                    FriendsPermissions* fpVC = [[FriendsPermissions alloc] init ];
+                    fpVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                    [self.navigationController pushViewController:fpVC animated:YES];
+                }
+                    break;
+                    
+                case 2:{//my permissions of friends;
+                    MyPermissions* mpVC = [[MyPermissions alloc] init ];
+                    mpVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                    [self.navigationController pushViewController:mpVC animated:YES];
+                }
+                    break;
+                
+                default:
+                    break;
+            }
                 
         }
             

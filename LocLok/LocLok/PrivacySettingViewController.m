@@ -439,8 +439,8 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     //if(CGRectContainsPoint(info2.frame, pt)){//info1: true locations;
     
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@""
-                                  message:@"Info about protected location."
+                                  alertControllerWithTitle:@"Trun On/Off LocLok"
+                                  message:@"If you turn this off, neither your true location nor your cloaked location will be shared with anyone. Your true location will not be recoreded either. Press Save afterward."
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* ok = [UIAlertAction
@@ -463,8 +463,8 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     //}
     
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@""
-                                  message:@"Info about radius."
+                                  alertControllerWithTitle:@"Radius Setting"
+                                  message:@"Change the radius of your cloaked area. Press Save afterward."
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* ok = [UIAlertAction

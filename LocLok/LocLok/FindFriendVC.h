@@ -11,6 +11,7 @@
 #import "AddFriends.h"
 #import "Friendship.h"
 #import "User_Photo.h"
+#import "FriendList.h"
 #import "CommonFunctions.h"
 
 @interface FindFriendVC : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>

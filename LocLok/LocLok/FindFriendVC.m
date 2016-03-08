@@ -157,7 +157,7 @@ extern NSString* LocalImagePlist;
     PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{
             KCSStoreKeyCollectionName : @"UserPhotos",
             KCSStoreKeyCollectionTemplateClass : [User_Photo class]
-            ,KCSStoreKeyCachePolicy:@(KCSCachePolicyNone)
+            ,KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
     }];
     
     
@@ -170,7 +170,7 @@ extern NSString* LocalImagePlist;
     //labels;
     
     //UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
-    welcomeLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, width, boxHeight) ];
+    welcomeLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+40, width, boxHeight) ];
     welcomeLabel.textAlignment =  UITextAlignmentCenter;
     welcomeLabel.textColor = [UIColor whiteColor];
     welcomeLabel.backgroundColor = bgColor;
@@ -393,7 +393,7 @@ extern NSString* LocalImagePlist;
     
     //self.welcomeLabel.hidden=NO;
     [UIView animateWithDuration:0.6f animations:^{
-        self.welcomeLabel.frame=CGRectMake(0, initialHeight1, width, boxHeight);
+        self.welcomeLabel.frame=CGRectMake(0, initialHeight1+40, width, boxHeight);
     self.resultTable.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-120-self.navigationController.navigationBar.frame.size.height);
     self.userNameTextField.frame=CGRectMake(20, initialHeight+70, width-40, boxHeight);
     self.firstNameTextField.frame=CGRectMake(20, initialHeight+110, width-40, boxHeight);
@@ -430,7 +430,7 @@ extern NSString* LocalImagePlist;
     
     
     
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -581,6 +581,10 @@ extern NSString* LocalImagePlist;
     KCSQuery *query4 = [KCSQuery queryOnField:@"user_id._id"
              withExactMatchForValue:[[self.searchResult objectAtIndex:indexPath.row] userId]
               ];
+    KCSQuerySortModifier* sortByDate = [[KCSQuerySortModifier alloc] initWithField:@"date" inDirection:kKCSDescending];
+    [query4 addSortModifier:sortByDate]; //sort the return by the date field
+    [query4 setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
+    
     
     [PhotoStore  queryWithQuery:query4 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         
@@ -741,167 +745,89 @@ extern NSString* LocalImagePlist;
     }
     
     
-    AddFriends *aFriend=[[AddFriends alloc] init];
-    aFriend.to_user=[self.searchResult objectAtIndex:indexPath.row];
-    aFriend.from_user=[KCSUser activeUser];
-    aFriend.agreed=[[NSNumber alloc] initWithInt:0];
-    aFriend.finished=[[NSNumber alloc] initWithInt:0];
     
     
     
-    KCSQuery *query_exist1=[KCSQuery queryOnField:@"from_user._id"
-                           withExactMatchForValue:[[KCSUser activeUser] userId]
-                           ];
-    KCSQuery *query_exist2=[KCSQuery queryOnField:@"to_user._id"
-                           withExactMatchForValue:
-                            [[self.searchResult objectAtIndex:indexPath.row] userId]
-                            ];
-    KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist1,query_exist2, nil];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    __block NSNumber *perm;
+    
+    
     
     NSString *str_Name=  [[[[self.searchResult objectAtIndex:indexPath.row] givenName]
                            stringByAppendingString:@" "]
                           stringByAppendingString:[[self.searchResult objectAtIndex:indexPath.row] surname]
                           ];
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Friendship Request"
+                                  message:[[@"Do you want to add "
+                                            stringByAppendingString:str_Name]
+                                           stringByAppendingString:@" as your friend? If so, please select your permission. E.g., \"True Loc\" means you can view his/her true location."
+                                           ]
+                                  preferredStyle:UIAlertControllerStyleAlert];
     
-    
-    //check if friend request is already in AddFriend;
-    [updateStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-        if(errorOrNil!=nil){
-            NSLog(@"Get an error when checking if a friend request is already in AddFriend: %@",errorOrNil);
-        }
-        if(objectsOrNil.count!=0){//request already sent;
-            
-            UIAlertController * alert=   [UIAlertController
-                                          alertControllerWithTitle:@""
-                                          message:[[@"Request already sent to "
-                                                    stringByAppendingString:str_Name]
-                                                   stringByAppendingString:@", Please wait for acceptance."
-                                                   ]
-                                          preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* ok = [UIAlertAction
-                                 actionWithTitle:@"OK"
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    UIAlertAction* trueloc = [UIAlertAction
+                              actionWithTitle:@"True Loc"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  perm=[NSNumber numberWithInteger:PermissionForFamily];
+                                  
+                                  [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
+                                                Permission:perm Controller:self
+                                                   Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
+                                   ];
+                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                  
+                              }];
+    UIAlertAction* cloakedloc = [UIAlertAction
+                                 actionWithTitle:@"Cloaked Loc"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * action)
                                  {
+                                     perm=[NSNumber numberWithInteger:PermissionForFriends];
+                                     
+                                     [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
+                                                   Permission:perm Controller:self
+                                                      Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
+                                      ];
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                      
                                  }];
-            
-            [alert addAction:ok];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-            
-        }
-        if(objectsOrNil.count==0){// not in AddFriend;
-            //check if they are already friends.
-            [self.friendshipStore queryWithQuery:query_exist
-                        withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                            if(errorOrNil!=nil){
-                                NSLog(@"Got an error: %@", errorOrNil);
-                                
-                            }
-                            
-                            if(objectsOrNil.count!=0){//request already exists;
-                                
-                                UIAlertController * alert=   [UIAlertController
-                                                              alertControllerWithTitle:@""
-                                                              message:[[@"You and "
-                                                                        stringByAppendingString:str_Name]
-                                                                       stringByAppendingString:@" are already friends."
-                                                                       ]
-                                                              preferredStyle:UIAlertControllerStyleAlert];
-                                
-                                UIAlertAction* ok = [UIAlertAction
-                                                     actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * action)
-                                                     {
-                                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                                         
-                                                     }];
-                                
-                                [alert addAction:ok];
-                                
-                                [self presentViewController:alert animated:YES completion:nil];
-                                
-                                
-                                return;
-                            }
-                            else{//send the request;
-                                [self.updateStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                                    if (errorOrNil != nil) {
-                                        //save failed, show an error alert
-                                        
-                                        UIAlertController * alert=   [UIAlertController
-                                                                      alertControllerWithTitle:@"Save failed"
-                                                                      message:[errorOrNil localizedFailureReason] //not actually localized
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-                                        
-                                        UIAlertAction* ok = [UIAlertAction
-                                                             actionWithTitle:@"OK"
-                                                             style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * action)
-                                                             {
-                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                 
-                                                             }];
-                                        
-                                        
-                                        [alert addAction:ok];
-                                        
-                                        [self presentViewController:alert animated:YES completion:nil];
-                                    } else {
-                                        //save was successful
-                                        
-                                        
-                                        UIAlertController * alert=   [UIAlertController
-                                                                      alertControllerWithTitle:@"Request sent"
-                                                                      message:[[@"Friend request has been sent to "
-                                                                                stringByAppendingString:str_Name]
-                                                                               stringByAppendingString:@" . Please wait for acceptance."
-                                                                               ]
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-                                        
-                                        UIAlertAction* ok = [UIAlertAction
-                                                             actionWithTitle:@"OK"
-                                                             style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * action)
-                                                             {
-                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                 
-                                                             }];
-                                        
-                                        [alert addAction:ok];
-                                        
-                                        [self presentViewController:alert animated:YES completion:nil];
-                                    }
-                                    return;
-                                    
-                                } withProgressBlock:nil
-                                 ];//save to AddFriend
-                                
-                            }
-                            
-                            
-                        } withProgressBlock:nil
-             ];//is in Friendship
-            
-            
-        }
-        
-    } withProgressBlock:nil
-     ];//is in AddFriend;
     
+    [alert addAction:cancel];
+    [alert addAction:trueloc];
+    [alert addAction:cloakedloc];
     
+    [self presentViewController:alert animated:YES completion:nil];
     
     
     
     
     
 
-	
 }
 
 
