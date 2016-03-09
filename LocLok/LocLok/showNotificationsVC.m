@@ -14,6 +14,7 @@
 
 extern NSString*  fromCollection_finished_Notification;
 extern NSString* toCollection_finished_Notification;
+extern NSString* meetCollection_finished_Notification;
 extern NSString* LocalImagePlist;
 
 @implementation showNotificationsVC
@@ -38,7 +39,8 @@ extern NSString* LocalImagePlist;
     
     //NSLog(@"%@",self.finishedQueries);
     
-    if([self.finishedQueries isEqual:[NSNumber numberWithInt:2]]){
+    //reveiving 3 notifs notifstome, notifsfromme, notifsmeeting;
+    if([self.finishedQueries isEqual:[NSNumber numberWithInt:3]]){
         //NSLog(@"%d",fromCollection.count);
         [spinner stopAnimating];
         
@@ -155,6 +157,12 @@ extern NSString* LocalImagePlist;
                                                  name:toCollection_finished_Notification
                                                object:nil
      ];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(queriesFinished:)
+                                                 name:meetCollection_finished_Notification
+                                               object:nil
+     ];
+    
     
 }
 
@@ -178,7 +186,7 @@ extern NSString* LocalImagePlist;
     
     
     [appDelegate.fList searchNotifInAddFriends];
-    
+    [appDelegate.fList searchNotifAboutMeetings];
     
     
 }
@@ -234,6 +242,9 @@ extern NSString* LocalImagePlist;
     if(section==1){
         return appDelegate.fList.NotifsFromMe.count;
     }
+    if(section==2){//meeting notifs;
+        return appDelegate.fList.NotifsMeeting.count;
+    }
     else{
         return 0;
     }
@@ -250,6 +261,9 @@ extern NSString* LocalImagePlist;
     if(section==1){
         return [NSString stringWithFormat: @"%lu pending requests sent from me",(unsigned long)appDelegate.fList.NotifsFromMe.count];
         
+    }
+    if(section==2){
+        return [NSString stringWithFormat: @"%lu ongoing meetings",(unsigned long)appDelegate.fList.NotifsMeeting.count];
     }
     else{return 0;}
     
@@ -325,6 +339,54 @@ extern NSString* LocalImagePlist;
         pImage=[CommonFunctions loadImageFromLocal:[[[appDelegate.fList.NotifsFromMe objectAtIndex:indexPath.row] to_user] userId]];
         //NSLog(@"%@",[[[fromCollection objectAtIndex:indexPath.row] to_user] userId]);
     }
+    
+    if(indexPath.section==2){//meeting events;
+        MeetEvent* aMeeting=[appDelegate.fList.NotifsMeeting objectAtIndex:indexPath.row];
+        KCSUser* meetUser=[aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]?aMeeting.to_user:aMeeting.from_user;
+        pImage=[CommonFunctions loadImageFromLocal:meetUser.userId];
+        
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventNotice){//meeting notice;5
+            cell.textLabel.text=[@"Meeting with " stringByAppendingString:
+                                 [[[meetUser.givenName stringByAppendingString:@" "]
+                                 stringByAppendingString:meetUser.surname ]
+                                 stringByAppendingString:@" has been proposed."]
+            ];
+        }
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventRequest){//request to meet;4
+            cell.textLabel.text=[@"Meeting with " stringByAppendingString:
+                                 [[[meetUser.givenName stringByAppendingString:@" "]
+                                  stringByAppendingString:meetUser.surname ]
+                                 stringByAppendingString:@" has been proposed."]
+                                 ];
+        }
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventAgreed){//agreed to meet;3
+            cell.textLabel.text=[@"Meeting with " stringByAppendingString:
+                                 [[[meetUser.givenName stringByAppendingString:@" "]
+                                  stringByAppendingString:meetUser.surname ]
+                                 stringByAppendingString:@" has been accepted."]
+                                 ];
+        }
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventHalfway){//halfway to meet;2
+            cell.textLabel.text=[[[meetUser.givenName stringByAppendingString:@" "]
+                                  stringByAppendingString:meetUser.surname ]
+                                 stringByAppendingString:@" is halfway to meet you."
+                                 ];
+        }
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventNearby){//halfway to meet;1
+            cell.textLabel.text=[[[meetUser.givenName stringByAppendingString:@" "]
+                                  stringByAppendingString:meetUser.surname ]
+                                 stringByAppendingString:@" is close to you (less than 50 meters)."
+                                 ];
+        }
+        
+        cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+        stringByAppendingString:@" meters"];
+        
+        query4 = [KCSQuery queryOnField:@"user_id._id"
+                 withExactMatchForValue:meetUser.userId
+                  ];
+    }
+    
     
     KCSQuerySortModifier* sortByDate = [[KCSQuerySortModifier alloc] initWithField:@"date" inDirection:kKCSDescending];
     [query4 addSortModifier:sortByDate]; //sort the return by the date field

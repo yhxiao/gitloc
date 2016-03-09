@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, MeetEventStatus) {
     MeetEventAgreed=3,//3//to_user agrees the request, then save the meetEvent with from_user, to_user, status=MeetEventAgreed,start_time,end_time=nil,from_location,to_location,distance;
     MeetEventRequest=4,//4//from_user sends request to to_user, save a meetEvent with from_user, to_user, status=MeetEventRequest,start_time,end_time=nil,from_location,to_location=nil,distance=nil;
     MeetEventNotice=5,//5//if has the family permission (seeing true location), then it is just a notice;
-    MeetEventDeclined=6//6;
+    MeetEventDeclined=6//6; rejected meeting
 };
 
 @interface MeetEvent : NSObject<KCSPersistable>

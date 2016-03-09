@@ -9,8 +9,8 @@
 #import "FriendList.h"
 
 @implementation FriendList
-@synthesize friends,frdLocations,NotifsFromMe,NotifsToMe;
-@synthesize frdStore,PhotoStore,LocStore,LokStore,addFriendStore;//,myMeetingFriendIndex;
+@synthesize friends,inFriends,frdLocations,NotifsFromMe,NotifsToMe,NotifsMeeting;
+@synthesize frdStore,PhotoStore,LocStore,LokStore,addFriendStore,meetStore;//,myMeetingFriendIndex;
 
 NSString *const fListLoadingCompleteNotification =
 @"com.yxiao.friendlistloadingfinished";
@@ -19,23 +19,28 @@ NSString* const realtimelocationUpdateNotification=@"com.yxiao.realtimeLocationU
 NSString *const LocalImagePlist=@"LocalImagePlist.plist";
 NSString*  const fromCollection_finished_Notification=@"Notification_query_fromCollection_finished";
 NSString* const toCollection_finished_Notification=@"Notification_query_toCollection_finished";
-
+NSString* const meetCollection_finished_Notification=@"Notification_query_meetingCollection_finished";
+NSString* const inFriends_finished_Notification=@"Notification_query_frdCollection_inFriends_finished";
 
 -(FriendList*)loadWithID:(NSString*) user_id{
     if(user_id==nil)return nil;
     
+    if(PhotoStore==nil){
     PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{
             KCSStoreKeyCollectionName : @"UserPhotos",
             KCSStoreKeyCollectionTemplateClass : [User_Photo class],
             KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
     }];
+    }
     
+    if(frdStore==nil){
     frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
         KCSStoreKeyCollectionName : @"Friendship",
         KCSStoreKeyCollectionTemplateClass : [Friendship class],
         KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
     }];
 
+    }
     //NSLog(@"In friendlist query, the userId is %@",[[KCSUser activeUser] userId]);
     KCSQuery* query1 = [KCSQuery queryOnField:@"from_user._id"
                        withExactMatchForValue:user_id
@@ -298,18 +303,20 @@ NSString* const toCollection_finished_Notification=@"Notification_query_toCollec
 
 
 -(void)checkMeetingFriends:(CLLocation*)myLocation{
-    if(LocStore==nil)
+    if(LocStore==nil){
         LocStore=[KCSAppdataStore storeWithOptions:@{
                                                      KCSStoreKeyCollectionName:@"LocSeries",
                                                      KCSStoreKeyCollectionTemplateClass:[LocSeries class],
                                                      KCSStoreKeyCachePolicy : @(KCSCachePolicyLocalFirst)
                                                      }];
-    
-    id<KCSStore> meetStore=
+    }
+    if(meetStore==nil){
+    meetStore=
     [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
                                               KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
                                               KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
                                               }];
+    }
     KCSQuery *locQuery;
     
     for(NSInteger i=0;i<self.friends.count;i++){
@@ -814,7 +821,82 @@ NSString* const toCollection_finished_Notification=@"Notification_query_toCollec
 }
 
 
+-(void)searchNotifAboutMeetings{
+    if(meetStore==nil){
+        meetStore=
+        [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+                                                  KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                                  KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+                                                  }];
+    }
+    
+    KCSQuery* query1 = [KCSQuery queryOnField:@"from_user._id"
+                       withExactMatchForValue:[[KCSUser activeUser] userId]
+                        ];
+    KCSQuery *query2=[KCSQuery queryOnField:@"to_user._id"
+                     withExactMatchForValue:[[KCSUser activeUser] userId]
+                      ];
+    KCSQuery *query3=[KCSQuery queryOnField:@"status"
+                 usingConditionalsForValues:kKCSGreaterThan, [NSNumber numberWithInteger:MeetEventFinished], kKCSLessThan, [NSNumber numberWithInteger:MeetEventDeclined], nil];
+    //KCSQuery *query3=[KCSQuery queryOnField:@"MeetEventStatus"
+    //                  usingConditional:kKCSIn forValue:@[@"1",@"2",@"3",@"4",@"5"]
+    //                  ];
+    KCSQuery *query=[KCSQuery queryForJoiningOperator:kKCSOr onQueries:query1,query2,nil ];
+    [query addQuery:query3 ];
+    
+    [query addSortModifier:[[KCSQuerySortModifier alloc] initWithField:KCSMetadataFieldLastModifiedTime inDirection:kKCSDescending]];
+    
+    [meetStore queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        if(errorOrNil==nil){
+            NotifsMeeting=objectsOrNil;
+            void (^block_after_assign)(NSArray *assigned_array)=^(NSArray *assigned_array){
+                NSLog(@"%@",NotifsMeeting);
+                [[NSNotificationCenter defaultCenter] postNotificationName:meetCollection_finished_Notification
+                                                                    object:nil
+                 ];
+                //    return;
+            };
+            //dispatch_async(dispatch_queue_create("com.kinvey.lotsofwork", NULL), ^{
+            block_after_assign(NotifsMeeting);
+            
+        }
+    } withProgressBlock:nil];
+    
+}
 
 
+
+-(void)searchFriendsHavingMyPermissions{
+    if(frdStore==nil){
+        frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
+                                                           KCSStoreKeyCollectionName : @"Friendship",
+                                                           KCSStoreKeyCollectionTemplateClass : [Friendship class],
+                                                           KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+                                                           }];
+        
+    }
+    //NSLog(@"In friendlist query, the userId is %@",[[KCSUser activeUser] userId]);
+    KCSQuery* query1 = [KCSQuery queryOnField:@"to_user._id"
+                       withExactMatchForValue:[KCSUser activeUser].userId
+                        ];
+    
+    
+    [frdStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        if(errorOrNil==nil){
+            inFriends=objectsOrNil;
+            void (^block_after_assign)(NSArray *assigned_array)=^(NSArray *assigned_array){
+                NSLog(@"%@",inFriends);
+                [[NSNotificationCenter defaultCenter] postNotificationName:inFriends_finished_Notification
+                                                                    object:nil
+                 ];
+                //    return;
+            };
+            //dispatch_async(dispatch_queue_create("com.kinvey.lotsofwork", NULL), ^{
+            block_after_assign(inFriends);
+        }
+    }withProgressBlock:nil];
+    
+    
+}
 
 @end

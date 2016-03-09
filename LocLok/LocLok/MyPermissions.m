@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
     
-    
+    self.title=@"My Permissions of Friends";
     self.cellFont=[ UIFont fontWithName: @"Arial" size: 14 ];
     self.cellFont2=[ UIFont fontWithName: @"Arial" size: 10 ];
 }

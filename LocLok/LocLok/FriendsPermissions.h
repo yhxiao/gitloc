@@ -11,5 +11,13 @@
 
 @interface FriendsPermissions : UITableViewController
 
-@property (nonatomic,strong) NSArray* Frdshp2me;//friendship to me;
+//@property (nonatomic,strong) NSArray* Frdshp2me;//friendship to me;
+
+@property (nonatomic,strong) id<KCSStore> PhotoStore;
+@property (nonatomic,strong) id<KCSStore> friendshipStore;
+
+
+-(void)saveModifiedFriendship:(Friendship *)aFriend
+                             withIndexPath:(NSIndexPath *)indexPath;
+- (void)queriesFinished:(NSNotification *)notification;
 @end
