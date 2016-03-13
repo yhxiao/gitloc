@@ -105,51 +105,78 @@ extern NSString* LocalImagePlist;
     }];
     // Additional registration goes here (if needed)
 }
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+
+//only called in foreground;
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    //payload customized at:http://devcenter.kinvey.com/html5/reference/business-logic/reference.html
+//    
+//    [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
+//    // Additional push notification handling code should be performed here
+//    
+//    
+//    
+//    
+//    
+//}
+
+//in both foreground and background;
+//If the user opens your app from the system-displayed alert, the system may call this method again when your app is about to enter the foreground (application.applicationState == UIApplicationStateInactive) so that you can update your user interface and display information pertaining to the notification.
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
 {
     //payload customized at:http://devcenter.kinvey.com/html5/reference/business-logic/reference.html
     
     [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
-    // Additional push notification handling code should be performed here
     
     
-    //NSLog(@"%d",[[userInfo objectForKey:@"code"] intValue]-100);
-    //NSLog(@"%ld",(long)MeetEventRequest);
+    
+    
     if([[userInfo objectForKey:@"code"] unsignedIntegerValue]-100== MeetEventRequest){//friend permission from_user;
         
-        UIAlertController * alert=   [UIAlertController
-                                      alertControllerWithTitle:@"Real-time Meeting Request"
-                                      message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
-                                      preferredStyle:UIAlertControllerStyleAlert];
+            if(application.applicationState == UIApplicationStateActive) {
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@"Real-time Meeting Request"
+                                              message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                              preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* left = [UIAlertAction
-                               actionWithTitle:@"Agree"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
-                               {
-                                   [self AgreeMeetEventRequest:userInfo];
-                                   [alert dismissViewControllerAnimated:YES completion:nil];
-                                   
-                               }];
-        UIAlertAction* right = [UIAlertAction
-                                actionWithTitle:@"Decline"
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action)
-                                {
-                                    [self DeclineMeetEventRequest:userInfo];
-                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                    
-                                }];
+                UIAlertAction* left = [UIAlertAction
+                                       actionWithTitle:@"Manage"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action)
+                                       {
+                                           //[self AgreeMeetEventRequest:userInfo];
+                                           [self showNotificationInApp];
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
         
-        [alert addAction:left];
-        [alert addAction:right];
+                                       }];
+                UIAlertAction* right = [UIAlertAction
+                                        actionWithTitle:@"Cancel"
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action)
+                                        {
+                                            //[self DeclineMeetEventRequest:userInfo];
+                                            [alert dismissViewControllerAnimated:YES completion:nil];
         
-        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+                                        }];
+        
+                [alert addAction:left];
+                [alert addAction:right];
+        
+                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+            }
+            else{//not in foreground;
+                [self showNotificationInApp];
+            }
     }
     
+    // do agreeing automatically.
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventNotice){//family permission
         
+        [self AgreeMeetEventRequest:userInfo];
         
+        if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Request"
                                       message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
@@ -160,7 +187,6 @@ extern NSString* LocalImagePlist;
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
-                                   [self AgreeMeetEventRequest:userInfo];
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                    
                                }];
@@ -168,13 +194,18 @@ extern NSString* LocalImagePlist;
         [alert addAction:left];
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
     }
     
-    
+    //do receiving;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventAgreed){//agreed
         
-        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
+        [self ReceiveAgreedMeeting:userInfo];
         
+        if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Agreed"
                                       message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
@@ -185,7 +216,6 @@ extern NSString* LocalImagePlist;
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
-                                   [self ReceiveAgreedMeeting:userInfo];
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                    
                                }];
@@ -193,12 +223,16 @@ extern NSString* LocalImagePlist;
         [alert addAction:left];
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
     }
     
+    //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventDeclined){//declined
         
-        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
-        
+        if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Declined"
                                       message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
@@ -217,12 +251,16 @@ extern NSString* LocalImagePlist;
         [alert addAction:left];
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
     }
     
+    //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventHalfway){//halfway
         
-        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
-        
+        if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Update"
                                       message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
@@ -241,12 +279,16 @@ extern NSString* LocalImagePlist;
         [alert addAction:left];
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
     }
     
+    //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventNearby){//nearby
         
-        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:[self findFriendinFListbyID:[userInfo objectForKey:@"to_user"]]];
-        
+        if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Update"
                                       message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
@@ -265,13 +307,17 @@ extern NSString* LocalImagePlist;
         [alert addAction:left];
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
     }
     
     
-    
+    //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventFinished){//meeting finished;
         myMeetEvent=nil;
-        //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:-1];
+        if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Finished"
                                       message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
@@ -290,26 +336,60 @@ extern NSString* LocalImagePlist;
         [alert addAction:left];
         
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
     }
     if([[userInfo objectForKey:@"code"] unsignedIntegerValue]==200){
-        NSLog(@"permission request received.");
+        if(application.applicationState == UIApplicationStateActive) {
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Friend Permission Request"
+                                          message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* left = [UIAlertAction
+                                   actionWithTitle:@"Manage"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action)
+                                   {
+                                       //[self AgreeMeetEventRequest:userInfo];
+                                       [self showNotificationInApp];
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                   }];
+            UIAlertAction* right = [UIAlertAction
+                                    actionWithTitle:@"Cancel"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action)
+                                    {
+                                        //[self DeclineMeetEventRequest:userInfo];
+                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                        
+                                    }];
+            
+            [alert addAction:left];
+            [alert addAction:right];
+            
+            [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        else{//not in foreground;
+            [self showNotificationInApp];
+        }
+
     }
     
     
-}
-/*- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
-{
-    //payload customized at:http://devcenter.kinvey.com/html5/reference/business-logic/reference.html
     
-    [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
+    
+    
+    
     
     //30 seconds to fetch data, then must call completionhandler;
     handler(UIBackgroundFetchResultNoData);
     
     
-}*/
+}
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     [[KCSPush sharedPush] application:application didFailToRegisterForRemoteNotificationsWithError:error];
@@ -793,6 +873,67 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     
 }
+-(void)AgreeMeetEventRequestInApp:(MeetEvent* _Nullable)aMeeting{//in notification center;
+    id<KCSStore> meetStore=
+    [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+                                              KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                              KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+                                              }];
+
+    id<KCSStore>frdStore=[KCSLinkedAppdataStore storeWithOptions:@{
+                                                                   KCSStoreKeyCollectionName : @"Friendship",
+                                                                   KCSStoreKeyCollectionTemplateClass : [Friendship class],
+                                                                   KCSStoreKeyCachePolicy:@(KCSCachePolicyLocalFirst)
+                                                                   }];
+    KCSQuery* query2 = [KCSQuery queryOnField:@"to_user._id"
+                       withExactMatchForValue:[[KCSUser activeUser] userId]
+                        ];
+    [query2 addQueryOnField:@"from_user._id" withExactMatchForValue:aMeeting.from_user.userId];
+    [frdStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+        if(objectsOrNil1!=nil){
+            Friendship* friend1=objectsOrNil1[0];
+            friend1.meetinglink=aMeeting;
+            [frdStore saveObject:friend1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                if(errorOrNil!=nil){
+                    NSLog(@"error when saving meetinglink in Friendship");
+                }
+                
+            } withProgressBlock:nil];
+        }
+    } withProgressBlock:nil];
+    
+    
+    
+    
+    
+    
+    [self.locationManager requestLocation:^(CLLocation * _Nullable location, NSError * _Nullable error) {
+        // We have to make sure the location is set, could be nil
+        if (location != nil) {
+            aMeeting.to_location=[location kinveyValue];
+            aMeeting.distance=[NSNumber numberWithInt:(int)[location distanceFromLocation:[CLLocation locationFromKinveyValue:aMeeting.from_location]] ];
+            if([aMeeting.distance doubleValue]>Nearby_meters){
+                aMeeting.MeetEventStatus=[NSNumber numberWithInteger:MeetEventAgreed];
+            }
+            else{ if([aMeeting.distance doubleValue]<Meet_meters){
+                aMeeting.end_time=[NSDate date];
+                aMeeting.MeetEventStatus=[NSNumber numberWithInteger:MeetEventFinished];
+            }
+            else{
+                aMeeting.MeetEventStatus=[NSNumber numberWithInteger:MeetEventNearby];
+            }
+            }
+            [meetStore saveObject:aMeeting withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                //finished meeting event;
+                if(aMeeting.MeetEventStatus==MeetEventFinished){
+                    myMeetEvent=nil;
+                    //fList.myMeetingFriendIndex=[NSNumber numberWithInteger:-1];
+                }
+            } withProgressBlock:nil];
+        }
+    }];
+    
+}
 -(void)DeclineMeetEventRequest:(NSDictionary *)userInfo{
     id<KCSStore> meetStore=
     [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
@@ -820,6 +961,23 @@ forRemoteNotification:(NSDictionary *)userInfo
     }
     withProgressBlock:nil];
     
+    
+    
+}
+-(void)DeclineMeetEventRequestInApp:(MeetEvent* _Nullable)aMeeting{//in notification center;
+
+    id<KCSStore> meetStore=
+    [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
+                                              KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
+                                              KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)
+                                              }];
+    
+    aMeeting.MeetEventStatus=[NSNumber numberWithInteger:MeetEventDeclined];
+    [meetStore saveObject:aMeeting withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+        if(errorOrNil!=nil){
+            NSLog(@"%@",errorOrNil);
+        }
+    } withProgressBlock:nil];
     
     
 }
@@ -873,6 +1031,8 @@ forRemoteNotification:(NSDictionary *)userInfo
         }withProgressBlock:nil];
          
     }
+}
+-(void)ReceiveAgreedMeetingInApp:(MeetEvent* _Nullable)aMeeting{//in notification center;
 }
 ///*
 // * If we have a valid session at the time of openURL call, we handle
@@ -1666,6 +1826,19 @@ forRemoteNotification:(NSDictionary *)userInfo
                 //NSArray* existingNotifs=[[UIApplication sharedApplication] scheduledLocalNotifications];
                 //NSLog(@"%@,%@",existingNotifs,activeLocationUntilWhen);
                 
+                
+                
+                //type transform of SharingTime;
+                for(int i=0;i<privacy.SharingTime.count;i++){
+                    TimePeriodPrivacy *timePriv=[TimePeriodPrivacy alloc];
+                    NSArray *tmp=[[privacy.SharingTime objectAtIndex:i] componentsSeparatedByString:@";"];
+                    timePriv.DayInWeek=[tmp objectAtIndex:0];
+                    timePriv.startTime=[tmp objectAtIndex:1];
+                    timePriv.endTime=[tmp objectAtIndex:2];
+                    [privacy.SharingTime replaceObjectAtIndex:i withObject:timePriv];
+                }
+                
+                
                 NSLog(@"%@",[[[UIDevice currentDevice] identifierForVendor] UUIDString]);
                 if(![privacy.deviceID isEqualToString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]){
                     conditionMultipleDevices=[NSNumber numberWithBool:NO];
@@ -1716,6 +1889,9 @@ forRemoteNotification:(NSDictionary *)userInfo
                     
                     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
                 }
+                else{//save device;
+                    [self toggleUpdatingLocations];
+                }
                 //check if the deviceID is current device;
                 //if(![privacy.deviceID isEqualToString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]){
                 
@@ -1749,16 +1925,6 @@ forRemoteNotification:(NSDictionary *)userInfo
                 
                 
                 
-                
-                //type transform of SharingTime;
-                for(int i=0;i<privacy.SharingTime.count;i++){
-                    TimePeriodPrivacy *timePriv=[TimePeriodPrivacy alloc];
-                    NSArray *tmp=[[privacy.SharingTime objectAtIndex:i] componentsSeparatedByString:@";"];
-                    timePriv.DayInWeek=[tmp objectAtIndex:0];
-                    timePriv.startTime=[tmp objectAtIndex:1];
-                    timePriv.endTime=[tmp objectAtIndex:2];
-                    [privacy.SharingTime replaceObjectAtIndex:i withObject:timePriv];
-                }
                 /*NSArray* existingNotifs=[[UIApplication sharedApplication] scheduledLocalNotifications];
                 if(existingNotifs.count==0 &&[conditionMultipleDevices boolValue]){
                     [self addLocalNotificationsForLocationUpdating];
@@ -2543,5 +2709,8 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     return strApplicationUUID;
 }
-
+-(void)showNotificationInApp{
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    [tabBarController setSelectedIndex:2];
+}
 @end

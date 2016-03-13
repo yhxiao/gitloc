@@ -53,6 +53,13 @@ extern NSString *const FBFailedLoginNotification;
          ];
     }
      */
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if(appDelegate.fList==nil){
+        appDelegate.fList=[FriendList alloc];
+    }
+    appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
+    [appDelegate getPrivRulesFromBackend];
+    
     [self dismissViewControllerAnimated:NO completion:^{
         
         NSLog(@"dismiss login page");
@@ -536,7 +543,14 @@ extern NSString *const FBFailedLoginNotification;
     [self validate];
 }
 
-
+//- (void)FBStateReceiverSelector:(NSNotification *)notification{
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    if(appDelegate.fList==nil){
+//        appDelegate.fList=[FriendList alloc];
+//    }
+//    appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
+//    [appDelegate getPrivRulesFromBackend];
+//}
 
 
 

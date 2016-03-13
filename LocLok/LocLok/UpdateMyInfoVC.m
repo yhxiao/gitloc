@@ -103,37 +103,36 @@ UIImageView *myImageView;
 //    return temp;
 //    
 //}
-- (void)FBStateReceiverSelector:(NSNotification *)notification {
-    
-    /*FBSDK 3.x below
-     
-    FBSession * fb_session=[notification object];
-//    if(fb_session.state!=FBSessionStateOpen){
+//- (void)FBStateReceiverSelector:(NSNotification *)notification {
+//    
+//    /*FBSDK 3.x below
+//     
+//    FBSession * fb_session=[notification object];
+////    if(fb_session.state!=FBSessionStateOpen){
+////        //alert
+////        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
+////                                                        message:@"Syncronization failed. Please try again."
+////                                                       delegate:self
+////                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+////                                              otherButtonTitles:nil];
+////        [alert show];
+////    }
+//    NSLog(@"%u",fb_session.state);
+//    if(fb_session.state==FBSessionStateOpen){
 //        //alert
-//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-//                                                        message:@"Syncronization failed. Please try again."
-//                                                       delegate:self
-//                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//    }
-    NSLog(@"%u",fb_session.state);
-    if(fb_session.state==FBSessionStateOpen){
-        //alert
-//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
-//                                                        message:@"Syncronization finished. Please reopen this page to check the update."
-//                                                       delegate:self
-//                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-//                                              otherButtonTitles:nil];
-//        [alert show];
-        [self updatePicture];
-       
-     
-        
-    }*/
-    
-    
-}
+////        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@""
+////                                                        message:@"Syncronization finished. Please reopen this page to check the update."
+////                                                       delegate:self
+////                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+////                                              otherButtonTitles:nil];
+////        [alert show];
+//        [self updatePicture];
+//       
+//     
+//        
+//    }*/
+//    
+//}
 
 -(UIImage *) getImageFromURL:(NSString *)fileURL {
     UIImage * result;

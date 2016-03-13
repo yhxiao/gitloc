@@ -69,7 +69,8 @@ extern NSString *LocalImagePlist;
 {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
+    self.title=@"LocLok";
     
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:0.4];
@@ -104,10 +105,16 @@ extern NSString *LocalImagePlist;
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Start"
+                                              initWithTitle:@"Refresh"
                                               style:UIBarButtonItemStyleBordered
                                               target:self
                                               action:@selector(toggleUpdate)];
+    
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
+                                           initWithTitle:@"Friends"
+                                           style:UIBarButtonItemStyleBordered
+                                           target:self
+                                           action:@selector(leftTVTapped)];
     
     
     
@@ -174,7 +181,7 @@ extern NSString *LocalImagePlist;
     //add friend list here;
     self.leftTableView=[[UITableView alloc] init];
     self.leftTableView.hidden=NO;
-    self.leftTableView.frame=CGRectMake(-160, 20, 160, self.view.bounds.size.height);
+    self.leftTableView.frame=CGRectMake(-160, 20+44, 160, self.view.bounds.size.height);
     //self.notifTable.style=UITableViewStylePlain;
     [self.view addSubview:self.leftTableView ];
     //self.resultTable.=bgColor;
@@ -189,26 +196,27 @@ extern NSString *LocalImagePlist;
     
     
     
-    //friends table;
-    self.showFriends = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.showFriends.frame = CGRectMake(10, 10+44+20, 70, 22);
-    [self.showFriends setTitle:@"Friends" forState:UIControlStateNormal];
-    self.showFriends.backgroundColor = bgColor4;
-    [self.showFriends setTitleColor:bgColor2 forState:UIControlStateNormal ];
-    self.showFriends.titleLabel.font = [UIFont fontWithName:@"ArialMT" size:14];
-    self.showFriends.clipsToBounds = YES;
-    self.showFriends.layer.cornerRadius = 4;//half of the width
-    self.showFriends.layer.borderColor=[UIColor blackColor].CGColor;
-    self.showFriends.layer.borderWidth=0.7f;
-    //self.loginButton.contentEdgeInsets=
-    /*UIImage *buttonImageNormal = [UIImage imageNamed:@"blueButton.png"];
-     UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-     [loginButton setBackgroundImage:strechableButtonImageNormal forState:UIControlStateNormal];
-     UIImage *buttonImagePressed = [UIImage imageNamed:@"whiteButton.png"];
-     UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-     [loginButton setBackgroundImage:strechableButtonImagePressed forState:UIControlStateHighlighted];*/
-    [self.showFriends addTarget:self action:@selector(leftTVTapped) forControlEvents:UIControlEventTouchUpInside];
-    [self.mapView addSubview:self.showFriends];
+//    //friends table;
+//    self.showFriends = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.showFriends.frame = CGRectMake(10, 10+44+20, 70, 22);
+//    [self.showFriends setTitle:@"Friends" forState:UIControlStateNormal];
+//    self.showFriends.backgroundColor = bgColor4;
+//    [self.showFriends setTitleColor:bgColor2 forState:UIControlStateNormal ];
+//    self.showFriends.titleLabel.font = [UIFont fontWithName:@"ArialMT" size:14];
+//    self.showFriends.clipsToBounds = YES;
+//    self.showFriends.layer.cornerRadius = 4;//half of the width
+//    self.showFriends.layer.borderColor=[UIColor blackColor].CGColor;
+//    self.showFriends.layer.borderWidth=0.7f;
+//    
+//    //self.loginButton.contentEdgeInsets=
+//    /*UIImage *buttonImageNormal = [UIImage imageNamed:@"blueButton.png"];
+//     UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+//     [loginButton setBackgroundImage:strechableButtonImageNormal forState:UIControlStateNormal];
+//     UIImage *buttonImagePressed = [UIImage imageNamed:@"whiteButton.png"];
+//     UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+//     [loginButton setBackgroundImage:strechableButtonImagePressed forState:UIControlStateHighlighted];*/
+//    [self.showFriends addTarget:self action:@selector(leftTVTapped) forControlEvents:UIControlEventTouchUpInside];
+//    [self.mapView addSubview:self.showFriends];
     
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -218,11 +226,11 @@ extern NSString *LocalImagePlist;
     
     
     
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(loadLeftTV)
-     name:fListLoadingCompleteNotification
-     object:nil
-     ];
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver:self selector:@selector(loadLeftTV)
+//     name:fListLoadingCompleteNotification
+//     object:nil
+//     ];
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(toggleUpdate)
      name:fListLoadingCompleteNotification
@@ -679,13 +687,13 @@ extern NSString *LocalImagePlist;
 
 -(void)drawFriendsLocations{//after receiving location updates, draw friends' locations on map;
     
-    if([countLocationUpdates intValue]==0){
-        countLocationUpdates=[NSNumber numberWithInt:1];
-        return;
-    }
-    else{
-        countLocationUpdates=[NSNumber numberWithInt:0];
-    }
+//    if([countLocationUpdates intValue]==0){
+//        countLocationUpdates=[NSNumber numberWithInt:1];
+//        return;
+//    }
+//    else{
+//        countLocationUpdates=[NSNumber numberWithInt:0];
+//    }
     [self.leftTableView reloadData];
     
     NSNumber *num0=[NSNumber numberWithDouble:0];
@@ -1145,7 +1153,6 @@ extern NSString *LocalImagePlist;
 
         }
     }];
-    myRequest.to_location=nil;
     if([aFriend.permission integerValue]==PermissionForFamily){
         myRequest.MeetEventStatus=[NSNumber numberWithInteger:MeetEventNotice];
     }
@@ -1153,8 +1160,9 @@ extern NSString *LocalImagePlist;
         myRequest.MeetEventStatus=[NSNumber numberWithInteger:MeetEventRequest];
     }
     myRequest.start_time=[NSDate date];
-    myRequest.end_time=nil;
-    myRequest.distance=nil;
+    myRequest.to_location=myRequest.from_location;
+    myRequest.end_time=myRequest.start_time;
+    myRequest.distance=[NSNumber numberWithInteger:0];
     
     id<KCSStore> meetStore=[KCSLinkedAppdataStore storeWithOptions:
                             @{KCSStoreKeyCollectionName : @"MeetEvent",

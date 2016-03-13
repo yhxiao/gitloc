@@ -35,4 +35,5 @@
 - (void)createAccount;
 -(void)resetPassword;
 - (void) handeLogin:(NSError*)errorOrNil;
+- (void)FBStateReceiverSelector:(NSNotification *)notification;
 @end

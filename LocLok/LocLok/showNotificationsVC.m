@@ -9,6 +9,8 @@
 #import "showNotificationsVC.h"
 
 @interface showNotificationsVC ()
+@property (nonatomic, retain) UIFont * cellFont;
+@property (nonatomic, retain) UIFont * cellFont2;
 
 @end
 
@@ -62,7 +64,8 @@ extern NSString* LocalImagePlist;
 {
     [super viewDidLoad];
     
-
+    self.cellFont=[ UIFont fontWithName: @"Arial" size: 10 ];
+    self.cellFont2=[ UIFont fontWithName: @"Arial" size: 8 ];
     
     CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
     
@@ -283,6 +286,9 @@ extern NSString* LocalImagePlist;
     UIImage* pImage;
     //__block NSString* userName1=[NSString alloc ];
     //the text
+    cell.textLabel.font=self.cellFont;
+    cell.textLabel.numberOfLines=3;
+    cell.detailTextLabel.font=self.cellFont2;
     if(indexPath.section==0){//toCollection;
         cell.textLabel.text = [[[[[
                                    [[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] from_user] givenName]
@@ -347,40 +353,61 @@ extern NSString* LocalImagePlist;
         
         if([aMeeting.MeetEventStatus integerValue]==MeetEventNotice){//meeting notice;5
             cell.textLabel.text=[@"Meeting with " stringByAppendingString:
-                                 [[[meetUser.givenName stringByAppendingString:@" "]
+                                 [[[[[meetUser.givenName stringByAppendingString:@" "]
                                  stringByAppendingString:meetUser.surname ]
-                                 stringByAppendingString:@" has been proposed."]
+                                 stringByAppendingString:@" has been proposed at "]
+                                 stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
+                                 stringByAppendingString:@"." ]
             ];
         }
         if([aMeeting.MeetEventStatus integerValue]==MeetEventRequest){//request to meet;4
             cell.textLabel.text=[@"Meeting with " stringByAppendingString:
-                                 [[[meetUser.givenName stringByAppendingString:@" "]
+                                 [[[[meetUser.givenName stringByAppendingString:@" "]
                                   stringByAppendingString:meetUser.surname ]
-                                 stringByAppendingString:@" has been proposed."]
+                                 stringByAppendingString:@" has been proposed at "]
+                                  stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
                                  ];
+            if([aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]){//proposed by me;
+                cell.textLabel.text=[cell.textLabel.text stringByAppendingString:@"."];
+            }
+            else{//proposed to me.
+                cell.textLabel.text=[cell.textLabel.text stringByAppendingString:@". Do you want to agree the meeting request?"];
+            }
         }
         if([aMeeting.MeetEventStatus integerValue]==MeetEventAgreed){//agreed to meet;3
             cell.textLabel.text=[@"Meeting with " stringByAppendingString:
-                                 [[[meetUser.givenName stringByAppendingString:@" "]
+                                 [[[[[meetUser.givenName stringByAppendingString:@" "]
                                   stringByAppendingString:meetUser.surname ]
-                                 stringByAppendingString:@" has been accepted."]
+                                 stringByAppendingString:@" has been accepted at "]
+                                stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
+                                stringByAppendingString:@"." ]
                                  ];
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+                                       stringByAppendingString:@" meters"];
         }
         if([aMeeting.MeetEventStatus integerValue]==MeetEventHalfway){//halfway to meet;2
-            cell.textLabel.text=[[[meetUser.givenName stringByAppendingString:@" "]
+            cell.textLabel.text=[[[[[meetUser.givenName stringByAppendingString:@" "]
                                   stringByAppendingString:meetUser.surname ]
-                                 stringByAppendingString:@" is halfway to meet you."
-                                 ];
+                                 stringByAppendingString:@" is halfway to meet you at "
+                                 ]
+                                stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
+                                 stringByAppendingString:@"." ]
+            ;
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+                                       stringByAppendingString:@" meters"];
         }
-        if([aMeeting.MeetEventStatus integerValue]==MeetEventNearby){//halfway to meet;1
-            cell.textLabel.text=[[[meetUser.givenName stringByAppendingString:@" "]
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventNearby){//nearby to meet;1
+            cell.textLabel.text=[[[[[meetUser.givenName stringByAppendingString:@" "]
                                   stringByAppendingString:meetUser.surname ]
-                                 stringByAppendingString:@" is close to you (less than 50 meters)."
-                                 ];
+                                 stringByAppendingString:@" is close to you (less than 50 meters) at "
+                                 ]
+                                 stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
+                                stringByAppendingString:@"." ]
+            ;
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+                                       stringByAppendingString:@" meters"];
         }
         
-        cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
-        stringByAppendingString:@" meters"];
         
         query4 = [KCSQuery queryOnField:@"user_id._id"
                  withExactMatchForValue:meetUser.userId
@@ -583,7 +610,7 @@ extern NSString* LocalImagePlist;
     if (indexPath != nil)
     {
         //[self tableView: self.notifTable accessoryButtonTappedForRowWithIndexPath: indexPath];
-        if(indexPath.section==0){//request;
+        if(indexPath.section==0){//friend request;
             AddFriends *aFriend= [appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row];
             NSString *senderName=[[aFriend.from_user givenName]
                 stringByAppendingString:[@" "
@@ -742,11 +769,49 @@ extern NSString* LocalImagePlist;
              */
             
             [appDelegate.fList.NotifsToMe removeObjectAtIndex:indexPath.row];
+            [self.notifTable reloadData];
+        }
+        if(indexPath.section==2){//meeting request;
+            MeetEvent* aMeeting=[appDelegate.fList.NotifsMeeting objectAtIndex:indexPath.row];
+            KCSUser* meetUser=[aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]?aMeeting.to_user:aMeeting.from_user;
+            
+            if([aMeeting.MeetEventStatus integerValue]==MeetEventRequest && [aMeeting.to_user.userId isEqualToString:[KCSUser activeUser].userId]){//request to me;
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@""
+                                              message:[[@"Agree to meet with "
+                                                        stringByAppendingString:[[meetUser.givenName stringByAppendingString:@" "]
+                                                                               stringByAppendingString:meetUser.surname ]]
+                                                       stringByAppendingString:@"?"]
+                                            preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* left = [UIAlertAction
+                                       actionWithTitle:@"Agree"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action)
+                                       {
+                                           [appDelegate AgreeMeetEventRequestInApp:aMeeting];
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                           
+                                       }];
+                UIAlertAction* right = [UIAlertAction
+                                        actionWithTitle:@"Decline"
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action)
+                                        {
+                                            [appDelegate DeclineMeetEventRequestInApp:aMeeting];
+                                            [alert dismissViewControllerAnimated:YES completion:nil];
+                                            
+                                        }];
+                
+                [alert addAction:left];
+                [alert addAction:right];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+            }
         }
         
     }
     
-    [self.notifTable reloadData];
     NSLog(@"tapped\n");
 }
 

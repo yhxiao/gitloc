@@ -71,5 +71,9 @@
 -(void)AgreeMeetEventRequest:(NSDictionary * _Nullable)userInfo;
 -(void)ReceiveAgreedMeeting:(NSDictionary  * _Nullable )userInfo;
 -(void)DeclineMeetEventRequest:(NSDictionary *_Nullable)userInfo;
+-(void)AgreeMeetEventRequestInApp:(MeetEvent* _Nullable)aMeeting;//in notification center;
+-(void)ReceiveAgreedMeetingInApp:(MeetEvent* _Nullable)aMeeting;//in notification center;
+-(void)DeclineMeetEventRequestInApp:(MeetEvent* _Nullable)aMeeting;//in notification center;
 -(NSInteger)findFriendinFListbyID:(NSString*_Nullable)friend_id;
+-(void)showNotificationInApp;
 @end

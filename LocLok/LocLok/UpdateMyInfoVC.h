@@ -31,6 +31,6 @@
 //@property (strong, nonatomic) IBOutlet UIImageView *myImageView;
 - (void)reset;
 - (void)save;
-- (void)FBStateReceiverSelector:(NSNotification *)notification;
+//- (void)FBStateReceiverSelector:(NSNotification *)notification;
 -(void)dismissThis;
 @end
