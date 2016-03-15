@@ -23,6 +23,10 @@ typedef NS_ENUM(NSInteger, MeetEventStatus) {
 
 @interface MeetEvent : NSObject<KCSPersistable>
 @property (nonatomic, retain) KCSUser* from_user;
+@property (nonatomic, retain) NSString* from_givenName;
+@property (nonatomic, retain) NSString* from_surname;
+@property (nonatomic, retain) NSString* to_givenName;
+@property (nonatomic, retain) NSString* to_surname;
 @property (nonatomic, retain) KCSUser* to_user;
 @property (nonatomic, retain) NSNumber* MeetEventStatus;//only when to_user agrees, this meet event is valid;
 @property (nonatomic, retain) NSDate* start_time;//time of sending the meet request from from_user;

@@ -18,10 +18,13 @@ typedef NS_ENUM(NSInteger, AllLocPermissions) {
 @interface Friendship : NSObject<KCSPersistable>
 @property (nonatomic, retain) KCSUser* from_user;
 @property (nonatomic, retain) KCSUser* to_user;
+@property (nonatomic, retain) NSString* from_givenName;
+@property (nonatomic, retain) NSString* from_surname;
+@property (nonatomic, retain) NSString* to_givenName;
+@property (nonatomic, retain) NSString* to_surname;
 @property (nonatomic, retain) NSNumber* permission;
 @property (nonatomic, retain) NSNumber* shownColor;
-@property (nonatomic, retain) NSString* from_id;
-@property (nonatomic, retain) NSString* to_id;
+
 @property (nonatomic, retain) MeetEvent* meetinglink;
 @property (nonatomic, copy) NSString* entityId;
 @property (nonatomic, retain) KCSMetadata* metadata; //Kinvey metadata, optional

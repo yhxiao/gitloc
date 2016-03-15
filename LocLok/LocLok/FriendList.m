@@ -48,15 +48,17 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
     
     
     //the sequence of friend list;
-    //[query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"to_user.surname" inDirection:kKCSAscending]];
-    NSSortDescriptor *sortName1 = [NSSortDescriptor sortDescriptorWithKey:@"to_user.surname"
-                                                               ascending:YES
-                                                                //selector:@selector(caseInsensitiveCompare:)
-                                  ];
-    NSSortDescriptor *sortName2 = [NSSortDescriptor sortDescriptorWithKey:@"to_user.givenName"
-                                                                ascending:YES
-                                                                 //selector:@selector(caseInsensitiveCompare:)
-                                   ];
+    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"to_surname" inDirection:kKCSAscending]];
+    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"to_givenName" inDirection:kKCSAscending]];
+//    NSSortDescriptor *sortName1 = [NSSortDescriptor sortDescriptorWithKey:@"to_surname"
+//                                                               ascending:YES
+//                                                                //selector:@selector(caseInsensitiveCompare:)
+//                                  ];
+//    NSSortDescriptor *sortName2 = [NSSortDescriptor sortDescriptorWithKey:@"to_givenName"
+//                                                                ascending:YES
+//                                                                 //selector:@selector(caseInsensitiveCompare:)
+//                                   ];
+    
     
     [frdStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil==nil){
@@ -343,7 +345,7 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                         
                         [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                             if(errorOrNil!=nil){
-                                NSLog(@"%@",errorOrNil);
+                                NSLog(@"check meetings: %@",errorOrNil);
                             }
                         } withProgressBlock:nil];
                         
@@ -354,7 +356,7 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                         
                         [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                             if(errorOrNil!=nil){
-                                NSLog(@"%@",errorOrNil);
+                                NSLog(@"check meetings: %@",errorOrNil);
                             }
                         } withProgressBlock:nil];
                     }
@@ -364,11 +366,14 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                         
                         [meetStore saveObject:meet1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                             if(errorOrNil!=nil){
-                                NSLog(@"%@",errorOrNil);
+                                NSLog(@"check meetings: %@",errorOrNil);
                             }
                         } withProgressBlock:nil];
                         
                     }}}
+                }
+                else{
+                    NSLog(@"check meetings: %@",errorOrNil);
                 }
             }withProgressBlock:nil];
         }
@@ -492,6 +497,10 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
     aFriend.finished=[[NSNumber alloc] initWithInt:0];
     aFriend.permission=perm;
     aFriend.date=[NSDate date];
+    aFriend.from_givenName=[KCSUser activeUser].givenName;
+    aFriend.from_surname=[KCSUser activeUser].surname;
+    aFriend.to_givenName=addUser.givenName;
+    aFriend.to_surname=addUser.surname;
     
     id<KCSStore> updateStore=[KCSLinkedAppdataStore storeWithOptions:@{ KCSStoreKeyCollectionName : @"AddFriend",KCSStoreKeyCollectionTemplateClass : [AddFriends class],
                                                                         KCSStoreKeyCachePolicy : @(KCSCachePolicyNetworkFirst)}
@@ -614,7 +623,7 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
             [friendshipStore queryWithQuery:query_exist
                         withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                             if(errorOrNil!=nil){
-                                NSLog(@"Got an error: %@", errorOrNil);
+                                NSLog(@"Got an error AddOneFriend : %@", errorOrNil);
                                 
                             }
                             Friendship* aFriendship;
@@ -776,6 +785,9 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
             
             
         }
+        else{
+            NSLog(@"when searchNotifInAddFriends: %@",errorOrNil);
+        }
         NSLog(@"finished notif query 1");
     } withProgressBlock:nil
      //^(NSArray *objects, double percentComplete){
@@ -812,6 +824,9 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
             //});
             //block_after_assign(NotifsToMe);
             
+        }
+        else{
+            NSLog(@"when searchNotifInAddFriends: %@",errorOrNil);
         }
         NSLog(@"finished notif query 2");
 
@@ -860,6 +875,9 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
             block_after_assign(NotifsMeeting);
             
         }
+        else{
+            NSLog(@"when searching meeting events: %@",errorOrNil);
+        }
     } withProgressBlock:nil];
     
 }
@@ -880,6 +898,8 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                        withExactMatchForValue:[KCSUser activeUser].userId
                         ];
     
+    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"from_surname" inDirection:kKCSAscending]];
+    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"from_givenName" inDirection:kKCSAscending]];
     
     [frdStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil==nil){
@@ -893,6 +913,9 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
             };
             //dispatch_async(dispatch_queue_create("com.kinvey.lotsofwork", NULL), ^{
             block_after_assign(inFriends);
+        }
+        else{
+            NSLog(@"when loading friends having my permission: %@",errorOrNil);
         }
     }withProgressBlock:nil];
     

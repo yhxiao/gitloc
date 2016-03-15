@@ -16,14 +16,18 @@
 - (NSDictionary *)hostToKinveyPropertyMapping
 {
     return @{
-             @"entityId"    : KCSEntityKeyId, //the required _id field
-             @"metadata"    : KCSEntityKeyMetadata,
-             @"from_user"   : @"from_user",
-             @"to_user"     : @"to_user",
-             @"agreed"      : @"agreed",
-             @"finished"    : @"finished",
-             @"permission"  : @"permission",
-             @"date"        : @"date"
+             @"entityId"      : KCSEntityKeyId, //the required _id field
+             @"metadata"      : KCSEntityKeyMetadata,
+             @"from_user"     : @"from_user",
+             @"to_user"       : @"to_user",
+             @"from_givenName": @"from_givenName",
+             @"from_surname"  : @"from_surname",
+             @"to_givenName"  : @"to_givenName",
+             @"to_surname"    : @"to_surname",
+             @"agreed"        : @"agreed",
+             @"finished"      : @"finished",
+             @"permission"    : @"permission",
+             @"date"          : @"date"
              };
 }
 

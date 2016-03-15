@@ -303,8 +303,8 @@ extern NSString* LocalImagePlist;
     else{
     
     
-    //If the lookup is sucessful the value for objectsOrNil be a NSArray where each element is a NSDictionary providing all the public fields of the matching user(s).
-    [KCSUserDiscovery lookupUsersForFieldsAndValues:lookupFields
+        //If the lookup is sucessful the value for objectsOrNil be a NSArray where each element is a NSDictionary providing all the public fields of the matching user(s).
+        [KCSUserDiscovery lookupUsersForFieldsAndValues:lookupFields
                                     completionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                                         if (errorOrNil == nil) {
                                             //array of matching KCSUser objects
@@ -324,7 +324,8 @@ extern NSString* LocalImagePlist;
                                           progView.progress=percentComplete;
                                            */
 
-                                      }];
+                                      }
+         ];
     }
 }
 
@@ -794,11 +795,12 @@ extern NSString* LocalImagePlist;
                               handler:^(UIAlertAction * action)
                               {
                                   perm=[NSNumber numberWithInteger:PermissionForFamily];
-                                  
+                                  dispatch_after(0.2, dispatch_get_main_queue(), ^{
                                   [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
                                                 Permission:perm Controller:self
                                                    Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
                                    ];
+                                  });
                                   [alert dismissViewControllerAnimated:YES completion:nil];
                                   
                               }];
@@ -808,11 +810,12 @@ extern NSString* LocalImagePlist;
                                  handler:^(UIAlertAction * action)
                                  {
                                      perm=[NSNumber numberWithInteger:PermissionForFriends];
-                                     
+                                     dispatch_after(0.2, dispatch_get_main_queue(), ^{
                                      [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
                                                    Permission:perm Controller:self
                                                       Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
                                       ];
+                                     });
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                      
                                  }];

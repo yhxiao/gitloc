@@ -23,8 +23,10 @@
              @"to_user"    : @"to_user",
              @"permission" : @"permission",
              @"shownColor" : @"shownColor",
-             @"from_id"    : @"from_id",
-             @"to_id"      : @"to_id",
+             @"from_surname"  : @"from_surname",
+             @"to_givenName"  : @"to_givenName",
+             @"to_surname"    : @"to_surname",
+             @"from_givenName": @"from_givenName",
              @"meetinglink": @"meetinglink"
              };
 }

@@ -19,6 +19,8 @@ extern NSString *  GotSelfTrueLocationNotification;//true location of self;
 extern NSString * fListLoadingCompleteNotification;
 extern NSString*  realtimelocationUpdateNotification;//locatioin updates from friends;
 extern NSString *LocalImagePlist;
+extern NSString* InAppSuccessfulLoginNotification;
+extern NSString* FBSuccessfulLoginNotification;
 
 @interface ViewController ()
 //@property (nonatomic, retain) id<KCSStore> updateStore;
@@ -70,7 +72,10 @@ extern NSString *LocalImagePlist;
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:NO];
-    self.title=@"LocLok";
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor purpleColor]}];
+    //self.title=@"LocLok";
+    self.navigationItem.title=@"LocLok";
     
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:0.4];
@@ -222,10 +227,27 @@ extern NSString *LocalImagePlist;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     selfLocAnnotation=[[MKPointAnnotation alloc] init];
     
+    YXThumbnail* selfLocAnnotation1 = [[YXThumbnail alloc] init];
+    selfLocAnnotation1.image =[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+    selfLocAnnotation1.title = [[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                                stringByAppendingString:[[KCSUser activeUser] surname] ];
+    selfLocAnnotation1.subtitle = [appDelegate.timeDateFormatter stringFromDate:appDelegate.latestPerturbedLocation.timestamp ];
+    selfLocAnnotation1.coordinate = appDelegate.latestPerturbedLocation.coordinate;
+    selfLocAnnotation1.disclosureBlock = ^{ NSLog(@"selected Self location"); };
+    //selfLocAnnotation1.disclosureBlock =nil;
+    selfLokAnnotation=[YXThumbnailAnnotation annotationWithThumbnail:selfLocAnnotation1];
     
     
-    
-    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(changeUserAfterLogin)
+     name:InAppSuccessfulLoginNotification
+     object:nil
+     ];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(changeUserAfterLogin)
+     name:FBSuccessfulLoginNotification
+     object:nil
+     ];
 //    [[NSNotificationCenter defaultCenter]
 //     addObserver:self selector:@selector(loadLeftTV)
 //     name:fListLoadingCompleteNotification
@@ -337,12 +359,13 @@ extern NSString *LocalImagePlist;
         
             dispatch_async( dispatch_get_main_queue(), ^{
                 //move the annotation of self-location;
+                [mapView removeAnnotation:selfLokAnnotation];
                 selfLokAnnotation.thumbnail.subtitle =[appDelegate.timeDateFormatter stringFromDate:location.timestamp];
                 selfLokAnnotation.thumbnail.coordinate=location.coordinate;
                 //[selfLokAnnotation.thumbnail setCoordinate:location.coordinate];
                 [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
                 [selfLokAnnotation setCoordinate:selfLokAnnotation.thumbnail.coordinate];
-                
+                [mapView addAnnotation:selfLokAnnotation];
                 
                 //move the overlay circle;
                 [mapView removeOverlay:selfLokOverlay];
@@ -619,8 +642,8 @@ extern NSString *LocalImagePlist;
     
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     //if(appDelegate.fList==nil && [KCSUser activeUser]!=nil){
-    
-        appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
+    if([KCSUser activeUser]){
+        appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];}
     //[appDelegate.locManager startUpdatingLocation];
     
     //Also update friends' locations;
@@ -700,22 +723,16 @@ extern NSString *LocalImagePlist;
     AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     if(frdAnnotations==nil && frdRegions==nil){
         //add self annotation;
-        YXThumbnail* selfLocAnnotation1 = [[YXThumbnail alloc] init];
-        selfLocAnnotation1.image =[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
-        selfLocAnnotation1.title = [[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
-                                    stringByAppendingString:[[KCSUser activeUser] surname] ];
-        selfLocAnnotation1.subtitle = [appDelegate.timeDateFormatter stringFromDate:appDelegate.latestPerturbedLocation.timestamp ];
-        selfLocAnnotation1.coordinate = appDelegate.latestPerturbedLocation.coordinate;
-        selfLocAnnotation1.disclosureBlock = ^{ NSLog(@"selected Self location"); };
-        //selfLocAnnotation1.disclosureBlock =nil;
-        selfLokAnnotation=[YXThumbnailAnnotation annotationWithThumbnail:selfLocAnnotation1];
+        
         //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
-        [self.mapView addAnnotation:selfLokAnnotation];
+        //[mapView removeAnnotation:selfLokAnnotation];
         selfLokAnnotation.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
         selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
         [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
+        [self.mapView addAnnotation:selfLokAnnotation];
         
         //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
+        //[mapView removeOverlay:selfLokOverlay];
         selfLokOverlay=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
                                                   radius:[appDelegate.privacy.SharingRadius doubleValue]];
         selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
@@ -822,7 +839,19 @@ extern NSString *LocalImagePlist;
     }
 }
 
-
+-(void)changeUserAfterLogin{
+    [leftTableView reloadData];
+    selfLokAnnotation.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+     stringByAppendingString:[[KCSUser activeUser] surname] ];
+    selfLokAnnotation.thumbnail.image=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if(appDelegate.fList==nil){
+        appDelegate.fList=[FriendList alloc];
+    }
+    appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
+    [appDelegate getPrivRulesFromBackend];
+}
 
 
 
@@ -878,10 +907,12 @@ extern NSString *LocalImagePlist;
     cell.separatorInset = UIEdgeInsetsZero;//if you also want to adjust separatorInset
     
     if(indexPath.section==0){//about me;
+        
+        
         NSDictionary *temp = [CommonFunctions retrieveFromPlist:@"UserInfo.plist"];
         
-        cell.textLabel.text=[[[[temp objectForKey:@"userInfo"] objectAtIndex:1] stringByAppendingString:@" "]
-                    stringByAppendingString:[[temp objectForKey:@"userInfo"] objectAtIndex:2]];
+        cell.textLabel.text=[[[KCSUser activeUser].givenName stringByAppendingString:@" "]
+                    stringByAppendingString:[KCSUser activeUser].surname];
         cell.detailTextLabel.text=[appDelegate.timeDateFormatter stringFromDate:appDelegate.latestPerturbedLocation.timestamp ];
         cell.detailTextLabel.font=self.cellFont2;
         cell.textLabel.font=self.cellFont;
@@ -1146,6 +1177,10 @@ extern NSString *LocalImagePlist;
     MeetEvent* myRequest=[[MeetEvent alloc] init];
     myRequest.from_user=[KCSUser activeUser];
     myRequest.to_user=aFriend.to_user;
+    myRequest.from_givenName=[KCSUser activeUser].givenName;
+    myRequest.from_surname=[KCSUser activeUser].surname;
+    myRequest.to_givenName=aFriend.to_user.givenName;
+    myRequest.to_surname=aFriend.to_user.surname;
     [appDelegate.locationManager requestLocation:^(CLLocation * _Nullable location, NSError * _Nullable error) {
         // We have to make sure the location is set, could be nil
         if (location != nil) {

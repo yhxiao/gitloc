@@ -585,6 +585,28 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
     [KCSFileStore
      uploadFile:sourceURL
      options:@{KCSFilePublic:@(YES)} completionBlock:^(KCSFile *uploadInfo, NSError *error) {
+    if(error){
+        NSLog(@"when uploading self profilce image: %@",error);
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Photo Uploading Error"
+                                      message:@"Please upload again."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* left = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+        
+        [alert addAction:left];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    else{
          //NSLog(@"Upload finished. File id='%@', error='%@'.", [uploadInfo remoteURL], error);
          NSArray* myArray = [[[uploadInfo remoteURL] absoluteString]  componentsSeparatedByString:@"?"];
          NSString * imageURL=[myArray objectAtIndex:0];
@@ -638,11 +660,11 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
          } withProgressBlock:nil
           ];
          
+    }//if no error;
          
          
          
-         
-     } progressBlock:nil];
+     } progressBlock:nil];//upload file;
     
     /*[KCSFileStore uploadData:UIImagePNGRepresentation(image)
                      options:@{KCSFilePublic:@(YES)}

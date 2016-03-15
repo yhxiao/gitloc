@@ -17,6 +17,8 @@
 //@synthesize locManager;
 NSString *const FBSuccessfulLoginNotification =
 @"com.yxiao.Login:FBSessionStateChangedNotification";
+NSString* const InAppSuccessfulLoginNotification=
+@"com.yxiao.login.successful.inapp.changeUser";
 NSString *const FBFailedLoginNotification=
 @"com.yxiao.Login.FBLoginFailedNotification";
 NSString *const GotPrivacySettingNotification=
@@ -577,7 +579,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     self.locationManager = [[LKLocationManager alloc] init];
     self.locationManager.apiToken = @"b0a6bcd54fe52138";
     self.locationManager.advancedDelegate=self;
-    self.locationManager.debug=YES;
+    //self.locationManager.debug=YES;
+    self.locationManager.debug=NO;
     [self.locationManager stopUpdatingLocation];
     
     
@@ -824,6 +827,9 @@ forRemoteNotification:(NSDictionary *)userInfo
                                 ];
             [query2 addQueryOnField:@"from_user._id" withExactMatchForValue:[userInfo objectForKey:@"from_user"]];
             [frdStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+                if(errorOrNil1){
+                    NSLog(@"AgreeMeetEventRequest: %@",errorOrNil1);
+                }
                 if(objectsOrNil1!=nil){
                     Friendship* friend1=objectsOrNil1[0];
                     friend1.meetinglink=objectsOrNil2[0];
@@ -858,6 +864,9 @@ forRemoteNotification:(NSDictionary *)userInfo
                     }
                     }
                     [meetStore saveObject:myMeetEvent withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                        if(errorOrNil){
+                            NSLog(@"AgreeMeetEventRequest save :%@",errorOrNil);
+                        }
                         //finished meeting event;
                         if(myMeetEvent.MeetEventStatus==MeetEventFinished){
                             myMeetEvent=nil;
@@ -890,6 +899,9 @@ forRemoteNotification:(NSDictionary *)userInfo
                         ];
     [query2 addQueryOnField:@"from_user._id" withExactMatchForValue:aMeeting.from_user.userId];
     [frdStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+        if(errorOrNil1){
+            NSLog(@"AgreeMeetEventRequestInApp: %@",errorOrNil1);
+        }
         if(objectsOrNil1!=nil){
             Friendship* friend1=objectsOrNil1[0];
             friend1.meetinglink=aMeeting;
@@ -924,6 +936,9 @@ forRemoteNotification:(NSDictionary *)userInfo
             }
             }
             [meetStore saveObject:aMeeting withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                if(errorOrNil){
+                    NSLog(@"AgreeMeetEventRequestInApp: %@",errorOrNil);
+                }
                 //finished meeting event;
                 if(aMeeting.MeetEventStatus==MeetEventFinished){
                     myMeetEvent=nil;
@@ -958,6 +973,9 @@ forRemoteNotification:(NSDictionary *)userInfo
             } withProgressBlock:nil];
             
         }
+        if(errorOrNil2){
+            NSLog(@"DeclineMeetEventRequest :%@",errorOrNil2);
+        }
     }
     withProgressBlock:nil];
     
@@ -975,7 +993,7 @@ forRemoteNotification:(NSDictionary *)userInfo
     aMeeting.MeetEventStatus=[NSNumber numberWithInteger:MeetEventDeclined];
     [meetStore saveObject:aMeeting withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil!=nil){
-            NSLog(@"%@",errorOrNil);
+            NSLog(@"DeclineMeetEventRequestInApp: %@",errorOrNil);
         }
     } withProgressBlock:nil];
     
@@ -1000,6 +1018,9 @@ forRemoteNotification:(NSDictionary *)userInfo
                             ];
         
         [meetStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil2, NSError *errorOrNil2) {
+            if(errorOrNil2){
+                NSLog(@"ReceiveAgreedMeeting: %@",errorOrNil2);
+            }
             if (errorOrNil2 == nil && objectsOrNil2.count>0) {
                 myMeetEvent=objectsOrNil2[0];
                 
@@ -1014,6 +1035,9 @@ forRemoteNotification:(NSDictionary *)userInfo
                                     ];
                 [query2 addQueryOnField:@"from_user._id" withExactMatchForValue:[userInfo objectForKey:@"to_user"]];
                 [frdStore queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil1, NSError *errorOrNil1) {
+                    if(errorOrNil1){
+                        NSLog(@"ReceiveAgreedMeeting: %@",errorOrNil1);
+                    }
                     if(objectsOrNil1!=nil){
                         Friendship* friend1=objectsOrNil1[0];
                         friend1.meetinglink=objectsOrNil2[0];
@@ -2442,8 +2466,9 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     
     //save perturbed location to lokSeries;
-    if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=100.0){
-    if([currentLocation distanceFromLocation:latestTrueLocation]>100  || latestPerturbedLocation==nil){//only update the perturbed location if movement>100m;
+    //if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=100.0){
+    if(1){
+    if([currentLocation distanceFromLocation:latestTrueLocation]>200  || latestPerturbedLocation==nil){//only update the perturbed location if movement>100m;
         LocSeries* perturbed = [[LocSeries alloc] init];
         perturbed.owner =[KCSUser activeUser].userId;
         perturbed.userDate = currentLocation.timestamp;

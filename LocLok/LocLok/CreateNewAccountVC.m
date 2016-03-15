@@ -413,6 +413,12 @@
             [user saveWithCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil1) {
                 if (errorOrNil1 == nil) {
                     //was successful!
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    UIResponder* nextResponder = [self.view.superview nextResponder];
+                    if ([nextResponder isKindOfClass:[UIViewController class]])
+                    {
+                        [(UIViewController*)nextResponder viewWillAppear:YES];
+                    }
                     
                     UIAlertController * alert=   [UIAlertController
                                                   alertControllerWithTitle:@"Account Creation Successful"
@@ -433,14 +439,11 @@
                     
                     [self presentViewController:alert animated:YES completion:nil];
                     //return to the login page;
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    UIResponder* nextResponder = [self.view.superview nextResponder];
-                    if ([nextResponder isKindOfClass:[UIViewController class]])
-                    {
-                        [(UIViewController*)nextResponder viewWillAppear:YES];
-                    }
                 } else {
                     //there was an error with the update save
+                    //return to the login page;
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
                     NSString* message = [errorOrNil1 localizedDescription];
                     
                     UIAlertController * alert=   [UIAlertController
@@ -461,8 +464,6 @@
                     [alert addAction:ok];
                     
                     [self presentViewController:alert animated:YES completion:nil];
-                    //return to the login page;
-                    [self dismissViewControllerAnimated:YES completion:nil];
                     
                 }
             }];

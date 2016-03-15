@@ -74,6 +74,22 @@ extern NSString* LocalImagePlist;
     } withProgressBlock:nil
      ];
 }
+-(void)deleteFriendship:(Friendship *)aFriend
+                withIndexPath:(NSIndexPath *)indexPath{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [friendshipStore removeObject:aFriend withCompletionBlock:^(unsigned long count, NSError *errorOrNil) {
+        if(errorOrNil==nil){
+            //dispatch_async(dispatch_get_main_queue(), ^{
+            [appDelegate.fList.inFriends removeObjectAtIndex:indexPath.row];
+            [self.tableView reloadData];
+            //});
+        }
+    } withProgressBlock:nil
+     ];
+    
+    
+}
 
 
 
@@ -303,6 +319,19 @@ extern NSString* LocalImagePlist;
                                 
                             }];
     
+    UIAlertAction* unFriend = [UIAlertAction
+                            actionWithTitle:@"Delete"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends ];
+                                dispatch_after(0.2, dispatch_get_main_queue(), ^{
+                                    [self deleteFriendship:aFriend withIndexPath:indexPath];
+                                });
+                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                
+                            }];
+    
     [alert addAction:left];
     if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:@"true location"]){
         [alert addAction:right];
@@ -310,6 +339,7 @@ extern NSString* LocalImagePlist;
     else{
         [alert addAction:middle];
     }
+    [alert addAction:unFriend];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

@@ -59,22 +59,33 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:( NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond ) fromDate:[[NSDate alloc] init]];
+    NSDateComponents *components;
+    //components = [cal components:( NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond ) fromDate:[[NSDate alloc] init]];
     
-    [components setHour:-[components hour]];
-    [components setMinute:-[components minute]];
-    [components setSecond:-[components second]];
-    today00 = [cal dateByAddingComponents:components toDate:[[NSDate alloc] init] options:0]; //This variable should now be pointing at a date object that is the start of today (midnight);
+    components = [cal components:NSCalendarUnitWeekday | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[[NSDate alloc] init]];
     
-    [components setHour:-24];
-    [components setMinute:0];
-    [components setSecond:0];
-    yesterday00 = [cal dateByAddingComponents:components toDate: today00 options:0];
+    [components setDay:[components day] ];
+    today00  = [cal dateFromComponents:components];
     
-    [components setHour:-72];
-    [components setMinute:0];
-    [components setSecond:0];
-    last3day00=[cal dateByAddingComponents:components toDate: today00 options:0];
+    //[components setHour:-[components hour]];
+    //[components setMinute:-[components minute]];
+    //[components setSecond:-[components second]];
+    //[components setNanosecond:1];
+    //today00 = [cal dateByAddingComponents:components toDate:[[NSDate alloc] init] options:0]; //This variable should now be pointing at a date object that is the start of today (midnight);
+    
+    //[components setHour:-24];
+    //[components setMinute:0];
+    //[components setSecond:0];
+    //yesterday00 = [cal dateByAddingComponents:components toDate: today00 options:0];
+    [components setDay:([components day] - 1)];
+    yesterday00=[cal dateFromComponents:components];
+    
+    //[components setHour:-72];
+    //[components setMinute:0];
+    //[components setSecond:0];
+    //last3day00=[cal dateByAddingComponents:components toDate: today00 options:0];
+    [components setDay:([components day] - 2)];
+    last3day00=[cal dateFromComponents:components];
     
     components = [cal components:NSCalendarUnitWeekday | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[[NSDate alloc] init]];
     

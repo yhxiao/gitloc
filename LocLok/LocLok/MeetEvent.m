@@ -18,6 +18,10 @@
              @"entityId"      : KCSEntityKeyId, //the required _id field
              @"metadata"      : KCSEntityKeyMetadata,
              @"from_user"     : @"from_user",
+             @"from_givenName": @"from_givenName",
+             @"from_surname"  : @"from_surname",
+             @"to_givenName"  : @"to_givenName",
+             @"to_surname"    : @"to_surname",
              @"to_user"       : @"to_user",
              @"MeetEventStatus"        : @"status",
              @"start_time"    : @"start_time",

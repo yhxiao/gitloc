@@ -18,6 +18,10 @@ typedef NS_ENUM(NSInteger, AddFriendagreed) {
 @interface AddFriends : NSObject<KCSPersistable>
 @property (nonatomic, retain) KCSUser* from_user;
 @property (nonatomic, retain) KCSUser* to_user;
+@property (nonatomic, retain) NSString* from_givenName;
+@property (nonatomic, retain) NSString* from_surname;
+@property (nonatomic, retain) NSString* to_givenName;
+@property (nonatomic, retain) NSString* to_surname;
 @property (nonatomic, retain) NSNumber* permission;
 @property (nonatomic, retain) NSNumber* agreed;
 @property (nonatomic, retain) NSNumber* finished;

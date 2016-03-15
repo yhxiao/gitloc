@@ -52,6 +52,7 @@
 @property (nonatomic,strong) MKCircle* selfLokOverlay;//self perturbed circle;
 @property (nonatomic,strong) NSMutableArray* frdAnnotations;
 @property (nonatomic,strong) NSMutableArray* frdRegions;
+-(void)changeUserAfterLogin;
 -(void)loadLeftTV;
 -(void) drawFriendsLocations;
 - (void)GotSelfTrueLocationUpdate;

@@ -315,7 +315,12 @@ extern NSString* LocalImagePlist;
     }
     
     if(indexPath.section==1){//fromCollection;
-        NSString *str1=@"Request sent to ";
+        
+        //NSString *str1=[[[appDelegate.fList.NotifsFromMe objectAtIndex:indexPath.row] permission] integerValue]==PermissionForFamily?@"\"True Loc\"":"\"Cloaked Loc\"" ;
+        NSString* str0=@"\"True Loc\"";
+        NSString *str2=@"\"Cloaked Loc\"";
+        NSString* str1=[[[appDelegate.fList.NotifsFromMe objectAtIndex:indexPath.row] permission] integerValue]==PermissionForFamily?str0:str2;
+        str1=[str1 stringByAppendingString:@" request sent to "];
         /*cell.textLabel.text = [str1
                                stringByAppendingString:
                                [[[fromCollection objectAtIndex:indexPath.row] to_user] givenName]
@@ -624,8 +629,12 @@ extern NSString* LocalImagePlist;
             aRelation.to_user=aFriend.to_user;
             aRelation.permission=aFriend.permission;
             aRelation.shownColor=[NSNumber numberWithInt:0];
-            aRelation.from_id=[aFriend.from_user userId];
-            aRelation.to_id= [aFriend.to_user userId];
+            aRelation.from_givenName=aFriend.from_user.givenName;
+            aRelation.from_surname=aFriend.from_user.surname;
+            aRelation.to_givenName=aFriend.to_user.givenName;
+            aRelation.to_surname=aFriend.to_user.surname;
+            //aRelation.from_id=[aFriend.from_user userId];
+            //aRelation.to_id= [aFriend.to_user userId];
             
             //test
             //if([aFriend.agreed isEqualToNumber:[NSNumber numberWithInt:0]]){NSLog(@"agreed==0");}
@@ -643,6 +652,9 @@ extern NSString* LocalImagePlist;
             
             [friendshipStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                 Friendship * aFriendship;
+                if(errorOrNil){
+                    NSLog(@"showNotification, friend request: %@",errorOrNil);
+                }
                 if(objectsOrNil.count!=0){
                     aFriendship=objectsOrNil[0];
                     if([aFriendship.permission integerValue]!=[aFriend.permission integerValue]){

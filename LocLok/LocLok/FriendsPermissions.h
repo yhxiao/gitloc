@@ -19,5 +19,7 @@
 
 -(void)saveModifiedFriendship:(Friendship *)aFriend
                              withIndexPath:(NSIndexPath *)indexPath;
+-(void)deleteFriendship:(Friendship *)aFriend
+          withIndexPath:(NSIndexPath *)indexPath;
 - (void)queriesFinished:(NSNotification *)notification;
 @end

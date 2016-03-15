@@ -35,7 +35,7 @@
 
 extern NSString *const FBSuccessfulLoginNotification;
 extern NSString *const FBFailedLoginNotification;
-
+extern NSString* const InAppSuccessfulLoginNotification;
 - (void)FBStateReceiverSelector:(NSNotification *)notification {
     
     //test;
@@ -53,12 +53,12 @@ extern NSString *const FBFailedLoginNotification;
          ];
     }
      */
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    if(appDelegate.fList==nil){
-        appDelegate.fList=[FriendList alloc];
-    }
-    appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
-    [appDelegate getPrivRulesFromBackend];
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    if(appDelegate.fList==nil){
+//        appDelegate.fList=[FriendList alloc];
+//    }
+    //appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
+    //[appDelegate getPrivRulesFromBackend];
     
     [self dismissViewControllerAnimated:NO completion:^{
         
@@ -73,7 +73,11 @@ extern NSString *const FBFailedLoginNotification;
     [self.spinner removeFromSuperview];
     self.facebookLoginButton.enabled=YES;
     [self.facebookLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
-
+    
+    [self dismissViewControllerAnimated:NO completion:^{
+        
+        NSLog(@"dismiss login page");
+    }];
 }
 
 
@@ -267,6 +271,9 @@ extern NSString *const FBFailedLoginNotification;
         [CommonFunctions writeToPlist:@"UserInfo.plist" :userInfo :@"userInfo"];
         
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:InAppSuccessfulLoginNotification
+                                                            object:nil
+         ];
         
         
         //logged in went okay - go to the table
@@ -672,8 +679,8 @@ extern NSString *const FBFailedLoginNotification;
             if(appDelegate.fList==nil){
                 appDelegate.fList=[FriendList alloc];
             }
-            appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
-            [appDelegate getPrivRulesFromBackend];
+            //appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];
+            //[appDelegate getPrivRulesFromBackend];
             
         
         }
