@@ -64,6 +64,11 @@ extern NSString* LocalImagePlist;
 {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor purpleColor]}];
+    //self.title=@"LocLok";
+    self.navigationItem.title=@"Notifications";
+    
     self.cellFont=[ UIFont fontWithName: @"Arial" size: 10 ];
     self.cellFont2=[ UIFont fontWithName: @"Arial" size: 8 ];
     
@@ -661,7 +666,7 @@ extern NSString* LocalImagePlist;
                         aFriendship.permission=aFriend.permission;
                         [friendshipStore saveObject:aFriendship withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                             if(errorOrNil!=nil){
-                                NSLog(@"%@",errorOrNil);
+                                NSLog(@"FriendshipStore: %@",errorOrNil);
                             }
                         } withProgressBlock:nil
                          ];
@@ -671,7 +676,7 @@ extern NSString* LocalImagePlist;
                 if(objectsOrNil.count==0){// do not exist current friendship;
                     [friendshipStore saveObject:aRelation withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                         if(errorOrNil!=nil){
-                            NSLog(@"%@",errorOrNil);
+                            NSLog(@"friendshipStore save : %@",errorOrNil);
                         }
                     } withProgressBlock:nil
                      ];
@@ -766,7 +771,7 @@ extern NSString* LocalImagePlist;
                                                                 }];*/
             [loadStore removeObject:aFriend withCompletionBlock:^(unsigned long count, NSError *errorOrNil) {
                 if(errorOrNil!=nil){
-                    NSLog(@"%@",errorOrNil);
+                    NSLog(@"showNotificationVC, check button: %@",errorOrNil);
                 }
             } withProgressBlock:nil
              ];

@@ -17,6 +17,7 @@
 #import "FriendsPermissions.h"
 #import "MyPermissions.h"
 #import "WriteUpdateViewController.h"
+#import "AboutVC.h"
 
 @interface MoreTabVC : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {

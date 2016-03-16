@@ -44,8 +44,9 @@
 @property (nonatomic, retain) id<KCSStore> LokSeriesStore;//perturbed location store in backend;
 @property (nonatomic, retain) NSNumber *conditionMultipleDevices;
 @property (nonatomic, retain) NSNumber* flagSetPrimaryDevice;
-@property (nonatomic, retain) LKSetting* LKmode_active;
-@property (nonatomic, retain) LKSetting* LKmode_inactive;
+@property (nonatomic, retain) LKSetting* LKmode_high;//walking & meeting;
+@property (nonatomic, retain) LKSetting* LKmode_active;//driving;
+@property (nonatomic, retain) LKSetting* LKmode_inactive;//stationary;
 @property (nonatomic) LKActivityMode ActivityMode;
 @property (nonatomic, retain, nullable) LKLocationManager *locationManager;
 @property (nonatomic)NSInteger badgeCount;

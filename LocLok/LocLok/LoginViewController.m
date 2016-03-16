@@ -792,8 +792,8 @@ extern NSString* const InAppSuccessfulLoginNotification;
     }
     else{
         [KCSUser sendPasswordResetForUser:self.userNameTextField.text withCompletionBlock:^(BOOL emailSent, NSError *errorOrNil) {
-            if(errorOrNil==nil){
-                
+            if(errorOrNil){
+                NSLog(@"sendPasswordResetForUser: %@",errorOrNil);
             }
         }];
         

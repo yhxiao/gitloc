@@ -489,6 +489,9 @@ UIImageView *myImageView;
             }
             
         }
+        else{
+            NSLog(@"UpdateMyInfoVC, viewWillAppear: %@",errorOrNil);
+        }
         
         
         
@@ -1078,6 +1081,9 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
             [alert addAction:ok];
             
             [self presentViewController:alert animated:YES completion:nil];
+        }
+        else{
+            NSLog(@"reset Password: %@",errorOrNil);
         }
     }];
 }

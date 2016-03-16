@@ -57,6 +57,11 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor purpleColor]}];
+    //self.title=@"LocLok";
+    self.navigationItem.title=@"My Privacy";
+    
     [self.navigationController setNavigationBarHidden:NO];
     /*saveButton = [[UIBarButtonItem alloc]
                                            initWithTitle:@"Save"
@@ -171,7 +176,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     labelShare.textAlignment =  NSTextAlignmentLeft;
     labelShare.textColor = [UIColor blackColor];
     labelShare.backgroundColor = [UIColor whiteColor];
-    labelShare.font = [UIFont fontWithName:@"Verdana" size:14];
+    labelShare.font = [UIFont fontWithName:@"Verdana" size:12];
     [self.scrollView addSubview:labelShare];
     /*UITapGestureRecognizer *recognizer02 = [[UITapGestureRecognizer alloc]
                                             initWithTarget:self
@@ -207,7 +212,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     labelRadius.textAlignment =  NSTextAlignmentLeft;
     labelRadius.textColor = [UIColor blackColor];
     labelRadius.backgroundColor = [UIColor whiteColor];
-    labelRadius.font = [UIFont fontWithName:@"Verdana" size:14];
+    labelRadius.font = [UIFont fontWithName:@"Verdana" size:12];
     [self.scrollView addSubview:labelRadius];
     labelRadius.text = strRadiusEmpty;
     /*UITapGestureRecognizer *recognizer03 = [[UITapGestureRecognizer alloc]

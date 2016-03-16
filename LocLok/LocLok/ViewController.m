@@ -726,6 +726,10 @@ extern NSString* FBSuccessfulLoginNotification;
         
         //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
         //[mapView removeAnnotation:selfLokAnnotation];
+        selfLokAnnotation.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                                           stringByAppendingString:[[KCSUser activeUser] surname] ];
+        selfLokAnnotation.thumbnail.image=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+        
         selfLokAnnotation.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
         selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
         [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
@@ -762,13 +766,11 @@ extern NSString* FBSuccessfulLoginNotification;
             //annotation1.coordinate=appDelegate.latestPerturbedLocation.coordinate;
             
             YXThumbnailAnnotation* frd1=[YXThumbnailAnnotation annotationWithThumbnail:annotation1];
-            [frdAnnotations addObject:frd1];
             
             LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
             if(frdLoc!=nil && ![frdLoc isKindOfClass:[NSNull class]]){
                 frd1.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: frdLoc.userDate];
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
-                [frd1 updateThumbnail:frd1.thumbnail animated:YES];
                 
                 
                 MKCircle* c1=[MKCircle circleWithCenterCoordinate:[CLLocation locationFromKinveyValue:frdLoc.location].coordinate radius:[frdLoc.precision doubleValue]];
@@ -782,6 +784,9 @@ extern NSString* FBSuccessfulLoginNotification;
                 c2.title=annotation1.title;
                 [frdRegions addObject:c2];
             }
+            [frd1 updateThumbnail:frd1.thumbnail animated:YES];
+            [frdAnnotations addObject:frd1];
+            //[self.mapView addAnnotation:frd1];
         }//for loop;
 //        for(int i=0;i<appDelegate.fList.friends.count;i++){
 //            LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
@@ -799,8 +804,14 @@ extern NSString* FBSuccessfulLoginNotification;
 //            }
 //            
 //        }
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
         [self.mapView addAnnotations:frdAnnotations];
         [self.mapView addOverlays:frdRegions];
+        });
+        
+        
         //for(int i=0;i<mapView.annotations.count;i++){
         //    if(![[mapView.annotations objectAtIndex:i] isKindOfClass:[MKUserLocation class]]){
         //    YXThumbnailAnnotation* addr=[mapView.annotations objectAtIndex:i];
@@ -1229,6 +1240,9 @@ extern NSString* FBSuccessfulLoginNotification;
                         }
                         
                     } withProgressBlock:nil];
+                }
+                else{
+                    NSLog(@"sendMeetingRequestFromUser: %@",errorOrNil1);
                 }
             } withProgressBlock:nil];
             

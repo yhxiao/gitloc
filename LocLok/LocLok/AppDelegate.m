@@ -13,7 +13,7 @@
 
 @synthesize window;
 //@synthesize sessionFacebook;
-@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,latestTrueLocation,badgeCount,myMeetEvent;
+@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,LKmode_high,latestTrueLocation,badgeCount,myMeetEvent,locationManager;
 //@synthesize locManager;
 NSString *const FBSuccessfulLoginNotification =
 @"com.yxiao.Login:FBSessionStateChangedNotification";
@@ -205,6 +205,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //do receiving;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventAgreed){//agreed
         
+        [locationManager setOperationMode:LKmode_high];
         [self ReceiveAgreedMeeting:userInfo];
         
         if(application.applicationState == UIApplicationStateActive) {
@@ -318,6 +319,17 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventFinished){//meeting finished;
+        
+        if (ActivityMode == LKActivityModeAutomotive) {
+            [locationManager setOperationMode:LKmode_active];
+        }
+        if(ActivityMode==LKActivityModeWalking || ActivityMode==LKActivityModeRunning || ActivityMode==LKActivityModeCycling){
+            [locationManager setOperationMode:LKmode_high];
+        }
+        else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
+            [locationManager setOperationMode:LKmode_inactive];
+        }
+        
         myMeetEvent=nil;
         if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
@@ -554,25 +566,26 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //[self.locManager startUpdatingLocation];
      */
     
-    /*
+    
     //NSDictionary *option_motion = @{LKOptionUseiOSMotionActivity: @YES};
     //NSDictionary *option_motion =@{LKOptionTimedUpdatesInterval: @300};
     //[[LocationKit sharedInstance] startWithApiToken:@"b0a6bcd54fe52138" delegate:self options:option_motion];
     //[[LocationKit sharedInstance] pause];
     
-    [self checkAlwaysAuthorization];
     
-    LKmode_inactive = [[LKSetting alloc] initWithType:LKSettingTypeLow];
-    LKmode_inactive.distanceFilter=kCLDistanceFilterNone;
-    LKmode_inactive.desiredAccuracy=kCLLocationAccuracyThreeKilometers;
+    LKmode_inactive = [[LKSetting alloc] initWithType:LKSettingTypeAuto];
     
-    LKmode_active = [[LKSetting alloc] initWithType:LKSettingTypeAuto];
-    LKmode_active.desiredAccuracy = kCLLocationAccuracyBest;
-    //LKmode.distanceFilter = 10;
-    LKmode_active.distanceFilter=kCLDistanceFilterNone;
+    LKmode_active = [[LKSetting alloc] initWithType:LKSettingTypeMedium];
+    LKmode_active.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    LKmode_active.distanceFilter=200;
     
-    [[LocationKit sharedInstance] setOperationMode:LKmode_active];
-    */
+    LKmode_high = [[LKSetting alloc] initWithType:LKSettingTypeHigh];
+    LKmode_high.desiredAccuracy = kCLLocationAccuracyBest;
+    LKmode_high.distanceFilter=kCLDistanceFilterNone;
+    
+    
+    [locationManager setOperationMode:LKmode_inactive];
+    
     
     //LocationKit 3.x version API;
     [self checkAlwaysAuthorization];
@@ -581,6 +594,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     self.locationManager.advancedDelegate=self;
     //self.locationManager.debug=YES;
     self.locationManager.debug=NO;
+    self.locationManager.useCMMotionActivityManager = YES;
     [self.locationManager stopUpdatingLocation];
     
     
@@ -800,6 +814,10 @@ forRemoteNotification:(NSDictionary *)userInfo
     }
 }
 -(void)AgreeMeetEventRequest:(NSDictionary *)userInfo{
+    
+    
+    [locationManager setOperationMode:LKmode_high];
+    
     id<KCSStore> meetStore=
     [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
         KCSStoreKeyCollectionTemplateClass:[MeetEvent class],
@@ -2503,6 +2521,7 @@ forRemoteNotification:(NSDictionary *)userInfo
 //                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
 //                                                      otherButtonTitles:nil];
 //                [alert show];
+                NSLog(@"didUpdateLocations: %@",errorOrNil);
             }
         } withProgressBlock:nil];
         
@@ -2583,17 +2602,21 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     
 }
-
-/*
-- (void)locationKit:(LocationKit *)locationKit willChangeActivityMode:(LKActivityMode )mode {
+- (void)locationManager:(LKLocationManager *)manager willChangeActivityMode:(LKActivityMode)mode {
     ActivityMode=mode;
-    
-//    if(mode==LKActivityModeStationary && latestUpdatedLocation.horizontalAccuracy<=50.0){//if stay put, then save power with lower accuracy;
-//        [[LocationKit sharedInstance] setOperationMode:LKmode_inactive];
-//    }
-    
+    if (mode == LKActivityModeAutomotive) {
+        NSLog(@"The user is likely driving right now");
+        [locationManager setOperationMode:LKmode_active];
+    }
+    if(mode==LKActivityModeWalking || mode==LKActivityModeRunning || mode==LKActivityModeCycling){
+        [locationManager setOperationMode:LKmode_high];
+    }
+    else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
+        NSLog(@"The user is likely NOT driving right now");
+        [locationManager setOperationMode:LKmode_inactive];
+    }
 }
-*/
+
 
 /*
 -(void) addLocalNotificationsForLocationUpdating{

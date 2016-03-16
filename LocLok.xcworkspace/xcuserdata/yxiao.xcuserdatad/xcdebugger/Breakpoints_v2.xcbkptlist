@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1817"
-            endingLineNumber = "1817"
+            startingLineNumber = "1856"
+            endingLineNumber = "1856"
             landmarkName = "-getPrivRulesFromBackend"
             landmarkType = "5">
             <Locations>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1816"
-            endingLineNumber = "1816"
+            startingLineNumber = "1855"
+            endingLineNumber = "1855"
             landmarkName = "-getPrivRulesFromBackend"
             landmarkType = "5">
             <Locations>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2014"
-            endingLineNumber = "2014"
+            startingLineNumber = "2053"
+            endingLineNumber = "2053"
             landmarkName = "-savePrivRulesToBackend"
             landmarkType = "5">
             <Locations>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2015"
-            endingLineNumber = "2015"
+            startingLineNumber = "2054"
+            endingLineNumber = "2054"
             landmarkName = "-savePrivRulesToBackend"
             landmarkType = "5">
             <Locations>
@@ -230,15 +230,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "820"
-            endingLineNumber = "820"
+            startingLineNumber = "831"
+            endingLineNumber = "831"
             landmarkName = "-drawFriendsLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1302"
-            endingLineNumber = "1302"
+            startingLineNumber = "1316"
+            endingLineNumber = "1316"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/QuerySettingVC.m"
-            timestampString = "479574969.514356"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-viewWillDisappear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2464"
-            endingLineNumber = "2464"
+            startingLineNumber = "2503"
+            endingLineNumber = "2503"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/QuerySettingVC.m"
-            timestampString = "479574969.514356"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "-updateLocations"
             landmarkType = "5">
             <Locations>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "961"
-            endingLineNumber = "961"
+            startingLineNumber = "972"
+            endingLineNumber = "972"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1186"
-            endingLineNumber = "1186"
+            startingLineNumber = "1197"
+            endingLineNumber = "1197"
             landmarkName = "-sendMeetingRequestFromUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "809"
-            endingLineNumber = "809"
+            startingLineNumber = "827"
+            endingLineNumber = "827"
             landmarkName = "-AgreeMeetEventRequest:"
             landmarkType = "5">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "819"
-            endingLineNumber = "819"
+            startingLineNumber = "837"
+            endingLineNumber = "837"
             landmarkName = "-AgreeMeetEventRequest:"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "815"
-            endingLineNumber = "815"
+            startingLineNumber = "833"
+            endingLineNumber = "833"
             landmarkName = "-AgreeMeetEventRequest:"
             landmarkType = "5">
             <Locations>
@@ -650,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -666,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -682,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1234"
-            endingLineNumber = "1234"
+            startingLineNumber = "1248"
+            endingLineNumber = "1248"
             landmarkName = "-sendMeetingRequestFromUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -714,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1225"
-            endingLineNumber = "1225"
+            startingLineNumber = "1236"
+            endingLineNumber = "1236"
             landmarkName = "-sendMeetingRequestFromUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -730,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1227"
-            endingLineNumber = "1227"
+            startingLineNumber = "1238"
+            endingLineNumber = "1238"
             landmarkName = "-sendMeetingRequestFromUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -858,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "832"
-            endingLineNumber = "832"
+            startingLineNumber = "853"
+            endingLineNumber = "853"
             landmarkName = "-AgreeMeetEventRequest:"
             landmarkType = "5">
          </BreakpointContent>
@@ -874,11 +874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "829"
-            endingLineNumber = "829"
+            startingLineNumber = "848"
+            endingLineNumber = "848"
             landmarkName = "-AgreeMeetEventRequest:"
             landmarkType = "5">
             <Locations>
@@ -922,11 +922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "992"
-            endingLineNumber = "992"
+            startingLineNumber = "1025"
+            endingLineNumber = "1025"
             landmarkName = "-ReceiveAgreedMeeting:"
             landmarkType = "5">
          </BreakpointContent>
@@ -938,45 +938,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1019"
-            endingLineNumber = "1019"
+            startingLineNumber = "1056"
+            endingLineNumber = "1056"
             landmarkName = "-ReceiveAgreedMeeting:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__36-[AppDelegate ReceiveAgreedMeeting:]_block_invoke"
-                  moduleName = "LocLok"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yxiao/Documents/MyProject/LocLok/LocLok/LocLok/AppDelegate.m"
-                  timestampString = "479747927.924328"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1019"
-                  endingLineNumber = "1019"
-                  offsetFromSymbolStart = "844">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__36-[AppDelegate ReceiveAgreedMeeting:]_block_invoke_2"
-                  moduleName = "LocLok"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yxiao/Documents/MyProject/LocLok/LocLok/LocLok/AppDelegate.m"
-                  timestampString = "479747927.92451"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1019"
-                  endingLineNumber = "1019"
-                  offsetFromSymbolStart = "72">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -986,11 +954,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/QuerySettingVC.m"
-            timestampString = "479574969.514356"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1002,11 +970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479782565.358697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "769"
-            endingLineNumber = "769"
+            startingLineNumber = "772"
+            endingLineNumber = "772"
             landmarkName = "-drawFriendsLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -1014,15 +982,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/PrivacySettingViewController.m"
-            timestampString = "478921636.385431"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473"
+            startingLineNumber = "478"
+            endingLineNumber = "478"
             landmarkName = "-touchRecognizer_info3"
             landmarkType = "5">
          </BreakpointContent>
@@ -1034,11 +1002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/showNotificationsVC.m"
-            timestampString = "479514576.628291"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-viewWillDisappear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1066,11 +1034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1818"
-            endingLineNumber = "1818"
+            startingLineNumber = "1857"
+            endingLineNumber = "1857"
             landmarkName = "-getPrivRulesFromBackend"
             landmarkType = "5">
          </BreakpointContent>
@@ -1082,11 +1050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/PrivacySettingViewController.m"
-            timestampString = "479409158.562744"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "878"
-            endingLineNumber = "878"
+            startingLineNumber = "883"
+            endingLineNumber = "883"
             landmarkName = "-savePrivRulesToBackend1"
             landmarkType = "5">
          </BreakpointContent>
@@ -1098,11 +1066,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2016"
-            endingLineNumber = "2016"
+            startingLineNumber = "2055"
+            endingLineNumber = "2055"
             landmarkName = "-savePrivRulesToBackend"
             landmarkType = "5">
          </BreakpointContent>
@@ -1114,11 +1082,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/showNotificationsVC.m"
-            timestampString = "479678156.258776"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1130,11 +1098,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "972"
-            endingLineNumber = "972"
+            startingLineNumber = "1005"
+            endingLineNumber = "1005"
             landmarkName = "-DeclineMeetEventRequestInApp:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1146,11 +1114,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "980"
-            endingLineNumber = "980"
+            startingLineNumber = "1013"
+            endingLineNumber = "1013"
             landmarkName = "-DeclineMeetEventRequestInApp:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1162,11 +1130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/AppDelegate.m"
-            timestampString = "479691247.921927"
+            timestampString = "479835679.641321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "979"
-            endingLineNumber = "979"
+            startingLineNumber = "1012"
+            endingLineNumber = "1012"
             landmarkName = "-DeclineMeetEventRequestInApp:"
             landmarkType = "5">
             <Locations>
@@ -1210,11 +1178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "858"
-            endingLineNumber = "858"
+            startingLineNumber = "876"
+            endingLineNumber = "876"
             landmarkName = "-searchNotifAboutMeetings"
             landmarkType = "5">
             <Locations>
@@ -1258,11 +1226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -1274,11 +1242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-updateLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -1322,11 +1290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/QuerySettingVC.m"
-            timestampString = "479574620.221213"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1338,11 +1306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/QuerySettingVC.m"
-            timestampString = "479574620.221213"
+            timestampString = "479765248.075357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1430,15 +1398,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/ViewController.m"
-            timestampString = "479675931.427778"
+            timestampString = "479784761.228046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "844"
-            endingLineNumber = "844"
+            startingLineNumber = "855"
+            endingLineNumber = "855"
             landmarkName = "-changeUserAfterLogin"
             landmarkType = "5">
          </BreakpointContent>
@@ -1546,11 +1514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "543"
+            endingLineNumber = "543"
             landmarkName = "+AddOneFriend:Permission:Controller:Initial:"
             landmarkType = "5">
             <Locations>
@@ -1594,11 +1562,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "536"
-            endingLineNumber = "536"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
             landmarkName = "+AddOneFriend:Permission:Controller:Initial:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1610,11 +1578,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "532"
-            endingLineNumber = "532"
+            startingLineNumber = "544"
+            endingLineNumber = "544"
             landmarkName = "+AddOneFriend:Permission:Controller:Initial:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1658,11 +1626,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "762"
-            endingLineNumber = "762"
+            startingLineNumber = "774"
+            endingLineNumber = "774"
             landmarkName = "-searchNotifInAddFriends"
             landmarkType = "5">
             <Locations>
@@ -1706,11 +1674,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "766"
-            endingLineNumber = "766"
+            startingLineNumber = "778"
+            endingLineNumber = "778"
             landmarkName = "-searchNotifInAddFriends"
             landmarkType = "5">
          </BreakpointContent>
@@ -1722,11 +1690,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocLok/LocLok/FriendList.m"
-            timestampString = "479747926.840666"
+            timestampString = "479761668.56188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "855"
-            endingLineNumber = "855"
+            startingLineNumber = "873"
+            endingLineNumber = "873"
             landmarkName = "-searchNotifAboutMeetings"
             landmarkType = "5">
             <Locations>
@@ -1761,6 +1729,102 @@
                   offsetFromSymbolStart = "72">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/ViewController.m"
+            timestampString = "479784761.228046"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "812"
+            endingLineNumber = "812"
+            landmarkName = "-drawFriendsLocations"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/ViewController.m"
+            timestampString = "479784761.228046"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1325"
+            endingLineNumber = "1325"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/ViewController.m"
+            timestampString = "479784761.228046"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1302"
+            endingLineNumber = "1302"
+            landmarkName = "-indexofAnnotation:at:in:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/ViewController.m"
+            timestampString = "479784761.228046"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1297"
+            endingLineNumber = "1297"
+            landmarkName = "-indexofAnnotation:at:in:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/ViewController.m"
+            timestampString = "479784792.527656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "789"
+            endingLineNumber = "789"
+            landmarkName = "-drawFriendsLocations"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocLok/LocLok/ViewController.m"
+            timestampString = "479785628.886043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "720"
+            endingLineNumber = "720"
+            landmarkName = "-drawFriendsLocations"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

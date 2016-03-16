@@ -202,14 +202,14 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    cell.textLabel.textColor=[UIColor grayColor];
 	cell.textLabel.text = [self wordAtIndexPath:indexPath];
     //The icon on the right side of a row;
 	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if([cell.textLabel.text isEqualToString:@"Log Out"]){
         cell.textLabel.textColor=[UIColor redColor];
     }
-    else{
+    if([cell.textLabel.text isEqualToString:@"Update Info"] || [cell.textLabel.text isEqualToString:@"Find Friends"] || [cell.textLabel.text isEqualToString:@"Friends' Permissions of Me"] || [cell.textLabel.text isEqualToString:@"My Permissions of Friends"] || [cell.textLabel.text isEqualToString:@"About LocLok"]){
         cell.textLabel.textColor=[UIColor blackColor];
     }
     
@@ -359,8 +359,13 @@
             
         case 3:{
             switch (indexPath.row) {
-                case 0:
+                case 0:{
+                    AboutVC* aboutVC = [[AboutVC alloc]  init];
+                    aboutVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
                     
+                    
+                    [self.navigationController pushViewController:aboutVC animated:YES];
+                }
                     break;
                 case 1:
                     [self logout];

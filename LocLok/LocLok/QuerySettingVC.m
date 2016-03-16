@@ -30,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor purpleColor]}];
+    //self.title=@"LocLok";
+    self.navigationItem.title=@"Query My History";
+    
+    
     isCustomized=NO;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

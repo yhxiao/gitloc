@@ -71,6 +71,9 @@ extern NSString* LocalImagePlist;
                     [aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
                 //});
             }
+            else{
+                NSLog(@"saveModifiedFriendship, %@",errorOrNil);
+            }
     } withProgressBlock:nil
      ];
 }
@@ -84,6 +87,9 @@ extern NSString* LocalImagePlist;
             [appDelegate.fList.inFriends removeObjectAtIndex:indexPath.row];
             [self.tableView reloadData];
             //});
+        }
+        else{
+            NSLog(@"deleteFriendship: %@",errorOrNil);
         }
     } withProgressBlock:nil
      ];

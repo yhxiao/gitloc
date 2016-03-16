@@ -108,8 +108,11 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                 [query setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
                 
                 
-                [PhotoStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                [PhotoStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil5) {
                     //NSLog(@"%@",[aFriend.to_user username]);
+                    if(errorOrNil5){
+                        NSLog(@"PhotoStore: %@",errorOrNil5);
+                    }
                     if (objectsOrNil != nil && [objectsOrNil count]>0) {
                         User_Photo * uPhoto=objectsOrNil[0];
                         
@@ -187,8 +190,11 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
     [query setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
     
     
-    [PhotoStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+    [PhotoStore  queryWithQuery:query withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil5) {
         //NSLog(@"%@",[aFriend.to_user username]);
+        if(errorOrNil5){
+            NSLog(@"PhotoStore :   %@",errorOrNil5);
+        }
         if (objectsOrNil != nil && [objectsOrNil count]>0) {
             User_Photo * uPhoto=objectsOrNil[0];
             
@@ -460,7 +466,9 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                 
                 //delete these records because they are done;
                 [loadStore removeObject:aFriend withCompletionBlock:^(unsigned long count, NSError *errorOrNil) {
-                    
+                    if(errorOrNil){
+                        NSLog(@"check new friends: %@",errorOrNil);
+                    }
                     
                 }
                       withProgressBlock:nil
@@ -474,6 +482,7 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
             
             
         } else {
+            NSLog(@"check new friends: %@",errorOrNil);
         }
         
     } withProgressBlock:nil
