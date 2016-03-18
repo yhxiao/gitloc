@@ -65,7 +65,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     //set initial value for labelText and detailedText;
-    
+    [super viewWillAppear:animated];
         
 }
 

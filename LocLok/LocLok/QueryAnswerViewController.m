@@ -234,5 +234,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    [super viewWillDisappear:animated];
 }
 @end

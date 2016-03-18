@@ -557,6 +557,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     //)];
     [self AdjustPageLength];
     
+    [super viewWillAppear:animated];
 }
 //- (void)viewDidAppear:(BOOL)animated {
 //    [super viewDidAppear:animated];
@@ -884,6 +885,9 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     appDelegate1.privacy.SharingSwitch=sharing_switch.on?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
     
+    if(!sharing_switch.on){//if stop sharing, turn the mode inactive;
+        [appDelegate1.locationManager setOperationMode:appDelegate1.LKmode_inactive];
+    }
     
     [appDelegate1 savePrivRulesToBackend];
     

@@ -125,11 +125,13 @@
     NSIndexPath *ipath = [self.tableView indexPathForSelectedRow];
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    [super viewWillAppear:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    [super viewWillDisappear:animated];
 }
 - (void)didReceiveMemoryWarning
 {

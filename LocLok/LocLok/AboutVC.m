@@ -17,8 +17,8 @@
 {
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     //UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
-    UIColor *bgColor3=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
-    UIColor *bgColor4=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
+    //UIColor *bgColor3=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+    //UIColor *bgColor4=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
     [super viewDidLoad];
 
     
@@ -28,7 +28,7 @@
     int initialHeight=60;
     int boxHeight=40;
     width=self.view.bounds.size.width;
-    height=self.view.bounds.size.height;
+    //height=self.view.bounds.size.height;
     
 
     //UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];

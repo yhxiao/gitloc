@@ -576,12 +576,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     LKmode_inactive = [[LKSetting alloc] initWithType:LKSettingTypeAuto];
     
     LKmode_active = [[LKSetting alloc] initWithType:LKSettingTypeMedium];
-    LKmode_active.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    LKmode_active.distanceFilter=200;
+    //LKmode_active.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    //LKmode_active.distanceFilter=kCLDistanceFilterNone;
     
     LKmode_high = [[LKSetting alloc] initWithType:LKSettingTypeHigh];
-    LKmode_high.desiredAccuracy = kCLLocationAccuracyBest;
-    LKmode_high.distanceFilter=kCLDistanceFilterNone;
+    //LKmode_high.desiredAccuracy = kCLLocationAccuracyBest;
+    //LKmode_high.distanceFilter=kCLDistanceFilterNone;
     
     
     [locationManager setOperationMode:LKmode_inactive];
@@ -635,7 +635,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
      object:nil
      ];
     
-    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(saveImageFromFacebook:)
+     name:FBSuccessfulLoginNotification
+     object:nil
+     ];
     
     
     
@@ -1375,7 +1379,7 @@ forRemoteNotification:(NSDictionary *)userInfo
                                           
                                           
                                           
-      //NSLog(@"%@",[FBSDKAccessToken currentAccessToken].tokenString);
+      NSLog(@"%@",[FBSDKAccessToken currentAccessToken].tokenString);
       //log in to Kinvey ;
       [KCSUser loginWithSocialIdentity:KCSSocialIDFacebook
                       accessDictionary:@{KCSUserAccessTokenKey : [FBSDKAccessToken currentAccessToken].tokenString}
@@ -1390,7 +1394,7 @@ forRemoteNotification:(NSDictionary *)userInfo
             if(!first_time_user){//not the first time user, successfully login;
                 /*save user info to plist;*/
                 NSMutableArray *userInfo;
-                userInfo=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:[KCSUser activeUser].email],[[NSString alloc] initWithString:[KCSUser activeUser].givenName],[[NSString alloc] initWithString:[KCSUser activeUser].surname],nil];
+                userInfo=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:user.email],[[NSString alloc] initWithString:user.givenName],[[NSString alloc] initWithString:user.surname],nil];
                 [CommonFunctions writeToPlist:@"UserInfo.plist" :userInfo :@"userInfo"];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessfulLoginNotification
@@ -1410,22 +1414,13 @@ forRemoteNotification:(NSDictionary *)userInfo
                      
                      
                      if (!error) {
-                         NSString * strFirstName,*strLastName,*strEmail;
-                         FBSDKProfilePictureView *profilePictureView;
-                         NSString * profilePictureURL;
-                         
-                         // result is the json response from a successful request
                          NSDictionary *dictionary = (NSDictionary *)result;
+                         NSString * strFirstName,*strLastName,*strEmail;
                          strFirstName=(NSString*)[dictionary objectForKey:@"first_name"];
                          strLastName=(NSString*)[dictionary objectForKey:@"last_name"];
                          strEmail=[(NSString*)[dictionary objectForKey:@"email"] lowercaseString];
-                         profilePictureURL=[[[dictionary objectForKey:@"picture"] objectForKey:@"data"]
-                                            objectForKey:@"url"
-                                            ];
-                         
-                         
-                         profilePictureView.profileID=(NSString *)[dictionary objectForKey:@"id"];
-                         //NSLog(@"%@",result);
+                         // result is the json response from a successful request
+                                                  //NSLog(@"%@",result);
                 
                 
                 
@@ -1462,7 +1457,7 @@ forRemoteNotification:(NSDictionary *)userInfo
                                    
                                    
                                    //remove KCS user;
-                                   [[KCSUser activeUser] removeWithCompletionBlock:^(NSArray *objectsOrNil3, NSError *errorOrNil3) {
+                                   [user removeWithCompletionBlock:^(NSArray *objectsOrNil3, NSError *errorOrNil3) {
                                        if (errorOrNil3 != nil) {
                                            NSLog(@"when deleting active user, error %@ ", errorOrNil3);
                                        } else {
@@ -1513,7 +1508,7 @@ forRemoteNotification:(NSDictionary *)userInfo
                                    
                                    
                                    
-                                   [self getPrivRulesFromBackend];
+                                   //[self getPrivRulesFromBackend];
                                    
                                    
                                    
@@ -1532,171 +1527,11 @@ forRemoteNotification:(NSDictionary *)userInfo
                                         */
                                        
                                                 
-                                                
-                                   
-                                    
-                                    if([user.givenName length]==0)user.givenName=strFirstName;
-                                    if([user.surname length]==0)user.surname=strLastName;
-                                    if([user.email length]==0){
-                                        user.email=strEmail;
-                                        user.username=strEmail;
-                                    }
-                                   /*save user info to plist;*/
-                                   NSMutableArray *userInfo;
-                                   userInfo=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:[KCSUser activeUser].email],[[NSString alloc] initWithString:[KCSUser activeUser].givenName],[[NSString alloc] initWithString:[KCSUser activeUser].surname],nil];
-                                   [CommonFunctions writeToPlist:@"UserInfo.plist" :userInfo :@"userInfo"];
-                                   
-                                    
-                                    
-                                    [user saveWithCompletionBlock:^(NSArray *objectsOrNil4, NSError *errorOrNil1) {
-                                        if(first_time_user ){
-                                            if (errorOrNil1 == nil) {
-                                                //was successful!
-                                                
-                                                UIAlertController * alert=   [UIAlertController
-                                                                              alertControllerWithTitle:@"Facebook Log in Successful"
-                                                                              message:[NSString stringWithFormat:NSLocalizedString(@"Welcome, %@ %@! \"%@\" will be your account name. You can either reset a password for it or still log in with facebook in the future.",@"account success message body"), strFirstName,strLastName,strEmail ]
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                                                
-                                                UIAlertAction* ok = [UIAlertAction
-                                                                     actionWithTitle:@"OK"
-                                                                     style:UIAlertActionStyleDefault
-                                                                     handler:^(UIAlertAction * action)
-                                                                     {
-                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         
-                                                                     }];
-                                                
-                                                [alert addAction:ok];
-                                                
-                                                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-                                                
-                                                
-                                                
-                                                //fList=[[FriendList alloc] loadWithID:[user userId ]];
-                                                //send notification of successful login;
-                                                [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessfulLoginNotification
-                                                                                                    object:nil
-                                                 ];
-                                                //test;
-                                                NSLog(@"FBLogin notif sent, configuring the 1st-time user.");
-                                                
-                                            } else {
-                                                //there was an error with the update save
-                                                NSString* message = [errorOrNil1 localizedDescription];
-                                                
-                                                UIAlertController * alert=   [UIAlertController
-                                                                              alertControllerWithTitle:@"Log in account failed"
-                                                                              message:message
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                                                
-                                                UIAlertAction* ok = [UIAlertAction
-                                                                     actionWithTitle:@"OK"
-                                                                     style:UIAlertActionStyleDefault
-                                                                     handler:^(UIAlertAction * action)
-                                                                     {
-                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         
-                                                                     }];
-                                                
-                                                
-                                                [alert addAction:ok];
-                                                
-                                                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-                                            }
-                                        }
-                                    }
-                                     ];//save user;
-                                   
-                                   
-                                   
-                                   
-                                   //save the image to local directory
-                                   [CommonFunctions saveImageFromURLToLocal:profilePictureURL :[[KCSUser activeUser] userId]];
-                                   [CommonFunctions writeToPlist:LocalImagePlist
-                                                                :[NSArray arrayWithObject:profilePictureURL]
-                                                                :[[KCSUser activeUser] userId]
-                                   ];
-                                   /*NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-                                   
-                                   //Get Image From URL
-                                   //NSLog(@"%@",profilePictureURL);
-                                   UIImage * imageFromURL = [self getImageFromURL:profilePictureURL];
-                                   
-                                   //Load Image From Directory
-                                   UIImage* Profileimage = [self loadImage:[[KCSUser activeUser] userId] ofType:@"png" inDirectory:documentsDirectoryPath];
-                                   if(Profileimage==nil){//MyProfilePicture.jpg does not exist, then save it;
-                                       
-                                       //Save Image to Directory
-                                       [self saveImage:imageFromURL withFileName:user.username ofType:@"png" inDirectory:documentsDirectoryPath
-                                        ];
-                                   }
-                                   */
-                                   
-                                   //save image to SERVER
-                                   NSString* filename = [user.username stringByAppendingString:@".png" ];
-                                   NSURL* documentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-                                   NSURL* sourceURL = [NSURL URLWithString:filename relativeToURL:documentsDir];
-                                   //NSLog(@"%@",sourceURL);
-                                   
-                                   //__block NSString * imageID;
-                                   [KCSFileStore
-                                    uploadFile:sourceURL
-                                    options:nil completionBlock:^(KCSFile *uploadInfo, NSError *error) {
-                                        //NSLog(@"Upload finished. File id='%@', error='%@'.", [uploadInfo fileId], error);
-                                        //imageID=[uploadInfo fileId];
-                                        NSArray* myArray = [[[uploadInfo remoteURL] absoluteString]  componentsSeparatedByString:@"?"];
-                                        NSString * imageURL=[myArray objectAtIndex:0];
-                                        
-                                        
-                                        //save photo to User_Photos collection at backend;
-                                        id<KCSStore> PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName : @"UserPhotos", KCSStoreKeyCollectionTemplateClass : [User_Photo class]}];
-                                        //upload new photo;
-                                        //if no KCSUser found, save to a new record;
-                                        User_Photo * uPhoto=[[User_Photo alloc] init];
-                                        uPhoto.user_id=[KCSUser activeUser];
-                                        //UIImage* image1=[[UIImage alloc] init];image1=image;
-                                        uPhoto.photo=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
-                                        if (!uPhoto.meta) {
-                                            uPhoto.meta = [[KCSMetadata alloc] init];
-                                        }
-                                        [uPhoto.meta setGloballyReadable:YES];
-                                        uPhoto.photoURL=imageURL;
-                                        uPhoto.date=[NSDate date];
-                                        
-                                        [PhotoStore saveObject:uPhoto withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                                            if (errorOrNil != nil) {
-                                                //save failed, show an error alert
-                                                
-                                                UIAlertController * alert=   [UIAlertController
-                                                                              alertControllerWithTitle:@"Save failed"
-                                                                              message:[errorOrNil localizedFailureReason]
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                                                
-                                                UIAlertAction* ok = [UIAlertAction
-                                                                     actionWithTitle:@"OK"
-                                                                     style:UIAlertActionStyleDefault
-                                                                     handler:^(UIAlertAction * action)
-                                                                     {
-                                                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                         
-                                                                     }];
-                                                
-                                                
-                                                [alert addAction:ok];
-                                                
-                                                [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-                                            } else {
-                                                //save was successful
-                                                NSLog(@"Successfully saved photo.");
-                                            }
-                                        } withProgressBlock:nil
-                                         ];
-                                        
-                                    } progressBlock:nil];
-                                   /*[user setValue:nil
-                                    forAttribute:@"ProfilePictureFile"
-                                    ];*/
+                                   //send notification of successful login;
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessfulLoginNotification
+                                                                                       object:nil
+                                                                                     userInfo:dictionary
+                                    ];
                                    
                                    
                                    
@@ -1834,6 +1669,219 @@ forRemoteNotification:(NSDictionary *)userInfo
 //        //[self userLoggedOut];
 //    }
 }
+
+
+
+-(void)saveImageFromFacebook:(NSNotification *)notifFBsuccess{
+    NSString * strFirstName,*strLastName,*strEmail;
+    FBSDKProfilePictureView *profilePictureView;
+    NSString * profilePictureURL;
+    
+    strFirstName=(NSString*)[[notifFBsuccess userInfo] objectForKey:@"first_name"];
+    strLastName=(NSString*)[[notifFBsuccess userInfo] objectForKey:@"last_name"];
+    strEmail=[(NSString*)[[notifFBsuccess userInfo] objectForKey:@"email"] lowercaseString];
+    profilePictureURL=[[[[notifFBsuccess userInfo] objectForKey:@"picture"] objectForKey:@"data"]
+                       objectForKey:@"url"
+                       ];
+    
+    
+    profilePictureView.profileID=(NSString *)[[notifFBsuccess userInfo] objectForKey:@"id"];
+
+    if([[KCSUser activeUser].givenName length]==0)[KCSUser activeUser].givenName=strFirstName;
+    if([[KCSUser activeUser].surname length]==0)[KCSUser activeUser].surname=strLastName;
+    if([[KCSUser activeUser].email length]==0){
+        [KCSUser activeUser].email=strEmail;
+        [KCSUser activeUser].username=strEmail;
+    }
+    /*save user info to plist;*/
+    NSMutableArray *userInfo;
+    userInfo=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:strEmail],[[NSString alloc] initWithString:strFirstName],[[NSString alloc] initWithString:strLastName],nil];
+    [CommonFunctions writeToPlist:@"UserInfo.plist" :userInfo :@"userInfo"];
+    
+    
+    
+    
+    
+    
+    dispatch_after(1, dispatch_get_main_queue(), ^{
+    
+    [[KCSUser activeUser] saveWithCompletionBlock:^(NSArray *objectsOrNil4, NSError *errorOrNil1) {
+        if(errorOrNil1){
+            NSLog(@"save user in Facebook Login: %@",errorOrNil1);
+        }
+        
+        
+        if (errorOrNil1 == nil) {
+            //was successful!
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Facebook Log in Successful"
+                                          message:[NSString stringWithFormat:NSLocalizedString(@"Welcome, %@ %@! \"%@\" will be your account name. You can either reset a password for it or still log in with facebook in the future.",@"account success message body"), strFirstName,strLastName,strEmail ]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            
+            [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+            
+            
+            
+            //fList=[[FriendList alloc] loadWithID:[user userId ]];
+            
+            //test;
+            NSLog(@"FBLogin notif sent, configuring the 1st-time user.");
+            
+        } else {
+            //there was an error with the update save
+            NSString* message = [errorOrNil1 localizedDescription];
+            
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"save account from Facebook account failed"
+                                          message:message
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            
+            [alert addAction:ok];
+            
+            [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }
+        
+    }
+     ];//save user;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //NSString* profilePictureURL=[[notifFBsuccess userInfo] valueForKey:@"url"];
+    //save the image to local directory
+    [CommonFunctions saveImageFromURLToLocal:profilePictureURL :[KCSUser activeUser].userId];
+    [CommonFunctions writeToPlist:LocalImagePlist
+                                 :[NSArray arrayWithObject:profilePictureURL]
+                                 :[KCSUser activeUser].userId
+     ];
+    /*NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+     
+     //Get Image From URL
+     //NSLog(@"%@",profilePictureURL);
+     UIImage * imageFromURL = [self getImageFromURL:profilePictureURL];
+     
+     //Load Image From Directory
+     UIImage* Profileimage = [self loadImage:[[KCSUser activeUser] userId] ofType:@"png" inDirectory:documentsDirectoryPath];
+     if(Profileimage==nil){//MyProfilePicture.jpg does not exist, then save it;
+     
+     //Save Image to Directory
+     [self saveImage:imageFromURL withFileName:user.username ofType:@"png" inDirectory:documentsDirectoryPath
+     ];
+     }
+     */
+    
+    //save image to SERVER
+    NSString* filename = [[KCSUser activeUser].userId stringByAppendingString:@".png" ];
+    NSURL* documentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL* sourceURL = [NSURL URLWithString:filename relativeToURL:documentsDir];
+    //NSLog(@"%@",sourceURL);
+    
+    //__block NSString * imageID;
+    [KCSFileStore
+     uploadFile:sourceURL
+     options:nil completionBlock:^(KCSFile *uploadInfo, NSError *error) {
+         //NSLog(@"Upload finished. File id='%@', error='%@'.", [uploadInfo fileId], error);
+         //imageID=[uploadInfo fileId];
+         if(error){
+             NSLog(@"save image to KCSFile: %@",error);
+         }
+         else{//no error;
+         NSArray* myArray = [[[uploadInfo remoteURL] absoluteString]  componentsSeparatedByString:@"?"];
+         NSString * imageURL=[myArray objectAtIndex:0];
+         
+         
+         //save photo to User_Photos collection at backend;
+         id<KCSStore> PhotoStore=[KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName : @"UserPhotos", KCSStoreKeyCollectionTemplateClass : [User_Photo class]}];
+         //upload new photo;
+         //if no KCSUser found, save to a new record;
+         User_Photo * uPhoto=[[User_Photo alloc] init];
+         uPhoto.user_id=[KCSUser activeUser];
+         //UIImage* image1=[[UIImage alloc] init];image1=image;
+         uPhoto.photo=[CommonFunctions loadImageFromLocal:[KCSUser activeUser].userId];
+         if (!uPhoto.meta) {
+             uPhoto.meta = [[KCSMetadata alloc] init];
+         }
+         [uPhoto.meta setGloballyReadable:YES];
+         uPhoto.photoURL=imageURL;
+         uPhoto.date=[NSDate date];
+         
+         [PhotoStore saveObject:uPhoto withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+             if (errorOrNil != nil) {
+                 //save failed, show an error alert
+                 
+                 UIAlertController * alert=   [UIAlertController
+                                               alertControllerWithTitle:@"Save failed"
+                                               message:[errorOrNil localizedFailureReason]
+                                               preferredStyle:UIAlertControllerStyleAlert];
+                 
+                 UIAlertAction* ok = [UIAlertAction
+                                      actionWithTitle:@"OK"
+                                      style:UIAlertActionStyleDefault
+                                      handler:^(UIAlertAction * action)
+                                      {
+                                          [alert dismissViewControllerAnimated:YES completion:nil];
+                                          
+                                      }];
+                 
+                 
+                 [alert addAction:ok];
+                 
+                 [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+             } else {
+                 //save was successful
+                 NSLog(@"Successfully saved photo.");
+             }
+         } withProgressBlock:nil
+          ];
+         
+             
+         }//if no error;
+     } progressBlock:nil];//save to KCSFile;
+    /*[user setValue:nil
+     forAttribute:@"ProfilePictureFile"
+     ];*/
+     
+        
+        
+    });//dispatch_after;
+    
+    
+}
+
+
+
 
 -(void) getPrivRulesFromBackend{
     
@@ -2604,7 +2652,12 @@ forRemoteNotification:(NSDictionary *)userInfo
 }
 - (void)locationManager:(LKLocationManager *)manager willChangeActivityMode:(LKActivityMode)mode {
     ActivityMode=mode;
-    if (mode == LKActivityModeAutomotive) {
+    if(![privacy.SharingSwitch boolValue]){//if stop sharing, turn the mode inactive;
+        [locationManager setOperationMode:LKmode_inactive];
+        return;
+    }
+    
+    if (mode == LKActivityModeAutomotive || LKActivityModeUnknown) {
         NSLog(@"The user is likely driving right now");
         [locationManager setOperationMode:LKmode_active];
     }

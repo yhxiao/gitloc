@@ -74,10 +74,23 @@ extern NSString* const InAppSuccessfulLoginNotification;
     self.facebookLoginButton.enabled=YES;
     [self.facebookLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
     
-    [self dismissViewControllerAnimated:NO completion:^{
-        
-        NSLog(@"dismiss login page");
-    }];
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:@"Facebook Login Failed"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -609,6 +622,7 @@ extern NSString* const InAppSuccessfulLoginNotification;
 //    myImageView.frame = CGRectMake(0.0, 70.0, 25.0, 25.0);
 //    [self.view addSubview:myImageView];
     
+    [super viewWillAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

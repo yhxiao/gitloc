@@ -77,4 +77,5 @@
 -(void)DeclineMeetEventRequestInApp:(MeetEvent* _Nullable)aMeeting;//in notification center;
 -(NSInteger)findFriendinFListbyID:(NSString*_Nullable)friend_id;
 -(void)showNotificationInApp;
+-(void)saveImageFromFacebook:(NSNotification *_Nullable)notifFBsuccess;
 @end
