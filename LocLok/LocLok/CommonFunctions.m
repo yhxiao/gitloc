@@ -145,8 +145,9 @@ extern NSString* LocalImagePlist;
 +(UIImage*)loadImageFromLocal:(NSString*)user_id{
     NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     UIImage* image = [self loadImage:user_id ofType:@"png" inDirectory:documentsDirectoryPath];
-    
-    
+    if(image==nil){
+        image=[UIImage imageNamed:@"profile_default.png"];
+    }
     return image;
 }
 

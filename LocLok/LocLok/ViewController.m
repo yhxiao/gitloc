@@ -317,17 +317,17 @@ extern NSString* FBSuccessfulLoginNotification;
     /*foreground mode*/
     if(!isInBackground){
             //probability data
-            int x=5,y=6;
-            float prob_data[6][5];
-            float *matrixVal[5];
-            //matrixVal=malloc(sizeof(float)*25);
-            for(int i=0;i<x;i++){
-                for(int j=0;j<y;j++){
-                    //matrix[i]=0.04;
-                    prob_data[i][j]=0.039*(x*i+j);
-                }
-                matrixVal[i]=&prob_data[i];
-            }
+//            int x=5,y=6;
+//            float prob_data[6][5];
+//            float *matrixVal[5];
+//            //matrixVal=malloc(sizeof(float)*25);
+//            for(int i=0;i<x;i++){
+//                for(int j=0;j<y;j++){
+//                    //matrix[i]=0.04;
+//                    prob_data[i][j]=0.039*(x*i+j);
+//                }
+//                matrixVal[i]=&prob_data[i];
+//            }
         
             //generate maskView
             /*//rect overlay
@@ -365,7 +365,6 @@ extern NSString* FBSuccessfulLoginNotification;
                 //[selfLokAnnotation.thumbnail setCoordinate:location.coordinate];
                 [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
                 [selfLokAnnotation setCoordinate:selfLokAnnotation.thumbnail.coordinate];
-                [mapView addAnnotation:selfLokAnnotation];
                 
                 //move the overlay circle;
                 [mapView removeOverlay:selfLokOverlay];
@@ -373,7 +372,10 @@ extern NSString* FBSuccessfulLoginNotification;
                                                              radius:[appDelegate.privacy.SharingRadius doubleValue]];
                 selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
                                       stringByAppendingString:[[KCSUser activeUser] surname] ];
+                //if(appDelegate.latestPerturbedLocation!=nil){
+                [mapView addAnnotation:selfLokAnnotation];
                 [self.mapView addOverlay:selfLokOverlay];
+                //}
             });
         
         
@@ -386,18 +388,6 @@ extern NSString* FBSuccessfulLoginNotification;
     
 }
 
-
--(IBAction)toggleUpdate{//should update friends' locations;
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate.fList  updateLocations];
-    
-    [mapView removeAnnotations:mapView.annotations];
-    frdAnnotations=nil;
-    [mapView removeOverlays:mapView.overlays];
-    frdRegions=nil;
-    
-    
-}
 
 
 -(IBAction) rightTVTapped{
@@ -708,6 +698,45 @@ extern NSString* FBSuccessfulLoginNotification;
     }
 }
 
+
+
+-(IBAction)toggleUpdate{//should update friends' locations;
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.fList  updateLocations];
+    
+    [mapView removeAnnotations:mapView.annotations];
+    frdAnnotations=nil;
+    [mapView removeOverlays:mapView.overlays];
+    frdRegions=nil;
+    
+    
+    //add self annotation;
+    
+    //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
+    //[mapView removeAnnotation:selfLokAnnotation];
+    selfLokAnnotation.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                                       stringByAppendingString:[[KCSUser activeUser] surname] ];
+    selfLokAnnotation.thumbnail.image=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+    
+    selfLokAnnotation.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
+    selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
+    [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
+    
+    //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
+    //[mapView removeOverlay:selfLokOverlay];
+    selfLokOverlay=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
+                                                 radius:[appDelegate.privacy.SharingRadius doubleValue]];
+    selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                          stringByAppendingString:[[KCSUser activeUser] surname] ];
+    if(appDelegate.latestPerturbedLocation!=nil){
+        [self.mapView addAnnotation:selfLokAnnotation];
+        [self.mapView addOverlay:selfLokOverlay];
+    }
+    
+    
+}
+
+
 -(void)drawFriendsLocations{//after receiving location updates, draw friends' locations on map;
     
 //    if([countLocationUpdates intValue]==0){
@@ -716,36 +745,14 @@ extern NSString* FBSuccessfulLoginNotification;
 //    }
 //    else{
 //        countLocationUpdates=[NSNumber numberWithInt:0];
-//    }
+    //    }
+    AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     [self.leftTableView reloadData];
     
+    
+    
     NSNumber *num0=[NSNumber numberWithDouble:0];
-    AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
     if(frdAnnotations==nil && frdRegions==nil){
-        //add self annotation;
-        
-        //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
-        //[mapView removeAnnotation:selfLokAnnotation];
-        selfLokAnnotation.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
-                                           stringByAppendingString:[[KCSUser activeUser] surname] ];
-        selfLokAnnotation.thumbnail.image=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
-        
-        selfLokAnnotation.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
-        selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
-        [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
-        [self.mapView addAnnotation:selfLokAnnotation];
-        
-        //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
-        //[mapView removeOverlay:selfLokOverlay];
-        selfLokOverlay=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
-                                                  radius:[appDelegate.privacy.SharingRadius doubleValue]];
-        selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
-                  stringByAppendingString:[[KCSUser activeUser] surname] ];
-        [self.mapView addOverlay:selfLokOverlay];
-        
-        //}
-        //selfLocAnnotation.coordinate=appDelegate.latestTrueLocation.coordinate;
-        //[self.mapView addAnnotation:selfLocAnnotation];
         
         
         frdAnnotations=[[NSMutableArray alloc] init];

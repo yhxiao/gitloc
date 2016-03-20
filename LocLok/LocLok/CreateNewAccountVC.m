@@ -409,101 +409,109 @@
             user.givenName = self.givenname.text;
             user.surname = self.surname.text;
             
-            //resave the user's email, givenname and surname;
-            [user saveWithCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil1) {
-                if (errorOrNil1 == nil) {
-                    //was successful!
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    UIResponder* nextResponder = [self.view.superview nextResponder];
-                    if ([nextResponder isKindOfClass:[UIViewController class]])
-                    {
-                        [(UIViewController*)nextResponder viewWillAppear:YES];
+            NSMutableArray *userInfo1;
+            userInfo1=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:user.email],[[NSString alloc] initWithString:user.givenName],[[NSString alloc] initWithString:user.surname],nil];
+            [CommonFunctions writeToPlist:@"UserInfo.plist" :userInfo1 :@"userInfo"];
+            
+            //wait for the credential to be written;
+            dispatch_after(1, dispatch_get_main_queue(), ^{
+                //resave the user's email, givenname and surname;
+                [user saveWithCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil1) {
+                    if (errorOrNil1 == nil) {
+                        //was successful!
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                        UIResponder* nextResponder = [self.view.superview nextResponder];
+                        if ([nextResponder isKindOfClass:[UIViewController class]])
+                        {
+                            [(UIViewController*)nextResponder viewWillAppear:YES];
+                        }
+                        
+                        UIAlertController * alert=   [UIAlertController
+                                                      alertControllerWithTitle:@"Account Creation Successful"
+                                                      message:@"User created. Welcome!"
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction* ok = [UIAlertAction
+                                             actionWithTitle:@"OK"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                        
+                        
+                        [alert addAction:ok];
+                        
+                        [self presentViewController:alert animated:YES completion:nil];
+                        //return to the login page;
+                    } else {
+                        //there was an error with the update save
+                        //return to the login page;
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                        
+                        NSString* message = [errorOrNil1 localizedDescription];
+                        
+                        UIAlertController * alert=   [UIAlertController
+                                                      alertControllerWithTitle:@"Create account failed"
+                                                      message:message
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction* ok = [UIAlertAction
+                                             actionWithTitle:@"OK"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                        
+                        
+                        [alert addAction:ok];
+                        
+                        [self presentViewController:alert animated:YES completion:nil];
+                        
                     }
-                    
-                    UIAlertController * alert=   [UIAlertController
-                                                  alertControllerWithTitle:@"Account Creation Successful"
-                                                  message:@"User created. Welcome!"
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-                    
-                    UIAlertAction* ok = [UIAlertAction
-                                         actionWithTitle:@"OK"
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action)
-                                         {
-                                             [alert dismissViewControllerAnimated:YES completion:nil];
-                                             
-                                         }];
-                    
-                    
-                    [alert addAction:ok];
-                    
-                    [self presentViewController:alert animated:YES completion:nil];
-                    //return to the login page;
-                } else {
-                    //there was an error with the update save
-                    //return to the login page;
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    
-                    NSString* message = [errorOrNil1 localizedDescription];
-                    
-                    UIAlertController * alert=   [UIAlertController
-                                                  alertControllerWithTitle:@"Create account failed"
-                                                  message:message
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-                    
-                    UIAlertAction* ok = [UIAlertAction
-                                         actionWithTitle:@"OK"
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action)
-                                         {
-                                             [alert dismissViewControllerAnimated:YES completion:nil];
-                                             
-                                         }];
-                    
-                    
-                    [alert addAction:ok];
-                    
-                    [self presentViewController:alert animated:YES completion:nil];
-                    
-                }
-            }];
+                }];
+            });
             
             
             
             
             
-            /*save user info to plist;*/
-            NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-            // get documents path
-            NSString *documentsPath = [paths objectAtIndex:0];
-            // get the path to our Data/plist file
-            NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"BasicData.plist"];
-            
-            
-            NSMutableArray *userInfo;
-            userInfo=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:[KCSUser activeUser].email],[[NSString alloc] initWithString:[KCSUser activeUser].givenName],[[NSString alloc] initWithString:[KCSUser activeUser].surname],nil];
-            
-            
-            // create dictionary with values in UITextFields
-            NSDictionary *plistDict = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects:  userInfo, nil] forKeys:[NSArray arrayWithObjects: @"userInfo", nil]];
-            
-            NSError *error = [NSError alloc];
-            // create NSData from dictionary
-            NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:plistDict
-                                                                           format:NSPropertyListXMLFormat_v1_0
-                                                                          options:0
-                                                                            error:&error
-                                 ];
-            // check is plistData exists
-            if(plistData)
-            {
-                // write plistData to our Data.plist file
-                [plistData writeToFile:plistPath atomically:YES];
-            }
-            else
-            {
-                NSLog(@"Error in saveData: %@", error);
-            }
+//            
+//            /*save user info to plist;*/
+//            NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+//            // get documents path
+//            NSString *documentsPath = [paths objectAtIndex:0];
+//            // get the path to our Data/plist file
+//            NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"BasicData.plist"];
+//            
+//            
+//            NSMutableArray *userInfo;
+//            userInfo=[NSMutableArray arrayWithObjects:[[NSString alloc] initWithString:[KCSUser activeUser].email],[[NSString alloc] initWithString:[KCSUser activeUser].givenName],[[NSString alloc] initWithString:[KCSUser activeUser].surname],nil];
+//            
+//            
+//            // create dictionary with values in UITextFields
+//            NSDictionary *plistDict = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects:  userInfo, nil] forKeys:[NSArray arrayWithObjects: @"userInfo", nil]];
+//            
+//            NSError *error = [NSError alloc];
+//            // create NSData from dictionary
+//            NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:plistDict
+//                                                                           format:NSPropertyListXMLFormat_v1_0
+//                                                                          options:0
+//                                                                            error:&error
+//                                 ];
+//            // check is plistData exists
+//            if(plistData)
+//            {
+//                // write plistData to our Data.plist file
+//                [plistData writeToFile:plistPath atomically:YES];
+//            }
+//            else
+//            {
+//                NSLog(@"Error in saveData: %@", error);
+//            }
             
             
             

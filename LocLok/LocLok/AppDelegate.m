@@ -30,7 +30,11 @@ NSString * const GotSelfTrueLocationNotification=
 NSString * const NotificationCategoryIdent  = @"MeetEventRequestSent";
 NSString * const NotificationActionOneIdent = @"MeetEventRequestAccepted";
 NSString * const NotificationActionTwoIdent = @"MeetEventRequestDeclined";
-
+NSString * const Kinvey_App_ID_Production=@"kid_WJVxWckTJ-";
+NSString * const Kinvey_App_ID_Development=@"kid_PeVcDHs6oJ";
+NSString * const Kinvey_App_Secret_Development=@"95bf9dd03735465fb5f83955c92eade5";
+NSString * const Kinvey_App_Secret_Production=@"6945a4ad14ae42269bdb116b8a89df5d";
+NSString * const LocLok_Version=@"0.0.2";
 
 
 extern NSString* LocalImagePlist;
@@ -458,10 +462,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //[[KCSPush sharedPush] setPushBadgeNumber:100];
     /*my Kinvey Key LocLok*/
     //set LocLok version for backend;
-    KCSRequestConfiguration* requestConfig = [KCSRequestConfiguration requestConfigurationWithClientAppVersion:@"1.0.0" andCustomRequestProperties:nil];
+    KCSRequestConfiguration* requestConfig = [KCSRequestConfiguration requestConfigurationWithClientAppVersion:LocLok_Version andCustomRequestProperties:nil];
     KCSClientConfiguration* config =
-    [KCSClientConfiguration configurationWithAppKey:@"kid_PeVcDHs6oJ"
-                                             secret:@"95bf9dd03735465fb5f83955c92eade5"
+    [KCSClientConfiguration configurationWithAppKey:Kinvey_App_ID_Production
+                                             secret:Kinvey_App_Secret_Production
                                             options:nil
                                requestConfiguration: requestConfig
      ];
@@ -1897,6 +1901,9 @@ forRemoteNotification:(NSDictionary *)userInfo
     KCSQuery* query1 = [KCSQuery queryOnField:@"owner"
                        withExactMatchForValue:[[KCSUser activeUser] userId]
                         ];
+    [query1  addSortModifier:[[KCSQuerySortModifier alloc] initWithField:KCSMetadataFieldLastModifiedTime inDirection:kKCSDescending]];
+    [query1  setLimitModifer:[[KCSQueryLimitModifier alloc] initWithLimit:1]];
+    
     
     NSLog(@"%@",privStore);
     NSLog(@"%@",[KCSUser activeUser]);
@@ -2510,6 +2517,9 @@ forRemoteNotification:(NSDictionary *)userInfo
         //[[LocationKit sharedInstance] setOperationMode:LKmode_inactive];
         return;
     }
+    
+    //if accuracy is not enough, reject this location;
+    if(currentLocation.horizontalAccuracy<0 || currentLocation.horizontalAccuracy>200.0)return;
     
     if(dateFormatter==nil){
         dateFormatter = [[NSDateFormatter alloc] init];

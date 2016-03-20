@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CommonFunctions.h"
 @interface CreateNewAccountVC : UIViewController<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *password;

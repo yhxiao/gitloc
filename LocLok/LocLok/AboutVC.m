@@ -7,7 +7,7 @@
 //
 
 #import "AboutVC.h"
-
+extern NSString * LocLok_Version;
 @implementation AboutVC
 
 
@@ -46,7 +46,7 @@
     versionLabel.backgroundColor = bgColor;
     versionLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:12];
     [self.view addSubview:versionLabel];
-    versionLabel.text = @"Version: Alpha Test";
+    versionLabel.text = [@"Version: Beta Test " stringByAppendingString:LocLok_Version];
     
     UILabel *textLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(10, initialHeight+100, width-20, 300) ];
     textLabel.textAlignment =  NSTextAlignmentLeft;
