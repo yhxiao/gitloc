@@ -1833,7 +1833,7 @@ forRemoteNotification:(NSDictionary *)userInfo
          User_Photo * uPhoto=[[User_Photo alloc] init];
          uPhoto.user_id=[KCSUser activeUser];
          //UIImage* image1=[[UIImage alloc] init];image1=image;
-         uPhoto.photo=[CommonFunctions loadImageFromLocal:[KCSUser activeUser].userId];
+         //uPhoto.photo=[CommonFunctions loadImageFromLocal:[KCSUser activeUser].userId];
          if (!uPhoto.meta) {
              uPhoto.meta = [[KCSMetadata alloc] init];
          }
@@ -1987,8 +1987,11 @@ forRemoteNotification:(NSDictionary *)userInfo
                     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
                 }
                 else{//save device;
-                    [self toggleUpdatingLocations];
+                    //let notification evoke updating;
+                    //[self toggleUpdatingLocations];
                 }
+                
+                
                 //check if the deviceID is current device;
                 //if(![privacy.deviceID isEqualToString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]){
                 
@@ -2294,7 +2297,8 @@ forRemoteNotification:(NSDictionary *)userInfo
         [locManager stopUpdatingLocation];*/
         
         //[[LocationKit sharedInstance] pause];
-        [self.locationManager startUpdatingLocation];
+        //[self.locationManager startUpdatingLocation];
+        [self.locationManager stopUpdatingLocation];
     }
 }
 

@@ -627,7 +627,7 @@ didFinishPickingMediaWithInfo:(NSDictionary*)info {
          User_Photo * uPhoto=[[User_Photo alloc] init];
          uPhoto.user_id=[KCSUser activeUser];
          //UIImage* image1=[[UIImage alloc] init];image1=image;
-         uPhoto.photo=image;
+         //uPhoto.photo=image;
          if (!uPhoto.meta) {
              uPhoto.meta = [[KCSMetadata alloc] init];
          }

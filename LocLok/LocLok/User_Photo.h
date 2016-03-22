@@ -12,7 +12,7 @@
 
 @interface User_Photo : NSObject<KCSPersistable>
 @property (nonatomic, retain) KCSUser* user_id;
-@property (nonatomic, retain) UIImage* photo;//******for image
+//@property (nonatomic, retain) UIImage* photo;//******for image
 @property (nonatomic, retain) NSString* entityId;
 @property (nonatomic, retain) NSString* photoURL;
 @property (nonatomic, retain) KCSMetadata* meta;

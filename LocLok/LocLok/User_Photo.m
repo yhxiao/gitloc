@@ -18,7 +18,7 @@
              @"entityId"   : KCSEntityKeyId, //the required _id field
              //@"metadata" : KCSEntityKeyMetadata,
              @"meta"       : KCSEntityKeyMetadata,
-             @"photo"      : @"photo",
+             //@"photo"      : @"photo",
              @"photoURL"   : @"photoURL",
              @"user_id"    : @"user_id",
              @"date"       : @"date"
@@ -27,7 +27,7 @@
 
 + (NSDictionary *)kinveyPropertyToCollectionMapping
 {
-    return @{      @"photo":KCSFileStoreCollectionName,
+    return @{      //@"photo":KCSFileStoreCollectionName,
              
                 @"user_id" :KCSUserCollectionName
              };

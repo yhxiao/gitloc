@@ -886,7 +886,11 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     appDelegate1.privacy.SharingSwitch=sharing_switch.on?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
     
     if(!sharing_switch.on){//if stop sharing, turn the mode inactive;
-        [appDelegate1.locationManager setOperationMode:appDelegate1.LKmode_inactive];
+        [appDelegate1.locationManager stopUpdatingLocation];
+        //[appDelegate1.locationManager setOperationMode:appDelegate1.LKmode_inactive];
+    }
+    else{//is sharing;
+        [appDelegate1.locationManager startUpdatingLocation];
     }
     
     [appDelegate1 savePrivRulesToBackend];
