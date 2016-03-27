@@ -64,6 +64,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
     self.title=@"More";
 	// Do any additional setup after loading the view.
     CGRect viewRect=CGRectMake(self.view.bounds.origin.x,

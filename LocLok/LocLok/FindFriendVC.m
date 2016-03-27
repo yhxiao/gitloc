@@ -135,11 +135,12 @@ extern NSString* LocalImagePlist;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:NO];
     
     
-    UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
+    UIColor *bgColor=[UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
-    UIColor *bgColor3=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
+    UIColor *bgColor3=[UIColor colorWithRed:0 green:0 blue:1 alpha:1];
     UIColor *bgColor4=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
     [super viewDidLoad];
     self.view.backgroundColor=bgColor;
@@ -172,7 +173,7 @@ extern NSString* LocalImagePlist;
     //UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     welcomeLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+40, width, boxHeight) ];
     welcomeLabel.textAlignment =  UITextAlignmentCenter;
-    welcomeLabel.textColor = [UIColor whiteColor];
+    welcomeLabel.textColor = [UIColor blueColor];
     welcomeLabel.backgroundColor = bgColor;
     welcomeLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:20];
     [self.view addSubview:welcomeLabel];
@@ -227,7 +228,7 @@ extern NSString* LocalImagePlist;
     self.searchButton.frame = CGRectMake(20, initialHeight+200, width-40, boxHeight);
     [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
     self.searchButton.backgroundColor = bgColor3;
-    [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
+    [self.searchButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal ];
     self.searchButton.titleLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:16];
     self.searchButton.clipsToBounds = YES;
     self.searchButton.layer.cornerRadius = 6;//half of the width

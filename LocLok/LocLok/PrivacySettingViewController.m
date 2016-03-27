@@ -278,7 +278,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     [radius_slider_km addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     //[slider setBackgroundColor:[UIColor clearColor]];
     radius_slider_km.minimumValue = 0.1;
-    radius_slider_km.maximumValue = 10.0;
+    radius_slider_km.maximumValue = 20.0;
     radius_slider_km.continuous =YES;
     //slider.value = 25.0;
     [scrollView addSubview:radius_slider_km];
@@ -885,13 +885,15 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     appDelegate1.privacy.SharingSwitch=sharing_switch.on?[NSNumber numberWithInt:1]:[NSNumber numberWithInt:0];
     
-    if(!sharing_switch.on){//if stop sharing, turn the mode inactive;
-        [appDelegate1.locationManager stopUpdatingLocation];
-        //[appDelegate1.locationManager setOperationMode:appDelegate1.LKmode_inactive];
-    }
-    else{//is sharing;
-        [appDelegate1.locationManager startUpdatingLocation];
-    }
+    [appDelegate1 toggleUpdatingLocations];
+    
+//    if(!sharing_switch.on){//if stop sharing, turn the mode inactive;
+//        [appDelegate1.locationManager stopUpdatingLocation];
+//        //[appDelegate1.locationManager setOperationMode:appDelegate1.LKmode_inactive];
+//    }
+//    else{//is sharing;
+//        [appDelegate1.locationManager startUpdatingLocation];
+//    }
     
     [appDelegate1 savePrivRulesToBackend];
     

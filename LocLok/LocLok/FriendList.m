@@ -14,6 +14,8 @@
 
 NSString *const fListLoadingCompleteNotification =
 @"com.yxiao.friendlistloadingfinished";
+NSString* const fListFrdLocationsLoadingCompletetion=
+@"com.yxiao.fListFrdLocationsLoadingFinished";
 
 NSString* const realtimelocationUpdateNotification=@"com.yxiao.realtimeLocationUpdateNotification";
 NSString *const LocalImagePlist=@"LocalImagePlist.plist";
@@ -248,8 +250,9 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
     KCSQuery *locQuery;
     //if(frdLocations!=nil)[frdLocations removeAllObjects];
     
+    
     for(NSInteger i=0;i<self.friends.count;i++){
-        //NSLog(@"i=%d\n\n",i);
+        //NSLog(@"Friend Loc: %ld\n",(long)i+1);
             locQuery=[KCSQuery queryOnField:@"owner"
                                withExactMatchForValue:[[[self.friends objectAtIndex:i] to_user] userId]
                                 ];
@@ -265,21 +268,36 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
 //        
         MeetEvent* meet1=[[self.friends objectAtIndex:i] meetinglink];
         NSLog(@"%ld",(long)[meet1.MeetEventStatus integerValue]);
+        
+        //no loc permission;
+        if([[[self.friends objectAtIndex:i] permission] integerValue]==PermissionForNoLoc){
+            //NSLog(@"i=%ld: %@\n",i,frdLocations);
+            [frdLocations replaceObjectAtIndex:i withObject:[NSNull null]];
+            //if(i==friends.count-1){
+                //should release a message here to notify that friends loading is finished.
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:fListFrdLocationsLoadingCompletetion
+                 object:nil
+                 ];
+            //}
+        }
+        else{
             if([[[self.friends objectAtIndex:i] permission] integerValue]==PermissionForFamily  || (meet1!=nil && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed && [meet1.MeetEventStatus integerValue]>MeetEventFinished)){//exact precision;
                 [LocStore  queryWithQuery:locQuery withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                 //[LocStore  queryWithQuery:query2 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                     //NSLog(@"%@, i=%d",objectsOrNil,i);
                     if(objectsOrNil!=nil && [objectsOrNil count]>0){
+                        //NSLog(@"i=%ld: %@\n",i,frdLocations);
                         [frdLocations replaceObjectAtIndex:i withObject:objectsOrNil[0]];
                     }
                     
-                    if(i==friends.count-1){
+                    //if(i==friends.count-1){
                         //should release a message here to notify that friends loading is finished.
                         [[NSNotificationCenter defaultCenter]
-                         postNotificationName:realtimelocationUpdateNotification
+                         postNotificationName:fListFrdLocationsLoadingCompletetion
                          object:nil
                          ];
-                    }
+                    //}
                     
                 }withProgressBlock:nil
                 ];
@@ -290,20 +308,25 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                 [LokStore queryWithQuery:locQuery withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
                     //NSLog(@"%@, i=%d",objectsOrNil,i);
                     if(objectsOrNil!=nil && [objectsOrNil count]>0){
+                        //NSLog(@"i=%ld: %@\n",i,frdLocations);
                         [frdLocations replaceObjectAtIndex:i withObject:objectsOrNil[0] ];
                     }
                     
-                    if(i==friends.count-1){
+                    //if(i==friends.count-1){
                         //should release a message here to notify that friends loading is finished.
                         [[NSNotificationCenter defaultCenter]
-                         postNotificationName:realtimelocationUpdateNotification
+                         postNotificationName:fListFrdLocationsLoadingCompletetion
                          object:nil
                          ];
-                    }
+                    //}
                 } withProgressBlock:nil
                 ];
             }
-    }
+        }//not no loc;
+        
+        
+        
+    }//for loop;
     
     
 }
@@ -331,7 +354,7 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
         Friendship* thisFriend=[self.friends objectAtIndex:i];
         MeetEvent* meet1=thisFriend.meetinglink;
         //for all the meeting friends;
-        if(meet1!=nil){
+        if(meet1!=nil && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed && [meet1.MeetEventStatus integerValue]>MeetEventFinished){
             locQuery=[KCSQuery queryOnField:@"owner"
                      withExactMatchForValue:[[[self.friends objectAtIndex:i] to_user] userId]
                       ];

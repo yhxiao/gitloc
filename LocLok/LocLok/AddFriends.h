@@ -12,7 +12,8 @@
 
 typedef NS_ENUM(NSInteger, AddFriendagreed) {
     AddFriendFirstTime=0,//first time add friend; value=0;
-    AddFriendModifyPermission=1//modify permission; value=1;
+    AddFriendModifyPermission=1,//modify permission; value=1;
+    AddFriendRequestBack=2//after agree friendship, request friendship back to the requester;
 };
 
 @interface AddFriends : NSObject<KCSPersistable>

@@ -17,6 +17,8 @@
 //@synthesize locManager;
 NSString *const FBSuccessfulLoginNotification =
 @"com.yxiao.Login:FBSessionStateChangedNotification";
+NSString *const FBLoginAndSetLocalAccountNotification =
+@"com.yxiao.Login:FBLoginSuccessfulAndSetLocalAccountNotification";
 NSString* const InAppSuccessfulLoginNotification=
 @"com.yxiao.login.successful.inapp.changeUser";
 NSString *const FBFailedLoginNotification=
@@ -324,15 +326,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventFinished){//meeting finished;
         
-        if (ActivityMode == LKActivityModeAutomotive) {
-            [locationManager setOperationMode:LKmode_active];
-        }
-        if(ActivityMode==LKActivityModeWalking || ActivityMode==LKActivityModeRunning || ActivityMode==LKActivityModeCycling){
-            [locationManager setOperationMode:LKmode_high];
-        }
-        else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
-            [locationManager setOperationMode:LKmode_inactive];
-        }
+//        if (ActivityMode == LKActivityModeAutomotive) {
+//            [locationManager setOperationMode:LKmode_active];
+//        }
+//        if(ActivityMode==LKActivityModeWalking || ActivityMode==LKActivityModeRunning || ActivityMode==LKActivityModeCycling){
+//            [locationManager setOperationMode:LKmode_high];
+//        }
+//        else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
+//            [locationManager setOperationMode:LKmode_inactive];
+//        }
+        [locationManager setOperationMode:LKmode_inactive];
         
         myMeetEvent=nil;
         if(application.applicationState == UIApplicationStateActive) {
@@ -584,7 +587,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //LKmode_active.distanceFilter=kCLDistanceFilterNone;
     
     LKmode_high = [[LKSetting alloc] initWithType:LKSettingTypeHigh];
-    //LKmode_high.desiredAccuracy = kCLLocationAccuracyBest;
+    //LKmode_high.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     //LKmode_high.distanceFilter=kCLDistanceFilterNone;
     
     
@@ -600,6 +603,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     self.locationManager.debug=NO;
     self.locationManager.useCMMotionActivityManager = YES;
     [self.locationManager stopUpdatingLocation];
+    //[self.locationManager stopMonitoringVisits];
     
     
     
@@ -641,7 +645,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(saveImageFromFacebook:)
-     name:FBSuccessfulLoginNotification
+     name:FBLoginAndSetLocalAccountNotification
      object:nil
      ];
     
@@ -1205,7 +1209,9 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     //close
     //[[LocationKit sharedInstance] pause];
+    //[self.locationManager stopMonitoringVisits];
     [self.locationManager stopUpdatingLocation];
+    //[self.locationManager stopMonitoringSignificantLocationChanges];
     
     latestTrueLocation=nil;
     latestPerturbedLocation=nil;
@@ -1319,11 +1325,23 @@ forRemoteNotification:(NSDictionary *)userInfo
                                        */
     
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login logInWithReadPermissions:permissions handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    //[login logInWithReadPermissions:permissions handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result5, NSError *error5) {
+
+    [login logInWithReadPermissions:permissions fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        
         if (error) {
             // Process error
+            //send Login Failure Notification;
+            [[NSNotificationCenter defaultCenter] postNotificationName:FBFailedLoginNotification
+                                                                object:nil
+             ];
         } else if (result.isCancelled) {
             // Handle cancellations
+            //send Login Failure Notification;
+            [[NSNotificationCenter defaultCenter] postNotificationName:FBFailedLoginNotification
+                                                                object:nil
+             ];
         } else {
             // If you ask for multiple permissions at once, you
             // should check if specific permissions missing
@@ -1335,6 +1353,7 @@ forRemoteNotification:(NSDictionary *)userInfo
                  ];
             }
         }
+    }];
     }];
 }
 
@@ -1536,6 +1555,11 @@ forRemoteNotification:(NSDictionary *)userInfo
                                                                                        object:nil
                                                                                      userInfo:dictionary
                                     ];
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:FBLoginAndSetLocalAccountNotification
+                                                                                       object:nil
+                                                                                     userInfo:dictionary
+                                    ];
+                                   
                                    
                                    
                                    
@@ -2290,7 +2314,10 @@ forRemoteNotification:(NSDictionary *)userInfo
             }
             latestUpdatedLocation=location;
         }];*/
+        //[self.locationManager startMonitoringVisits];
         [self.locationManager startUpdatingLocation];
+        //[self.locationManager startMonitoringSignificantLocationChanges];
+        
     }
     else{
         /*
@@ -2299,6 +2326,8 @@ forRemoteNotification:(NSDictionary *)userInfo
         //[[LocationKit sharedInstance] pause];
         //[self.locationManager startUpdatingLocation];
         [self.locationManager stopUpdatingLocation];
+        //[self.locationManager stopMonitoringVisits];
+        //[self.locationManager stopMonitoringSignificantLocationChanges];
     }
 }
 
@@ -2607,8 +2636,8 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     //save true location to backend
     //if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=200.0){
-    if(1){
-    if([currentLocation distanceFromLocation:latestTrueLocation]>10 || latestTrueLocation==nil){
+    //if(1){
+    //if([currentLocation distanceFromLocation:latestTrueLocation]>10 || latestTrueLocation==nil){
         //only update the true location if movement>10m;
         LocSeries* update = [[LocSeries alloc] init];
         update.owner =[KCSUser activeUser].userId;
@@ -2655,7 +2684,7 @@ forRemoteNotification:(NSDictionary *)userInfo
              object:nil
              ];
         }
-    }}
+    //}}
     
     
     
@@ -2664,25 +2693,28 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     
 }
-- (void)locationManager:(LKLocationManager *)manager willChangeActivityMode:(LKActivityMode)mode {
-    ActivityMode=mode;
-    if(![privacy.SharingSwitch boolValue]){//if stop sharing, turn the mode inactive;
-        [locationManager setOperationMode:LKmode_inactive];
-        return;
-    }
-    
-    if (mode == LKActivityModeAutomotive || LKActivityModeUnknown) {
-        NSLog(@"The user is likely driving right now");
-        [locationManager setOperationMode:LKmode_active];
-    }
-    if(mode==LKActivityModeWalking || mode==LKActivityModeRunning || mode==LKActivityModeCycling){
-        [locationManager setOperationMode:LKmode_high];
-    }
-    else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
-        NSLog(@"The user is likely NOT driving right now");
-        [locationManager setOperationMode:LKmode_inactive];
-    }
-}
+
+//this function comsumes too much power;
+
+//- (void)locationManager:(LKLocationManager *)manager willChangeActivityMode:(LKActivityMode)mode {
+//    ActivityMode=mode;
+//    if(![privacy.SharingSwitch boolValue]){//if stop sharing, turn the mode inactive;
+//        [locationManager setOperationMode:LKmode_inactive];
+//        return;
+//    }
+//    
+//    if (mode == LKActivityModeAutomotive) {
+//        NSLog(@"The user is likely driving right now");
+//        [locationManager setOperationMode:LKmode_active];
+//    }
+//    if(mode==LKActivityModeWalking || mode==LKActivityModeRunning || mode==LKActivityModeCycling){
+//        [locationManager setOperationMode:LKmode_high];
+//    }
+//    else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
+//        NSLog(@"The user is likely NOT driving right now");
+//        [locationManager setOperationMode:LKmode_inactive];
+//    }
+//}
 
 
 /*

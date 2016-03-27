@@ -11,7 +11,8 @@
 #import "MeetEvent.h"
 typedef NS_ENUM(NSInteger, AllLocPermissions) {
     PermissionForFamily=0,//show protected location; value=0;
-    PermissionForFriends=1//show precise location; value=1;
+    PermissionForFriends=1,//show precise location; value=1;
+    PermissionForNoLoc=-1//do not show any location; value=-1;
 };
 
 

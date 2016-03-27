@@ -16,6 +16,10 @@
 
 extern NSString* inFriends_finished_Notification;
 extern NSString* LocalImagePlist;
+NSString* const strPermissionTrueLocation=@"true location";
+NSString* const strPermissionCloakedLocation=@"cloaked location";
+NSString* const strPermissionNoLocation=@"no location";
+
 @implementation FriendsPermissions
 
 
@@ -67,8 +71,16 @@ extern NSString* LocalImagePlist;
     [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
             if(errorOrNil==nil){
                 //dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=
-                    [aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
+                if([aFriend.permission integerValue]==PermissionForFamily){
+                    [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=strPermissionTrueLocation;
+                }
+                if([aFriend.permission integerValue]==PermissionForFriends){
+                    [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=strPermissionCloakedLocation;
+                }
+                if([aFriend.permission integerValue]==PermissionForNoLoc){
+                    [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=strPermissionNoLocation;
+                }
+                
                 //});
             }
             else{
@@ -160,7 +172,16 @@ extern NSString* LocalImagePlist;
     
     cell.textLabel.textColor = [UIColor blackColor];
     cell.detailTextLabel.textColor=[UIColor blackColor];
-    cell.detailTextLabel.text=[aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
+    if([aFriend.permission integerValue]==PermissionForFamily){
+        cell.detailTextLabel.text=strPermissionTrueLocation;
+    }
+    if([aFriend.permission integerValue]==PermissionForFriends){
+        cell.detailTextLabel.text=strPermissionCloakedLocation;
+    }
+    if([aFriend.permission integerValue]==PermissionForNoLoc){
+        cell.detailTextLabel.text=strPermissionNoLocation;
+    }
+    //cell.detailTextLabel.text=[aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
     
     //The icon on the right side of a row;
     //cell.accessoryType = UITableViewCellAccessoryNone;
@@ -265,7 +286,7 @@ extern NSString* LocalImagePlist;
                                   message:message
                                   preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* left = [UIAlertAction
+    UIAlertAction* cancel = [UIAlertAction
                            actionWithTitle:@"Cancel"
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
@@ -273,7 +294,7 @@ extern NSString* LocalImagePlist;
                                [alert dismissViewControllerAnimated:YES completion:nil];
                                
                            }];
-    UIAlertAction* middle = [UIAlertAction
+    UIAlertAction* true_loc = [UIAlertAction
                              actionWithTitle:@"True Loc"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
@@ -299,7 +320,7 @@ extern NSString* LocalImagePlist;
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  
                              }];
-    UIAlertAction* right = [UIAlertAction
+    UIAlertAction* cloaked_loc = [UIAlertAction
                             actionWithTitle:@"Cloaked Loc"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action)
@@ -325,8 +346,34 @@ extern NSString* LocalImagePlist;
                                 
                             }];
     
+    UIAlertAction* no_loc = [UIAlertAction
+                            actionWithTitle:@"No Loc"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                //run after this block is finished;
+                                //                                dispatch_async(dispatch_get_main_queue(), ^{
+                                //
+                                //                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends];
+                                //                                //save permission;
+                                //                                [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                //                                    if(errorOrNil==nil){
+                                //                                        [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"cloaked location";
+                                //
+                                //                                    }
+                                //                                } withProgressBlock:nil];
+                                //                                });
+                                
+                                aFriend.permission=[NSNumber numberWithInteger:PermissionForNoLoc ];
+                                dispatch_after(0.2, dispatch_get_main_queue(), ^{
+                                    [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
+                                });
+                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                
+                            }];
+    
     UIAlertAction* unFriend = [UIAlertAction
-                            actionWithTitle:@"Delete"
+                            actionWithTitle:@"Remove this friend"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action)
                             {
@@ -338,12 +385,18 @@ extern NSString* LocalImagePlist;
                                 
                             }];
     
-    [alert addAction:left];
-    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:@"true location"]){
-        [alert addAction:right];
+    [alert addAction:cancel];
+    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
+        [alert addAction:cloaked_loc];
+        [alert addAction:no_loc];
     }
-    else{
-        [alert addAction:middle];
+    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionCloakedLocation]){
+        [alert addAction:true_loc];
+        [alert addAction:no_loc];
+    }
+    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionNoLocation]){
+        [alert addAction:true_loc];
+        [alert addAction:cloaked_loc];
     }
     [alert addAction:unFriend];
     

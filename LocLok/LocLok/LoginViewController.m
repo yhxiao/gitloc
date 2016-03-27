@@ -751,6 +751,7 @@ extern NSString* const InAppSuccessfulLoginNotification;
     }
      */
     
+    //NSLog(@"%@",[FBSDKAccessToken currentAccessToken]);
     if([FBSDKAccessToken currentAccessToken]){
         [self dismissViewControllerAnimated:NO completion:^{
             NSLog(@"has facebook token, dismiss login page");

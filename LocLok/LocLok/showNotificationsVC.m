@@ -295,18 +295,26 @@ extern NSString* LocalImagePlist;
     cell.textLabel.numberOfLines=3;
     cell.detailTextLabel.font=self.cellFont2;
     if(indexPath.section==0){//toCollection;
-        cell.textLabel.text = [[[[[
+        
+        cell.textLabel.text = [[[
                                    [[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] from_user] givenName]
                                                              stringByAppendingString:@" "
                                    ]
                                                             stringByAppendingString:[[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] from_user] surname]
                                   ]
                                                                      stringByAppendingString:@" requests your "
-                                 ]
-        stringByAppendingString:[[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] permission] integerValue]==PermissionForFamily?@"\"True Loc\"":@"\"Cloaked Loc\""
-                                ]
-        stringByAppendingString:@" permission."
-                               ];
+                                 ] ;
+                                
+        if([[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] permission] integerValue]==PermissionForFamily){
+            cell.textLabel.text=[cell.textLabel.text stringByAppendingString:@"\"True Loc\" permission."];
+        }
+        if([[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] permission] integerValue]==PermissionForFriends){
+            cell.textLabel.text=[cell.textLabel.text stringByAppendingString:@"\"Cloaked Loc\" permission."];
+        }
+        if([[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] permission] integerValue]==PermissionForNoLoc){
+            cell.textLabel.text=[cell.textLabel.text stringByAppendingString:@"\"No Loc\" permission."];
+        }
+        
         cell.detailTextLabel.text = [[[appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row] from_user] username];
         
         //for image;
@@ -392,7 +400,7 @@ extern NSString* LocalImagePlist;
                                 stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
                                 stringByAppendingString:@"." ]
                                  ];
-            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%d",[aMeeting.distance intValue]]]
                                        stringByAppendingString:@" meters"];
         }
         if([aMeeting.MeetEventStatus integerValue]==MeetEventHalfway){//halfway to meet;2
@@ -403,7 +411,7 @@ extern NSString* LocalImagePlist;
                                 stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
                                  stringByAppendingString:@"." ]
             ;
-            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%d",[aMeeting.distance intValue]]]
                                        stringByAppendingString:@" meters"];
         }
         if([aMeeting.MeetEventStatus integerValue]==MeetEventNearby){//nearby to meet;1
@@ -414,7 +422,7 @@ extern NSString* LocalImagePlist;
                                  stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
                                 stringByAppendingString:@"." ]
             ;
-            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%ul",[aMeeting.distance intValue]]]
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%d",[aMeeting.distance intValue]]]
                                        stringByAppendingString:@" meters"];
         }
         
@@ -698,7 +706,7 @@ extern NSString* LocalImagePlist;
             }
             
             
-            if(!has_this_friend){//the initial request
+            if(!has_this_friend && [aFriend.agreed integerValue]==AddFriendFirstTime){//the initial request
                 // 2. ask the user if he wants to add the request sender as a friend;
                 // 3. If yes, add a new record in AddFriend;
                 //self.oneFriend=aFriend;
@@ -727,7 +735,7 @@ extern NSString* LocalImagePlist;
                                              [FriendList AddOneFriend:self.oneFriend.to_user
                                                            Permission:[NSNumber numberWithInteger:PermissionForFamily]
                                                            Controller:self
-                                                              Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
+                                                              Initial:[NSNumber numberWithInteger:AddFriendRequestBack]
                                               ];
                                          }];
                     UIAlertAction* cloakedloc = [UIAlertAction
@@ -740,7 +748,7 @@ extern NSString* LocalImagePlist;
                                                   [FriendList AddOneFriend:self.oneFriend.to_user
                                                                 Permission:[NSNumber numberWithInteger:PermissionForFriends]
                                                                 Controller:self
-                                                                   Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
+                                                                   Initial:[NSNumber numberWithInteger:AddFriendRequestBack]
                                                    ];
                                               }];
                     UIAlertAction* cancel = [UIAlertAction

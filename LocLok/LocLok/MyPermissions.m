@@ -15,7 +15,9 @@
 @property (nonatomic, retain) UIFont * cellFont2;
 @end
 
-
+extern NSString* const strPermissionTrueLocation;
+extern NSString* const strPermissionCloakedLocation;
+extern NSString* const strPermissionNoLocation;
 
 @implementation MyPermissions
 
@@ -104,8 +106,19 @@
     
             cell.textLabel.textColor = [UIColor blackColor];
             cell.detailTextLabel.textColor=[UIColor blackColor];
-            cell.detailTextLabel.text=[aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
-            
+    
+            //cell.detailTextLabel.text=[aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
+            if([aFriend.permission integerValue]==PermissionForFamily){
+                cell.detailTextLabel.text=strPermissionTrueLocation;
+            }
+            if([aFriend.permission integerValue]==PermissionForFriends){
+                cell.detailTextLabel.text=strPermissionCloakedLocation;
+            }
+            if([aFriend.permission integerValue]==PermissionForNoLoc){
+                cell.detailTextLabel.text=strPermissionNoLocation;
+            }
+    
+    
             //The icon on the right side of a row;
             //cell.accessoryType = UITableViewCellAccessoryNone;
             UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
@@ -157,7 +170,7 @@
                                   message:message
                                   preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* left = [UIAlertAction
+    UIAlertAction* cancel = [UIAlertAction
                            actionWithTitle:@"Cancel"
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
@@ -165,7 +178,7 @@
                                [alert dismissViewControllerAnimated:YES completion:nil];
                                
                            }];
-    UIAlertAction* middle = [UIAlertAction
+    UIAlertAction* true_loc = [UIAlertAction
                             actionWithTitle:@"True Loc"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action)
@@ -183,7 +196,7 @@
                                 [alert dismissViewControllerAnimated:YES completion:nil];
                                 
                             }];
-    UIAlertAction* right = [UIAlertAction
+    UIAlertAction* cloaked_loc = [UIAlertAction
                             actionWithTitle:@"Cloaked Loc"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action)
@@ -201,13 +214,44 @@
                                 [alert dismissViewControllerAnimated:YES completion:nil];
                                 
                             }];
+    UIAlertAction* no_loc = [UIAlertAction
+                                  actionWithTitle:@"No Loc"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      //
+                                      
+                                      
+                                      [FriendList AddOneFriend:aFriend.to_user
+                                                    Permission:[NSNumber numberWithInteger:PermissionForNoLoc]
+                                                    Controller:self
+                                                       Initial:[NSNumber numberWithInteger:AddFriendModifyPermission]
+                                       ];
+                                      
+                                      
+                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
     
-    [alert addAction:left];
-    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:@"true location"]){
-        [alert addAction:right];
+    [alert addAction:cancel];
+//    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
+//        [alert addAction:right];
+//    }
+//    else{
+//        [alert addAction:middle];
+//    }
+//    
+    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
+        [alert addAction:cloaked_loc];
+        [alert addAction:no_loc];
     }
-    else{
-        [alert addAction:middle];
+    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionCloakedLocation]){
+        [alert addAction:true_loc];
+        [alert addAction:no_loc];
+    }
+    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionNoLocation]){
+        [alert addAction:true_loc];
+        [alert addAction:cloaked_loc];
     }
     
     [self presentViewController:alert animated:YES completion:nil];

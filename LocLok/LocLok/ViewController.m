@@ -21,6 +21,7 @@ extern NSString*  realtimelocationUpdateNotification;//locatioin updates from fr
 extern NSString *LocalImagePlist;
 extern NSString* InAppSuccessfulLoginNotification;
 extern NSString* FBSuccessfulLoginNotification;
+extern NSString* fListFrdLocationsLoadingCompletetion;
 
 @interface ViewController ()
 //@property (nonatomic, retain) id<KCSStore> updateStore;
@@ -32,7 +33,7 @@ extern NSString* FBSuccessfulLoginNotification;
 @synthesize mapView,navigationBar;//,locManager;
 //@synthesize maskView;//rect overlay
 //@synthesize lastUpdateTime;//,dateFormatter;
-@synthesize leftTableView,rightTableView;
+@synthesize leftTableView,rightTableView,finishedFrdLocations;
 @synthesize showFriends,countLocationUpdates,selfLocAnnotation,selfLokAnnotation,selfLokOverlay,frdAnnotations,frdRegions;
 
 
@@ -76,6 +77,7 @@ extern NSString* FBSuccessfulLoginNotification;
      @{NSForegroundColorAttributeName:[UIColor purpleColor]}];
     //self.title=@"LocLok";
     self.navigationItem.title=@"LocLok";
+    
     
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:0.4];
@@ -186,7 +188,7 @@ extern NSString* FBSuccessfulLoginNotification;
     //add friend list here;
     self.leftTableView=[[UITableView alloc] init];
     self.leftTableView.hidden=NO;
-    self.leftTableView.frame=CGRectMake(-160, 20+44, 160, self.view.bounds.size.height);
+    self.leftTableView.frame=CGRectMake(-160, 20+44, 160, self.view.bounds.size.height-20-44-49);
     //self.notifTable.style=UITableViewStylePlain;
     [self.view addSubview:self.leftTableView ];
     //self.resultTable.=bgColor;
@@ -274,13 +276,18 @@ extern NSString* FBSuccessfulLoginNotification;
      ];
     
     
-    countLocationUpdates=[NSNumber numberWithInt:0];
+//    countLocationUpdates=[NSNumber numberWithInt:0];
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver:self selector:@selector(drawFriendsLocations)
+//     name:realtimelocationUpdateNotification
+//     object:nil
+//     ];
+    
     [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(drawFriendsLocations)
-     name:realtimelocationUpdateNotification
+     addObserver:self selector:@selector(prepareToDrawFriendsLocations)
+     name:fListFrdLocationsLoadingCompletetion
      object:nil
      ];
-    
     
     
 }
@@ -511,6 +518,12 @@ extern NSString* FBSuccessfulLoginNotification;
                              CGRect frame = self.leftTableView.frame;
                              frame.origin.x=-160;//makeAnimation
                              self.leftTableView.frame=frame;
+                             
+                             //also mvoe mapView
+//                             frame=self.mapView.frame;
+//                             frame.origin.x=0;
+//                             frame.size.width=self.view.frame.size.width;
+//                             self.mapView.frame=frame;
                          }
                          completion:^(BOOL finished){
                              
@@ -563,6 +576,12 @@ extern NSString* FBSuccessfulLoginNotification;
                          CGRect frame = self.leftTableView.frame;
                          frame.origin.x=-14;//makeAnimation
                          self.leftTableView.frame=frame;
+                         
+                         //also mvoe mapView
+//                         frame=self.mapView.frame;
+//                         frame.origin.x=160-14;
+//                         frame.size.width=self.view.frame.size.width-160+14;
+//                         self.mapView.frame=frame;
                      }
                      completion:^(BOOL finished){
                          
@@ -574,8 +593,8 @@ extern NSString* FBSuccessfulLoginNotification;
     
     
     //update realtime locations of friends;
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate.fList updateLocations];
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    [appDelegate.fList updateLocations];
 }
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -635,6 +654,8 @@ extern NSString* FBSuccessfulLoginNotification;
     if([KCSUser activeUser]){
         appDelegate.fList=[appDelegate.fList loadWithID:[[KCSUser activeUser] userId ]];}
     //[appDelegate.locManager startUpdatingLocation];
+    
+    //finishedFrdLocations=[NSNumber numberWithInteger:0];
     
     //Also update friends' locations;
     //[self toggleUpdate];
@@ -702,6 +723,7 @@ extern NSString* FBSuccessfulLoginNotification;
 
 -(IBAction)toggleUpdate{//should update friends' locations;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    finishedFrdLocations=[NSNumber numberWithInteger:0];
     [appDelegate.fList  updateLocations];
     
     [mapView removeAnnotations:mapView.annotations];
@@ -736,6 +758,17 @@ extern NSString* FBSuccessfulLoginNotification;
     
 }
 
+-(void)prepareToDrawFriendsLocations{
+    AppDelegate *appDelegate = [[UIApplication  sharedApplication] delegate];
+    finishedFrdLocations=[NSNumber numberWithInteger:[finishedFrdLocations integerValue]+1];
+    //NSLog(@"finished frdLoc=%ld", [finishedFrdLocations integerValue]);
+    
+    if([finishedFrdLocations integerValue]==appDelegate.fList.friends.count){
+        finishedFrdLocations=[NSNumber numberWithInteger:0];
+        [self drawFriendsLocations];
+    }
+    
+}
 
 -(void)drawFriendsLocations{//after receiving location updates, draw friends' locations on map;
     
@@ -777,6 +810,11 @@ extern NSString* FBSuccessfulLoginNotification;
             LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
             if(frdLoc!=nil && ![frdLoc isKindOfClass:[NSNull class]]){
                 frd1.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: frdLoc.userDate];
+                if([[[appDelegate.fList.friends objectAtIndex:i] permission] integerValue]==PermissionForFamily){
+                    //1 Meter per Second = 2.236936 Miles per Hour
+                    frd1.thumbnail.subtitle=[[[frd1.thumbnail.subtitle stringByAppendingString:@"\nSpeed: "] stringByAppendingString:[frdLoc.speed longValue]>0?[NSString stringWithFormat:@"%.01f", [frdLoc.speed longValue]*2.236936 ]:@"0.0"]
+                    stringByAppendingString:@" mph"];
+                }
                 frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
                 
                 
@@ -785,13 +823,25 @@ extern NSString* FBSuccessfulLoginNotification;
                 c1.title=annotation1.title;
                 [frdRegions addObject:c1];
                 
+                [frd1 updateThumbnail:frd1.thumbnail animated:YES];
+                
             }
             else{//when frdLoc is null;
+                
+                //change frd1 to other annotation class;
+                MKPointAnnotation *frd1 = [[MKPointAnnotation alloc] init];
+                
+                frd1.coordinate = appDelegate.latestTrueLocation.coordinate;
+                frd1.title = nil;
+                frd1.subtitle = nil;
+                //frd1.thumbnail.subtitle=nil;
+                //frd1.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
+                //frd1.thumbnail.image=nil;
                 MKCircle* c2=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate radius:0];
                 c2.title=annotation1.title;
                 [frdRegions addObject:c2];
             }
-            [frd1 updateThumbnail:frd1.thumbnail animated:YES];
+            
             [frdAnnotations addObject:frd1];
             //[self.mapView addAnnotation:frd1];
         }//for loop;
@@ -813,10 +863,10 @@ extern NSString* FBSuccessfulLoginNotification;
 //        }
         
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        //dispatch_async(dispatch_get_main_queue(), ^{
         [self.mapView addAnnotations:frdAnnotations];
         [self.mapView addOverlays:frdRegions];
-        });
+        //});
         
         
         //for(int i=0;i<mapView.annotations.count;i++){
@@ -835,23 +885,23 @@ extern NSString* FBSuccessfulLoginNotification;
     //start to draw locations;
     //dispatch_async( dispatch_get_main_queue(), ^{
 
-        for(int i=0;i<appDelegate.fList.friends.count;i++){
-            LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
-            if(frdLoc!=nil && ![frdLoc isKindOfClass:[NSNull class]]){
-                YXThumbnailAnnotation* frd1=[frdAnnotations objectAtIndex:i];
-                frd1.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: frdLoc.userDate];
-                frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
-                //frd1.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "] stringByAppendingString:[[KCSUser activeUser] surname] ];
-                [frd1 updateThumbnail:frd1.thumbnail animated:YES];
-                [frd1 setCoordinate:frd1.thumbnail.coordinate];
-                /* change the location of MKCircle, not sure if this works
-                 http://stackoverflow.com/questions/4759317/moving-mkcircle-in-mkmapview
-                 */
-                MKCircle *cir=[frdRegions objectAtIndex:i];
-                [cir setCoordinate:frd1.thumbnail.coordinate];
-            }
-            
-        }
+//        for(int i=0;i<appDelegate.fList.friends.count;i++){
+//            LocSeries* frdLoc=[appDelegate.fList.frdLocations objectAtIndex:i];
+//            if(frdLoc!=nil && ![frdLoc isKindOfClass:[NSNull class]]){
+//                YXThumbnailAnnotation* frd1=[frdAnnotations objectAtIndex:i];
+//                frd1.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: frdLoc.userDate];
+//                frd1.thumbnail.coordinate=[CLLocation locationFromKinveyValue:frdLoc.location].coordinate;
+//                //frd1.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "] stringByAppendingString:[[KCSUser activeUser] surname] ];
+//                [frd1 updateThumbnail:frd1.thumbnail animated:YES];
+//                [frd1 setCoordinate:frd1.thumbnail.coordinate];
+//                /* change the location of MKCircle, not sure if this works
+//                 http://stackoverflow.com/questions/4759317/moving-mkcircle-in-mkmapview
+//                 */
+//                MKCircle *cir=[frdRegions objectAtIndex:i];
+//                [cir setCoordinate:frd1.thumbnail.coordinate];
+//            }
+//            
+//        }
         //[mapView showAnnotations:frdAnnotations animated:YES];
     //});
     }
@@ -1209,7 +1259,7 @@ extern NSString* FBSuccessfulLoginNotification;
     if([aFriend.permission integerValue]==PermissionForFamily){
         myRequest.MeetEventStatus=[NSNumber numberWithInteger:MeetEventNotice];
     }
-    if([aFriend.permission integerValue]==PermissionForFriends){
+    if([aFriend.permission integerValue]==PermissionForFriends || [aFriend.permission integerValue]==PermissionForNoLoc){
         myRequest.MeetEventStatus=[NSNumber numberWithInteger:MeetEventRequest];
     }
     myRequest.start_time=[NSDate date];

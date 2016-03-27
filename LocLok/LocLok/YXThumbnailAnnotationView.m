@@ -79,9 +79,10 @@ static CGFloat const kYXThumbnailAnnotationViewAnimationDuration = 0.15f;
 }
 
 - (void)setupSubtitleLabel {
-    _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(-32.0f, 36.0f, 168.0f, 20.0f)];
+    _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(-32.0f, 36.0f, 168.0f, 24.0f)];
     _subtitleLabel.textColor = [UIColor darkGrayColor];
-    _subtitleLabel.font = [UIFont systemFontOfSize:12.0f];
+    _subtitleLabel.font = [UIFont systemFontOfSize:10.0f];
+    _subtitleLabel.numberOfLines=2;
     [self addSubview:_subtitleLabel];
 }
 
