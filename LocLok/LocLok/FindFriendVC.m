@@ -173,7 +173,7 @@ extern NSString* LocalImagePlist;
     //UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     welcomeLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+40, width, boxHeight) ];
     welcomeLabel.textAlignment =  UITextAlignmentCenter;
-    welcomeLabel.textColor = [UIColor blueColor];
+    welcomeLabel.textColor = [UIColor purpleColor];
     welcomeLabel.backgroundColor = bgColor;
     welcomeLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:20];
     [self.view addSubview:welcomeLabel];
@@ -227,12 +227,12 @@ extern NSString* LocalImagePlist;
     self.searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.searchButton.frame = CGRectMake(20, initialHeight+200, width-40, boxHeight);
     [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
-    self.searchButton.backgroundColor = bgColor3;
+    self.searchButton.backgroundColor = bgColor4;
     [self.searchButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal ];
     self.searchButton.titleLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:16];
     self.searchButton.clipsToBounds = YES;
     self.searchButton.layer.cornerRadius = 6;//half of the width
-    self.searchButton.layer.borderColor=bgColor4.CGColor;
+    self.searchButton.layer.borderColor=bgColor2.CGColor;
     self.searchButton.layer.borderWidth=0.7f;
     //self.loginButton.contentEdgeInsets=
     /*UIImage *buttonImageNormal = [UIImage imageNamed:@"blueButton.png"];

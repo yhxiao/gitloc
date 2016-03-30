@@ -49,5 +49,8 @@ double GenGammaRV99(float radius);//radius is the circle containing 99% probabil
 double GenGammaRV59(float radius);
 double GenRandomU01();
 double quantile_radius(int percentage,float R);
+
++ (UIImage*)imageWithImage:(UIImage*)image
+              scaledToSize:(CGSize)newSize;
 @end
 

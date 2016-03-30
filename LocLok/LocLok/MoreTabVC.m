@@ -68,9 +68,9 @@
     self.title=@"More";
 	// Do any additional setup after loading the view.
     CGRect viewRect=CGRectMake(self.view.bounds.origin.x,
-                               self.view.bounds.origin.y+20,
+                               self.view.bounds.origin.y,
                                self.view.bounds.size.width,
-                               self.view.bounds.size.height-[[self tabBarController] tabBar].frame.size.height-20
+                               self.view.bounds.size.height-[[self tabBarController] tabBar].frame.size.height
     );
     //self.MoreTableView.frame=mapRect;
     self.MoreTableView = [[UITableView alloc] initWithFrame:viewRect style:UITableViewStyleGrouped];
@@ -213,6 +213,121 @@
     if([cell.textLabel.text isEqualToString:@"Update Info"] || [cell.textLabel.text isEqualToString:@"Find Friends"] || [cell.textLabel.text isEqualToString:@"Friends' Permissions of Me"] || [cell.textLabel.text isEqualToString:@"My Permissions of Friends"] || [cell.textLabel.text isEqualToString:@"About LocLok"]){
         cell.textLabel.textColor=[UIColor blackColor];
     }
+    
+    NSString* strIconName;
+    switch(indexPath.section){
+        case 0:{
+            switch (indexPath.row) {
+                case 0:{//My History
+                    strIconName=@"Query";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                case 1:{//Update Info;
+                    strIconName=@"Update_info2";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 44)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                case 2:{
+                    strIconName=@"Notification_setting";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 44)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                case 3:{
+                    strIconName=@"Save_Battery";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 44)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+            
+            break;
+            
+        case 1:{
+            switch (indexPath.row) {
+                case 0:{//Find Friends;
+                    strIconName=@"Find_friends2";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 30)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                case 1:{//Friends' permissions of me;
+                    strIconName=@"Friends_permission_me2";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 30)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                    
+                case 2:{//my permissions of friends;
+                    strIconName=@"My_permission_friends2";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 30)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+            
+            break;
+            
+        case 2:{
+            switch(indexPath.row){
+                case 0:{
+                    strIconName=@"My_statistics";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 30)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                case 1:{
+                    strIconName=@"My_privacy";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 30, 30)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+            
+            break;
+            
+        case 3:{
+            switch (indexPath.row) {
+                case 0:{
+                    strIconName=@"About_this_app2";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                case 1:{
+                    strIconName=@"Logout2";
+                    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
+                    [cell.imageView  setImage:[UIImage imageNamed:strIconName]];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+            
+            break;
+        default:
+            break;
+            
+    }
+    
+    
     
     return cell;
 }

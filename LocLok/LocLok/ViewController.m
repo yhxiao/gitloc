@@ -105,23 +105,36 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
     }
     
     
-    
-    
-    
-    
-    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+//                                              initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Reload2.png"]]
+//                                              ];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Refresh"
-                                              style:UIBarButtonItemStyleBordered
+                                              //initWithImage:[CommonFunctions imageWithImage:[UIImage imageNamed:@"Reload2-40@2x.png"] scaledToSize:CGSizeMake(20,20)]
+                                              initWithImage:[UIImage imageNamed:@"Reload2"]
+                                              style:UIBarButtonItemStylePlain
                                               target:self
-                                              action:@selector(toggleUpdate)];
-    
+                                              action:@selector(toggleUpdate)
+                                              ];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
-                                           initWithTitle:@"Friends"
-                                           style:UIBarButtonItemStyleBordered
+                                           //initWithImage:[CommonFunctions imageWithImage:[UIImage imageNamed:@"Friends2.png"] scaledToSize:CGSizeMake(30,30)]
+                                           initWithImage:[UIImage imageNamed:@"Friends2"]
+                                           style:UIBarButtonItemStylePlain
                                            target:self
                                            action:@selector(leftTVTapped)];
+    
+//    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+//                                              initWithTitle:@"Refresh"
+//                                              style:UIBarButtonItemStyleBordered
+//                                              target:self
+//                                              action:@selector(toggleUpdate)];
+//    
+//    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]
+//                                           initWithTitle:@"Friends"
+//                                           style:UIBarButtonItemStyleBordered
+//                                           target:self
+//                                           action:@selector(leftTVTapped)];
     
     
     
@@ -445,7 +458,7 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
     if ([overlay isKindOfClass:MKCircle.class]) {
         MKCircleRenderer *circleView = [[MKCircleRenderer alloc] initWithOverlay:overlay];
         circleView.strokeColor = [UIColor blueColor];
-        circleView.alpha=0.1;
+        circleView.alpha=0.08;
         circleView.fillColor=[UIColor blueColor];
         circleView.lineWidth=2.0;
         return circleView;
@@ -1038,7 +1051,7 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
             
             //The icon on the right side of a row;
             //cell.accessoryType = UITableViewCellAccessoryNone;
-            UIImage *image =  [UIImage imageNamed:@"Meeting-96.png"] ;
+            UIImage *image =  [UIImage imageNamed:@"Meeting2.png"] ;
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             CGRect frame = CGRectMake(0.0, 0.0, 24, 24);

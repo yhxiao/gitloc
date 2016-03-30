@@ -50,6 +50,7 @@
 @property (nonatomic) LKActivityMode ActivityMode;
 @property (nonatomic, retain, nullable) LKLocationManager *locationManager;
 @property (nonatomic)NSInteger badgeCount;
+@property (nonatomic)BOOL myInProgressMeeting;//
 @property (nonatomic, retain, nullable)MeetEvent* myMeetEvent;//only a temporary variable;
 
 - (void)sessionStateChanged:(FBSDKLoginManagerLoginResult*)result

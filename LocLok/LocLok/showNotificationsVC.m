@@ -72,16 +72,16 @@ extern NSString* LocalImagePlist;
     self.cellFont=[ UIFont fontWithName: @"Arial" size: 10 ];
     self.cellFont2=[ UIFont fontWithName: @"Arial" size: 8 ];
     
-    CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
+//    CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
     
-    UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:fullScreenRect];
-    
-    int width=self.view.bounds.size.width;
-    int height=self.view.bounds.size.height;
-    scrollView.contentSize=CGSizeMake(width,height);
-    scrollView.backgroundColor=[UIColor whiteColor];
-    
-    self.view=scrollView;
+//    UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:fullScreenRect];
+//    
+//    int width=self.view.bounds.size.width;
+//    int height=self.view.bounds.size.height;
+//    scrollView.contentSize=CGSizeMake(width,height);
+//    scrollView.backgroundColor=[UIColor whiteColor];
+//    
+//    self.view=scrollView;
     
 //    KCSCollection* collection = [KCSCollection collectionFromString:@"AddFriend"
 //                                                            ofClass:[AddFriends class]
@@ -135,9 +135,13 @@ extern NSString* LocalImagePlist;
 //                                                              }
 //               ];
     
-    
+    CGRect viewRect=CGRectMake(self.view.bounds.origin.x,
+                               self.view.bounds.origin.y+20+44,
+                               self.view.bounds.size.width,
+                               self.view.bounds.size.height-20-44-49
+                               );
     self.notifTable=[[UITableView alloc] init];
-    self.notifTable.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    self.notifTable.frame=viewRect;
     //self.notifTable.style=UITableViewStylePlain;
     
     //self.notifTable.translatesAutoresizingMaskIntoConstraints = NO;
@@ -695,7 +699,7 @@ extern NSString* LocalImagePlist;
              ];
             
             BOOL has_this_friend=NO;
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             for(NSInteger i=0;i<appDelegate.fList.friends.count;i++){
                 
                 Friendship *myFriend=[appDelegate.fList.friends objectAtIndex:i];
@@ -801,6 +805,26 @@ extern NSString* LocalImagePlist;
             KCSUser* meetUser=[aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]?aMeeting.to_user:aMeeting.from_user;
             
             if([aMeeting.MeetEventStatus integerValue]==MeetEventRequest && [aMeeting.to_user.userId isEqualToString:[KCSUser activeUser].userId]){//request to me;
+                if([appDelegate.privacy.SharingSwitch boolValue]==NO){
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@""
+                                                  message:@"Please enable location function in \"My Privacy\" page."
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* left = [UIAlertAction
+                                           actionWithTitle:@"OK"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action)
+                                           {
+                                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                               
+                                           }];
+                    
+                    [alert addAction:left];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                else{
                 UIAlertController * alert=   [UIAlertController
                                               alertControllerWithTitle:@""
                                               message:[[@"Agree to meet with "
@@ -832,6 +856,7 @@ extern NSString* LocalImagePlist;
                 [alert addAction:right];
                 
                 [self presentViewController:alert animated:YES completion:nil];
+                }
             }
         }
         

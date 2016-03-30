@@ -15,7 +15,7 @@ extern NSString * LocLok_Version;
 
 - (void)viewDidLoad
 {
-    UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
+    UIColor *bgColor=[UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     //UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
     //UIColor *bgColor3=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2];
     //UIColor *bgColor4=[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1];
@@ -34,7 +34,7 @@ extern NSString * LocLok_Version;
     //UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UILabel *welcomeLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, initialHeight+34, width, boxHeight) ];
     welcomeLabel.textAlignment =  NSTextAlignmentCenter;
-    welcomeLabel.textColor = [UIColor whiteColor];
+    welcomeLabel.textColor = [UIColor purpleColor];
     welcomeLabel.backgroundColor = bgColor;
     welcomeLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
     [self.view addSubview:welcomeLabel];
@@ -42,7 +42,7 @@ extern NSString * LocLok_Version;
     
     UILabel *versionLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(100, initialHeight+70, width-100, boxHeight/2) ];
     versionLabel.textAlignment =  NSTextAlignmentCenter;
-    versionLabel.textColor = [UIColor whiteColor];
+    versionLabel.textColor = [UIColor purpleColor];
     versionLabel.backgroundColor = bgColor;
     versionLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:12];
     [self.view addSubview:versionLabel];
@@ -50,7 +50,7 @@ extern NSString * LocLok_Version;
     
     UILabel *textLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(10, initialHeight+100, width-20, 300) ];
     textLabel.textAlignment =  NSTextAlignmentLeft;
-    textLabel.textColor = [UIColor whiteColor];
+    textLabel.textColor = [UIColor blackColor];
     textLabel.backgroundColor = bgColor;
     textLabel.font = [UIFont fontWithName:@"ArialMT" size:16];
     [self.view addSubview:textLabel];

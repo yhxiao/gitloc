@@ -354,7 +354,7 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
         Friendship* thisFriend=[self.friends objectAtIndex:i];
         MeetEvent* meet1=thisFriend.meetinglink;
         //for all the meeting friends;
-        if(meet1!=nil && [meet1.MeetEventStatus integerValue]<=MeetEventAgreed && [meet1.MeetEventStatus integerValue]>MeetEventFinished){
+        if(meet1!=nil && (([meet1.MeetEventStatus integerValue]<=MeetEventAgreed && [meet1.MeetEventStatus integerValue]>MeetEventFinished) || [meet1.MeetEventStatus integerValue]==MeetEventNotice)){
             locQuery=[KCSQuery queryOnField:@"owner"
                      withExactMatchForValue:[[[self.friends objectAtIndex:i] to_user] userId]
                       ];

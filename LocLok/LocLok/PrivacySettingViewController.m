@@ -32,8 +32,8 @@ extern NSString* GotPrivacySettingNotification;
 //@synthesize privStore;
 
 
-static NSString * strShareProtectedYES=@"Share protected locations: Yes";
-static NSString * strShareProtectedNO=@"Share protected locations: No";
+static NSString * strShareProtectedYES=@"Enable location function: Yes";
+static NSString * strShareProtectedNO=@"Enalble location function: No";
 static NSString * strShareTrueYES=@"Share true locations: Yes";
 static NSString * strShareTrueNO=@"Share true locations: No";
 static NSString * strRadiusEmpty=@"Radius of protected locations: ";
@@ -445,7 +445,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Trun On/Off LocLok"
-                                  message:@"If you turn this off, neither your true location nor your cloaked location will be shared with anyone. Your true location will not be recoreded either. Press Save afterward."
+                                  message:@"If you turn this off, neither your true location nor your cloaked location will be shared with anyone. Your true location will not be recoreded either. The meeting function does not work too. Press Save afterward."
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* ok = [UIAlertAction

@@ -13,7 +13,7 @@
 
 @synthesize window;
 //@synthesize sessionFacebook;
-@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,LKmode_high,latestTrueLocation,badgeCount,myMeetEvent,locationManager;
+@synthesize fList,privacy,dateFormatter,weekdayFormatter,timestampFormatter,LocSeriesStore,LokSeriesStore, activeLocationUntilWhen,latestPerturbedLocation,yearToDateFormatter,yearToSecondFormatter,timeDateFormatter,conditionMultipleDevices,flagSetPrimaryDevice,LKmode_active,ActivityMode,LKmode_inactive,LKmode_high,latestTrueLocation,badgeCount,myMeetEvent,locationManager,myInProgressMeeting;
 //@synthesize locManager;
 NSString *const FBSuccessfulLoginNotification =
 @"com.yxiao.Login:FBSessionStateChangedNotification";
@@ -211,7 +211,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //do receiving;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventAgreed){//agreed
         
-        [locationManager setOperationMode:LKmode_high];
+        //[locationManager setOperationMode:LKmode_high];
+        locationManager.locationUpdateInterval=60;
+        myInProgressMeeting=YES;
+        
         [self ReceiveAgreedMeeting:userInfo];
         
         if(application.applicationState == UIApplicationStateActive) {
@@ -335,7 +338,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
 //        else {//for LKActivityModeUnkown and LKActivityModeStationary, set default mode;
 //            [locationManager setOperationMode:LKmode_inactive];
 //        }
-        [locationManager setOperationMode:LKmode_inactive];
+        //[locationManager setOperationMode:LKmode_inactive];
+        locationManager.locationUpdateInterval=600;//10 minutes;
+        myInProgressMeeting=NO;
         
         myMeetEvent=nil;
         if(application.applicationState == UIApplicationStateActive) {
@@ -531,7 +536,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     //Start push service
     [KCSPush registerForPush];
-    
+    myInProgressMeeting=NO;
     
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
@@ -548,8 +553,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:3];
     UITabBarItem *tabBarItem4 = [tabBar.items objectAtIndex:4];
     
+    [tabBarItem0 setImage:[UIImage imageNamed:@"Main"]];
+    [tabBarItem0 setSelectedImage: [UIImage imageNamed:@"Main2"] ];
+    [tabBarItem1 setImage:[UIImage imageNamed:@"My_privacy"]];
+    [tabBarItem1 setSelectedImage: [UIImage imageNamed:@"My_privacy2"] ];
+    [tabBarItem2 setImage:[UIImage imageNamed:@"Notification"]];
+    [tabBarItem2 setSelectedImage: [UIImage imageNamed:@"Notification2"] ];
+    [tabBarItem3 setImage:[UIImage imageNamed:@"Query"]];
+    [tabBarItem3 setSelectedImage: [UIImage imageNamed:@"Query2"] ];
     
-    //[tabBarItem1 initWithTitle:@"My Privacy" image:[UIImage imageNamed:@"User-Shield.png"] selectedImage:[UIImage imageNamed:@"User-Shield.png"]];
+    
     
     
     /*Navigation Bar*/
@@ -828,7 +841,9 @@ forRemoteNotification:(NSDictionary *)userInfo
 -(void)AgreeMeetEventRequest:(NSDictionary *)userInfo{
     
     
-    [locationManager setOperationMode:LKmode_high];
+    //[locationManager setOperationMode:LKmode_high];
+    locationManager.locationUpdateInterval=60;
+    myInProgressMeeting=YES;
     
     id<KCSStore> meetStore=
     [KCSLinkedAppdataStore storeWithOptions:@{KCSStoreKeyCollectionName:@"MeetEvent",
@@ -2297,38 +2312,44 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     //test
     //[self addLocalNotificationsForLocationUpdating];
-    
-    if([self ShouldShareMyLocationOrNot] && [conditionMultipleDevices boolValue]){
-        //NSLog(@"Not Satisfying privacy policy to update self-location.");
-        //return;
-        /*
-        [locManager startUpdatingLocation];*/
-        /*[[LocationKit sharedInstance] getCurrentLocationWithHandler:^(CLLocation *location, NSError *error) {
-            if (error == nil) {
-                NSLog(@"%.6f, %.6f, %@",
-                      location.coordinate.latitude,
-                      location.coordinate.longitude,
-                      location.timestamp);
-            } else {
-                NSLog(@"Error: %@", error);
-            }
-            latestUpdatedLocation=location;
-        }];*/
-        //[self.locationManager startMonitoringVisits];
-        [self.locationManager startUpdatingLocation];
-        //[self.locationManager startMonitoringSignificantLocationChanges];
-        
+    if([privacy.SharingSwitch boolValue]==NO){
+        [self.locationManager stopUpdatingLocation];
     }
     else{
-        /*
-        [locManager stopUpdatingLocation];*/
-        
-        //[[LocationKit sharedInstance] pause];
-        //[self.locationManager startUpdatingLocation];
-        [self.locationManager stopUpdatingLocation];
-        //[self.locationManager stopMonitoringVisits];
-        //[self.locationManager stopMonitoringSignificantLocationChanges];
+        [self.locationManager startUpdatingLocation];
     }
+//    
+//    if([self ShouldShareMyLocationOrNot] && [conditionMultipleDevices boolValue]){
+//        //NSLog(@"Not Satisfying privacy policy to update self-location.");
+//        //return;
+//        /*
+//        [locManager startUpdatingLocation];*/
+//        /*[[LocationKit sharedInstance] getCurrentLocationWithHandler:^(CLLocation *location, NSError *error) {
+//            if (error == nil) {
+//                NSLog(@"%.6f, %.6f, %@",
+//                      location.coordinate.latitude,
+//                      location.coordinate.longitude,
+//                      location.timestamp);
+//            } else {
+//                NSLog(@"Error: %@", error);
+//            }
+//            latestUpdatedLocation=location;
+//        }];*/
+//        //[self.locationManager startMonitoringVisits];
+//        [self.locationManager startUpdatingLocation];
+//        //[self.locationManager startMonitoringSignificantLocationChanges];
+//        
+//    }
+//    else{
+//        /*
+//        [locManager stopUpdatingLocation];*/
+//        
+//        //[[LocationKit sharedInstance] pause];
+//        //[self.locationManager startUpdatingLocation];
+//        [self.locationManager stopUpdatingLocation];
+//        //[self.locationManager stopMonitoringVisits];
+//        //[self.locationManager stopMonitoringSignificantLocationChanges];
+//    }
 }
 
 -(void) stopUpdatingLocations{
@@ -2543,13 +2564,18 @@ forRemoteNotification:(NSDictionary *)userInfo
           [currentLocation distanceFromLocation:latestTrueLocation],
           currentLocation.horizontalAccuracy);
     
-    if([self ShouldShareMyLocationOrNot]){
-        //[[LocationKit sharedInstance] setOperationMode:LKmode_active];
-    }
-    else{
-        //[[LocationKit sharedInstance] setOperationMode:LKmode_inactive];
+//    if([self ShouldShareMyLocationOrNot] ){
+//        //[[LocationKit sharedInstance] setOperationMode:LKmode_active];
+//    }
+//    else{
+//        //[[LocationKit sharedInstance] setOperationMode:LKmode_inactive];
+//        return;
+//    }
+    BOOL shouldshareorNot=[self ShouldShareMyLocationOrNot];
+    if(!shouldshareorNot && myInProgressMeeting==NO){
         return;
     }
+    
     
     //if accuracy is not enough, reject this location;
     if(currentLocation.horizontalAccuracy<0 || currentLocation.horizontalAccuracy>200.0)return;
@@ -2576,7 +2602,7 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     //save perturbed location to lokSeries;
     //if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=100.0){
-    if(1){
+    if(shouldshareorNot){
     if([currentLocation distanceFromLocation:latestTrueLocation]>200  || latestPerturbedLocation==nil){//only update the perturbed location if movement>100m;
         LocSeries* perturbed = [[LocSeries alloc] init];
         perturbed.owner =[KCSUser activeUser].userId;
@@ -2636,7 +2662,7 @@ forRemoteNotification:(NSDictionary *)userInfo
     
     //save true location to backend
     //if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=200.0){
-    //if(1){
+    if(shouldshareorNot || myInProgressMeeting){
     //if([currentLocation distanceFromLocation:latestTrueLocation]>10 || latestTrueLocation==nil){
         //only update the true location if movement>10m;
         LocSeries* update = [[LocSeries alloc] init];
@@ -2684,7 +2710,8 @@ forRemoteNotification:(NSDictionary *)userInfo
              object:nil
              ];
         }
-    //}}
+    //}
+    }
     
     
     
