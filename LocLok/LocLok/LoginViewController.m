@@ -358,7 +358,7 @@ extern NSString* const InAppSuccessfulLoginNotification;
     welcomeLabel.backgroundColor = bgColor;
     welcomeLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
     [self.view addSubview:welcomeLabel];
-    welcomeLabel.text = @"LocLok";
+    welcomeLabel.text = @"LocLok\u2122";
     
     UILabel *orLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, initialHeight+200, width, 40) ];
     orLabel.textAlignment =  NSTextAlignmentCenter;

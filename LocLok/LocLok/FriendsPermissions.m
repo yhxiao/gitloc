@@ -52,7 +52,8 @@ NSString* const strPermissionNoLocation=@"no location";
                                                  name:inFriends_finished_Notification
                                                object:nil
      ];
-    
+//    self.tableView.dataSource=self;
+//    self.tableView.delegate=self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -184,18 +185,18 @@ NSString* const strPermissionNoLocation=@"no location";
     //cell.detailTextLabel.text=[aFriend.permission integerValue]==PermissionForFamily?@"true location":@"cloaked location";
     
     //The icon on the right side of a row;
-    //cell.accessoryType = UITableViewCellAccessoryNone;
-    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
-    button.frame = frame;
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor clearColor];
-    cell.accessoryView = button;
-    
+//    //cell.accessoryType = UITableViewCellAccessoryNone;
+//    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
+//    
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
+//    button.frame = frame;
+//    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    
+//    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
+//    button.backgroundColor = [UIColor clearColor];
+//    cell.accessoryView = button;
+    cell.accessoryType=UITableViewCellAccessoryDetailButton;
     
     
     
@@ -272,7 +273,16 @@ NSString* const strPermissionNoLocation=@"no location";
         return;
     }
     //trigger the delegate method accessoryButtonTappedForRowWithIndexPath;
-    //[self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     Friendship *aFriend=[appDelegate.fList.inFriends objectAtIndex:indexPath.row];
     
@@ -287,103 +297,103 @@ NSString* const strPermissionNoLocation=@"no location";
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* cancel = [UIAlertAction
-                           actionWithTitle:@"Cancel"
-                           style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action)
-                           {
-                               [alert dismissViewControllerAnimated:YES completion:nil];
-                               
-                           }];
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
     UIAlertAction* true_loc = [UIAlertAction
-                             actionWithTitle:@"True Loc"
+                               actionWithTitle:@"True Loc"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //run after this block is finished;
+                                   //                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                   //                                     aFriend.permission=[NSNumber numberWithInteger:PermissionForFamily];
+                                   //                                 //save permission;
+                                   //                                 [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                   //                                     if(errorOrNil==nil){
+                                   //
+                                   //                                         [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"true location";
+                                   //
+                                   //                                     }
+                                   //                                 } withProgressBlock:nil];
+                                   //                                 });
+                                   
+                                   //http://stackoverflow.com/questions/32341851/bsmacherror-xcode-7-beta
+                                   aFriend.permission=[NSNumber numberWithInteger:PermissionForFamily];
+                                   dispatch_after(0.2, dispatch_get_main_queue(), ^{
+                                       [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
+                                   });
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
+    UIAlertAction* cloaked_loc = [UIAlertAction
+                                  actionWithTitle:@"Cloaked Loc"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      //run after this block is finished;
+                                      //                                dispatch_async(dispatch_get_main_queue(), ^{
+                                      //
+                                      //                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends];
+                                      //                                //save permission;
+                                      //                                [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                      //                                    if(errorOrNil==nil){
+                                      //                                        [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"cloaked location";
+                                      //
+                                      //                                    }
+                                      //                                } withProgressBlock:nil];
+                                      //                                });
+                                      
+                                      aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends ];
+                                      dispatch_after(0.2, dispatch_get_main_queue(), ^{
+                                          [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
+                                      });
+                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+    
+    UIAlertAction* no_loc = [UIAlertAction
+                             actionWithTitle:@"No Loc"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
                                  //run after this block is finished;
-//                                 dispatch_async(dispatch_get_main_queue(), ^{
-//                                     aFriend.permission=[NSNumber numberWithInteger:PermissionForFamily];
-//                                 //save permission;
-//                                 [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-//                                     if(errorOrNil==nil){
-//                                         
-//                                         [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"true location";
-//                                         
-//                                     }
-//                                 } withProgressBlock:nil];
-//                                 });
+                                 //                                dispatch_async(dispatch_get_main_queue(), ^{
+                                 //
+                                 //                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends];
+                                 //                                //save permission;
+                                 //                                [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                                 //                                    if(errorOrNil==nil){
+                                 //                                        [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"cloaked location";
+                                 //
+                                 //                                    }
+                                 //                                } withProgressBlock:nil];
+                                 //                                });
                                  
-                                 //http://stackoverflow.com/questions/32341851/bsmacherror-xcode-7-beta
-                                 aFriend.permission=[NSNumber numberWithInteger:PermissionForFamily];
+                                 aFriend.permission=[NSNumber numberWithInteger:PermissionForNoLoc ];
                                  dispatch_after(0.2, dispatch_get_main_queue(), ^{
-                                 [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
+                                     [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
                                  });
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  
                              }];
-    UIAlertAction* cloaked_loc = [UIAlertAction
-                            actionWithTitle:@"Cloaked Loc"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                //run after this block is finished;
-//                                dispatch_async(dispatch_get_main_queue(), ^{
-//
-//                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends];
-//                                //save permission;
-//                                [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-//                                    if(errorOrNil==nil){
-//                                        [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"cloaked location";
-//                                        
-//                                    }
-//                                } withProgressBlock:nil];
-//                                });
-                                
-                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends ];
-                                dispatch_after(0.2, dispatch_get_main_queue(), ^{
-                                [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
-                                });
-                                [alert dismissViewControllerAnimated:YES completion:nil];
-                                
-                            }];
-    
-    UIAlertAction* no_loc = [UIAlertAction
-                            actionWithTitle:@"No Loc"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                //run after this block is finished;
-                                //                                dispatch_async(dispatch_get_main_queue(), ^{
-                                //
-                                //                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends];
-                                //                                //save permission;
-                                //                                [friendshipStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                                //                                    if(errorOrNil==nil){
-                                //                                        [self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text=@"cloaked location";
-                                //
-                                //                                    }
-                                //                                } withProgressBlock:nil];
-                                //                                });
-                                
-                                aFriend.permission=[NSNumber numberWithInteger:PermissionForNoLoc ];
-                                dispatch_after(0.2, dispatch_get_main_queue(), ^{
-                                    [self saveModifiedFriendship:aFriend withIndexPath:indexPath];
-                                });
-                                [alert dismissViewControllerAnimated:YES completion:nil];
-                                
-                            }];
     
     UIAlertAction* unFriend = [UIAlertAction
-                            actionWithTitle:@"Remove this friend"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends ];
-                                dispatch_after(0.2, dispatch_get_main_queue(), ^{
-                                    [self deleteFriendship:aFriend withIndexPath:indexPath];
-                                });
-                                [alert dismissViewControllerAnimated:YES completion:nil];
-                                
-                            }];
+                               actionWithTitle:@"Remove this friend"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   aFriend.permission=[NSNumber numberWithInteger:PermissionForFriends ];
+                                   dispatch_after(0.2, dispatch_get_main_queue(), ^{
+                                       [self deleteFriendship:aFriend withIndexPath:indexPath];
+                                   });
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
     
     [alert addAction:cancel];
     if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
@@ -401,11 +411,6 @@ NSString* const strPermissionNoLocation=@"no location";
     [alert addAction:unFriend];
     
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -209,7 +209,7 @@
         MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc]
                                               initWithAnnotation:annotation reuseIdentifier:annotation.title];
         customPinView.pinColor = MKPinAnnotationColorPurple;
-        customPinView.animatesDrop = YES;
+        customPinView.animatesDrop = NO;
         customPinView.canShowCallout = YES;
         
         // add a detail disclosure button to the callout which will open a new view controller page

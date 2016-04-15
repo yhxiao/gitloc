@@ -31,6 +31,13 @@ extern NSString * LocLok_Version;
     //height=self.view.bounds.size.height;
     
 
+//    UILabel *TMLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, initialHeight+34, width, boxHeight) ];
+//    TMLabel.textAlignment =  NSTextAlignmentCenter;
+//    TMLabel.textColor = [UIColor purpleColor];
+//    TMLabel.backgroundColor = bgColor;
+//    TMLabel.font = [UIFont fontWithName:@"Verdana" size:10];
+//    [self.view addSubview:TMLabel];
+//    TMLabel.text = @"                          TM";
     //UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UILabel *welcomeLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, initialHeight+34, width, boxHeight) ];
     welcomeLabel.textAlignment =  NSTextAlignmentCenter;
@@ -38,15 +45,17 @@ extern NSString * LocLok_Version;
     welcomeLabel.backgroundColor = bgColor;
     welcomeLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:36];
     [self.view addSubview:welcomeLabel];
-    welcomeLabel.text = @"LocLok";
+    welcomeLabel.text = @"LocLok\u2122";
     
-    UILabel *versionLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(100, initialHeight+70, width-100, boxHeight/2) ];
+    
+    
+    UILabel *versionLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(200, initialHeight+70, width-100, boxHeight/2) ];
     versionLabel.textAlignment =  NSTextAlignmentCenter;
     versionLabel.textColor = [UIColor purpleColor];
     versionLabel.backgroundColor = bgColor;
     versionLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:12];
     [self.view addSubview:versionLabel];
-    versionLabel.text = [@"Version: Beta Test " stringByAppendingString:LocLok_Version];
+    versionLabel.text = [@"Version: " stringByAppendingString:LocLok_Version];
     
     UILabel *textLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(10, initialHeight+100, width-20, 300) ];
     textLabel.textAlignment =  NSTextAlignmentLeft;
@@ -57,7 +66,7 @@ extern NSString * LocLok_Version;
     textLabel.adjustsFontSizeToFitWidth=NO;
     textLabel.numberOfLines=0;
     textLabel.lineBreakMode=NSLineBreakByClipping;
-    textLabel.text = @"Thanks for testing LocLok. LocLok stands for \"location cloaking\", which is a term used in location privacy protection. We have been working on data security and privacy for many years, and LocLok is the first mobile app that enables private location sharing. We are highly dedicated to making LocLok for everyone to use. Please feel free to contact us if you have any comments or suggestions. \n\n Author: Yonghui Xiao (http://yxiao.info) \n Contact: yhandxiao@gmail.com \n Acknowledgement: Li Xiong, Kyutae Lim";
+    textLabel.text = @"Thanks for using LocLok. LocLok stands for \"location cloaking\", which is a term used in location privacy protection. We have been working on data security and privacy for many years, and LocLok is the first mobile app that enables \"differential privacy\" for location sharing. We are highly dedicated to making LocLok for everyone to use. Please feel free to contact us if you have any comments or suggestions. \n\n Author: Yonghui Xiao (http://yxiao.info) \n Contact: yhandxiao@gmail.com \n Acknowledgement: Li Xiong, Kyutae Lim";
     
     
 }

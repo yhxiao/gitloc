@@ -161,7 +161,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     
     //share protected location ?
-    CGRect switchRect=CGRectMake(self.view.bounds.origin.x+260,self.view.bounds.origin.y+80,0,0);
+    CGRect switchRect=CGRectMake(self.view.bounds.origin.x+260,self.view.bounds.origin.y-40+80,0,0);
     sharing_switch=[[UISwitch alloc] initWithFrame:switchRect];
     //sharing_switch.transform = CGAffineTransformMakeScale(0.8, 0.8);
     [sharing_switch addTarget:self
@@ -171,7 +171,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     [self.scrollView addSubview:sharing_switch];
     
     labelShare = [ [UILabel alloc ]
-                  initWithFrame:CGRectMake(self.view.bounds.origin.x+10,self.view.bounds.origin.y+80,220,40)
+                  initWithFrame:CGRectMake(self.view.bounds.origin.x+10,self.view.bounds.origin.y-40+80,220,40)
     ];
     labelShare.textAlignment =  NSTextAlignmentLeft;
     labelShare.textColor = [UIColor blackColor];
@@ -192,7 +192,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     //Info image view;
     info2=[[UIImageView alloc] init];
     info2.image=[UIImage imageNamed:@"Info_light.png"];
-    info2.frame=CGRectMake(self.view.bounds.origin.x+229,self.view.bounds.origin.y+85,15,15);
+    info2.frame=CGRectMake(self.view.bounds.origin.x+229,self.view.bounds.origin.y-40+85,15,15);
     [self.scrollView addSubview:info2];
     UITapGestureRecognizer *recognizer2 = [[UITapGestureRecognizer alloc]
                                           initWithTarget:self
@@ -207,7 +207,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     //radius for protected location:
     labelRadius=[ [UILabel alloc ]
-                          initWithFrame:CGRectMake(self.view.bounds.origin.x+10,self.view.bounds.origin.y+120,self.view.bounds.size.width-20,40)
+                          initWithFrame:CGRectMake(self.view.bounds.origin.x+10,self.view.bounds.origin.y-40+120,self.view.bounds.size.width-20,40)
     ];
     labelRadius.textAlignment =  NSTextAlignmentLeft;
     labelRadius.textColor = [UIColor blackColor];
@@ -228,7 +228,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     //Info image view;
     info3=[[UIImageView alloc] init];
     info3.image=[UIImage imageNamed:@"Info_light.png"];
-    info3.frame=CGRectMake(self.view.bounds.origin.x+223,self.view.bounds.origin.y+125,15,15);
+    info3.frame=CGRectMake(self.view.bounds.origin.x+223,self.view.bounds.origin.y-40+125,15,15);
     [self.scrollView addSubview:info3];
     UITapGestureRecognizer *recognizer3 = [[UITapGestureRecognizer alloc]
                                           initWithTarget:self
@@ -242,7 +242,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     
     /*radius_text_mile=[[UITextField alloc] initWithFrame:
-            CGRectMake(self.view.bounds.origin.x+80, self.view.bounds.origin.y+160, 60, 30)
+            CGRectMake(self.view.bounds.origin.x+80, self.view.bounds.origin.y-40+160, 60, 30)
     ];
     radius_text_mile.borderStyle = UITextBorderStyleRoundedRect;
     radius_text_mile.font = [UIFont systemFontOfSize:16];
@@ -256,7 +256,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     [self.scrollView addSubview:radius_text_mile];
     
     radius_text_km=[[UITextField alloc] initWithFrame:
-                      CGRectMake(self.view.bounds.origin.x+180, self.view.bounds.origin.y+160, 60, 30)
+                      CGRectMake(self.view.bounds.origin.x+180, self.view.bounds.origin.y-40+160, 60, 30)
                       ];
     radius_text_km.borderStyle = UITextBorderStyleRoundedRect;
     radius_text_km.font = [UIFont systemFontOfSize:16];
@@ -272,7 +272,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     
     radius_slider_km=[[UISlider alloc] initWithFrame:
-        CGRectMake(self.view.bounds.origin.x+10, self.view.bounds.origin.y+160, self.view.bounds.size.width-20, 30)
+        CGRectMake(self.view.bounds.origin.x+10, self.view.bounds.origin.y-40+160, self.view.bounds.size.width-20, 30)
     ];
     
     [radius_slider_km addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
@@ -286,7 +286,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     //Edit rulesTable;
     labelEdit1=[ [UILabel alloc ]
-                 initWithFrame:CGRectMake(self.view.bounds.origin.x+10,self.view.bounds.origin.y+200,80,40)
+                 initWithFrame:CGRectMake(self.view.bounds.origin.x+10,self.view.bounds.origin.y-40+200,80,40)
                  ];
     labelEdit1.textAlignment =  NSTextAlignmentLeft;
     labelEdit1.textColor = [UIColor redColor];
@@ -305,7 +305,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     //Add a new row to rulesTable;
     labelAdd1=[ [UILabel alloc ]
-                initWithFrame:CGRectMake(self.view.bounds.size.width-100,self.view.bounds.origin.y+200,90,40)
+                initWithFrame:CGRectMake(self.view.bounds.size.width-100,self.view.bounds.origin.y-40+200,90,40)
                 ];
     labelAdd1.textAlignment =  NSTextAlignmentRight;
     labelAdd1.textColor = [UIColor redColor];
@@ -323,7 +323,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     [labelAdd1 addGestureRecognizer:recognizer_Add1];
     
     //a separate line;
-    CGRect sepFrame = CGRectMake(0, self.view.bounds.origin.y+199, self.view.bounds.size.width, 1);
+    CGRect sepFrame = CGRectMake(0, self.view.bounds.origin.y-40+199, self.view.bounds.size.width, 1);
     seperatorView = [[UIView alloc] initWithFrame:sepFrame];
     seperatorView.backgroundColor = [UIColor colorWithWhite:224.0/255.0 alpha:1.0];
     [self.scrollView addSubview:seperatorView];
@@ -914,7 +914,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     //radius_slider_km.value=appDelegate1.privacy.SharingRadius.floatValue/1000;
     //[self sliderAction:radius_slider_km];
-    self.rulesTableView.frame=CGRectMake(10, 240, scrollView.bounds.size.width-20,44*appDelegate1.privacy.SharingTime.count);
+    self.rulesTableView.frame=CGRectMake(10, self.view.bounds.origin.y+ 240-40, scrollView.bounds.size.width-20,44*appDelegate1.privacy.SharingTime.count);
     [self.rulesTableView reloadData];
     
     [sharing_switch setOn:appDelegate1.privacy.SharingSwitch.intValue==1];

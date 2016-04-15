@@ -883,13 +883,14 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
     KCSQuery *query2=[KCSQuery queryOnField:@"to_user._id"
                      withExactMatchForValue:[[KCSUser activeUser] userId]
                       ];
-    KCSQuery *query3=[KCSQuery queryOnField:@"status"
-                 usingConditionalsForValues:kKCSGreaterThan, [NSNumber numberWithInteger:MeetEventFinished], kKCSLessThan, [NSNumber numberWithInteger:MeetEventDeclined], nil];
-    //KCSQuery *query3=[KCSQuery queryOnField:@"MeetEventStatus"
-    //                  usingConditional:kKCSIn forValue:@[@"1",@"2",@"3",@"4",@"5"]
-    //                  ];
+//    KCSQuery *query3=[KCSQuery queryOnField:@"status"
+//                 usingConditionalsForValues:kKCSGreaterThan, [NSNumber numberWithInteger:MeetEventFinished], kKCSLessThan, [NSNumber numberWithInteger:MeetEventDeclined], nil];
+
+    KCSQuery *query4=[KCSQuery queryOnField:@"start_time" usingConditionalsForValues:kKCSGreaterThan, [NSDate dateWithTimeIntervalSinceNow:-86400], nil];//whitin 24 hours, 24*3600 seconds;
+    
     KCSQuery *query=[KCSQuery queryForJoiningOperator:kKCSOr onQueries:query1,query2,nil ];
-    [query addQuery:query3 ];
+    //[query addQuery:query3 ];
+    [query addQuery:query4];
     
     [query addSortModifier:[[KCSQuerySortModifier alloc] initWithField:KCSMetadataFieldLastModifiedTime inDirection:kKCSDescending]];
     
@@ -930,8 +931,8 @@ NSString* const inFriends_finished_Notification=@"Notification_query_frdCollecti
                        withExactMatchForValue:[KCSUser activeUser].userId
                         ];
     
-    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"from_surname" inDirection:kKCSAscending]];
     [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"from_givenName" inDirection:kKCSAscending]];
+    [query1 addSortModifier:[[KCSQuerySortModifier alloc] initWithField:@"from_surname" inDirection:kKCSAscending]];
     
     [frdStore queryWithQuery:query1 withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
         if(errorOrNil==nil){

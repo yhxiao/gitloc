@@ -211,6 +211,9 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
     //self.leftTableView.layoutMargins= UIEdgeInsetsMake(0, 0, 0, -20);
     self.leftTableView.separatorInset=UIEdgeInsetsZero;
     //self.leftTableView.contentInset= UIEdgeInsetsMake(0, 0, 0, 20);
+    CGRect frame = self.leftTableView.frame;
+    frame.origin.x=-160;//makeAnimation
+    self.leftTableView.frame=frame;
     self.leftTableView.delegate=self;
     self.leftTableView.dataSource=self;
     
@@ -580,7 +583,8 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
 //    
 //    self.leftTableView.frame = frame;
 //    [UIView commitAnimations];
-//    
+//
+    if(self.leftTableView.frame.origin.x==-160){
     [UIView animateWithDuration:0.3
                           delay:0
                         options: UIViewAnimationOptionCurveEaseOut
@@ -600,6 +604,31 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
                          
                      }
      ];
+        return;
+    }
+    if(self.leftTableView.frame.origin.x==-14){
+        
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options: UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             
+                             CGRect frame = self.leftTableView.frame;
+                             frame.origin.x=-160;//makeAnimation
+                             self.leftTableView.frame=frame;
+                             
+                             //also mvoe mapView
+                             //                             frame=self.mapView.frame;
+                             //                             frame.origin.x=0;
+                             //                             frame.size.width=self.view.frame.size.width;
+                             //                             self.mapView.frame=frame;
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }
+         ];
+        return;
+    }
     
 }
 -(void)loadLeftTV{
@@ -737,12 +766,18 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
 -(IBAction)toggleUpdate{//should update friends' locations;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     finishedFrdLocations=[NSNumber numberWithInteger:0];
-    [appDelegate.fList  updateLocations];
     
+    
+    
+    //this has to be put in front of updateLocations; otherwise it is possible that updated annotations will be removed;
     [mapView removeAnnotations:mapView.annotations];
     frdAnnotations=nil;
     [mapView removeOverlays:mapView.overlays];
     frdRegions=nil;
+    
+    
+    
+    [appDelegate.fList  updateLocations];
     
     
     //add self annotation;

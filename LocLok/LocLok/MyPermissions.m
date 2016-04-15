@@ -121,17 +121,17 @@ extern NSString* const strPermissionNoLocation;
     
             //The icon on the right side of a row;
             //cell.accessoryType = UITableViewCellAccessoryNone;
-            UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
-            
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
-            button.frame = frame;
-            [button setBackgroundImage:image forState:UIControlStateNormal];
-            
-            [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
-            button.backgroundColor = [UIColor clearColor];
-            cell.accessoryView = button;
-            
+//            UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
+//            
+//            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//            CGRect frame = CGRectMake(0.0, 0.0, 24, 24);
+//            button.frame = frame;
+//            [button setBackgroundImage:image forState:UIControlStateNormal];
+//            
+//            [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
+//            button.backgroundColor = [UIColor clearColor];
+//            cell.accessoryView = button;
+        cell.accessoryType=UITableViewCellAccessoryDetailButton;
     
         UIImage* profileImg=[CommonFunctions loadImageFromLocal:[aFriend.to_user userId]];
         [cell.imageView  setImage:profileImg==nil?[UIImage imageNamed:@"profile_default.png"]:profileImg];
@@ -156,7 +156,11 @@ extern NSString* const strPermissionNoLocation;
         return;
     }
     //trigger the delegate method accessoryButtonTappedForRowWithIndexPath;
-    //[self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     Friendship *aFriend=[appDelegate.fList.friends objectAtIndex:indexPath.row];
     
@@ -171,51 +175,33 @@ extern NSString* const strPermissionNoLocation;
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* cancel = [UIAlertAction
-                           actionWithTitle:@"Cancel"
-                           style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action)
-                           {
-                               [alert dismissViewControllerAnimated:YES completion:nil];
-                               
-                           }];
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
     UIAlertAction* true_loc = [UIAlertAction
-                            actionWithTitle:@"True Loc"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                //
-                                
-                                
-                                [FriendList AddOneFriend:aFriend.to_user
-                                              Permission:[NSNumber numberWithInteger:PermissionForFamily]
-                                              Controller:self
-                                            Initial:[NSNumber numberWithInteger:AddFriendModifyPermission]
-                                 ];
-                                
-                                
-                                [alert dismissViewControllerAnimated:YES completion:nil];
-                                
-                            }];
+                               actionWithTitle:@"True Loc"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //
+                                   
+                                   
+                                   [FriendList AddOneFriend:aFriend.to_user
+                                                 Permission:[NSNumber numberWithInteger:PermissionForFamily]
+                                                 Controller:self
+                                                    Initial:[NSNumber numberWithInteger:AddFriendModifyPermission]
+                                    ];
+                                   
+                                   
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                   
+                               }];
     UIAlertAction* cloaked_loc = [UIAlertAction
-                            actionWithTitle:@"Cloaked Loc"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                //
-                                
-                                
-                                [FriendList AddOneFriend:aFriend.to_user
-                                              Permission:[NSNumber numberWithInteger:PermissionForFriends]
-                                              Controller:self
-                                                 Initial:[NSNumber numberWithInteger:AddFriendModifyPermission]
-                                 ];
-                                
-                                
-                                [alert dismissViewControllerAnimated:YES completion:nil];
-                                
-                            }];
-    UIAlertAction* no_loc = [UIAlertAction
-                                  actionWithTitle:@"No Loc"
+                                  actionWithTitle:@"Cloaked Loc"
                                   style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction * action)
                                   {
@@ -223,7 +209,7 @@ extern NSString* const strPermissionNoLocation;
                                       
                                       
                                       [FriendList AddOneFriend:aFriend.to_user
-                                                    Permission:[NSNumber numberWithInteger:PermissionForNoLoc]
+                                                    Permission:[NSNumber numberWithInteger:PermissionForFriends]
                                                     Controller:self
                                                        Initial:[NSNumber numberWithInteger:AddFriendModifyPermission]
                                        ];
@@ -232,15 +218,33 @@ extern NSString* const strPermissionNoLocation;
                                       [alert dismissViewControllerAnimated:YES completion:nil];
                                       
                                   }];
+    UIAlertAction* no_loc = [UIAlertAction
+                             actionWithTitle:@"No Loc"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //
+                                 
+                                 
+                                 [FriendList AddOneFriend:aFriend.to_user
+                                               Permission:[NSNumber numberWithInteger:PermissionForNoLoc]
+                                               Controller:self
+                                                  Initial:[NSNumber numberWithInteger:AddFriendModifyPermission]
+                                  ];
+                                 
+                                 
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
     
     [alert addAction:cancel];
-//    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
-//        [alert addAction:right];
-//    }
-//    else{
-//        [alert addAction:middle];
-//    }
-//    
+    //    if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
+    //        [alert addAction:right];
+    //    }
+    //    else{
+    //        [alert addAction:middle];
+    //    }
+    //
     if([[self.tableView cellForRowAtIndexPath:indexPath].detailTextLabel.text isEqualToString:strPermissionTrueLocation]){
         [alert addAction:cloaked_loc];
         [alert addAction:no_loc];
@@ -256,7 +260,6 @@ extern NSString* const strPermissionNoLocation;
     
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;

@@ -188,7 +188,9 @@ extern NSString* LocalImagePlist;
     //serialQueue = dispatch_queue_create("com.yxiao.queue.serial", DISPATCH_QUEUE_SERIAL);
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    
+    appDelegate.badgeCount=0;
+    [[self navigationController] tabBarItem].badgeValue=nil;
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:appDelegate.badgeCount];
     
     self.oneFriend=[[AddFriends alloc] init];
 
@@ -373,6 +375,18 @@ extern NSString* LocalImagePlist;
         KCSUser* meetUser=[aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]?aMeeting.to_user:aMeeting.from_user;
         pImage=[CommonFunctions loadImageFromLocal:meetUser.userId];
         
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventDeclined){//decline to meet; 6;
+            cell.textLabel.text=[@"Meeting with " stringByAppendingString:
+                                 [[[[[meetUser.givenName stringByAppendingString:@" "]
+                                     stringByAppendingString:meetUser.surname ]
+                                    stringByAppendingString:@" has been declined at "]
+                                   stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
+                                  stringByAppendingString:@"." ]
+                                 ];
+            //cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%d",[aMeeting.distance intValue]]]
+            //                           stringByAppendingString:@" meters"];
+        }
+        
         if([aMeeting.MeetEventStatus integerValue]==MeetEventNotice){//meeting notice;5
             cell.textLabel.text=[@"Meeting with " stringByAppendingString:
                                  [[[[[meetUser.givenName stringByAppendingString:@" "]
@@ -425,6 +439,17 @@ extern NSString* LocalImagePlist;
                                  ]
                                  stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
                                 stringByAppendingString:@"." ]
+            ;
+            cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%d",[aMeeting.distance intValue]]]
+                                       stringByAppendingString:@" meters"];
+        }
+        if([aMeeting.MeetEventStatus integerValue]==MeetEventFinished){//finished; 0
+            cell.textLabel.text=[[[[[meetUser.givenName stringByAppendingString:@" "]
+                                    stringByAppendingString:meetUser.surname ]
+                                   stringByAppendingString:@" has met you at "
+                                   ]
+                                  stringByAppendingString:[appDelegate.timeDateFormatter stringFromDate:aMeeting.metadata.lastModifiedTime]]
+                                 stringByAppendingString:@"." ]
             ;
             cell.detailTextLabel.text=[[@"current distance: " stringByAppendingString:[NSString stringWithFormat:@"%d",[aMeeting.distance intValue]]]
                                        stringByAppendingString:@" meters"];
@@ -600,16 +625,18 @@ extern NSString* LocalImagePlist;
     
     //The icon on the right side of a row;
 	//cell.accessoryType = UITableViewCellAccessoryNone;
-    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
-    button.frame = frame;
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor clearColor];
-    cell.accessoryView = button;
+//    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
+//    
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
+//    button.frame = frame;
+//    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    
+//    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
+//    button.backgroundColor = [UIColor clearColor];
+//    cell.accessoryView = button;
+//    
+    cell.accessoryType=UITableViewCellAccessoryDetailButton;
     
     
     
@@ -628,239 +655,7 @@ extern NSString* LocalImagePlist;
     CGPoint currentTouchPosition = [touch locationInView:self.notifTable];
     NSIndexPath *indexPath = [self.notifTable indexPathForRowAtPoint: currentTouchPosition];
     
-    
-    if (indexPath != nil)
-    {
-        //[self tableView: self.notifTable accessoryButtonTappedForRowWithIndexPath: indexPath];
-        if(indexPath.section==0){//friend request;
-            AddFriends *aFriend= [appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row];
-            NSString *senderName=[[aFriend.from_user givenName]
-                stringByAppendingString:[@" "
-                    stringByAppendingString:[aFriend.from_user surname]
-                ]
-            ];
-            
-            // 1. agreed, add a friendship to friendshipStore; delete current record in AddFriend; send push notification to the request sender;
-            Friendship *aRelation=[[Friendship alloc] init];
-            aRelation.from_user=aFriend.from_user;
-            aRelation.to_user=aFriend.to_user;
-            aRelation.permission=aFriend.permission;
-            aRelation.shownColor=[NSNumber numberWithInt:0];
-            aRelation.from_givenName=aFriend.from_user.givenName;
-            aRelation.from_surname=aFriend.from_user.surname;
-            aRelation.to_givenName=aFriend.to_user.givenName;
-            aRelation.to_surname=aFriend.to_user.surname;
-            //aRelation.from_id=[aFriend.from_user userId];
-            //aRelation.to_id= [aFriend.to_user userId];
-            
-            //test
-            //if([aFriend.agreed isEqualToNumber:[NSNumber numberWithInt:0]]){NSLog(@"agreed==0");}
-            
-            //frist check if this friendship already exists;
-            KCSQuery *query_exist1=[KCSQuery queryOnField:@"from_user._id"
-                                   withExactMatchForValue:[aFriend.from_user userId]
-                                    ];
-            KCSQuery *query_exist2=[KCSQuery queryOnField:@"to_user._id"
-                                   withExactMatchForValue:[aFriend.to_user userId]
-                                    
-                                    ];
-            KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist1,query_exist2, nil];
-            
-            
-            [friendshipStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                Friendship * aFriendship;
-                if(errorOrNil){
-                    NSLog(@"showNotification, friend request: %@",errorOrNil);
-                }
-                if(objectsOrNil.count!=0){
-                    aFriendship=objectsOrNil[0];
-                    if([aFriendship.permission integerValue]!=[aFriend.permission integerValue]){
-                        aFriendship.permission=aFriend.permission;
-                        [friendshipStore saveObject:aFriendship withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                            if(errorOrNil!=nil){
-                                NSLog(@"FriendshipStore: %@",errorOrNil);
-                            }
-                        } withProgressBlock:nil
-                         ];
-                    }
-                }
-                
-                if(objectsOrNil.count==0){// do not exist current friendship;
-                    [friendshipStore saveObject:aRelation withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                        if(errorOrNil!=nil){
-                            NSLog(@"friendshipStore save : %@",errorOrNil);
-                        }
-                    } withProgressBlock:nil
-                     ];
-                }
-                
-                
-             } withProgressBlock:nil
-             ];
-            
-            BOOL has_this_friend=NO;
-            //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            for(NSInteger i=0;i<appDelegate.fList.friends.count;i++){
-                
-                Friendship *myFriend=[appDelegate.fList.friends objectAtIndex:i];
-                if([myFriend.to_user.userId isEqualToString: aFriend.from_user.userId]){
-                    has_this_friend=YES;
-                    break;
-                }
-            }
-            
-            
-            if(!has_this_friend && [aFriend.agreed integerValue]==AddFriendFirstTime){//the initial request
-                // 2. ask the user if he wants to add the request sender as a friend;
-                // 3. If yes, add a new record in AddFriend;
-                //self.oneFriend=aFriend;
-                
-                
-                
-                    self.oneFriend.to_user=aFriend.from_user;
-                    self.oneFriend.from_user=[KCSUser activeUser];
-                    //self.oneFriend.agreed=[NSNumber numberWithInt:PermissionForFriends];
-                
-                void (^block_after_assign)(AddFriends *assigned_array)=^(AddFriends *assigned_array){
-                    NSLog(@"%@",self.oneFriend);
-                    
-                    UIAlertController * alert=   [UIAlertController
-                                                  alertControllerWithTitle:@"Request Back"
-                                                  message:[[@"You have agreed the request. Would you like to add " stringByAppendingString:senderName] stringByAppendingString:@" as a friend too? If so, please select your request permission."]
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-                    
-                    UIAlertAction* trueloc = [UIAlertAction
-                                         actionWithTitle:@"True Loc"
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action)
-                                         {
-                                             [alert dismissViewControllerAnimated:YES completion:nil];
-                                             
-                                             [FriendList AddOneFriend:self.oneFriend.to_user
-                                                           Permission:[NSNumber numberWithInteger:PermissionForFamily]
-                                                           Controller:self
-                                                              Initial:[NSNumber numberWithInteger:AddFriendRequestBack]
-                                              ];
-                                         }];
-                    UIAlertAction* cloakedloc = [UIAlertAction
-                                              actionWithTitle:@"Cloaked Loc"
-                                              style:UIAlertActionStyleDefault
-                                              handler:^(UIAlertAction * action)
-                                              {
-                                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                                  
-                                                  [FriendList AddOneFriend:self.oneFriend.to_user
-                                                                Permission:[NSNumber numberWithInteger:PermissionForFriends]
-                                                                Controller:self
-                                                                   Initial:[NSNumber numberWithInteger:AddFriendRequestBack]
-                                                   ];
-                                              }];
-                    UIAlertAction* cancel = [UIAlertAction
-                                             actionWithTitle:@"Cancel"
-                                             style:UIAlertActionStyleDefault
-                                             handler:^(UIAlertAction * action)
-                                             {
-                                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                                 
-                                             }];
-                    
-                    [alert addAction:cancel];
-                    [alert addAction:trueloc];
-                    [alert addAction:cloakedloc];
-                    
-                    [self presentViewController:alert animated:YES completion:nil];
-                };
-                //assure the sequence that block will only be executed after self.oneFriend is assigned;
-                block_after_assign(self.oneFriend);
-                
-            }//has not this friend;
-            
-            
-            /*id<KCSStore> loadStore1=[KCSLinkedAppdataStore storeWithOptions:@{
-                                                                KCSStoreKeyCollectionName : @"AddFriend",
-                                                                KCSStoreKeyCollectionTemplateClass : [AddFriends class],
-                                                                KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
-                                                                }];*/
-            [loadStore removeObject:aFriend withCompletionBlock:^(unsigned long count, NSError *errorOrNil) {
-                if(errorOrNil!=nil){
-                    NSLog(@"showNotificationVC, check button: %@",errorOrNil);
-                }
-            } withProgressBlock:nil
-             ];
-            
-            
-            /*aFriend.agreed=[NSNumber numberWithInt:1];
-            
-            [self.loadStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
-                NSLog(@"accepted request");
-            } withProgressBlock:nil
-             ];
-             */
-            
-            [appDelegate.fList.NotifsToMe removeObjectAtIndex:indexPath.row];
-            [self.notifTable reloadData];
-        }
-        if(indexPath.section==2){//meeting request;
-            MeetEvent* aMeeting=[appDelegate.fList.NotifsMeeting objectAtIndex:indexPath.row];
-            KCSUser* meetUser=[aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]?aMeeting.to_user:aMeeting.from_user;
-            
-            if([aMeeting.MeetEventStatus integerValue]==MeetEventRequest && [aMeeting.to_user.userId isEqualToString:[KCSUser activeUser].userId]){//request to me;
-                if([appDelegate.privacy.SharingSwitch boolValue]==NO){
-                    UIAlertController * alert=   [UIAlertController
-                                                  alertControllerWithTitle:@""
-                                                  message:@"Please enable location function in \"My Privacy\" page."
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-                    
-                    UIAlertAction* left = [UIAlertAction
-                                           actionWithTitle:@"OK"
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction * action)
-                                           {
-                                                [alert dismissViewControllerAnimated:YES completion:nil];
-                                               
-                                           }];
-                    
-                    [alert addAction:left];
-                    
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-                else{
-                UIAlertController * alert=   [UIAlertController
-                                              alertControllerWithTitle:@""
-                                              message:[[@"Agree to meet with "
-                                                        stringByAppendingString:[[meetUser.givenName stringByAppendingString:@" "]
-                                                                               stringByAppendingString:meetUser.surname ]]
-                                                       stringByAppendingString:@"?"]
-                                            preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* left = [UIAlertAction
-                                       actionWithTitle:@"Agree"
-                                       style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction * action)
-                                       {
-                                           [appDelegate AgreeMeetEventRequestInApp:aMeeting];
-                                           [alert dismissViewControllerAnimated:YES completion:nil];
-                                           
-                                       }];
-                UIAlertAction* right = [UIAlertAction
-                                        actionWithTitle:@"Decline"
-                                        style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction * action)
-                                        {
-                                            [appDelegate DeclineMeetEventRequestInApp:aMeeting];
-                                            [alert dismissViewControllerAnimated:YES completion:nil];
-                                            
-                                        }];
-                
-                [alert addAction:left];
-                [alert addAction:right];
-                
-                [self presentViewController:alert animated:YES completion:nil];
-                }
-            }
-        }
-        
-    }
+    [self tableView: self.notifTable accessoryButtonTappedForRowWithIndexPath: indexPath];
     
     NSLog(@"tapped\n");
 }
@@ -1013,6 +808,305 @@ extern NSString* LocalImagePlist;
 #pragma mark -
 #pragma mark Table view delegate
 
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if (indexPath != nil)
+    {
+        //[self tableView: self.notifTable accessoryButtonTappedForRowWithIndexPath: indexPath];
+        if(indexPath.section==0){//friend request;
+            AddFriends *aFriend= [appDelegate.fList.NotifsToMe objectAtIndex:indexPath.row];
+            
+            NSString *senderName=[[aFriend.from_user givenName]
+                                  stringByAppendingString:[@" "
+                                                           stringByAppendingString:[aFriend.from_user surname]
+                                                           ]
+                                  ];
+            void (^block_after_assign)(AddFriends* aFriend)=^(AddFriends* aFriend){
+            
+            
+            // 1. agreed, add a friendship to friendshipStore; delete current record in AddFriend; send push notification to the request sender;
+            Friendship *aRelation=[[Friendship alloc] init];
+            aRelation.from_user=aFriend.from_user;
+            aRelation.to_user=aFriend.to_user;
+            aRelation.permission=aFriend.permission;
+            aRelation.shownColor=[NSNumber numberWithInt:0];
+            aRelation.from_givenName=aFriend.from_user.givenName;
+            aRelation.from_surname=aFriend.from_user.surname;
+            aRelation.to_givenName=aFriend.to_user.givenName;
+            aRelation.to_surname=aFriend.to_user.surname;
+            //aRelation.from_id=[aFriend.from_user userId];
+            //aRelation.to_id= [aFriend.to_user userId];
+            
+            //test
+            //if([aFriend.agreed isEqualToNumber:[NSNumber numberWithInt:0]]){NSLog(@"agreed==0");}
+            
+            //frist check if this friendship already exists;
+            KCSQuery *query_exist1=[KCSQuery queryOnField:@"from_user._id"
+                                   withExactMatchForValue:[aFriend.from_user userId]
+                                    ];
+            KCSQuery *query_exist2=[KCSQuery queryOnField:@"to_user._id"
+                                   withExactMatchForValue:[aFriend.to_user userId]
+                                    
+                                    ];
+            KCSQuery *query_exist=[KCSQuery queryForJoiningOperator:kKCSAnd onQueries:query_exist1,query_exist2, nil];
+            
+            
+            [friendshipStore queryWithQuery:query_exist withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                Friendship * aFriendship;
+                if(errorOrNil){
+                    NSLog(@"showNotification, friend request: %@",errorOrNil);
+                }
+                if(objectsOrNil.count!=0){
+                    aFriendship=objectsOrNil[0];
+                    if([aFriendship.permission integerValue]!=[aFriend.permission integerValue]){
+                        aFriendship.permission=aFriend.permission;
+                        [friendshipStore saveObject:aFriendship withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                            if(errorOrNil!=nil){
+                                NSLog(@"FriendshipStore: %@",errorOrNil);
+                            }
+                            else{
+                                
+                            }
+                        } withProgressBlock:nil
+                         ];
+                    }
+                }
+                
+                if(objectsOrNil.count==0){// do not exist current friendship;
+                    [friendshipStore saveObject:aRelation withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                        if(errorOrNil!=nil){
+                            NSLog(@"friendshipStore save : %@",errorOrNil);
+                        }
+                        else{
+                            
+                        }
+                    } withProgressBlock:nil
+                     ];
+                }
+                
+                
+            } withProgressBlock:nil
+             ];
+            
+            BOOL has_this_friend=NO;
+            //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            for(NSInteger i=0;i<appDelegate.fList.friends.count;i++){
+                
+                Friendship *myFriend=[appDelegate.fList.friends objectAtIndex:i];
+                if([myFriend.to_user.userId isEqualToString: aFriend.from_user.userId]){
+                    has_this_friend=YES;
+                    break;
+                }
+            }
+            
+            
+            if(!has_this_friend && [aFriend.agreed integerValue]==AddFriendFirstTime){//the initial request
+                // 2. ask the user if he wants to add the request sender as a friend;
+                // 3. If yes, add a new record in AddFriend;
+                //self.oneFriend=aFriend;
+                
+                
+                
+                self.oneFriend.to_user=aFriend.from_user;
+                self.oneFriend.from_user=[KCSUser activeUser];
+                //self.oneFriend.agreed=[NSNumber numberWithInt:PermissionForFriends];
+                
+                void (^block_after_assign)(AddFriends *assigned_array)=^(AddFriends *assigned_array){
+                    NSLog(@"%@",self.oneFriend);
+                    
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@"Request Back"
+                                                  message:[[@"You have agreed the request. Would you like to add " stringByAppendingString:senderName] stringByAppendingString:@" as a friend too? If so, please select your request permission."]
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* trueloc = [UIAlertAction
+                                              actionWithTitle:@"True Loc"
+                                              style:UIAlertActionStyleDefault
+                                              handler:^(UIAlertAction * action)
+                                              {
+                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                  
+                                                  [FriendList AddOneFriend:self.oneFriend.to_user
+                                                                Permission:[NSNumber numberWithInteger:PermissionForFamily]
+                                                                Controller:self
+                                                                   Initial:[NSNumber numberWithInteger:AddFriendRequestBack]
+                                                   ];
+                                              }];
+                    UIAlertAction* cloakedloc = [UIAlertAction
+                                                 actionWithTitle:@"Cloaked Loc"
+                                                 style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction * action)
+                                                 {
+                                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                                     
+                                                     [FriendList AddOneFriend:self.oneFriend.to_user
+                                                                   Permission:[NSNumber numberWithInteger:PermissionForFriends]
+                                                                   Controller:self
+                                                                      Initial:[NSNumber numberWithInteger:AddFriendRequestBack]
+                                                      ];
+                                                 }];
+                    UIAlertAction* cancel = [UIAlertAction
+                                             actionWithTitle:@"Cancel"
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                                             {
+                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                                 
+                                             }];
+                    
+                    [alert addAction:cancel];
+                    [alert addAction:trueloc];
+                    [alert addAction:cloakedloc];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                };
+                //assure the sequence that block will only be executed after self.oneFriend is assigned;
+                block_after_assign(self.oneFriend);
+                
+            }//has not this friend;
+                
+                
+                [loadStore removeObject:aFriend withCompletionBlock:^(unsigned long count, NSError *errorOrNil) {
+                    if(errorOrNil!=nil){
+                        NSLog(@"showNotificationVC, check button: %@",errorOrNil);
+                    }
+                } withProgressBlock:nil
+                 ];
+                
+                
+                /*aFriend.agreed=[NSNumber numberWithInt:1];
+                 
+                 [self.loadStore saveObject:aFriend withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                 NSLog(@"accepted request");
+                 } withProgressBlock:nil
+                 ];
+                 */
+                
+                [appDelegate.fList.NotifsToMe removeObjectAtIndex:indexPath.row];
+                [self.notifTable reloadData];
+            };//block_after_assign;
+            
+            
+            NSString * str0;
+            if([aFriend.permission integerValue]==PermissionForFamily){
+                str0=@"\"True Loc\"";
+            }
+            if([aFriend.permission integerValue]==PermissionForFriends){
+                str0=@"\"Cloaked Loc\"";
+            }
+            if([aFriend.permission integerValue]==PermissionForNoLoc){
+                str0=@"\"No Loc\"";
+            }
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@""
+                                          message:[@"Do you authorize " stringByAppendingString:[[[senderName stringByAppendingString:@" to acess your "] stringByAppendingString:str0] stringByAppendingString:@" ?"] ]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"Agree"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     dispatch_after(0.2, dispatch_get_main_queue(), ^{
+                                         block_after_assign(aFriend);
+                                     });
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            UIAlertAction* decline = [UIAlertAction
+                                 actionWithTitle:@"Decline"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     
+                                     [loadStore removeObject:aFriend withCompletionBlock:^(unsigned long count, NSError *errorOrNil) {
+                                         if(errorOrNil!=nil){
+                                             NSLog(@"showNotificationVC, check button: %@",errorOrNil);
+                                         }
+                                     } withProgressBlock:nil
+                                      ];
+                                     
+                                     
+                                     [appDelegate.fList.NotifsToMe removeObjectAtIndex:indexPath.row];
+                                     [self.notifTable reloadData];
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+            
+            
+            [alert addAction:ok];
+            [alert addAction:decline];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            /*id<KCSStore> loadStore1=[KCSLinkedAppdataStore storeWithOptions:@{
+             KCSStoreKeyCollectionName : @"AddFriend",
+             KCSStoreKeyCollectionTemplateClass : [AddFriends class],
+             KCSStoreKeyCachePolicy : @(KCSCachePolicyNone)
+             }];*/
+        }
+        if(indexPath.section==2){//meeting request;
+            MeetEvent* aMeeting=[appDelegate.fList.NotifsMeeting objectAtIndex:indexPath.row];
+            KCSUser* meetUser=[aMeeting.from_user.userId isEqualToString:[KCSUser activeUser].userId]?aMeeting.to_user:aMeeting.from_user;
+            
+            if([aMeeting.MeetEventStatus integerValue]==MeetEventRequest && [aMeeting.to_user.userId isEqualToString:[KCSUser activeUser].userId]){//request to me;
+                if([appDelegate.privacy.SharingSwitch boolValue]==NO){
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@""
+                                                  message:@"Please enable location function in \"My Privacy\" page."
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* left = [UIAlertAction
+                                           actionWithTitle:@"OK"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action)
+                                           {
+                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                               
+                                           }];
+                    
+                    [alert addAction:left];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                else{
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@""
+                                                  message:[[@"Agree to meet with "
+                                                            stringByAppendingString:[[meetUser.givenName stringByAppendingString:@" "]
+                                                                                     stringByAppendingString:meetUser.surname ]]
+                                                           stringByAppendingString:@"?"]
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* left = [UIAlertAction
+                                           actionWithTitle:@"Agree"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action)
+                                           {
+                                               [appDelegate AgreeMeetEventRequestInApp:aMeeting];
+                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                               
+                                           }];
+                    UIAlertAction* right = [UIAlertAction
+                                            actionWithTitle:@"Decline"
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action)
+                                            {
+                                                [appDelegate DeclineMeetEventRequestInApp:aMeeting];
+                                                [alert dismissViewControllerAnimated:YES completion:nil];
+                                                
+                                            }];
+                    
+                    [alert addAction:left];
+                    [alert addAction:right];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }
+        }
+        
+    }
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -1023,6 +1117,7 @@ extern NSString* LocalImagePlist;
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
+    
     
 }
 

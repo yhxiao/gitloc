@@ -36,7 +36,7 @@ NSString * const Kinvey_App_ID_Production=@"kid_WJVxWckTJ-";
 NSString * const Kinvey_App_ID_Development=@"kid_PeVcDHs6oJ";
 NSString * const Kinvey_App_Secret_Development=@"95bf9dd03735465fb5f83955c92eade5";
 NSString * const Kinvey_App_Secret_Production=@"6945a4ad14ae42269bdb116b8a89df5d";
-NSString * const LocLok_Version=@"0.0.2";
+NSString * const LocLok_Version=@"0.1.0";
 
 
 extern NSString* LocalImagePlist;
@@ -137,11 +137,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //payload customized at:http://devcenter.kinvey.com/html5/reference/business-logic/reference.html
     
     [[KCSPush sharedPush] application:application didReceiveRemoteNotification:userInfo];
-    
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     
     
     
     if([[userInfo objectForKey:@"code"] unsignedIntegerValue]-100== MeetEventRequest){//friend permission from_user;
+        
+        badgeCount=badgeCount+1;
+        [tabBarController.tabBar.items objectAtIndex:2].badgeValue=[NSString stringWithFormat:@"%ld",badgeCount];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
         
             if(application.applicationState == UIApplicationStateActive) {
                 UIAlertController * alert=   [UIAlertController
@@ -181,7 +185,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     // do agreeing automatically.
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventNotice){//family permission
-        
+        badgeCount=badgeCount+1;
+        [tabBarController.tabBar.items objectAtIndex:2].badgeValue=[NSString stringWithFormat:@"%ld",badgeCount];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
         [self AgreeMeetEventRequest:userInfo];
         
         if(application.applicationState == UIApplicationStateActive) {
@@ -210,7 +216,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     //do receiving;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventAgreed){//agreed
-        
+        badgeCount=badgeCount+1;
+        [tabBarController.tabBar.items objectAtIndex:2].badgeValue=[NSString stringWithFormat:@"%ld",badgeCount];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
         //[locationManager setOperationMode:LKmode_high];
         locationManager.locationUpdateInterval=60;
         myInProgressMeeting=YES;
@@ -243,7 +251,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     //do nothing;
     if([[userInfo objectForKey:@"code"] unsignedLongValue]-100==MeetEventDeclined){//declined
-        
+        badgeCount=badgeCount+1;
+        [tabBarController.tabBar.items objectAtIndex:2].badgeValue=[NSString stringWithFormat:@"%ld",badgeCount];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
         if(application.applicationState == UIApplicationStateActive) {
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Real-time Meeting Declined"
@@ -367,7 +377,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
             [self showNotificationInApp];
         }
     }
-    if([[userInfo objectForKey:@"code"] unsignedIntegerValue]==200){
+    if([[userInfo objectForKey:@"code"] unsignedIntegerValue]==200){//from AddFriend
+        badgeCount=badgeCount+1;
+        [tabBarController.tabBar.items objectAtIndex:2].badgeValue=[NSString stringWithFormat:@"%ld",badgeCount];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
         if(application.applicationState == UIApplicationStateActive) {
             UIAlertController * alert=   [UIAlertController
                                           alertControllerWithTitle:@"Friend Permission Request"
@@ -537,6 +550,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     //Start push service
     [KCSPush registerForPush];
     myInProgressMeeting=NO;
+    badgeCount=0;
     
     UIColor *bgColor=[UIColor colorWithRed:0.4 green:0 blue:0.4 alpha:1];
     UIColor *bgColor2=[UIColor colorWithRed:0.6 green:0 blue:0.6 alpha:1];
@@ -594,6 +608,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
     
     
     LKmode_inactive = [[LKSetting alloc] initWithType:LKSettingTypeAuto];
+    locationManager.locationUpdateInterval=600;
     
     LKmode_active = [[LKSetting alloc] initWithType:LKSettingTypeMedium];
     //LKmode_active.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
@@ -2603,29 +2618,41 @@ forRemoteNotification:(NSDictionary *)userInfo
     //save perturbed location to lokSeries;
     //if(currentLocation.horizontalAccuracy>0 && currentLocation.horizontalAccuracy<=100.0){
     if(shouldshareorNot){
-    if([currentLocation distanceFromLocation:latestTrueLocation]>200  || latestPerturbedLocation==nil){//only update the perturbed location if movement>100m;
+    if([currentLocation distanceFromLocation:latestTrueLocation]>200  || latestPerturbedLocation==nil || [[NSDate date] timeIntervalSinceDate:latestPerturbedLocation.timestamp]>600){//only update the perturbed location if movement>100m; or if the laterPerturbedLocation is older than 10 minutes;
         LocSeries* perturbed = [[LocSeries alloc] init];
         perturbed.owner =[KCSUser activeUser].userId;
         perturbed.userDate = currentLocation.timestamp;
         perturbed.precision=privacy.SharingRadius;//in km;
         perturbed.validUntilWhen=activeLocationUntilWhen;
         
-        double bearing=GenRandomU01()*2*M_PI;
-        //test
-        //for(int i=0;i<10;i++){
-        //    NSLog(@"%f",GenGammaRV59([privacy.SharingRadius floatValue])*1000);
-        //}
-        //double r=GenGammaRV([privacy.SharingRadius floatValue]*1000);
-        //change radius to the circle containing 99% probability mass.
-        double r=GenGammaRV59([privacy.SharingRadius floatValue]);//(2/radius)-differential privacy;
-        CLLocationCoordinate2D  perturbedCoordinate=[self locationWithBearing:bearing
-                                                                     distance:r
-                                                                 fromLocation:currentLocation.coordinate ];
-        
-        perturbed.location =CLLocationCoordinate2DToKCS(perturbedCoordinate);
-        perturbed.speed=[NSNumber numberWithDouble:[currentLocation distanceFromLocation:[CLLocation locationFromKinveyValue:CLLocationCoordinate2DToKCS(perturbedCoordinate)]]];
-        NSLog(@"%f",[currentLocation distanceFromLocation:[CLLocation locationFromKinveyValue:CLLocationCoordinate2DToKCS(perturbedCoordinate)]]);
-        
+        if([currentLocation distanceFromLocation:latestTrueLocation]<=200 && latestPerturbedLocation!=nil){//moving distance<200 meters;
+            perturbed.location=CLLocationCoordinate2DToKCS(latestPerturbedLocation.coordinate);
+            perturbed.speed=[NSNumber numberWithInt:0];
+            latestPerturbedLocation=[[CLLocation alloc]
+                                     initWithLatitude:latestPerturbedLocation.coordinate.latitude
+                                     longitude:latestPerturbedLocation.coordinate.longitude
+                                     ];
+            
+        }
+        else{//distance >200 meters;
+            double bearing=GenRandomU01()*2*M_PI;
+            //test
+            //for(int i=0;i<10;i++){
+            //    NSLog(@"%f",GenGammaRV59([privacy.SharingRadius floatValue])*1000);
+            //}
+            //double r=GenGammaRV([privacy.SharingRadius floatValue]*1000);
+            //change radius to the circle containing 99% probability mass.
+            double r=GenGammaRV99([privacy.SharingRadius floatValue]);//(2/radius)-differential privacy;
+            CLLocationCoordinate2D  perturbedCoordinate=[self locationWithBearing:bearing
+                                                                         distance:r
+                                                                     fromLocation:currentLocation.coordinate ];
+            
+            perturbed.location =CLLocationCoordinate2DToKCS(perturbedCoordinate);
+            perturbed.speed=[NSNumber numberWithDouble:[currentLocation distanceFromLocation:[CLLocation locationFromKinveyValue:CLLocationCoordinate2DToKCS(perturbedCoordinate)]]];
+            //NSLog(@"%f",[currentLocation distanceFromLocation:[CLLocation locationFromKinveyValue:CLLocationCoordinate2DToKCS(perturbedCoordinate)]]);
+                
+            latestPerturbedLocation=[[CLLocation alloc] initWithLatitude:perturbedCoordinate.latitude longitude:perturbedCoordinate.longitude];
+        }
         [LokSeriesStore saveObject:perturbed withCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
             if (errorOrNil == nil) {
                 
@@ -2643,7 +2670,6 @@ forRemoteNotification:(NSDictionary *)userInfo
         } withProgressBlock:nil];
         
         
-        latestPerturbedLocation=[[CLLocation alloc] initWithLatitude:perturbedCoordinate.latitude longitude:perturbedCoordinate.longitude];
         
         //send notification to viewController to update map, when in active status;
         if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive ||

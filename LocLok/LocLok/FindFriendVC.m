@@ -522,17 +522,19 @@ extern NSString* LocalImagePlist;
     
     //The icon on the right side of a row;
 	//cell.accessoryType = UITableViewCellAccessoryNone;
-    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
-    
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
-    button.frame = frame;
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor clearColor];
-    cell.accessoryView = button;
+//    UIImage *image =  [UIImage imageNamed:@"icon_cell_add60.png"] ;
+//    
+//    
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
+//    button.frame = frame;
+//    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    
+//    [button addTarget:self action:@selector(checkButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
+//    button.backgroundColor = [UIColor clearColor];
+//    cell.accessoryView = button;
+//
+    cell.accessoryType=UITableViewCellAccessoryDetailButton;
     
     //The profile image on the left;
     UIImage* pImage=[CommonFunctions loadImageFromLocal:[[self.searchResult objectAtIndex:indexPath.row] userId]];
@@ -702,26 +704,14 @@ extern NSString* LocalImagePlist;
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
-    
-    
-    
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     //a user cannot add himself as a friend;
     //NSLog([[self.searchResult objectAtIndex:indexPath.row] userId]);
     //NSLog([[KCSUser activeUser] userId]);
     if([
-       [[self.searchResult objectAtIndex:indexPath.row] userId]
+        [[self.searchResult objectAtIndex:indexPath.row] userId]
         isEqualToString:
-       [[KCSUser activeUser] userId]
+        [[KCSUser activeUser] userId]
         ]){
         
         
@@ -797,10 +787,10 @@ extern NSString* LocalImagePlist;
                               {
                                   perm=[NSNumber numberWithInteger:PermissionForFamily];
                                   dispatch_after(0.2, dispatch_get_main_queue(), ^{
-                                  [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
-                                                Permission:perm Controller:self
-                                                   Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
-                                   ];
+                                      [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
+                                                    Permission:perm Controller:self
+                                                       Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
+                                       ];
                                   });
                                   [alert dismissViewControllerAnimated:YES completion:nil];
                                   
@@ -812,10 +802,10 @@ extern NSString* LocalImagePlist;
                                  {
                                      perm=[NSNumber numberWithInteger:PermissionForFriends];
                                      dispatch_after(0.2, dispatch_get_main_queue(), ^{
-                                     [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
-                                                   Permission:perm Controller:self
-                                                      Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
-                                      ];
+                                         [FriendList AddOneFriend:(KCSUser *)[self.searchResult objectAtIndex:indexPath.row]
+                                                       Permission:perm Controller:self
+                                                          Initial:[NSNumber numberWithInteger:AddFriendFirstTime]
+                                          ];
                                      });
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                      
@@ -826,8 +816,17 @@ extern NSString* LocalImagePlist;
     [alert addAction:cloakedloc];
     
     [self presentViewController:alert animated:YES completion:nil];
-    
-    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Navigation logic may go here. Create and push another view controller.
+	/*
+	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+	 [self.navigationController pushViewController:detailViewController animated:YES];
+	 [detailViewController release];
+	 */
     
     
     

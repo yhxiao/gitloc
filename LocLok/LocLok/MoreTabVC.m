@@ -65,7 +65,10 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-    self.title=@"More";
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor purpleColor]}];
+    //self.title=@"LocLok";
+    self.navigationItem.title=@"More";
 	// Do any additional setup after loading the view.
     CGRect viewRect=CGRectMake(self.view.bounds.origin.x,
                                self.view.bounds.origin.y,
