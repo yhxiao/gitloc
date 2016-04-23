@@ -776,32 +776,36 @@ extern NSString* fListFrdLocationsLoadingCompletetion;
     frdRegions=nil;
     
     
+    dispatch_after(0.1, dispatch_get_main_queue(), ^{
+
+        [appDelegate.fList  updateLocations];
+        
+        
+        //add self annotation;
+        
+        //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
+        //[mapView removeAnnotation:selfLokAnnotation];
+        selfLokAnnotation.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                                           stringByAppendingString:[[KCSUser activeUser] surname] ];
+        selfLokAnnotation.thumbnail.image=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
+        
+        selfLokAnnotation.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
+        selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
+        [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
+        
+        //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
+        //[mapView removeOverlay:selfLokOverlay];
+        selfLokOverlay=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
+                                                     radius:[appDelegate.privacy.SharingRadius doubleValue]];
+        selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
+                              stringByAppendingString:[[KCSUser activeUser] surname] ];
+        if(appDelegate.latestPerturbedLocation!=nil){
+            [self.mapView addAnnotation:selfLokAnnotation];
+            [self.mapView addOverlay:selfLokOverlay];
+        }
+    });
     
-    [appDelegate.fList  updateLocations];
     
-    
-    //add self annotation;
-    
-    //if(![self.mapView.annotations containsObject:selfLokAnnotation]){
-    //[mapView removeAnnotation:selfLokAnnotation];
-    selfLokAnnotation.thumbnail.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
-                                       stringByAppendingString:[[KCSUser activeUser] surname] ];
-    selfLokAnnotation.thumbnail.image=[CommonFunctions loadImageFromLocal:[[KCSUser activeUser] userId]];
-    
-    selfLokAnnotation.thumbnail.subtitle=[appDelegate.timeDateFormatter stringFromDate: appDelegate.latestPerturbedLocation.timestamp];
-    selfLokAnnotation.thumbnail.coordinate=appDelegate.latestPerturbedLocation.coordinate;
-    [selfLokAnnotation updateThumbnail:selfLokAnnotation.thumbnail animated:YES];
-    
-    //NSLog(@"%f",[appDelegate.privacy.SharingRadius doubleValue]);
-    //[mapView removeOverlay:selfLokOverlay];
-    selfLokOverlay=[MKCircle circleWithCenterCoordinate:appDelegate.latestPerturbedLocation.coordinate
-                                                 radius:[appDelegate.privacy.SharingRadius doubleValue]];
-    selfLokOverlay.title=[[[[KCSUser activeUser] givenName] stringByAppendingString:@" "]
-                          stringByAppendingString:[[KCSUser activeUser] surname] ];
-    if(appDelegate.latestPerturbedLocation!=nil){
-        [self.mapView addAnnotation:selfLokAnnotation];
-        [self.mapView addOverlay:selfLokOverlay];
-    }
     
     
 }

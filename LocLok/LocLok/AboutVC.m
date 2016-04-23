@@ -49,7 +49,7 @@ extern NSString * LocLok_Version;
     
     
     
-    UILabel *versionLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(200, initialHeight+70, width-100, boxHeight/2) ];
+    UILabel *versionLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0, initialHeight+70, width, boxHeight/2) ];
     versionLabel.textAlignment =  NSTextAlignmentCenter;
     versionLabel.textColor = [UIColor purpleColor];
     versionLabel.backgroundColor = bgColor;
@@ -66,7 +66,7 @@ extern NSString * LocLok_Version;
     textLabel.adjustsFontSizeToFitWidth=NO;
     textLabel.numberOfLines=0;
     textLabel.lineBreakMode=NSLineBreakByClipping;
-    textLabel.text = @"Thanks for using LocLok. LocLok stands for \"location cloaking\", which is a term used in location privacy protection. We have been working on data security and privacy for many years, and LocLok is the first mobile app that enables \"differential privacy\" for location sharing. We are highly dedicated to making LocLok for everyone to use. Please feel free to contact us if you have any comments or suggestions. \n\n Author: Yonghui Xiao (http://yxiao.info) \n Contact: yhandxiao@gmail.com \n Acknowledgement: Li Xiong, Kyutae Lim";
+    textLabel.text = @"Thanks for using LocLok. LocLok stands for \"location cloaking\", which is a term used in location privacy protection. We have been working on data security and privacy for many years, and LocLok is the first mobile app that enables \"differential privacy\" for location sharing. We are highly dedicated to making LocLok for everyone to use. Please feel free to contact us if you have any comments or suggestions. \n\n Author: Yonghui Xiao (http://yxiao.info) \n Contact: yhandxiao@gmail.com \n Website: http://forum.loclok.com \n Acknowledgement: Li Xiong";
     
     
 }

@@ -914,7 +914,7 @@ static NSString *CellIdentifier1 = @"CellID_PrivacySetting";
     
     //radius_slider_km.value=appDelegate1.privacy.SharingRadius.floatValue/1000;
     //[self sliderAction:radius_slider_km];
-    self.rulesTableView.frame=CGRectMake(10, self.view.bounds.origin.y+ 240-40, scrollView.bounds.size.width-20,44*appDelegate1.privacy.SharingTime.count);
+    self.rulesTableView.frame=CGRectMake(10, 240-40, scrollView.bounds.size.width-20,44*appDelegate1.privacy.SharingTime.count);
     [self.rulesTableView reloadData];
     
     [sharing_switch setOn:appDelegate1.privacy.SharingSwitch.intValue==1];
